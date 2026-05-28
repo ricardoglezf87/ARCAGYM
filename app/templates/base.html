@@ -10,18 +10,15 @@
   <body>
     <header class="site-header">
       <a class="brand" href="/dashboard">ARCA Gym</a>
-      {% if user %}
-        <nav class="main-nav" aria-label="Principal">
-          <a href="/dashboard">Panel</a>
-          <a href="/workouts">Historial</a>
-          <a href="/workouts/new">Registrar</a>
-          <a href="/stats">Estadisticas</a>
-          <a href="/exercises">Ejercicios</a>
-          <a href="/recommendations">Rutina</a>
-          <a href="/profile">Perfil</a>
-          <a href="/logout">Salir</a>
-        </nav>
-      {% endif %}
+      <nav class="main-nav" aria-label="Principal">
+        <a href="/dashboard">Panel</a>
+        <a href="/workouts">Historial</a>
+        <a href="/workouts/new">Registrar</a>
+        <a href="/stats">Estadisticas</a>
+        <a href="/exercises">Ejercicios</a>
+        <a href="/recommendations">Rutina</a>
+        <a href="/profile">Perfil</a>
+      </nav>
     </header>
     <main class="page">
       {% block content %}{% endblock %}

@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 from app.database import get_db
 from app.dependencies import require_user, templates
 from app.models import User
-from app.routers.auth import EXPERIENCE_LEVELS, GOALS
+from app.options import EXPERIENCE_LEVELS, GOALS
 
 
 router = APIRouter()

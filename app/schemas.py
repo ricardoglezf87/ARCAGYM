@@ -1,12 +1,10 @@
 from datetime import date
 
-from pydantic import BaseModel, EmailStr, Field
+from pydantic import BaseModel, Field
 
 
-class UserCreate(BaseModel):
+class UserProfileInput(BaseModel):
     name: str = Field(min_length=2, max_length=120)
-    email: EmailStr
-    password: str = Field(min_length=8)
     age: int | None = Field(default=None, ge=12, le=100)
     sex: str | None = None
     height_cm: float | None = Field(default=None, ge=80, le=260)

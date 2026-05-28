@@ -9,7 +9,7 @@ Aplicacion web local para registrar entrenamientos de gimnasio, consultar una bi
 - SQLite
 - SQLAlchemy
 - Chart.js para graficos
-- Autenticacion con sesiones y contrasenas hasheadas con PBKDF2
+- Modo local de usuario unico, sin autenticacion
 
 ## Instalacion
 
@@ -21,27 +21,35 @@ pip install -r requirements.txt
 Copy-Item .env.example .env
 ```
 
-Edita `.env` y cambia `SECRET_KEY` antes de usar datos reales.
+Puedes editar `.env` para cambiar la ruta de la base de datos o activar futuras fuentes externas opcionales.
 
 ## Ejecucion
 
+Opcion rapida en Windows:
+
 ```powershell
-uvicorn app.main:app --reload
+.\iniciar_arcagym.bat
+```
+
+Este script libera el puerto `5990` si ya esta ocupado, arranca el servidor y abre el navegador cuando la aplicacion responde.
+
+Opcion manual:
+
+```powershell
+uvicorn app.main:app --host 127.0.0.1 --port 5990 --reload
 ```
 
 Abre:
 
 ```text
-http://127.0.0.1:8000
+http://127.0.0.1:5990
 ```
 
 La base `arcagym.db` se crea automaticamente en el primer arranque y se carga con ejercicios iniciales desde `app/seed/exercises_seed.json`.
 
 ## Funcionalidades incluidas
 
-- Registro, login y logout.
-- Rutas privadas protegidas por sesion.
-- Datos aislados por usuario.
+- Modo local sin login, usando un perfil unico editable.
 - Perfil editable con objetivo, nivel, disponibilidad, limitaciones y equipamiento.
 - Biblioteca local de ejercicios con instrucciones, errores, consejos y seguridad.
 - Creacion, edicion y eliminacion de entrenamientos.
@@ -64,7 +72,6 @@ app/
   database.py
   models.py
   schemas.py
-  auth.py
   dependencies.py
   routers/
   services/

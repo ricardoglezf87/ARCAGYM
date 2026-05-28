@@ -1,29 +1,50 @@
-from fastapi import Depends, HTTPException, Request, status
+from fastapi import Depends, Request
 from fastapi.templating import Jinja2Templates
+from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from app.database import get_db
 from app.models import User
+from app.options import DEFAULT_LOCAL_USER_EMAIL
 
 
 templates = Jinja2Templates(directory="app/templates")
 
 
-def current_user(request: Request, db: Session = Depends(get_db)) -> User | None:
-    user_id = request.session.get("user_id")
-    if not user_id:
-        return None
-    return db.get(User, int(user_id))
+def get_or_create_local_user(db: Session) -> User:
+    local_user = db.scalar(select(User).where(User.email == DEFAULT_LOCAL_USER_EMAIL))
+    if local_user:
+        return local_user
+
+    users = list(db.scalars(select(User).order_by(User.id).limit(2)).all())
+    if len(users) == 1:
+        return users[0]
+
+    local_user = User(
+        name="Usuario Local",
+        email=DEFAULT_LOCAL_USER_EMAIL,
+        hashed_password="local-user",
+        age=30,
+        height_cm=175,
+        body_weight_kg=75,
+        experience_level="principiante",
+        goal="salud general",
+        days_per_week=3,
+        session_duration=60,
+        equipment_available="gimnasio completo, mancuernas, barra, maquinas, polea, peso corporal",
+    )
+    db.add(local_user)
+    db.commit()
+    db.refresh(local_user)
+    return local_user
+
+
+def current_user(request: Request, db: Session = Depends(get_db)) -> User:
+    return get_or_create_local_user(db)
 
 
 def require_user(request: Request, db: Session = Depends(get_db)) -> User:
-    user = current_user(request, db)
-    if user is None:
-        raise HTTPException(
-            status_code=status.HTTP_303_SEE_OTHER,
-            headers={"Location": f"/login?next={request.url.path}"},
-        )
-    return user
+    return get_or_create_local_user(db)
 
 
 def split_lines(value: str | None) -> list[str]:
