@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}ARCA Gym{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/styles.css') }}">
+    {% block head %}{% endblock %}
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/dashboard">ARCA Gym</a>
+      {% if user %}
+        <nav class="main-nav" aria-label="Principal">
+          <a href="/dashboard">Panel</a>
+          <a href="/workouts">Historial</a>
+          <a href="/workouts/new">Registrar</a>
+          <a href="/stats">Estadisticas</a>
+          <a href="/exercises">Ejercicios</a>
+          <a href="/recommendations">Rutina</a>
+          <a href="/profile">Perfil</a>
+          <a href="/logout">Salir</a>
+        </nav>
+      {% endif %}
+    </header>
+    <main class="page">
+      {% block content %}{% endblock %}
+    </main>
+  </body>
+</html>

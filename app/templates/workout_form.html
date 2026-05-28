@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+{% block title %}{% if mode == "edit" %}Editar{% else %}Nuevo{% endif %} entrenamiento | ARCA Gym{% endblock %}
+{% block content %}
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">Registro</p>
+    <h1>{% if mode == "edit" %}Editar entrenamiento{% else %}Nuevo entrenamiento{% endif %}</h1>
+    <p class="muted">Anade ejercicios, series, peso, repeticiones, RPE y notas.</p>
+  </div>
+</section>
+
+{% if error %}<div class="alert">{{ error }}</div>{% endif %}
+
+<form method="post" class="workout-form">
+  <section class="form-grid two compact">
+    <label>Fecha
+      <input name="date" type="date" value="{{ session.date.isoformat() if session else today }}" required>
+    </label>
+    <label>Notas de sesion
+      <input name="notes" value="{{ session.notes if session else '' }}" placeholder="Energia, molestias, objetivo del dia">
+    </label>
+  </section>
+
+  <div id="exerciseBlocks" class="workout-blocks">
+    {% if session %}
+      {% for entry in session.exercises %}
+        {% set exercise_index = loop.index0 %}
+        <section class="workout-exercise" data-exercise-index="{{ exercise_index }}">
+          <div class="workout-exercise-head">
+            <label>Ejercicio
+              <select name="exercise_id" required>
+                {% for exercise in exercises %}
+                  <option value="{{ exercise.id }}" {% if exercise.id == entry.exercise_id %}selected{% endif %}>{{ exercise.name }} ({{ exercise.primary_muscle }})</option>
+                {% endfor %}
+              </select>
+            </label>
+            <button type="button" class="button ghost remove-exercise">Quitar</button>
+          </div>
+          <label>Notas del ejercicio
+            <input name="exercise_notes" value="{{ entry.notes or '' }}">
+          </label>
+          <div class="table-wrap">
+            <table class="sets-table">
+              <thead>
+                <tr>
+                  <th>Serie</th>
+                  <th>Peso</th>
+                  <th>Reps</th>
+                  <th>RPE</th>
+                  <th>Descanso</th>
+                  <th>Notas</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody class="sets-body">
+                {% for set in entry.sets %}
+                  <tr class="set-row">
+                    <td class="set-number">{{ loop.index }}</td>
+                    <td><input data-set-field="weight" name="set_weight_{{ exercise_index }}" type="number" step="0.1" min="0" value="{{ set.weight }}"></td>
+                    <td><input data-set-field="reps" name="set_reps_{{ exercise_index }}" type="number" min="1" value="{{ set.reps }}" required></td>
+                    <td><input data-set-field="rpe" name="set_rpe_{{ exercise_index }}" type="number" step="0.5" min="1" max="10" value="{{ set.rpe or '' }}"></td>
+                    <td><input data-set-field="rest" name="set_rest_{{ exercise_index }}" type="number" min="0" value="{{ set.rest_seconds or '' }}"></td>
+                    <td><input data-set-field="notes" name="set_notes_{{ exercise_index }}" value="{{ set.notes or '' }}"></td>
+                    <td><button type="button" class="icon-button remove-set" aria-label="Eliminar serie">x</button></td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <button type="button" class="button ghost add-set">Anadir serie</button>
+        </section>
+      {% endfor %}
+    {% endif %}
+  </div>
+
+  <div class="form-actions">
+    <button type="button" class="button secondary" id="addExercise">Anadir ejercicio</button>
+    <button type="submit" class="button primary">Guardar entrenamiento</button>
+  </div>
+</form>
+
+<template id="exerciseBlockTemplate">
+  <section class="workout-exercise" data-exercise-index="0">
+    <div class="workout-exercise-head">
+      <label>Ejercicio
+        <select name="exercise_id" required>
+          {% for exercise in exercises %}
+            <option value="{{ exercise.id }}">{{ exercise.name }} ({{ exercise.primary_muscle }})</option>
+          {% endfor %}
+        </select>
+      </label>
+      <button type="button" class="button ghost remove-exercise">Quitar</button>
+    </div>
+    <label>Notas del ejercicio
+      <input name="exercise_notes">
+    </label>
+    <div class="table-wrap">
+      <table class="sets-table">
+        <thead>
+          <tr>
+            <th>Serie</th>
+            <th>Peso</th>
+            <th>Reps</th>
+            <th>RPE</th>
+            <th>Descanso</th>
+            <th>Notas</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody class="sets-body"></tbody>
+      </table>
+    </div>
+    <button type="button" class="button ghost add-set">Anadir serie</button>
+  </section>
+</template>
+
+<template id="setRowTemplate">
+  <tr class="set-row">
+    <td class="set-number">1</td>
+    <td><input data-set-field="weight" type="number" step="0.1" min="0" value="0"></td>
+    <td><input data-set-field="reps" type="number" min="1" value="10" required></td>
+    <td><input data-set-field="rpe" type="number" step="0.5" min="1" max="10"></td>
+    <td><input data-set-field="rest" type="number" min="0" placeholder="90"></td>
+    <td><input data-set-field="notes"></td>
+    <td><button type="button" class="icon-button remove-set" aria-label="Eliminar serie">x</button></td>
+  </tr>
+</template>
+
+<script src="{{ url_for('static', path='/js/workout_form.js') }}"></script>
+{% endblock %}

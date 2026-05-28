@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Historial | ARCA Gym{% endblock %}
+{% block content %}
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">Historial</p>
+    <h1>Entrenamientos registrados</h1>
+    <p class="muted">Revisa, edita o elimina sesiones anteriores.</p>
+  </div>
+  <a class="button primary" href="/workouts/new">Nueva sesion</a>
+</section>
+
+<section class="list-stack">
+  {% for session in sessions %}
+    <article class="history-item">
+      <div class="history-head">
+        <div>
+          <strong>{{ session.date.strftime("%d/%m/%Y") }}</strong>
+          <p>{{ session.notes or "Sin notas de sesion" }}</p>
+        </div>
+        <div class="row-actions">
+          <a class="button ghost" href="/workouts/{{ session.id }}/edit">Editar</a>
+          <form method="post" action="/workouts/{{ session.id }}/delete">
+            <button class="button danger" type="submit">Eliminar</button>
+          </form>
+        </div>
+      </div>
+      <div class="history-exercises">
+        {% for entry in session.exercises %}
+          <div>
+            <span>{{ entry.exercise.name }}</span>
+            <small>{{ entry.sets|length }} series</small>
+          </div>
+        {% endfor %}
+      </div>
+    </article>
+  {% else %}
+    <p class="empty">Todavia no has registrado entrenamientos.</p>
+  {% endfor %}
+</section>
+{% endblock %}

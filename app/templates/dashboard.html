@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block title %}Panel | ARCA Gym{% endblock %}
+{% block content %}
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">Panel principal</p>
+    <h1>Hola, {{ user.name }}</h1>
+    <p class="muted">Tu semana de entrenamiento, progreso reciente y accesos rapidos.</p>
+  </div>
+  <a class="button primary" href="/workouts/new">Registrar entrenamiento</a>
+</section>
+
+<section class="metric-grid">
+  <article class="metric">
+    <span>Proximo sugerido</span>
+    <strong>{{ next_training }}</strong>
+  </article>
+  <article class="metric">
+    <span>Volumen semanal</span>
+    <strong>{{ summary.weekly_volume|round(1) }} kg</strong>
+  </article>
+  <article class="metric">
+    <span>Sesiones semana</span>
+    <strong>{{ summary.weekly_sessions }}</strong>
+  </article>
+  <article class="metric">
+    <span>Mejores marcas</span>
+    <strong>{{ summary.personal_records|length }}</strong>
+  </article>
+</section>
+
+<section class="quick-actions">
+  <a href="/workouts/new">Registrar</a>
+  <a href="/stats">Ver estadisticas</a>
+  <a href="/exercises">Biblioteca</a>
+  <a href="/recommendations">Recomendar rutina</a>
+</section>
+
+<section class="content-grid">
+  <div>
+    <div class="section-title">
+      <h2>Ultimas sesiones</h2>
+      <a href="/workouts">Ver historial</a>
+    </div>
+    {% if summary.recent_sessions %}
+      <div class="list-stack">
+        {% for session in summary.recent_sessions %}
+          <article class="list-item">
+            <div>
+              <strong>{{ session.date.strftime("%d/%m/%Y") }}</strong>
+              <p>{{ session.exercises|length }} ejercicios</p>
+            </div>
+            <a class="button ghost" href="/workouts/{{ session.id }}/edit">Editar</a>
+          </article>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="empty">Aun no hay sesiones. Registra tu primer entrenamiento para empezar a ver tendencias.</p>
+    {% endif %}
+  </div>
+  <div>
+    <div class="section-title">
+      <h2>Marcas recientes</h2>
+      <a href="/stats">Detalle</a>
+    </div>
+    {% if summary.personal_records %}
+      <div class="list-stack">
+        {% for pr in summary.personal_records %}
+          <article class="list-item">
+            <div>
+              <strong>{{ pr.exercise }}</strong>
+              <p>{{ pr.weight }} kg x {{ pr.reps }} reps · 1RM {{ pr.estimated_1rm }} kg</p>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="empty">Tus mejores marcas apareceran aqui cuando registres series.</p>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

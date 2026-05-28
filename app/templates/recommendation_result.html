@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Rutina recomendada | ARCA Gym{% endblock %}
+{% block content %}
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">Resultado</p>
+    <h1>Rutina {{ recommendation.split|title }}</h1>
+    <p class="muted">{{ recommendation.explanation }}</p>
+  </div>
+  <a class="button secondary" href="/recommendations">Ajustar datos</a>
+</section>
+
+<section class="routine-grid">
+  {% for day in recommendation.days %}
+    <article class="routine-day">
+      <h2>{{ day.name }}</h2>
+      <p class="muted">{{ day.focus }}</p>
+      <div class="routine-exercises">
+        {% for exercise in day.exercises %}
+          <div class="routine-exercise">
+            <strong>{{ exercise.name }}</strong>
+            <span>{{ exercise.primary_muscle }}</span>
+            <p>{{ exercise.sets }} series · {{ exercise.reps }} reps · descanso {{ exercise.rest }} · {{ exercise.intensity }}</p>
+            <small>{{ exercise.notes }}</small>
+          </div>
+        {% else %}
+          <p class="empty">No hay ejercicios compatibles con esos filtros. Amplia equipamiento o revisa ejercicios evitados.</p>
+        {% endfor %}
+      </div>
+    </article>
+  {% endfor %}
+</section>
+
+<section class="notice">
+  <h2>Progresion semanal</h2>
+  <p>{{ recommendation.progression }}</p>
+  <h2>Seguridad</h2>
+  <p>{{ recommendation.safety_notes }}</p>
+</section>
+{% endblock %}

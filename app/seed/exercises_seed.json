@@ -1,0 +1,552 @@
+[
+  {
+    "name": "Press de banca con barra",
+    "primary_muscle": "Pecho",
+    "secondary_muscles": ["Triceps", "Hombros"],
+    "exercise_type": "compuesto",
+    "equipment": ["barra", "banco", "discos"],
+    "recommended_level": "intermedio",
+    "instructions": [
+      "Tumbate en el banco con ojos bajo la barra y pies firmes en el suelo.",
+      "Agarra la barra algo mas ancho que los hombros y junta ligeramente las escapulas.",
+      "Baja la barra al pecho con control.",
+      "Empuja hacia arriba manteniendo gluteos y espalda alta estables."
+    ],
+    "common_errors": [
+      "Rebotar la barra contra el pecho.",
+      "Perder la posicion de hombros.",
+      "Levantar los pies o girar munecas en exceso."
+    ],
+    "technique_tips": [
+      "Mantén antebrazos verticales en la parte baja.",
+      "Usa un ayudante si trabajas cerca del fallo.",
+      "Progresar poco a poco suele funcionar mejor que saltos grandes."
+    ],
+    "image_url": null,
+    "source": "Base local propia",
+    "safety_notes": [
+      "Usa topes o soportes de seguridad si entrenas solo.",
+      "Evita cargas maximas si hay dolor de hombro o pecho."
+    ]
+  },
+  {
+    "name": "Press inclinado con mancuernas",
+    "primary_muscle": "Pecho",
+    "secondary_muscles": ["Hombros", "Triceps"],
+    "exercise_type": "compuesto",
+    "equipment": ["mancuernas", "banco"],
+    "recommended_level": "principiante",
+    "instructions": [
+      "Coloca el banco entre 20 y 35 grados.",
+      "Sube las mancuernas con control desde el pecho alto.",
+      "Baja hasta sentir estiramiento sin perder control.",
+      "Empuja sin chocar las mancuernas arriba."
+    ],
+    "common_errors": [
+      "Inclinar demasiado el banco y convertirlo en press de hombro.",
+      "Bajar con codos muy abiertos.",
+      "Usar impulso para iniciar cada repeticion."
+    ],
+    "technique_tips": [
+      "Mantén el pecho alto y escápulas estables.",
+      "Controla mas la bajada que la subida."
+    ],
+    "image_url": null,
+    "source": "Base local propia",
+    "safety_notes": ["No fuerces rango si notas pinzamiento anterior de hombro."]
+  },
+  {
+    "name": "Flexiones",
+    "primary_muscle": "Pecho",
+    "secondary_muscles": ["Triceps", "Core", "Hombros"],
+    "exercise_type": "compuesto",
+    "equipment": ["peso corporal"],
+    "recommended_level": "principiante",
+    "instructions": [
+      "Coloca manos bajo o ligeramente fuera de los hombros.",
+      "Mantén cuerpo alineado desde cabeza a talones.",
+      "Baja el pecho hacia el suelo con codos a unos 45 grados.",
+      "Empuja el suelo y vuelve a la posicion inicial."
+    ],
+    "common_errors": [
+      "Hundir la cadera.",
+      "Acortar demasiado el recorrido.",
+      "Abrir los codos en exceso."
+    ],
+    "technique_tips": [
+      "Eleva manos en un banco si necesitas una variante mas facil.",
+      "Aprieta gluteos y abdomen durante toda la serie."
+    ],
+    "image_url": null,
+    "source": "Base local propia",
+    "safety_notes": ["Para molestias de muneca, usa agarres o apoya las manos en mancuernas estables."]
+  },
+  {
+    "name": "Remo con barra",
+    "primary_muscle": "Espalda",
+    "secondary_muscles": ["Biceps", "Core", "Hombros"],
+    "exercise_type": "compuesto",
+    "equipment": ["barra", "discos"],
+    "recommended_level": "intermedio",
+    "instructions": [
+      "Inclina el torso manteniendo columna neutra.",
+      "Sujeta la barra con agarre algo mas ancho que hombros.",
+      "Lleva la barra hacia el abdomen bajo.",
+      "Baja con control sin perder la posicion del torso."
+    ],
+    "common_errors": [
+      "Convertir el movimiento en un tiron de cadera.",
+      "Redondear la zona lumbar.",
+      "Encoger hombros en cada repeticion."
+    ],
+    "technique_tips": [
+      "Piensa en llevar codos hacia atras.",
+      "Usa una carga que permita torso estable."
+    ],
+    "image_url": null,
+    "source": "Base local propia",
+    "safety_notes": ["Evita este ejercicio si no puedes mantener columna neutra; usa remo apoyado como alternativa."]
+  },
+  {
+    "name": "Jalon al pecho",
+    "primary_muscle": "Espalda",
+    "secondary_muscles": ["Biceps", "Hombros"],
+    "exercise_type": "compuesto",
+    "equipment": ["maquina", "polea"],
+    "recommended_level": "principiante",
+    "instructions": [
+      "Ajusta el soporte de piernas para quedar estable.",
+      "Agarra la barra y baja los hombros antes de tirar.",
+      "Lleva la barra hacia la parte alta del pecho.",
+      "Sube con control hasta estirar dorsales sin soltar tension."
+    ],
+    "common_errors": [
+      "Tirar detras de la nuca.",
+      "Balancear el torso para mover mas peso.",
+      "No controlar la fase de subida."
+    ],
+    "technique_tips": [
+      "Inicia el movimiento bajando escapulas.",
+      "Mantén pecho alto y codos viajando hacia los costados."
+    ],
+    "image_url": null,
+    "source": "Base local propia",
+    "safety_notes": ["El jalon detras de la nuca no es necesario para progresar y puede molestar hombros."]
+  },
+  {
+    "name": "Peso muerto rumano",
+    "primary_muscle": "Piernas",
+    "secondary_muscles": ["Espalda", "Gluteos", "Core"],
+    "exercise_type": "compuesto",
+    "equipment": ["barra", "mancuernas"],
+    "recommended_level": "intermedio",
+    "instructions": [
+      "Ponte de pie con la carga delante de los muslos.",
+      "Flexiona ligeramente rodillas y lleva cadera hacia atras.",
+      "Baja hasta notar estiramiento en isquios sin redondear espalda.",
+      "Vuelve extendiendo cadera y manteniendo la carga cerca del cuerpo."
+    ],
+    "common_errors": [
+      "Bajar buscando tocar el suelo a cualquier coste.",
+      "Separar mucho la barra del cuerpo.",
+      "Convertirlo en sentadilla."
+    ],
+    "technique_tips": [
+      "La cadera se mueve hacia atras, no hacia abajo.",
+      "Mantén cuello alineado con la espalda."
+    ],
+    "image_url": null,
+    "source": "Base local propia",
+    "safety_notes": ["Reduce carga o cambia variante si aparece dolor lumbar."]
+  },
+  {
+    "name": "Sentadilla con barra",
+    "primary_muscle": "Piernas",
+    "secondary_muscles": ["Gluteos", "Core", "Espalda"],
+    "exercise_type": "compuesto",
+    "equipment": ["barra", "rack", "discos"],
+    "recommended_level": "intermedio",
+    "instructions": [
+      "Coloca la barra estable en la espalda alta.",
+      "Toma aire, activa abdomen y desbloquea cadera y rodillas.",
+      "Baja hasta una profundidad controlada manteniendo pies firmes.",
+      "Sube empujando el suelo y manteniendo rodillas alineadas."
+    ],
+    "common_errors": [
+      "Colapsar rodillas hacia dentro.",
+      "Perder tension del tronco.",
+      "Levantar talones por falta de control o movilidad."
+    ],
+    "technique_tips": [
+      "Ajusta apertura de pies a tu anatomia.",
+      "Practica con cargas moderadas antes de subir intensidad."
+    ],
+    "image_url": null,
+    "source": "Base local propia",
+    "safety_notes": ["Usa rack y seguros; consulta a un profesional si hay dolor de rodilla, cadera o espalda."]
+  },
+  {
+    "name": "Prensa de piernas",
+    "primary_muscle": "Piernas",
+    "secondary_muscles": ["Gluteos"],
+    "exercise_type": "compuesto",
+    "equipment": ["maquina"],
+    "recommended_level": "principiante",
+    "instructions": [
+      "Ajusta el asiento para que puedas bajar con control.",
+      "Coloca pies al ancho comodo de hombros.",
+      "Baja la plataforma sin despegar la pelvis del respaldo.",
+      "Empuja sin bloquear agresivamente las rodillas."
+    ],
+    "common_errors": [
+      "Bajar tanto que la pelvis se levanta.",
+      "Juntar rodillas al empujar.",
+      "Usar recorrido muy corto."
+    ],
+    "technique_tips": [
+      "Controla la bajada y evita rebotes.",
+      "Modifica la posicion de pies segun comodidad y objetivo."
+    ],
+    "image_url": null,
+    "source": "Base local propia",
+    "safety_notes": ["No bloquees rodillas con violencia al final del movimiento."]
+  },
+  {
+    "name": "Zancadas con mancuernas",
+    "primary_muscle": "Piernas",
+    "secondary_muscles": ["Gluteos", "Core"],
+    "exercise_type": "compuesto",
+    "equipment": ["mancuernas"],
+    "recommended_level": "principiante",
+    "instructions": [
+      "Sujeta mancuernas a los lados.",
+      "Da un paso largo y baja con control.",
+      "Mantén el torso estable y la rodilla alineada con el pie.",
+      "Empuja con la pierna delantera para volver o avanzar."
+    ],
+    "common_errors": [
+      "Dar pasos demasiado cortos.",
+      "Perder equilibrio por ir muy rapido.",
+      "Golpear la rodilla trasera contra el suelo."
+    ],
+    "technique_tips": [
+      "Empieza sin carga si necesitas dominar equilibrio.",
+      "Usa zancada hacia atras si la rodilla delantera molesta."
+    ],
+    "image_url": null,
+    "source": "Base local propia",
+    "safety_notes": ["Prioriza estabilidad antes de subir peso."]
+  },
+  {
+    "name": "Press militar con mancuernas",
+    "primary_muscle": "Hombros",
+    "secondary_muscles": ["Triceps", "Core"],
+    "exercise_type": "compuesto",
+    "equipment": ["mancuernas", "banco"],
+    "recommended_level": "principiante",
+    "instructions": [
+      "Sientate o ponte de pie con abdomen activo.",
+      "Inicia con mancuernas a la altura de hombros.",
+      "Empuja hacia arriba sin arquear en exceso la espalda.",
+      "Baja con control hasta la posicion inicial."
+    ],
+    "common_errors": [
+      "Arquear demasiado la zona lumbar.",
+      "Chocar las mancuernas arriba.",
+      "Bajar sin control."
+    ],
+    "technique_tips": [
+      "Mantén costillas abajo.",
+      "Usa agarre neutro si los hombros lo prefieren."
+    ],
+    "image_url": null,
+    "source": "Base local propia",
+    "safety_notes": ["Evita trabajar con dolor o pinzamiento de hombro."]
+  },
+  {
+    "name": "Elevaciones laterales",
+    "primary_muscle": "Hombros",
+    "secondary_muscles": ["Trapecio"],
+    "exercise_type": "aislamiento",
+    "equipment": ["mancuernas", "polea"],
+    "recommended_level": "principiante",
+    "instructions": [
+      "Sujeta cargas ligeras a los lados.",
+      "Eleva brazos hacia los lados con codos suaves.",
+      "Llega aproximadamente a la altura de hombros.",
+      "Baja lento manteniendo tension."
+    ],
+    "common_errors": [
+      "Usar impulso de cadera.",
+      "Encoger los hombros.",
+      "Subir demasiado peso y perder recorrido."
+    ],
+    "technique_tips": [
+      "Piensa en alejar las mancuernas del cuerpo.",
+      "Una ligera inclinacion hacia delante puede mejorar sensacion."
+    ],
+    "image_url": null,
+    "source": "Base local propia",
+    "safety_notes": ["Mantén carga moderada para proteger hombro y cuello."]
+  },
+  {
+    "name": "Curl de biceps con barra",
+    "primary_muscle": "Biceps",
+    "secondary_muscles": ["Antebrazos"],
+    "exercise_type": "aislamiento",
+    "equipment": ["barra", "mancuernas"],
+    "recommended_level": "principiante",
+    "instructions": [
+      "Sujeta la barra con palmas al frente.",
+      "Mantén codos cerca del cuerpo.",
+      "Flexiona codos hasta contraer biceps.",
+      "Baja controlando sin balancear."
+    ],
+    "common_errors": [
+      "Mover codos hacia delante en exceso.",
+      "Impulsar con espalda.",
+      "Acortar la bajada."
+    ],
+    "technique_tips": [
+      "Usa barra Z si la muneca molesta.",
+      "Mantén hombros relajados."
+    ],
+    "image_url": null,
+    "source": "Base local propia",
+    "safety_notes": ["Evita dolor de codo o muneca ajustando agarre y carga."]
+  },
+  {
+    "name": "Curl martillo",
+    "primary_muscle": "Biceps",
+    "secondary_muscles": ["Antebrazos"],
+    "exercise_type": "aislamiento",
+    "equipment": ["mancuernas"],
+    "recommended_level": "principiante",
+    "instructions": [
+      "Sujeta mancuernas con agarre neutro.",
+      "Flexiona los codos sin balancear el tronco.",
+      "Sube hasta una contraccion comoda.",
+      "Baja con control manteniendo munecas neutras."
+    ],
+    "common_errors": [
+      "Balancear el cuerpo.",
+      "Perder alineacion de muneca.",
+      "Subir con hombros en vez de codos."
+    ],
+    "technique_tips": [
+      "Trabaja alterno o simultaneo segun control.",
+      "No necesitas cerrar completamente el codo arriba."
+    ],
+    "image_url": null,
+    "source": "Base local propia",
+    "safety_notes": ["Reduce carga si notas tirantez en antebrazo o codo."]
+  },
+  {
+    "name": "Fondos en paralelas",
+    "primary_muscle": "Triceps",
+    "secondary_muscles": ["Pecho", "Hombros"],
+    "exercise_type": "compuesto",
+    "equipment": ["paralelas", "peso corporal"],
+    "recommended_level": "intermedio",
+    "instructions": [
+      "Sujeta las paralelas con brazos extendidos.",
+      "Baja con control hasta una profundidad comoda.",
+      "Mantén hombros lejos de las orejas.",
+      "Empuja hasta extender codos sin bloquear fuerte."
+    ],
+    "common_errors": [
+      "Bajar mas de lo que permite el hombro.",
+      "Encoger hombros.",
+      "Usar rebotes."
+    ],
+    "technique_tips": [
+      "Inclina torso mas o menos segun quieras pecho o triceps.",
+      "Usa asistencia si aun no controlas el peso corporal."
+    ],
+    "image_url": null,
+    "source": "Base local propia",
+    "safety_notes": ["Evita fondos profundos si hay molestias de hombro."]
+  },
+  {
+    "name": "Extension de triceps en polea",
+    "primary_muscle": "Triceps",
+    "secondary_muscles": ["Antebrazos"],
+    "exercise_type": "aislamiento",
+    "equipment": ["polea", "cuerda"],
+    "recommended_level": "principiante",
+    "instructions": [
+      "Coloca la polea alta y codos pegados al cuerpo.",
+      "Extiende los codos llevando la cuerda hacia abajo.",
+      "Separa ligeramente la cuerda al final.",
+      "Vuelve con control sin mover los hombros."
+    ],
+    "common_errors": [
+      "Balancear el torso.",
+      "Mover codos hacia delante y atras.",
+      "Usar carga excesiva."
+    ],
+    "technique_tips": [
+      "Mantén hombros quietos.",
+      "Controla la vuelta para aprovechar la tension."
+    ],
+    "image_url": null,
+    "source": "Base local propia",
+    "safety_notes": ["Ajusta agarre si hay molestias de codo."]
+  },
+  {
+    "name": "Plancha frontal",
+    "primary_muscle": "Core",
+    "secondary_muscles": ["Gluteos", "Hombros"],
+    "exercise_type": "aislamiento",
+    "equipment": ["peso corporal"],
+    "recommended_level": "principiante",
+    "instructions": [
+      "Apoya antebrazos y puntas de pies.",
+      "Alinea cabeza, tronco y piernas.",
+      "Aprieta abdomen y gluteos.",
+      "Mantén la posicion sin hundir cadera."
+    ],
+    "common_errors": [
+      "Hundir la zona lumbar.",
+      "Elevar demasiado la cadera.",
+      "Aguantar respiracion."
+    ],
+    "technique_tips": [
+      "Haz series mas cortas si pierdes posicion.",
+      "Respira de forma lenta y controlada."
+    ],
+    "image_url": null,
+    "source": "Base local propia",
+    "safety_notes": ["Deten el ejercicio si genera dolor lumbar."]
+  },
+  {
+    "name": "Dead bug",
+    "primary_muscle": "Core",
+    "secondary_muscles": ["Flexores de cadera"],
+    "exercise_type": "movilidad",
+    "equipment": ["peso corporal"],
+    "recommended_level": "principiante",
+    "instructions": [
+      "Tumbate boca arriba con brazos arriba y rodillas a 90 grados.",
+      "Pega suavemente la zona lumbar al suelo.",
+      "Extiende brazo y pierna contraria sin perder posicion.",
+      "Vuelve al centro y alterna lados."
+    ],
+    "common_errors": [
+      "Arquear la espalda al extender piernas.",
+      "Moverse demasiado rapido.",
+      "Perder respiracion."
+    ],
+    "technique_tips": [
+      "Empieza con recorridos cortos.",
+      "Exhala durante la extension."
+    ],
+    "image_url": null,
+    "source": "Base local propia",
+    "safety_notes": ["Si no puedes controlar lumbar, reduce rango de movimiento."]
+  },
+  {
+    "name": "Cinta inclinada",
+    "primary_muscle": "Cardio",
+    "secondary_muscles": ["Piernas"],
+    "exercise_type": "cardio",
+    "equipment": ["cinta"],
+    "recommended_level": "principiante",
+    "instructions": [
+      "Elige una inclinacion y velocidad sostenibles.",
+      "Camina erguido sin agarrarte constantemente.",
+      "Mantén respiracion controlada.",
+      "Reduce velocidad gradualmente al terminar."
+    ],
+    "common_errors": [
+      "Subir intensidad demasiado pronto.",
+      "Agarrarse fuerte y cambiar postura.",
+      "No calentar."
+    ],
+    "technique_tips": [
+      "Usa intensidad conversacional para trabajo base.",
+      "Aumenta una variable cada vez: tiempo, inclinacion o velocidad."
+    ],
+    "image_url": null,
+    "source": "Base local propia",
+    "safety_notes": ["Detente si aparece mareo, dolor toracico o falta de aire inusual."]
+  },
+  {
+    "name": "Remo ergometro",
+    "primary_muscle": "Cardio",
+    "secondary_muscles": ["Espalda", "Piernas", "Core"],
+    "exercise_type": "cardio",
+    "equipment": ["remo"],
+    "recommended_level": "principiante",
+    "instructions": [
+      "Empuja primero con piernas.",
+      "Inclina ligeramente el torso hacia atras.",
+      "Tira con brazos al final del recorrido.",
+      "Vuelve en orden inverso con control."
+    ],
+    "common_errors": [
+      "Tirar primero con brazos.",
+      "Redondear la espalda.",
+      "Ir demasiado rapido sin tecnica."
+    ],
+    "technique_tips": [
+      "Piensa en secuencia piernas, torso, brazos.",
+      "Mantén paladas fluidas y constantes."
+    ],
+    "image_url": null,
+    "source": "Base local propia",
+    "safety_notes": ["Ajusta resistencia y ritmo si hay molestias lumbares."]
+  },
+  {
+    "name": "Movilidad de cadera 90-90",
+    "primary_muscle": "Movilidad",
+    "secondary_muscles": ["Piernas", "Gluteos"],
+    "exercise_type": "movilidad",
+    "equipment": ["peso corporal"],
+    "recommended_level": "principiante",
+    "instructions": [
+      "Sientate con ambas rodillas dobladas a unos 90 grados.",
+      "Mantén torso alto y gira lentamente de un lado a otro.",
+      "Inclinate hacia delante sobre la pierna delantera si es comodo.",
+      "Respira y evita forzar el rango."
+    ],
+    "common_errors": [
+      "Forzar dolor de rodilla.",
+      "Compensar con la espalda baja.",
+      "Moverse sin control."
+    ],
+    "technique_tips": [
+      "Usa manos de apoyo si lo necesitas.",
+      "Trabaja rangos tolerables y progresivos."
+    ],
+    "image_url": null,
+    "source": "Base local propia",
+    "safety_notes": ["No empujes hacia dolor agudo en cadera o rodilla."]
+  },
+  {
+    "name": "Rotaciones toracicas en cuadrupedia",
+    "primary_muscle": "Movilidad",
+    "secondary_muscles": ["Espalda", "Hombros"],
+    "exercise_type": "movilidad",
+    "equipment": ["peso corporal"],
+    "recommended_level": "principiante",
+    "instructions": [
+      "Colocate a cuatro apoyos.",
+      "Lleva una mano detras de la cabeza.",
+      "Rota el codo hacia el techo sin mover cadera en exceso.",
+      "Vuelve con control y repite al otro lado."
+    ],
+    "common_errors": [
+      "Mover la pelvis en vez de rotar columna toracica.",
+      "Forzar el cuello.",
+      "Hacer repeticiones rapidas."
+    ],
+    "technique_tips": [
+      "Exhala al abrir.",
+      "Mantén peso repartido entre mano y rodillas."
+    ],
+    "image_url": null,
+    "source": "Base local propia",
+    "safety_notes": ["Mantén rango suave si hay molestias cervicales o dorsales."]
+  }
+]

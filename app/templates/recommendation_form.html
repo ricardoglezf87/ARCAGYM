@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Recomendacion | ARCA Gym{% endblock %}
+{% block content %}
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">Rutina por reglas</p>
+    <h1>Generar recomendacion</h1>
+    <p class="muted">La rutina se adapta a objetivo, nivel, dias, tiempo, equipo e historial reciente.</p>
+  </div>
+</section>
+
+<form method="post" action="/recommendations" class="form-grid two">
+  <label>Objetivo
+    <select name="goal">
+      {% for goal in goals %}
+        <option value="{{ goal }}" {% if user.goal == goal %}selected{% endif %}>{{ goal|title }}</option>
+      {% endfor %}
+    </select>
+  </label>
+  <label>Nivel
+    <select name="experience_level">
+      {% for level in experience_levels %}
+        <option value="{{ level }}" {% if user.experience_level == level %}selected{% endif %}>{{ level|title }}</option>
+      {% endfor %}
+    </select>
+  </label>
+  <label>Dias disponibles
+    <input name="days_per_week" type="number" min="1" max="7" value="{{ user.days_per_week }}" required>
+  </label>
+  <label>Minutos por sesion
+    <input name="session_duration" type="number" min="15" max="240" value="{{ user.session_duration }}" required>
+  </label>
+  <label class="full">Equipamiento
+    <textarea name="equipment_available" rows="3">{{ user.equipment_available or 'gimnasio completo' }}</textarea>
+  </label>
+  <label class="full">Lesiones o limitaciones
+    <textarea name="limitations" rows="3">{{ user.limitations or '' }}</textarea>
+  </label>
+  <label>Preferencia de rutina
+    <select name="routine_preference">
+      {% for preference in routine_preferences %}
+        <option value="{{ preference }}">{{ preference|title }}</option>
+      {% endfor %}
+    </select>
+  </label>
+  <label>Grupos rezagados
+    <input name="lagging_muscles" placeholder="Piernas, Espalda">
+  </label>
+  <label>Preferencias de ejercicios
+    <input name="preferences" placeholder="Ej. sentadilla, dominadas">
+  </label>
+  <label>Ejercicios a evitar
+    <input name="avoid_exercises" placeholder="Ej. press militar">
+  </label>
+  <button class="button primary full" type="submit">Generar rutina</button>
+</form>
+
+<p class="notice">Aviso: las recomendaciones son educativas y no sustituyen consejo medico, fisioterapeutico o de un entrenador cualificado.</p>
+{% endblock %}
