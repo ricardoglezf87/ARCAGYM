@@ -4,18 +4,21 @@
 <section class="detail-layout">
   <aside class="detail-media">
     {% if exercise.image_url %}
-      <img src="{{ exercise.image_url }}" alt="{{ exercise.name }}">
+      <img src="{{ exercise.image_url }}" alt="{{ exercise.image_alt or exercise.name }}">
     {% else %}
       <div class="exercise-placeholder large">{{ exercise.primary_muscle[:2]|upper }}</div>
     {% endif %}
     <a class="button ghost" href="/exercises">Volver a biblioteca</a>
   </aside>
   <article class="detail-copy">
-    <p class="eyebrow">{{ exercise.primary_muscle }} · {{ exercise.exercise_type }}</p>
+    <p class="eyebrow">{{ exercise.category_label or exercise.primary_muscle ~ " · " ~ exercise.exercise_type }}</p>
     <h1>{{ exercise.name }}</h1>
     <div class="tags">
       <span>{{ exercise.recommended_level|title }}</span>
       <span>{{ exercise.equipment or "Equipo no indicado" }}</span>
+      {% if exercise.movement_pattern %}
+        <span>{{ exercise.movement_pattern }}</span>
+      {% endif %}
     </div>
 
     <h2>Instrucciones</h2>

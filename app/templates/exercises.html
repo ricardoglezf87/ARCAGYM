@@ -36,12 +36,12 @@
   {% for exercise in exercises %}
     <a class="exercise-card" href="/exercises/{{ exercise.id }}">
       {% if exercise.image_url %}
-        <img src="{{ exercise.image_url }}" alt="{{ exercise.name }}">
+        <img src="{{ exercise.image_url }}" alt="{{ exercise.image_alt or exercise.name }}">
       {% else %}
         <div class="exercise-placeholder">{{ exercise.primary_muscle[:2]|upper }}</div>
       {% endif %}
       <div>
-        <span>{{ exercise.primary_muscle }} · {{ exercise.exercise_type }}</span>
+        <span>{{ exercise.category_label or exercise.primary_muscle ~ " · " ~ exercise.exercise_type }}</span>
         <h2>{{ exercise.name }}</h2>
         <p>{{ exercise.equipment or "Sin equipamiento especifico" }}</p>
       </div>

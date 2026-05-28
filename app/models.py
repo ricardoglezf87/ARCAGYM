@@ -34,16 +34,20 @@ class Exercise(Base):
     __tablename__ = "exercises"
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
+    slug: Mapped[str | None] = mapped_column(String(180), unique=True, index=True, nullable=True)
     name: Mapped[str] = mapped_column(String(160), unique=True, index=True, nullable=False)
+    category_label: Mapped[str | None] = mapped_column(String(120), nullable=True)
     primary_muscle: Mapped[str] = mapped_column(String(80), index=True, nullable=False)
     secondary_muscles: Mapped[str | None] = mapped_column(Text, nullable=True)
     exercise_type: Mapped[str] = mapped_column(String(60), index=True, nullable=False)
     equipment: Mapped[str | None] = mapped_column(Text, nullable=True)
     recommended_level: Mapped[str] = mapped_column(String(40), default="principiante", nullable=False)
+    movement_pattern: Mapped[str | None] = mapped_column(String(80), nullable=True)
     instructions: Mapped[str] = mapped_column(Text, nullable=False)
     common_errors: Mapped[str | None] = mapped_column(Text, nullable=True)
     technique_tips: Mapped[str | None] = mapped_column(Text, nullable=True)
     image_url: Mapped[str | None] = mapped_column(String(500), nullable=True)
+    image_alt: Mapped[str | None] = mapped_column(String(255), nullable=True)
     source: Mapped[str | None] = mapped_column(String(500), nullable=True)
     safety_notes: Mapped[str | None] = mapped_column(Text, nullable=True)
 

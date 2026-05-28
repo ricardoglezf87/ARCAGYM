@@ -19,16 +19,20 @@ class UserProfileInput(BaseModel):
 
 class ExerciseRead(BaseModel):
     id: int
+    slug: str | None = None
     name: str
+    category_label: str | None = None
     primary_muscle: str
     secondary_muscles: str | None = None
     exercise_type: str
     equipment: str | None = None
     recommended_level: str
+    movement_pattern: str | None = None
     instructions: str
     common_errors: str | None = None
     technique_tips: str | None = None
     image_url: str | None = None
+    image_alt: str | None = None
     source: str | None = None
     safety_notes: str | None = None
 
