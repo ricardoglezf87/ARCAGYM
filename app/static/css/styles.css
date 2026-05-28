@@ -414,7 +414,8 @@ textarea:focus {
 }
 
 .exercise-placeholder.large {
-  min-height: 320px;
+  aspect-ratio: 4 / 3;
+  min-height: 0;
   border-radius: 8px;
 }
 
@@ -430,14 +431,19 @@ textarea:focus {
   gap: 14px;
   position: sticky;
   top: 88px;
+  min-width: 0;
 }
 
 .detail-media img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
   border-radius: 8px;
   border: 1px solid var(--line);
 }
 
 .detail-copy {
+  min-width: 0;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 8px;
