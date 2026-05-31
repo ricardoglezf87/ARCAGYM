@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}ARCA Gym{% endblock %}</title>
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', path='/favicon.svg') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/styles.css') }}">
+    {% block head %}{% endblock %}
+  </head>
+  <body>
+    {% set path = request.url.path %}
+    {% set nav_items = [
+      {"href": "/dashboard", "label": "Panel", "hint": "Resumen"},
+      {"href": "/workouts", "label": "Historial", "hint": "Sesiones"},
+      {"href": "/workouts/new", "label": "Registrar", "hint": "Nuevo entreno"},
+      {"href": "/stats", "label": "Estadisticas", "hint": "Progreso"},
+      {"href": "/exercises", "label": "Ejercicios", "hint": "Biblioteca"},
+      {"href": "/recommendations", "label": "Rutina", "hint": "Recomendacion"},
+      {"href": "/profile", "label": "Perfil", "hint": "Datos"}
+    ] %}
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar" aria-label="Menu principal">
+        <div class="sidebar-brand">
+          <a class="brand" href="/dashboard">ARCA Gym</a>
+          <span>Entrenamiento local</span>
+        </div>
+        <nav class="side-nav" aria-label="Principal">
+          {% for item in nav_items %}
+            {% set is_active = path == item.href or (item.href == "/workouts" and path.startswith("/workouts/") and not path.startswith("/workouts/new")) or (item.href not in ["/dashboard", "/workouts"] and path.startswith(item.href ~ "/")) %}
+            <a href="{{ item.href }}" class="{% if is_active %}is-active{% endif %}" {% if is_active %}aria-current="page"{% endif %}>
+              <span class="nav-mark" aria-hidden="true"></span>
+              <span>
+                <strong>{{ item.label }}</strong>
+                <small>{{ item.hint }}</small>
+              </span>
+            </a>
+          {% endfor %}
+        </nav>
+      </aside>
+      <div class="sidebar-backdrop" data-sidebar-close></div>
+      <div class="main-shell">
+        <header class="mobile-topbar">
+          <a class="brand" href="/dashboard">ARCA Gym</a>
+          <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-controls="sidebar" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </header>
+        <main class="page">
+          {% block content %}{% endblock %}
+        </main>
+      </div>
+    </div>
+    <script src="{{ url_for('static', path='/js/sidebar.js') }}"></script>
+  </body>
+</html>

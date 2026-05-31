@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}{{ exercise.name }} | ARCA Gym{% endblock %}
+{% block content %}
+<section class="detail-layout">
+  <aside class="detail-media">
+    {% if exercise.image_url %}
+      <img src="{{ exercise.image_url }}" alt="{{ exercise.image_alt or exercise.name }}">
+    {% else %}
+      <div class="exercise-placeholder large">{{ exercise.primary_muscle[:2]|upper }}</div>
+    {% endif %}
+    <a class="button ghost" href="/exercises">Volver a biblioteca</a>
+  </aside>
+  <article class="detail-copy">
+    <p class="eyebrow">{{ exercise.category_label or exercise.primary_muscle ~ " · " ~ exercise.exercise_type }}</p>
+    <h1>{{ exercise.name }}</h1>
+    <div class="tags">
+      <span>{{ exercise.recommended_level|title }}</span>
+      <span>{{ exercise.equipment or "Equipo no indicado" }}</span>
+      {% if exercise.movement_pattern %}
+        <span>{{ exercise.movement_pattern }}</span>
+      {% endif %}
+    </div>
+
+    <h2>Instrucciones</h2>
+    <ol>
+      {% for line in exercise.instructions|split_lines %}
+        <li>{{ line }}</li>
+      {% endfor %}
+    </ol>
+
+    <h2>Errores comunes</h2>
+    <ul>
+      {% for line in exercise.common_errors|split_lines %}
+        <li>{{ line }}</li>
+      {% else %}
+        <li>No hay errores registrados.</li>
+      {% endfor %}
+    </ul>
+
+    <h2>Consejos de tecnica</h2>
+    <ul>
+      {% for line in exercise.technique_tips|split_lines %}
+        <li>{{ line }}</li>
+      {% else %}
+        <li>Usa un rango de movimiento controlado y una carga que puedas dominar.</li>
+      {% endfor %}
+    </ul>
+
+    <h2>Seguridad</h2>
+    <p>{{ exercise.safety_notes or "Deten el ejercicio si aparece dolor agudo o perdida de control tecnico." }}</p>
+    <p class="small">Fuente: {{ exercise.source or "Base local inicial" }}</p>
+  </article>
+</section>
+{% endblock %}

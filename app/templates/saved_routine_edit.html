@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% block title %}Editar {{ routine.title }} | ARCA Gym{% endblock %}
+{% block content %}
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">Rutina guardada</p>
+    <h1>Editar rutina</h1>
+    <p class="muted">Ajusta ejercicios, series, repeticiones, descansos, intensidad y notas.</p>
+  </div>
+  <a class="button ghost" href="/recommendations/saved/{{ routine.id }}">Cancelar</a>
+</section>
+
+<form method="post" class="routine-edit-form">
+  <section class="form-grid two compact">
+    <label>Nombre de rutina
+      <input name="title" value="{{ routine.title }}" required>
+    </label>
+    <label>Estructura
+      <input value="{{ routine.split|title }}" disabled>
+    </label>
+  </section>
+
+  <section class="routine-edit-days">
+    {% for day in routine.days %}
+      <article class="routine-edit-day" data-day-id="{{ day.id }}">
+        <div class="routine-edit-day-head">
+          <label>Dia
+            <input name="day_name_{{ day.id }}" value="{{ day.name }}" required>
+          </label>
+          <label>Foco
+            <input name="day_focus_{{ day.id }}" value="{{ day.focus or '' }}">
+          </label>
+        </div>
+
+        <div class="routine-edit-exercises" data-exercise-list>
+          {% for routine_exercise in day.exercises %}
+            <div class="routine-edit-exercise">
+              <label>Ejercicio
+                <select name="exercise_id_{{ day.id }}" required>
+                  {% for exercise in exercises %}
+                    <option value="{{ exercise.id }}" {% if exercise.id == routine_exercise.exercise_id %}selected{% endif %}>{{ exercise.name }} ({{ exercise.primary_muscle }})</option>
+                  {% endfor %}
+                </select>
+              </label>
+              <label>Series
+                <input name="sets_{{ day.id }}" value="{{ routine_exercise.sets or '' }}" placeholder="3-4">
+              </label>
+              <label>Reps
+                <input name="reps_{{ day.id }}" value="{{ routine_exercise.reps or '' }}" placeholder="6-15">
+              </label>
+              <label>Descanso
+                <input name="rest_{{ day.id }}" value="{{ routine_exercise.rest or '' }}" placeholder="60-120 s">
+              </label>
+              <label>Intensidad
+                <input name="intensity_{{ day.id }}" value="{{ routine_exercise.intensity or '' }}" placeholder="RPE 7-9">
+              </label>
+              <label class="routine-edit-notes">Notas
+                <input name="notes_{{ day.id }}" value="{{ routine_exercise.notes or '' }}">
+              </label>
+              <button type="button" class="icon-button remove-routine-exercise" aria-label="Quitar ejercicio">x</button>
+            </div>
+          {% endfor %}
+        </div>
+
+        <button type="button" class="button ghost add-routine-exercise">Anadir ejercicio</button>
+      </article>
+    {% endfor %}
+  </section>
+
+  <section class="form-grid two compact">
+    <label class="full">Progresion semanal
+      <textarea name="progression" rows="3">{{ routine.progression or '' }}</textarea>
+    </label>
+    <label class="full">Seguridad
+      <textarea name="safety_notes" rows="3">{{ routine.safety_notes or '' }}</textarea>
+    </label>
+  </section>
+
+  <div class="form-actions">
+    <a class="button ghost" href="/recommendations/saved/{{ routine.id }}">Cancelar</a>
+    <button class="button primary" type="submit">Guardar cambios</button>
+  </div>
+</form>
+
+<template id="routineExerciseTemplate">
+  <div class="routine-edit-exercise">
+    <label>Ejercicio
+      <select data-field="exercise_id" required>
+        {% for exercise in exercises %}
+          <option value="{{ exercise.id }}">{{ exercise.name }} ({{ exercise.primary_muscle }})</option>
+        {% endfor %}
+      </select>
+    </label>
+    <label>Series
+      <input data-field="sets" value="3-4" placeholder="3-4">
+    </label>
+    <label>Reps
+      <input data-field="reps" value="6-15" placeholder="6-15">
+    </label>
+    <label>Descanso
+      <input data-field="rest" value="60-120 s" placeholder="60-120 s">
+    </label>
+    <label>Intensidad
+      <input data-field="intensity" value="RPE 7-9" placeholder="RPE 7-9">
+    </label>
+    <label class="routine-edit-notes">Notas
+      <input data-field="notes" value="Prioriza tecnica estable y deja 1-3 repeticiones en recamara.">
+    </label>
+    <button type="button" class="icon-button remove-routine-exercise" aria-label="Quitar ejercicio">x</button>
+  </div>
+</template>
+
+<script src="{{ url_for('static', path='/js/saved_routine_edit.js') }}"></script>
+{% endblock %}

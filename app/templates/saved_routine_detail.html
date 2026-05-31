@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}{{ routine.title }} | ARCA Gym{% endblock %}
+{% block content %}
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">Rutina guardada</p>
+    <h1>{{ routine.title }}</h1>
+    <p class="muted">{{ recommendation.explanation }}</p>
+  </div>
+  <div class="row-actions">
+    <a class="button ghost" href="/recommendations/saved/{{ routine.id }}/edit">Editar</a>
+    <a class="button secondary" href="/workouts/new?routine_id={{ routine.id }}">Registrar</a>
+    <a class="button ghost" href="/recommendations">Volver</a>
+  </div>
+</section>
+
+{% if saved_message %}<div class="success">Rutina guardada correctamente.</div>{% endif %}
+
+<section class="routine-grid">
+  {% for day in recommendation.days %}
+    <article class="routine-day">
+      <div class="section-title">
+        <div>
+          <h2>{{ day.name }}</h2>
+          <p class="muted">{{ day.focus }}</p>
+        </div>
+        <a class="button ghost" href="/workouts/new?routine_id={{ routine.id }}&routine_day_id={{ day.id }}">Registrar dia</a>
+      </div>
+      <div class="routine-exercises">
+        {% for exercise in day.exercises %}
+          <div class="routine-exercise">
+            <strong>{{ exercise.name }}</strong>
+            <span>{{ exercise.primary_muscle }}</span>
+            <p>{{ exercise.sets }} series &middot; {{ exercise.reps }} reps &middot; descanso {{ exercise.rest }} &middot; {{ exercise.intensity }}</p>
+            <small>{{ exercise.notes }}</small>
+          </div>
+        {% else %}
+          <p class="empty">Esta rutina no tiene ejercicios en este dia.</p>
+        {% endfor %}
+      </div>
+    </article>
+  {% endfor %}
+</section>
+
+<section class="notice">
+  <h2>Progresion semanal</h2>
+  <p>{{ recommendation.progression }}</p>
+  <h2>Seguridad</h2>
+  <p>{{ recommendation.safety_notes }}</p>
+</section>
+{% endblock %}
