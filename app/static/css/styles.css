@@ -753,7 +753,7 @@ legend {
 
 .sets-table {
   width: 100%;
-  min-width: 760px;
+  min-width: 840px;
   border-collapse: collapse;
 }
 
@@ -777,6 +777,26 @@ legend {
   width: 60px;
   font-weight: 800;
   color: var(--muted);
+}
+
+.set-done-control {
+  width: max-content;
+  display: inline-flex;
+  grid-auto-flow: column;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 0.84rem;
+  font-weight: 800;
+}
+
+.set-done-control input {
+  width: auto;
+  min-height: 0;
+}
+
+.set-row.is-done {
+  background: #f0f6f2;
 }
 
 .form-actions {
