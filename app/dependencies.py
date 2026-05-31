@@ -31,7 +31,7 @@ def get_or_create_local_user(db: Session) -> User:
         goal="salud general",
         days_per_week=3,
         session_duration=60,
-        equipment_available="gimnasio completo, mancuernas, barra, maquinas, polea, peso corporal",
+        equipment_available="mancuernas, barra, maquinas, polea, peso corporal",
     )
     db.add(local_user)
     db.commit()

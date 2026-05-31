@@ -16,6 +16,9 @@
       <div class="history-head">
         <div>
           <strong>{{ session.date.strftime("%d/%m/%Y") }}</strong>
+          {% if session.saved_routine %}
+            <small class="history-routine">{{ session.saved_routine.title }}{% if session.routine_day_name %} &middot; {{ session.routine_day_name }}{% endif %}</small>
+          {% endif %}
           <p>{{ session.notes or "Sin notas de sesion" }}</p>
         </div>
         <div class="row-actions">

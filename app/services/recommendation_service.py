@@ -2,6 +2,8 @@ from collections import Counter
 from dataclasses import dataclass
 from datetime import date, timedelta
 from typing import Any
+import re
+import unicodedata
 
 from sqlalchemy import select
 from sqlalchemy.orm import Session, joinedload
@@ -74,13 +76,31 @@ def _recent_muscle_counter(db: Session, user: User) -> Counter[str]:
 
 
 def _exercise_matches_equipment(exercise: Exercise, equipment_text: str) -> bool:
+    exercise_equipment = [_normalize_text(token) for token in (exercise.equipment or "").splitlines() if token.strip()]
+    if not exercise_equipment:
+        return True
     if not equipment_text:
+        return False
+    selected_equipment = {
+        _normalize_text(token)
+        for token in re.split(r"[\n,;]+", equipment_text)
+        if token.strip()
+    }
+    return all(token and _equipment_token_matches(token, selected_equipment) for token in exercise_equipment)
+
+
+def _normalize_text(value: str) -> str:
+    normalized = unicodedata.normalize("NFKD", value)
+    ascii_value = normalized.encode("ascii", "ignore").decode("ascii")
+    return re.sub(r"[^a-z0-9]+", " ", ascii_value.lower()).strip()
+
+
+def _equipment_token_matches(token: str, equipment: set[str]) -> bool:
+    if token in equipment:
         return True
-    exercise_equipment = (exercise.equipment or "").lower()
-    equipment = equipment_text.lower()
-    if "gimnasio completo" in equipment:
-        return True
-    return any(token.strip() and token.strip() in equipment for token in exercise_equipment.splitlines())
+    singular = token[:-1] if token.endswith("s") else token
+    plural = f"{token}s"
+    return bool(singular and singular in equipment) or plural in equipment
 
 
 def _select_exercises(
@@ -147,6 +167,7 @@ def build_recommendation(db: Session, user: User, data: RecommendationInput) -> 
                 adjusted_sets = "3-5"
             exercises.append(
                 {
+                    "id": exercise.id,
                     "name": exercise.name,
                     "primary_muscle": exercise.primary_muscle,
                     "sets": adjusted_sets,

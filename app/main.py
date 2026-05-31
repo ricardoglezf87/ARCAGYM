@@ -9,11 +9,13 @@ from app.database import Base, SessionLocal, engine
 from app.dependencies import get_or_create_local_user
 from app.routers import dashboard, exercises, profile, recommendations, stats, workouts
 from app.services.exercise_seed_service import seed_exercises
+from app.services.schema_service import ensure_schema_upgrades
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     Base.metadata.create_all(bind=engine)
+    ensure_schema_upgrades(engine)
     with SessionLocal() as db:
         seed_exercises(db)
         get_or_create_local_user(db)

@@ -9,51 +9,96 @@
   </div>
 </section>
 
+{% if saved_message %}<div class="success">Rutina guardada correctamente.</div>{% endif %}
+
 <form method="post" action="/recommendations" class="form-grid two">
   <label>Objetivo
     <select name="goal">
       {% for goal in goals %}
-        <option value="{{ goal }}" {% if user.goal == goal %}selected{% endif %}>{{ goal|title }}</option>
+        <option value="{{ goal }}" {% if form_values.goal == goal %}selected{% endif %}>{{ goal|title }}</option>
       {% endfor %}
     </select>
   </label>
   <label>Nivel
     <select name="experience_level">
       {% for level in experience_levels %}
-        <option value="{{ level }}" {% if user.experience_level == level %}selected{% endif %}>{{ level|title }}</option>
+        <option value="{{ level }}" {% if form_values.experience_level == level %}selected{% endif %}>{{ level|title }}</option>
       {% endfor %}
     </select>
   </label>
   <label>Dias disponibles
-    <input name="days_per_week" type="number" min="1" max="7" value="{{ user.days_per_week }}" required>
+    <input name="days_per_week" type="number" min="1" max="7" value="{{ form_values.days_per_week }}" required>
   </label>
   <label>Minutos por sesion
-    <input name="session_duration" type="number" min="15" max="240" value="{{ user.session_duration }}" required>
+    <input name="session_duration" type="number" min="15" max="240" value="{{ form_values.session_duration }}" required>
   </label>
-  <label class="full">Equipamiento
-    <textarea name="equipment_available" rows="3">{{ user.equipment_available or 'gimnasio completo' }}</textarea>
-  </label>
+  <fieldset class="full checkbox-fieldset">
+    <legend>Equipamiento disponible</legend>
+    <div class="checkbox-actions">
+      <button class="button ghost" type="button" data-equipment-action="select-all">Seleccionar todo</button>
+      <button class="button ghost" type="button" data-equipment-action="clear-all">Deseleccionar todo</button>
+    </div>
+    <div class="checkbox-grid">
+      {% for equipment in equipment_options %}
+        <label class="check-option">
+          <input type="checkbox" name="equipment_items" value="{{ equipment }}" {% if equipment in selected_equipment %}checked{% endif %}>
+          <span>{{ equipment }}</span>
+        </label>
+      {% endfor %}
+    </div>
+  </fieldset>
   <label class="full">Lesiones o limitaciones
-    <textarea name="limitations" rows="3">{{ user.limitations or '' }}</textarea>
+    <textarea name="limitations" rows="3">{{ form_values.limitations or '' }}</textarea>
   </label>
   <label>Preferencia de rutina
     <select name="routine_preference">
       {% for preference in routine_preferences %}
-        <option value="{{ preference }}">{{ preference|title }}</option>
+        <option value="{{ preference }}" {% if form_values.routine_preference == preference %}selected{% endif %}>{{ preference|title }}</option>
       {% endfor %}
     </select>
   </label>
   <label>Grupos rezagados
-    <input name="lagging_muscles" placeholder="Piernas, Espalda">
+    <input name="lagging_muscles" value="{{ form_values.lagging_muscles or '' }}" placeholder="Piernas, Espalda">
   </label>
   <label>Preferencias de ejercicios
-    <input name="preferences" placeholder="Ej. sentadilla, dominadas">
+    <input name="preferences" value="{{ form_values.preferences or '' }}" placeholder="Ej. sentadilla, dominadas">
   </label>
   <label>Ejercicios a evitar
-    <input name="avoid_exercises" placeholder="Ej. press militar">
+    <input name="avoid_exercises" value="{{ form_values.avoid_exercises or '' }}" placeholder="Ej. press militar">
   </label>
   <button class="button primary full" type="submit">Generar rutina</button>
 </form>
 
 <p class="notice">Aviso: las recomendaciones son educativas y no sustituyen consejo medico, fisioterapeutico o de un entrenador cualificado.</p>
+
+<section class="section-title saved-routines-title">
+  <div>
+    <h2>Rutinas guardadas</h2>
+    <p class="muted">Puedes revisarlas o usarlas al registrar una sesion.</p>
+  </div>
+</section>
+
+<section class="list-stack">
+  {% for routine in saved_routines %}
+    <article class="history-item">
+      <div class="history-head">
+        <div>
+          <strong>{{ routine.title }}</strong>
+          <p>{{ routine.split|title }} &middot; {{ routine.days|length }} dias &middot; {{ routine.created_at.strftime("%d/%m/%Y") }}</p>
+        </div>
+        <div class="row-actions">
+          <a class="button ghost" href="/recommendations/saved/{{ routine.id }}">Ver</a>
+          <a class="button ghost" href="/recommendations/saved/{{ routine.id }}/edit">Editar</a>
+          <a class="button secondary" href="/workouts/new?routine_id={{ routine.id }}">Registrar</a>
+          <form method="post" action="/recommendations/saved/{{ routine.id }}/delete">
+            <button class="button danger" type="submit">Eliminar</button>
+          </form>
+        </div>
+      </div>
+    </article>
+  {% else %}
+    <p class="empty">Todavia no hay rutinas guardadas.</p>
+  {% endfor %}
+</section>
+<script src="{{ url_for('static', path='/js/recommendation_form.js') }}"></script>
 {% endblock %}

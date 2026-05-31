@@ -1,13 +1,39 @@
 {% extends "base.html" %}
 {% block title %}Rutina recomendada | ARCA Gym{% endblock %}
 {% block content %}
+{% macro hidden_recommendation_fields(input) -%}
+  <input type="hidden" name="goal" value="{{ input.goal }}">
+  <input type="hidden" name="experience_level" value="{{ input.experience_level }}">
+  <input type="hidden" name="days_per_week" value="{{ input.days_per_week }}">
+  <input type="hidden" name="session_duration" value="{{ input.session_duration }}">
+  <input type="hidden" name="equipment_available" value="{{ input.equipment_available }}">
+  <input type="hidden" name="limitations" value="{{ input.limitations }}">
+  <input type="hidden" name="preferences" value="{{ input.preferences }}">
+  <input type="hidden" name="avoid_exercises" value="{{ input.avoid_exercises }}">
+  <input type="hidden" name="lagging_muscles" value="{{ input.lagging_muscles }}">
+  <input type="hidden" name="routine_preference" value="{{ input.routine_preference }}">
+{%- endmacro %}
+
 <section class="page-heading">
   <div>
     <p class="eyebrow">Resultado</p>
     <h1>Rutina {{ recommendation.split|title }}</h1>
     <p class="muted">{{ recommendation.explanation }}</p>
   </div>
-  <a class="button secondary" href="/recommendations">Ajustar datos</a>
+</section>
+
+<section class="routine-actions">
+  <form method="post" action="/recommendations/edit">
+    {{ hidden_recommendation_fields(input) }}
+    <button class="button secondary" type="submit">Modificar datos</button>
+  </form>
+  <form method="post" action="/recommendations/save" class="save-routine-form">
+    {{ hidden_recommendation_fields(input) }}
+    <label>Nombre de rutina
+      <input name="title" value="Rutina {{ recommendation.split|title }}">
+    </label>
+    <button class="button primary" type="submit">Guardar rutina</button>
+  </form>
 </section>
 
 <section class="routine-grid">
@@ -20,7 +46,7 @@
           <div class="routine-exercise">
             <strong>{{ exercise.name }}</strong>
             <span>{{ exercise.primary_muscle }}</span>
-            <p>{{ exercise.sets }} series · {{ exercise.reps }} reps · descanso {{ exercise.rest }} · {{ exercise.intensity }}</p>
+            <p>{{ exercise.sets }} series &middot; {{ exercise.reps }} reps &middot; descanso {{ exercise.rest }} &middot; {{ exercise.intensity }}</p>
             <small>{{ exercise.notes }}</small>
           </div>
         {% else %}

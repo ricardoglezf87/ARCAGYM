@@ -1,4 +1,5 @@
 from datetime import date
+import re
 
 from fastapi import APIRouter, Depends, Form, HTTPException, Request, status
 from fastapi.datastructures import FormData
@@ -8,7 +9,15 @@ from sqlalchemy.orm import Session, joinedload
 
 from app.database import get_db
 from app.dependencies import require_user, templates
-from app.models import Exercise, ExerciseSet, User, WorkoutExercise, WorkoutSession
+from app.models import (
+    Exercise,
+    ExerciseSet,
+    SavedRoutine,
+    SavedRoutineDay,
+    User,
+    WorkoutExercise,
+    WorkoutSession,
+)
 
 
 router = APIRouter()
@@ -20,6 +29,7 @@ def _get_user_session(db: Session, user: User, session_id: int) -> WorkoutSessio
             select(WorkoutSession)
             .where(WorkoutSession.id == session_id, WorkoutSession.user_id == user.id)
             .options(
+                joinedload(WorkoutSession.saved_routine),
                 joinedload(WorkoutSession.exercises).joinedload(WorkoutExercise.exercise),
                 joinedload(WorkoutSession.exercises).joinedload(WorkoutExercise.sets),
             )
@@ -48,6 +58,23 @@ def _int_or_none(value: str | None) -> int | None:
         return int(value)
     except ValueError:
         return None
+
+
+def _first_int(value: str | None, default: int) -> int:
+    match = re.search(r"\d+", value or "")
+    if not match:
+        return default
+    return int(match.group(0))
+
+
+def _rest_seconds(value: str | None) -> int | None:
+    match = re.search(r"\d+", value or "")
+    if not match:
+        return None
+    amount = int(match.group(0))
+    if "min" in (value or "").lower():
+        return amount * 60
+    return amount
 
 
 def _parse_workout_form(form: FormData, db: Session) -> tuple[date | None, str | None, list[WorkoutExercise], str | None]:
@@ -111,6 +138,114 @@ def _exercise_options(db: Session) -> list[Exercise]:
     return list(db.scalars(select(Exercise).order_by(Exercise.primary_muscle, Exercise.name)).all())
 
 
+def _saved_routine_options(db: Session, user: User) -> list[SavedRoutine]:
+    return list(
+        db.scalars(
+            select(SavedRoutine)
+            .where(SavedRoutine.user_id == user.id)
+            .options(joinedload(SavedRoutine.days).joinedload(SavedRoutineDay.exercises))
+            .order_by(SavedRoutine.created_at.desc(), SavedRoutine.id.desc())
+        )
+        .unique()
+        .all()
+    )
+
+
+def _get_saved_routine(db: Session, user: User, routine_id: int) -> SavedRoutine:
+    routine = (
+        db.scalars(
+            select(SavedRoutine)
+            .where(SavedRoutine.id == routine_id, SavedRoutine.user_id == user.id)
+            .options(joinedload(SavedRoutine.days).joinedload(SavedRoutineDay.exercises))
+        )
+        .unique()
+        .first()
+    )
+    if not routine:
+        raise HTTPException(status_code=404, detail="Rutina guardada no encontrada")
+    return routine
+
+
+def _selected_routine_day(routine: SavedRoutine | None, routine_day_id: int | None) -> SavedRoutineDay | None:
+    if not routine or not routine.days:
+        return None
+    if routine_day_id:
+        for day in routine.days:
+            if day.id == routine_day_id:
+                return day
+    return routine.days[0]
+
+
+def _routine_day_entries(db: Session, routine_day: SavedRoutineDay | None) -> list[dict]:
+    if not routine_day:
+        return []
+
+    entries: list[dict] = []
+    for routine_exercise in routine_day.exercises:
+        if not routine_exercise.exercise_id:
+            continue
+        exercise = db.get(Exercise, routine_exercise.exercise_id)
+        if not exercise:
+            continue
+        set_count = max(1, min(_first_int(routine_exercise.sets, 3), 8))
+        reps = max(1, _first_int(routine_exercise.reps, 10))
+        rest_seconds = _rest_seconds(routine_exercise.rest)
+        entries.append(
+            {
+                "exercise_id": exercise.id,
+                "exercise": exercise,
+                "notes": routine_exercise.notes or "",
+                "sets": [
+                    {
+                        "weight": 0,
+                        "reps": reps,
+                        "rpe": None,
+                        "rest_seconds": rest_seconds,
+                        "notes": "",
+                    }
+                    for _ in range(set_count)
+                ],
+            }
+        )
+    return entries
+
+
+def _workout_form_context(
+    request: Request,
+    user: User,
+    db: Session,
+    session: WorkoutSession | None,
+    mode: str,
+    selected_routine: SavedRoutine | None = None,
+    selected_day: SavedRoutineDay | None = None,
+    prefill_entries: list[dict] | None = None,
+    error: str | None = None,
+    today: str | None = None,
+) -> dict:
+    return {
+        "request": request,
+        "user": user,
+        "session": session,
+        "exercises": _exercise_options(db),
+        "saved_routines": _saved_routine_options(db, user),
+        "selected_routine": selected_routine or (session.saved_routine if session else None),
+        "selected_day": selected_day,
+        "prefill_entries": prefill_entries or [],
+        "today": today or date.today().isoformat(),
+        "mode": mode,
+        "error": error,
+    }
+
+
+def _routine_from_form(db: Session, user: User, form: FormData) -> tuple[SavedRoutine | None, str | None]:
+    routine_id = _int_or_none(str(form.get("saved_routine_id") or ""))
+    if not routine_id:
+        return None, None
+    routine = _get_saved_routine(db, user, routine_id)
+    routine_day_name = str(form.get("routine_day_name") or "").strip() or None
+    return routine, routine_day_name
+
+
 @router.get("/workouts")
 def workout_history(request: Request, user: User = Depends(require_user), db: Session = Depends(get_db)):
     sessions = (
@@ -118,6 +253,7 @@ def workout_history(request: Request, user: User = Depends(require_user), db: Se
             select(WorkoutSession)
             .where(WorkoutSession.user_id == user.id)
             .options(
+                joinedload(WorkoutSession.saved_routine),
                 joinedload(WorkoutSession.exercises).joinedload(WorkoutExercise.exercise),
                 joinedload(WorkoutSession.exercises).joinedload(WorkoutExercise.sets),
             )
@@ -133,17 +269,27 @@ def workout_history(request: Request, user: User = Depends(require_user), db: Se
 
 
 @router.get("/workouts/new")
-def new_workout(request: Request, user: User = Depends(require_user), db: Session = Depends(get_db)):
+def new_workout(
+    request: Request,
+    routine_id: int | None = None,
+    routine_day_id: int | None = None,
+    user: User = Depends(require_user),
+    db: Session = Depends(get_db),
+):
+    selected_routine = _get_saved_routine(db, user, routine_id) if routine_id else None
+    selected_day = _selected_routine_day(selected_routine, routine_day_id)
     return templates.TemplateResponse(
         "workout_form.html",
-        {
-            "request": request,
-            "user": user,
-            "session": None,
-            "exercises": _exercise_options(db),
-            "today": date.today().isoformat(),
-            "mode": "create",
-        },
+        _workout_form_context(
+            request,
+            user,
+            db,
+            session=None,
+            mode="create",
+            selected_routine=selected_routine,
+            selected_day=selected_day,
+            prefill_entries=_routine_day_entries(db, selected_day),
+        ),
     )
 
 
@@ -151,22 +297,30 @@ def new_workout(request: Request, user: User = Depends(require_user), db: Sessio
 async def create_workout(request: Request, user: User = Depends(require_user), db: Session = Depends(get_db)):
     form = await request.form()
     session_date, notes, entries, error = _parse_workout_form(form, db)
+    selected_routine, routine_day_name = _routine_from_form(db, user, form)
     if error:
         return templates.TemplateResponse(
             "workout_form.html",
-            {
-                "request": request,
-                "user": user,
-                "session": None,
-                "exercises": _exercise_options(db),
-                "today": str(form.get("date") or date.today().isoformat()),
-                "mode": "create",
-                "error": error,
-            },
+            _workout_form_context(
+                request,
+                user,
+                db,
+                session=None,
+                mode="create",
+                selected_routine=selected_routine,
+                error=error,
+                today=str(form.get("date") or date.today().isoformat()),
+            ),
             status_code=400,
         )
 
-    session = WorkoutSession(user_id=user.id, date=session_date, notes=notes)
+    session = WorkoutSession(
+        user_id=user.id,
+        saved_routine_id=selected_routine.id if selected_routine else None,
+        routine_day_name=routine_day_name,
+        date=session_date,
+        notes=notes,
+    )
     session.exercises.extend(entries)
     db.add(session)
     db.commit()
@@ -183,14 +337,7 @@ def edit_workout(
     session = _get_user_session(db, user, session_id)
     return templates.TemplateResponse(
         "workout_form.html",
-        {
-            "request": request,
-            "user": user,
-            "session": session,
-            "exercises": _exercise_options(db),
-            "today": date.today().isoformat(),
-            "mode": "edit",
-        },
+        _workout_form_context(request, user, db, session=session, mode="edit"),
     )
 
 
@@ -204,23 +351,26 @@ async def update_workout(
     session = _get_user_session(db, user, session_id)
     form = await request.form()
     session_date, notes, entries, error = _parse_workout_form(form, db)
+    selected_routine, routine_day_name = _routine_from_form(db, user, form)
     if error:
         return templates.TemplateResponse(
             "workout_form.html",
-            {
-                "request": request,
-                "user": user,
-                "session": session,
-                "exercises": _exercise_options(db),
-                "today": date.today().isoformat(),
-                "mode": "edit",
-                "error": error,
-            },
+            _workout_form_context(
+                request,
+                user,
+                db,
+                session=session,
+                mode="edit",
+                selected_routine=selected_routine,
+                error=error,
+            ),
             status_code=400,
         )
 
     session.date = session_date
     session.notes = notes
+    session.saved_routine_id = selected_routine.id if selected_routine else None
+    session.routine_day_name = routine_day_name
     session.exercises.clear()
     session.exercises.extend(entries)
     db.add(session)
