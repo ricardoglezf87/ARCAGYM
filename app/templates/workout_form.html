@@ -65,7 +65,7 @@
             <label>Ejercicio
               <select name="exercise_id" required>
                 {% for exercise in exercises %}
-                  <option value="{{ exercise.id }}" {% if exercise.id == entry.exercise_id %}selected{% endif %}>{{ exercise.name }} ({{ exercise.primary_muscle }})</option>
+                  <option value="{{ exercise.id }}" data-last-weight="{{ last_weights.get(exercise.id, 0) }}" {% if exercise.id == entry.exercise_id %}selected{% endif %}>{{ exercise.name }} ({{ exercise.primary_muscle }})</option>
                 {% endfor %}
               </select>
             </label>
@@ -93,10 +93,9 @@
                   <tr class="set-row">
                     <td class="set-number">{{ loop.index }}</td>
                     <td>
-                      <label class="set-done-control">
-                        <input type="checkbox" data-set-done {% if session %}checked{% endif %}>
-                        <span>OK</span>
-                      </label>
+                      <button type="button" class="set-done-toggle {% if session %}is-active{% endif %}" data-set-done aria-pressed="{% if session %}true{% else %}false{% endif %}" aria-label="Marcar serie realizada">
+                        <span aria-hidden="true">✓</span>
+                      </button>
                     </td>
                     <td><input data-set-field="weight" name="set_weight_{{ exercise_index }}" type="number" step="0.1" min="0" value="{{ set.weight }}"></td>
                     <td><input data-set-field="reps" name="set_reps_{{ exercise_index }}" type="number" min="1" value="{{ set.reps }}" required></td>
@@ -127,7 +126,7 @@
       <label>Ejercicio
         <select name="exercise_id" required>
           {% for exercise in exercises %}
-            <option value="{{ exercise.id }}">{{ exercise.name }} ({{ exercise.primary_muscle }})</option>
+            <option value="{{ exercise.id }}" data-last-weight="{{ last_weights.get(exercise.id, 0) }}">{{ exercise.name }} ({{ exercise.primary_muscle }})</option>
           {% endfor %}
         </select>
       </label>
@@ -161,10 +160,9 @@
   <tr class="set-row">
     <td class="set-number">1</td>
     <td>
-      <label class="set-done-control">
-        <input type="checkbox" data-set-done>
-        <span>OK</span>
-      </label>
+      <button type="button" class="set-done-toggle" data-set-done aria-pressed="false" aria-label="Marcar serie realizada">
+        <span aria-hidden="true">✓</span>
+      </button>
     </td>
     <td><input data-set-field="weight" type="number" step="0.1" min="0" value="0"></td>
     <td><input data-set-field="reps" type="number" min="1" value="10" required></td>

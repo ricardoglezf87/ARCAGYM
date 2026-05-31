@@ -138,6 +138,30 @@ def _exercise_options(db: Session) -> list[Exercise]:
     return list(db.scalars(select(Exercise).order_by(Exercise.primary_muscle, Exercise.name)).all())
 
 
+def _last_exercise_weights(db: Session, user: User, exclude_session_id: int | None = None) -> dict[int, float]:
+    sessions = (
+        db.scalars(
+            select(WorkoutSession)
+            .where(WorkoutSession.user_id == user.id)
+            .options(
+                joinedload(WorkoutSession.exercises).joinedload(WorkoutExercise.sets),
+            )
+            .order_by(WorkoutSession.date.desc(), WorkoutSession.id.desc())
+        )
+        .unique()
+        .all()
+    )
+    weights: dict[int, float] = {}
+    for session in sessions:
+        if exclude_session_id and session.id == exclude_session_id:
+            continue
+        for entry in session.exercises:
+            if entry.exercise_id in weights or not entry.sets:
+                continue
+            weights[entry.exercise_id] = entry.sets[-1].weight
+    return weights
+
+
 def _saved_routine_options(db: Session, user: User) -> list[SavedRoutine]:
     return list(
         db.scalars(
@@ -176,7 +200,11 @@ def _selected_routine_day(routine: SavedRoutine | None, routine_day_id: int | No
     return routine.days[0]
 
 
-def _routine_day_entries(db: Session, routine_day: SavedRoutineDay | None) -> list[dict]:
+def _routine_day_entries(
+    db: Session,
+    routine_day: SavedRoutineDay | None,
+    last_weights: dict[int, float],
+) -> list[dict]:
     if not routine_day:
         return []
 
@@ -197,7 +225,7 @@ def _routine_day_entries(db: Session, routine_day: SavedRoutineDay | None) -> li
                 "notes": routine_exercise.notes or "",
                 "sets": [
                     {
-                        "weight": 0,
+                        "weight": last_weights.get(exercise.id, 0),
                         "reps": reps,
                         "rpe": None,
                         "rest_seconds": rest_seconds,
@@ -227,6 +255,7 @@ def _workout_form_context(
         "user": user,
         "session": session,
         "exercises": _exercise_options(db),
+        "last_weights": _last_exercise_weights(db, user, session.id if session else None),
         "saved_routines": _saved_routine_options(db, user),
         "selected_routine": selected_routine or (session.saved_routine if session else None),
         "selected_day": selected_day,
@@ -278,6 +307,7 @@ def new_workout(
 ):
     selected_routine = _get_saved_routine(db, user, routine_id) if routine_id else None
     selected_day = _selected_routine_day(selected_routine, routine_day_id)
+    last_weights = _last_exercise_weights(db, user)
     return templates.TemplateResponse(
         "workout_form.html",
         _workout_form_context(
@@ -288,7 +318,7 @@ def new_workout(
             mode="create",
             selected_routine=selected_routine,
             selected_day=selected_day,
-            prefill_entries=_routine_day_entries(db, selected_day),
+            prefill_entries=_routine_day_entries(db, selected_day, last_weights),
         ),
     )
 

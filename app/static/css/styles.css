@@ -779,20 +779,26 @@ legend {
   color: var(--muted);
 }
 
-.set-done-control {
-  width: max-content;
-  display: inline-flex;
-  grid-auto-flow: column;
+.set-done-toggle {
+  width: 34px;
+  min-width: 34px;
+  min-height: 34px;
+  padding: 0;
   align-items: center;
-  gap: 6px;
-  color: var(--muted);
-  font-size: 0.84rem;
-  font-weight: 800;
+  justify-content: center;
+  border-radius: 999px;
+  border-color: #b7c8bd;
+  background: var(--surface);
+  color: #8fa095;
+  font-size: 1rem;
+  font-weight: 900;
 }
 
-.set-done-control input {
-  width: auto;
-  min-height: 0;
+.set-done-toggle.is-active {
+  background: var(--success);
+  border-color: var(--success);
+  color: #fff;
+  box-shadow: 0 0 0 3px rgba(35, 107, 84, 0.14);
 }
 
 .set-row.is-done {

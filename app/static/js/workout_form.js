@@ -33,12 +33,36 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function isSetDone(row) {
-    const checkbox = row.querySelector("[data-set-done]");
-    return Boolean(checkbox && checkbox.checked);
+    const button = row.querySelector("[data-set-done]");
+    return Boolean(button && button.getAttribute("aria-pressed") === "true");
   }
 
   function syncSetDoneState(row) {
-    row.classList.toggle("is-done", isSetDone(row));
+    const button = row.querySelector("[data-set-done]");
+    const done = isSetDone(row);
+    row.classList.toggle("is-done", done);
+    if (button) {
+      button.classList.toggle("is-active", done);
+      button.setAttribute("aria-pressed", String(done));
+    }
+  }
+
+  function selectedExerciseLastWeight(block) {
+    const selectedOption = block.querySelector('select[name="exercise_id"] option:checked');
+    return selectedOption ? selectedOption.dataset.lastWeight || "0" : "0";
+  }
+
+  function applyLastWeightToOpenSets(block) {
+    const lastWeight = selectedExerciseLastWeight(block);
+    block.querySelectorAll(".set-row").forEach((row) => {
+      if (isSetDone(row)) {
+        return;
+      }
+      const weightInput = fieldInput(row, "weight");
+      if (weightInput) {
+        weightInput.value = lastWeight;
+      }
+    });
   }
 
   function copyFieldValueToRows(block, sourceInput) {
@@ -59,6 +83,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const rows = Array.from(block.querySelectorAll(".set-row"));
     const sourceRow = rows[rows.length - 2];
     if (!sourceRow) {
+      const weightInput = fieldInput(targetRow, "weight");
+      if (weightInput) {
+        weightInput.value = selectedExerciseLastWeight(block);
+      }
+      syncSetDoneState(targetRow);
       return;
     }
 
@@ -113,8 +142,13 @@ document.addEventListener("DOMContentLoaded", () => {
       reindexBlocks();
     }
 
-    if (target.matches("[data-set-done]")) {
-      syncSetDoneState(target.closest(".set-row"));
+    const doneButton = target.closest("[data-set-done]");
+    if (doneButton) {
+      doneButton.setAttribute(
+        "aria-pressed",
+        doneButton.getAttribute("aria-pressed") === "true" ? "false" : "true",
+      );
+      syncSetDoneState(doneButton.closest(".set-row"));
     }
   });
 
@@ -130,6 +164,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   blocksContainer.addEventListener("input", handleSetFieldUpdate);
   blocksContainer.addEventListener("change", handleSetFieldUpdate);
+
+  blocksContainer.addEventListener("change", (event) => {
+    const target = event.target;
+    const block = target.closest(".workout-exercise");
+    if (!block || !target.matches('select[name="exercise_id"]')) {
+      return;
+    }
+    applyLastWeightToOpenSets(block);
+  });
 
   addExerciseButton.addEventListener("click", addExercise);
 
