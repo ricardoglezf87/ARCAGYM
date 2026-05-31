@@ -1,0 +1,949 @@
+{
+  "version": "1.0.0",
+  "notes": "Local image mapping loaded by app.services.exercise_seed_service.",
+  "sources": {
+    "free-exercise-db": {
+      "name": "Free Exercise DB",
+      "license": "Unlicense / public domain dedication",
+      "repository": "https://github.com/yuhonas/free-exercise-db"
+    },
+    "wikimedia-commons": {
+      "name": "Wikimedia Commons",
+      "license": "CC BY-SA 4.0 for the burpees image listed in its entry"
+    }
+  },
+  "images": [
+    {
+      "name": "Cinta inclinada",
+      "image_url": "/static/img/exercises/caminata-inclinada.jpg",
+      "image_alt": "Persona caminando en cinta inclinada",
+      "source": "free-exercise-db",
+      "source_id": "Walking_Treadmill",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Walking_Treadmill/0.jpg",
+      "alias_for": "caminata-inclinada"
+    },
+    {
+      "name": "Curl de biceps con barra",
+      "image_url": "/static/img/exercises/curl-biceps-barra.jpg",
+      "image_alt": "Persona realizando curl de biceps con barra",
+      "source": "free-exercise-db",
+      "source_id": "Barbell_Curl",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Curl/0.jpg",
+      "alias_for": "curl-biceps-barra"
+    },
+    {
+      "name": "Elevaciones laterales",
+      "image_url": "/static/img/exercises/elevaciones-laterales-mancuernas.jpg",
+      "image_alt": "Persona realizando elevaciones laterales",
+      "source": "free-exercise-db",
+      "source_id": "Side_Lateral_Raise",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Side_Lateral_Raise/0.jpg",
+      "alias_for": "elevaciones-laterales-mancuernas"
+    },
+    {
+      "name": "Extension de triceps en polea",
+      "image_url": "/static/img/exercises/extension-triceps-polea-cuerda.jpg",
+      "image_alt": "Persona realizando extension de triceps en polea",
+      "source": "free-exercise-db",
+      "source_id": "Triceps_Pushdown_-_Rope_Attachment",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Triceps_Pushdown_-_Rope_Attachment/0.jpg",
+      "alias_for": "extension-triceps-polea-cuerda"
+    },
+    {
+      "name": "Flexiones",
+      "image_url": "/static/img/exercises/flexiones-clasicas.jpg",
+      "image_alt": "Persona realizando flexiones",
+      "source": "free-exercise-db",
+      "source_id": "Pushups",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Pushups/0.jpg",
+      "alias_for": "flexiones-clasicas"
+    },
+    {
+      "name": "Fondos en paralelas",
+      "image_url": "/static/img/exercises/fondos-paralelas-triceps.jpg",
+      "image_alt": "Persona realizando fondos en paralelas",
+      "source": "free-exercise-db",
+      "source_id": "Dips_-_Triceps_Version",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dips_-_Triceps_Version/0.jpg",
+      "alias_for": "fondos-paralelas-triceps"
+    },
+    {
+      "name": "Jalon al pecho",
+      "image_url": "/static/img/exercises/jalon-pecho-agarre-ancho.jpg",
+      "image_alt": "Persona realizando jalon al pecho",
+      "source": "free-exercise-db",
+      "source_id": "Wide-Grip_Lat_Pulldown",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Wide-Grip_Lat_Pulldown/0.jpg",
+      "alias_for": "jalon-pecho-agarre-ancho"
+    },
+    {
+      "name": "Movilidad de cadera 90-90",
+      "image_url": "/static/img/exercises/movilidad-cadera-90-90.jpg",
+      "image_alt": "Persona realizando movilidad de cadera 90-90",
+      "source": "free-exercise-db",
+      "source_id": "90_90_Hamstring",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/90_90_Hamstring/0.jpg"
+    },
+    {
+      "name": "Peso muerto rumano",
+      "image_url": "/static/img/exercises/peso-muerto-rumano-barra.jpg",
+      "image_alt": "Persona realizando peso muerto rumano",
+      "source": "free-exercise-db",
+      "source_id": "Romanian_Deadlift",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Romanian_Deadlift/0.jpg",
+      "alias_for": "peso-muerto-rumano-barra"
+    },
+    {
+      "name": "Press militar con mancuernas",
+      "image_url": "/static/img/exercises/press-hombros-mancuernas-sentado.jpg",
+      "image_alt": "Persona realizando press militar con mancuernas",
+      "source": "free-exercise-db",
+      "source_id": "Seated_Dumbbell_Press",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Dumbbell_Press/0.jpg",
+      "alias_for": "press-hombros-mancuernas-sentado"
+    },
+    {
+      "name": "Remo ergometro",
+      "image_url": "/static/img/exercises/remo-ergometro.jpg",
+      "image_alt": "Persona usando remo ergometro",
+      "source": "free-exercise-db",
+      "source_id": "Rowing_Stationary",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Rowing_Stationary/0.jpg",
+      "alias_for": "remo-ergometro"
+    },
+    {
+      "name": "Rotaciones toracicas en cuadrupedia",
+      "image_url": "/static/img/exercises/rotaciones-toracicas-cuadrupedia.jpg",
+      "image_alt": "Persona realizando rotaciones toracicas",
+      "source": "free-exercise-db",
+      "source_id": "Torso_Rotation",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Torso_Rotation/0.jpg"
+    },
+    {
+      "name": "Sentadilla con barra",
+      "image_url": "/static/img/exercises/sentadilla-trasera-barra.jpg",
+      "image_alt": "Persona realizando sentadilla con barra",
+      "source": "free-exercise-db",
+      "source_id": "Barbell_Squat",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Squat/0.jpg",
+      "alias_for": "sentadilla-trasera-barra"
+    },
+    {
+      "name": "Zancadas con mancuernas",
+      "image_url": "/static/img/exercises/zancadas-mancuernas.jpg",
+      "image_alt": "Persona realizando zancadas con mancuernas",
+      "source": "free-exercise-db",
+      "source_id": "Dumbbell_Lunges",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Lunges/0.jpg"
+    },
+    {
+      "slug": "ab-wheel-rollout",
+      "image_url": "/static/img/exercises/ab-wheel-rollout.jpg",
+      "image_alt": "Persona realizando ab wheel rollout de rodillas",
+      "source": "free-exercise-db",
+      "source_id": "Ab_Roller",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Ab_Roller/0.jpg"
+    },
+    {
+      "slug": "abduccion-cadera-maquina",
+      "image_url": "/static/img/exercises/abduccion-cadera-maquina.jpg",
+      "image_alt": "Persona realizando abducción de cadera en máquina",
+      "source": "free-exercise-db",
+      "source_id": "Thigh_Abductor",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Thigh_Abductor/0.jpg"
+    },
+    {
+      "slug": "aperturas-mancuernas-banco-plano",
+      "image_url": "/static/img/exercises/aperturas-mancuernas-banco-plano.jpg",
+      "image_alt": "Persona realizando aperturas con mancuernas en banco plano",
+      "source": "free-exercise-db",
+      "source_id": "Dumbbell_Flyes",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Flyes/0.jpg"
+    },
+    {
+      "slug": "aperturas-maquina-contractora",
+      "image_url": "/static/img/exercises/aperturas-maquina-contractora.jpg",
+      "image_alt": "Persona realizando aperturas en máquina contractora",
+      "source": "free-exercise-db",
+      "source_id": "Butterfly",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Butterfly/0.jpg"
+    },
+    {
+      "slug": "assault-bike",
+      "image_url": "/static/img/exercises/assault-bike.jpg",
+      "image_alt": "Persona usando una assault bike",
+      "source": "free-exercise-db",
+      "source_id": "Air_Bike",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Air_Bike/0.jpg"
+    },
+    {
+      "slug": "battle-ropes",
+      "image_url": "/static/img/exercises/battle-ropes.jpg",
+      "image_alt": "Persona entrenando con battle ropes",
+      "source": "free-exercise-db",
+      "source_id": "Battling_Ropes",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Battling_Ropes/0.jpg"
+    },
+    {
+      "slug": "bicicleta-estatica",
+      "image_url": "/static/img/exercises/bicicleta-estatica.jpg",
+      "image_alt": "Persona usando bicicleta estática",
+      "source": "free-exercise-db",
+      "source_id": "Bicycling_Stationary",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bicycling_Stationary/0.jpg"
+    },
+    {
+      "slug": "box-jump",
+      "image_url": "/static/img/exercises/box-jump.jpg",
+      "image_alt": "Persona realizando box jump",
+      "source": "free-exercise-db",
+      "source_id": "Front_Box_Jump",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Front_Box_Jump/0.jpg"
+    },
+    {
+      "slug": "burpees",
+      "image_url": "/static/img/exercises/burpees.jpg",
+      "image_alt": "Persona realizando burpees",
+      "source": "wikimedia-commons",
+      "source_id": "CrossFit Burpee 5 Thrust.jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:CrossFit_Burpee_5_Thrust.jpg",
+      "credit": "CrossFit Burpee 5 Thrust.jpg by Taco Fleur, CC BY-SA 4.0."
+    },
+    {
+      "slug": "caminata-inclinada",
+      "image_url": "/static/img/exercises/caminata-inclinada.jpg",
+      "image_alt": "Persona realizando caminata inclinada en cinta",
+      "source": "free-exercise-db",
+      "source_id": "Walking_Treadmill",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Walking_Treadmill/0.jpg"
+    },
+    {
+      "slug": "cat-cow",
+      "image_url": "/static/img/exercises/cat-cow.jpg",
+      "image_alt": "Persona realizando cat cow en cuadrupedia",
+      "source": "free-exercise-db",
+      "source_id": "Cat_Stretch",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cat_Stretch/0.jpg"
+    },
+    {
+      "slug": "cinta-correr",
+      "image_url": "/static/img/exercises/cinta-correr.jpg",
+      "image_alt": "Persona caminando o corriendo en cinta",
+      "source": "free-exercise-db",
+      "source_id": "Running_Treadmill",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Running_Treadmill/0.jpg"
+    },
+    {
+      "slug": "cruce-poleas-alto",
+      "image_url": "/static/img/exercises/cruce-poleas-alto.jpg",
+      "image_alt": "Persona realizando cruce de poleas desde posición alta",
+      "source": "free-exercise-db",
+      "source_id": "Cable_Crossover",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Crossover/0.jpg"
+    },
+    {
+      "slug": "crunch-abdominal",
+      "image_url": "/static/img/exercises/crunch-abdominal.jpg",
+      "image_alt": "Persona realizando crunch abdominal",
+      "source": "free-exercise-db",
+      "source_id": "Crunches",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Crunches/0.jpg"
+    },
+    {
+      "slug": "crunch-polea-alta",
+      "image_url": "/static/img/exercises/crunch-polea-alta.jpg",
+      "image_alt": "Persona realizando crunch abdominal en polea alta",
+      "source": "free-exercise-db",
+      "source_id": "Cable_Crunch",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Crunch/0.jpg"
+    },
+    {
+      "slug": "curl-barra-z",
+      "image_url": "/static/img/exercises/curl-barra-z.jpg",
+      "image_alt": "Persona realizando curl de bíceps con barra Z",
+      "source": "free-exercise-db",
+      "source_id": "EZ-Bar_Curl",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/EZ-Bar_Curl/0.jpg"
+    },
+    {
+      "slug": "curl-biceps-barra",
+      "image_url": "/static/img/exercises/curl-biceps-barra.jpg",
+      "image_alt": "Persona realizando curl de bíceps con barra",
+      "source": "free-exercise-db",
+      "source_id": "Barbell_Curl",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Curl/0.jpg"
+    },
+    {
+      "slug": "curl-concentrado",
+      "image_url": "/static/img/exercises/curl-concentrado.jpg",
+      "image_alt": "Persona realizando curl concentrado con mancuerna",
+      "source": "free-exercise-db",
+      "source_id": "Concentration_Curls",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Concentration_Curls/0.jpg"
+    },
+    {
+      "slug": "curl-femoral-sentado",
+      "image_url": "/static/img/exercises/curl-femoral-sentado.jpg",
+      "image_alt": "Persona realizando curl femoral sentado en máquina",
+      "source": "free-exercise-db",
+      "source_id": "Seated_Leg_Curl",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Leg_Curl/0.jpg"
+    },
+    {
+      "slug": "curl-femoral-tumbado",
+      "image_url": "/static/img/exercises/curl-femoral-tumbado.jpg",
+      "image_alt": "Persona realizando curl femoral tumbado en máquina",
+      "source": "free-exercise-db",
+      "source_id": "Lying_Leg_Curls",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Lying_Leg_Curls/0.jpg"
+    },
+    {
+      "slug": "curl-inclinado-mancuernas",
+      "image_url": "/static/img/exercises/curl-inclinado-mancuernas.jpg",
+      "image_alt": "Persona realizando curl inclinado con mancuernas",
+      "source": "free-exercise-db",
+      "source_id": "Incline_Dumbbell_Curl",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Incline_Dumbbell_Curl/0.jpg"
+    },
+    {
+      "slug": "curl-inverso-barra",
+      "image_url": "/static/img/exercises/curl-inverso-barra.jpg",
+      "image_alt": "Persona realizando curl inverso con barra",
+      "source": "free-exercise-db",
+      "source_id": "Reverse_Barbell_Curl",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Reverse_Barbell_Curl/0.jpg"
+    },
+    {
+      "slug": "curl-mancuernas-alterno",
+      "image_url": "/static/img/exercises/curl-mancuernas-alterno.jpg",
+      "image_alt": "Persona realizando curl alterno con mancuernas",
+      "source": "free-exercise-db",
+      "source_id": "Dumbbell_Alternate_Bicep_Curl",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Alternate_Bicep_Curl/0.jpg"
+    },
+    {
+      "slug": "curl-martillo",
+      "image_url": "/static/img/exercises/curl-martillo.jpg",
+      "image_alt": "Persona realizando curl martillo con mancuernas",
+      "source": "free-exercise-db",
+      "source_id": "Hammer_Curls",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Hammer_Curls/0.jpg"
+    },
+    {
+      "slug": "curl-muneca-barra",
+      "image_url": "/static/img/exercises/curl-muneca-barra.jpg",
+      "image_alt": "Persona realizando curl de muñeca con barra",
+      "source": "free-exercise-db",
+      "source_id": "Seated_Palm-Up_Barbell_Wrist_Curl",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Palm-Up_Barbell_Wrist_Curl/0.jpg"
+    },
+    {
+      "slug": "curl-polea-baja",
+      "image_url": "/static/img/exercises/curl-polea-baja.jpg",
+      "image_alt": "Persona realizando curl de bíceps en polea baja",
+      "source": "free-exercise-db",
+      "source_id": "Standing_Biceps_Cable_Curl",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Biceps_Cable_Curl/0.jpg"
+    },
+    {
+      "slug": "curl-predicador-barra-z",
+      "image_url": "/static/img/exercises/curl-predicador-barra-z.jpg",
+      "image_alt": "Persona realizando curl predicador con barra Z",
+      "source": "free-exercise-db",
+      "source_id": "Preacher_Curl",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Preacher_Curl/0.jpg"
+    },
+    {
+      "slug": "curl-spider",
+      "image_url": "/static/img/exercises/curl-spider.jpg",
+      "image_alt": "Persona realizando curl spider en banco inclinado",
+      "source": "free-exercise-db",
+      "source_id": "Spider_Curl",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Spider_Curl/0.jpg"
+    },
+    {
+      "slug": "curl-zottman",
+      "image_url": "/static/img/exercises/curl-zottman.jpg",
+      "image_alt": "Persona realizando curl Zottman con mancuernas",
+      "source": "free-exercise-db",
+      "source_id": "Zottman_Curl",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Zottman_Curl/0.jpg"
+    },
+    {
+      "slug": "dead-bug",
+      "image_url": "/static/img/exercises/dead-bug.jpg",
+      "image_alt": "Persona realizando dead bug",
+      "source": "free-exercise-db",
+      "source_id": "Dead_Bug",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dead_Bug/0.jpg"
+    },
+    {
+      "slug": "dominadas-pronas",
+      "image_url": "/static/img/exercises/dominadas-pronas.jpg",
+      "image_alt": "Persona realizando dominadas con agarre prono",
+      "source": "free-exercise-db",
+      "source_id": "Pullups",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Pullups/0.jpg"
+    },
+    {
+      "slug": "dominadas-supinas",
+      "image_url": "/static/img/exercises/dominadas-supinas.jpg",
+      "image_alt": "Persona realizando dominadas supinas",
+      "source": "free-exercise-db",
+      "source_id": "Chin-Up",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Chin-Up/0.jpg"
+    },
+    {
+      "slug": "elevacion-gemelos-pie",
+      "image_url": "/static/img/exercises/elevacion-gemelos-pie.jpg",
+      "image_alt": "Persona realizando elevación de gemelos de pie",
+      "source": "free-exercise-db",
+      "source_id": "Standing_Calf_Raises",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Calf_Raises/0.jpg"
+    },
+    {
+      "slug": "elevacion-gemelos-prensa",
+      "image_url": "/static/img/exercises/elevacion-gemelos-prensa.jpg",
+      "image_alt": "Persona realizando elevación de gemelos en prensa",
+      "source": "free-exercise-db",
+      "source_id": "Calf_Press_On_The_Leg_Press_Machine",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Calf_Press_On_The_Leg_Press_Machine/0.jpg"
+    },
+    {
+      "slug": "elevacion-gemelos-sentado",
+      "image_url": "/static/img/exercises/elevacion-gemelos-sentado.jpg",
+      "image_alt": "Persona realizando elevación de gemelos sentado",
+      "source": "free-exercise-db",
+      "source_id": "Seated_Calf_Raise",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Calf_Raise/0.jpg"
+    },
+    {
+      "slug": "elevaciones-laterales-mancuernas",
+      "image_url": "/static/img/exercises/elevaciones-laterales-mancuernas.jpg",
+      "image_alt": "Persona realizando elevaciones laterales con mancuernas",
+      "source": "free-exercise-db",
+      "source_id": "Side_Lateral_Raise",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Side_Lateral_Raise/0.jpg"
+    },
+    {
+      "slug": "elevaciones-laterales-polea",
+      "image_url": "/static/img/exercises/elevaciones-laterales-polea.jpg",
+      "image_alt": "Persona realizando elevación lateral en polea",
+      "source": "free-exercise-db",
+      "source_id": "Standing_Low-Pulley_Deltoid_Raise",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Low-Pulley_Deltoid_Raise/0.jpg"
+    },
+    {
+      "slug": "elevaciones-piernas-colgado",
+      "image_url": "/static/img/exercises/elevaciones-piernas-colgado.jpg",
+      "image_alt": "Persona realizando elevaciones de piernas colgado",
+      "source": "free-exercise-db",
+      "source_id": "Hanging_Leg_Raise",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Hanging_Leg_Raise/0.jpg"
+    },
+    {
+      "slug": "eliptica",
+      "image_url": "/static/img/exercises/eliptica.jpg",
+      "image_alt": "Persona usando una máquina elíptica",
+      "source": "free-exercise-db",
+      "source_id": "Elliptical_Trainer",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Elliptical_Trainer/0.jpg"
+    },
+    {
+      "slug": "encogimientos-barra",
+      "image_url": "/static/img/exercises/encogimientos-barra.jpg",
+      "image_alt": "Persona realizando encogimientos con barra",
+      "source": "free-exercise-db",
+      "source_id": "Barbell_Shrug",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Shrug/0.jpg"
+    },
+    {
+      "slug": "encogimientos-mancuernas",
+      "image_url": "/static/img/exercises/encogimientos-mancuernas.jpg",
+      "image_alt": "Persona realizando encogimientos con mancuernas",
+      "source": "free-exercise-db",
+      "source_id": "Dumbbell_Shrug",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Shrug/0.jpg"
+    },
+    {
+      "slug": "extension-cuadriceps-maquina",
+      "image_url": "/static/img/exercises/extension-cuadriceps-maquina.jpg",
+      "image_alt": "Persona realizando extensión de cuádriceps en máquina",
+      "source": "free-exercise-db",
+      "source_id": "Leg_Extensions",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leg_Extensions/0.jpg"
+    },
+    {
+      "slug": "extension-francesa-barra-z",
+      "image_url": "/static/img/exercises/extension-francesa-barra-z.jpg",
+      "image_alt": "Persona realizando extensión francesa con barra Z",
+      "source": "free-exercise-db",
+      "source_id": "Lying_Triceps_Press",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Lying_Triceps_Press/0.jpg"
+    },
+    {
+      "slug": "extension-triceps-polea-barra",
+      "image_url": "/static/img/exercises/extension-triceps-polea-barra.jpg",
+      "image_alt": "Persona realizando extensión de tríceps en polea con barra",
+      "source": "free-exercise-db",
+      "source_id": "Triceps_Pushdown",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Triceps_Pushdown/0.jpg"
+    },
+    {
+      "slug": "extension-triceps-polea-cuerda",
+      "image_url": "/static/img/exercises/extension-triceps-polea-cuerda.jpg",
+      "image_alt": "Persona realizando extensión de tríceps en polea con cuerda",
+      "source": "free-exercise-db",
+      "source_id": "Triceps_Pushdown_-_Rope_Attachment",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Triceps_Pushdown_-_Rope_Attachment/0.jpg"
+    },
+    {
+      "slug": "extension-triceps-sobre-cabeza-cuerda",
+      "image_url": "/static/img/exercises/extension-triceps-sobre-cabeza-cuerda.jpg",
+      "image_alt": "Persona realizando extensión de tríceps sobre la cabeza con cuerda",
+      "source": "free-exercise-db",
+      "source_id": "Cable_Rope_Overhead_Triceps_Extension",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Rope_Overhead_Triceps_Extension/0.jpg"
+    },
+    {
+      "slug": "face-pull",
+      "image_url": "/static/img/exercises/face-pull.jpg",
+      "image_alt": "Persona realizando face pull en polea",
+      "source": "free-exercise-db",
+      "source_id": "Face_Pull",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Face_Pull/0.jpg"
+    },
+    {
+      "slug": "farmer-walk",
+      "image_url": "/static/img/exercises/farmer-walk.jpg",
+      "image_alt": "Persona realizando farmer walk con mancuernas",
+      "source": "free-exercise-db",
+      "source_id": "Farmers_Walk",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Farmers_Walk/0.jpg"
+    },
+    {
+      "slug": "flexiones-clasicas",
+      "image_url": "/static/img/exercises/flexiones-clasicas.jpg",
+      "image_alt": "Persona realizando flexiones clásicas",
+      "source": "free-exercise-db",
+      "source_id": "Pushups",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Pushups/0.jpg"
+    },
+    {
+      "slug": "fondos-paralelas-pecho",
+      "image_url": "/static/img/exercises/fondos-paralelas-pecho.jpg",
+      "image_alt": "Persona realizando fondos en paralelas enfocados en pecho",
+      "source": "free-exercise-db",
+      "source_id": "Dips_-_Chest_Version",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dips_-_Chest_Version/0.jpg"
+    },
+    {
+      "slug": "fondos-paralelas-triceps",
+      "image_url": "/static/img/exercises/fondos-paralelas-triceps.jpg",
+      "image_alt": "Persona realizando fondos para tríceps en paralelas",
+      "source": "free-exercise-db",
+      "source_id": "Dips_-_Triceps_Version",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dips_-_Triceps_Version/0.jpg"
+    },
+    {
+      "slug": "hip-thrust-barra",
+      "image_url": "/static/img/exercises/hip-thrust-barra.jpg",
+      "image_alt": "Persona realizando hip thrust con barra",
+      "source": "free-exercise-db",
+      "source_id": "Barbell_Hip_Thrust",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Hip_Thrust/0.jpg"
+    },
+    {
+      "slug": "hip-thrust-maquina",
+      "image_url": "/static/img/exercises/hip-thrust-maquina.jpg",
+      "image_alt": "Persona realizando hip thrust en máquina",
+      "source": "free-exercise-db",
+      "source_id": "Barbell_Hip_Thrust",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Hip_Thrust/0.jpg"
+    },
+    {
+      "slug": "jalon-pecho-agarre-ancho",
+      "image_url": "/static/img/exercises/jalon-pecho-agarre-ancho.jpg",
+      "image_alt": "Persona realizando jalón al pecho con agarre ancho",
+      "source": "free-exercise-db",
+      "source_id": "Wide-Grip_Lat_Pulldown",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Wide-Grip_Lat_Pulldown/0.jpg"
+    },
+    {
+      "slug": "jalon-pecho-agarre-cerrado",
+      "image_url": "/static/img/exercises/jalon-pecho-agarre-cerrado.jpg",
+      "image_alt": "Persona realizando jalón al pecho con agarre cerrado",
+      "source": "free-exercise-db",
+      "source_id": "Close-Grip_Front_Lat_Pulldown",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Close-Grip_Front_Lat_Pulldown/0.jpg"
+    },
+    {
+      "slug": "kettlebell-swing",
+      "image_url": "/static/img/exercises/kettlebell-swing.jpg",
+      "image_alt": "Persona realizando kettlebell swing",
+      "source": "free-exercise-db",
+      "source_id": "One-Arm_Kettlebell_Swings",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/One-Arm_Kettlebell_Swings/0.jpg"
+    },
+    {
+      "slug": "movilidad-hombros-banda",
+      "image_url": "/static/img/exercises/movilidad-hombros-banda.jpg",
+      "image_alt": "Persona realizando movilidad de hombros con banda",
+      "source": "free-exercise-db",
+      "source_id": "Shoulder_Stretch",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Shoulder_Stretch/0.jpg"
+    },
+    {
+      "slug": "movilidad-tobillo-pared",
+      "image_url": "/static/img/exercises/movilidad-tobillo-pared.jpg",
+      "image_alt": "Persona realizando movilidad de tobillo contra pared",
+      "source": "free-exercise-db",
+      "source_id": "Calf_Stretch_Hands_Against_Wall",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Calf_Stretch_Hands_Against_Wall/0.jpg"
+    },
+    {
+      "slug": "nordic-curl-asistido",
+      "image_url": "/static/img/exercises/nordic-curl-asistido.jpg",
+      "image_alt": "Persona realizando nordic curl asistido",
+      "source": "free-exercise-db",
+      "source_id": "Natural_Glute_Ham_Raise",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Natural_Glute_Ham_Raise/0.jpg"
+    },
+    {
+      "slug": "pajaros-mancuernas",
+      "image_url": "/static/img/exercises/pajaros-mancuernas.jpg",
+      "image_alt": "Persona realizando pájaros con mancuernas",
+      "source": "free-exercise-db",
+      "source_id": "Seated_Bent-Over_Rear_Delt_Raise",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Bent-Over_Rear_Delt_Raise/0.jpg"
+    },
+    {
+      "slug": "pallof-press",
+      "image_url": "/static/img/exercises/pallof-press.jpg",
+      "image_alt": "Persona realizando Pallof press con polea",
+      "source": "free-exercise-db",
+      "source_id": "Pallof_Press",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Pallof_Press/0.jpg"
+    },
+    {
+      "slug": "patada-gluteo-polea",
+      "image_url": "/static/img/exercises/patada-gluteo-polea.jpg",
+      "image_alt": "Persona realizando patada de glúteo en polea",
+      "source": "free-exercise-db",
+      "source_id": "One-Legged_Cable_Kickback",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/One-Legged_Cable_Kickback/0.jpg"
+    },
+    {
+      "slug": "patada-triceps-mancuerna",
+      "image_url": "/static/img/exercises/patada-triceps-mancuerna.jpg",
+      "image_alt": "Persona realizando patada de tríceps con mancuerna",
+      "source": "free-exercise-db",
+      "source_id": "Tricep_Dumbbell_Kickback",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Tricep_Dumbbell_Kickback/0.jpg"
+    },
+    {
+      "slug": "peso-muerto-convencional",
+      "image_url": "/static/img/exercises/peso-muerto-convencional.jpg",
+      "image_alt": "Persona realizando peso muerto convencional con barra",
+      "source": "free-exercise-db",
+      "source_id": "Barbell_Deadlift",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Deadlift/0.jpg"
+    },
+    {
+      "slug": "peso-muerto-rumano-barra",
+      "image_url": "/static/img/exercises/peso-muerto-rumano-barra.jpg",
+      "image_alt": "Persona realizando peso muerto rumano con barra",
+      "source": "free-exercise-db",
+      "source_id": "Romanian_Deadlift",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Romanian_Deadlift/0.jpg"
+    },
+    {
+      "slug": "plancha-frontal",
+      "image_url": "/static/img/exercises/plancha-frontal.jpg",
+      "image_alt": "Persona realizando plancha frontal",
+      "source": "free-exercise-db",
+      "source_id": "Plank",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Plank/0.jpg"
+    },
+    {
+      "slug": "plancha-lateral",
+      "image_url": "/static/img/exercises/plancha-lateral.jpg",
+      "image_alt": "Persona realizando plancha lateral",
+      "source": "free-exercise-db",
+      "source_id": "Side_Bridge",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Side_Bridge/0.jpg"
+    },
+    {
+      "slug": "power-clean",
+      "image_url": "/static/img/exercises/power-clean.jpg",
+      "image_alt": "Persona realizando power clean con barra",
+      "source": "free-exercise-db",
+      "source_id": "Power_Clean",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Power_Clean/0.jpg"
+    },
+    {
+      "slug": "prensa-piernas",
+      "image_url": "/static/img/exercises/prensa-piernas.jpg",
+      "image_alt": "Persona realizando prensa de piernas",
+      "source": "free-exercise-db",
+      "source_id": "Leg_Press",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leg_Press/0.jpg"
+    },
+    {
+      "slug": "press-arnold",
+      "image_url": "/static/img/exercises/press-arnold.jpg",
+      "image_alt": "Persona realizando press Arnold con mancuernas",
+      "source": "free-exercise-db",
+      "source_id": "Arnold_Dumbbell_Press",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Arnold_Dumbbell_Press/0.jpg"
+    },
+    {
+      "slug": "press-banca-barra",
+      "image_url": "/static/img/exercises/press-banca-barra.jpg",
+      "image_alt": "Persona realizando press de banca con barra",
+      "source": "free-exercise-db",
+      "source_id": "Barbell_Bench_Press_-_Medium_Grip",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Bench_Press_-_Medium_Grip/0.jpg"
+    },
+    {
+      "slug": "press-banca-mancuernas",
+      "image_url": "/static/img/exercises/press-banca-mancuernas.jpg",
+      "image_alt": "Persona realizando press de banca con mancuernas",
+      "source": "free-exercise-db",
+      "source_id": "Dumbbell_Bench_Press",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Bench_Press/0.jpg"
+    },
+    {
+      "slug": "press-cerrado-barra",
+      "image_url": "/static/img/exercises/press-cerrado-barra.jpg",
+      "image_alt": "Persona realizando press cerrado con barra",
+      "source": "free-exercise-db",
+      "source_id": "Close-Grip_Barbell_Bench_Press",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Close-Grip_Barbell_Bench_Press/0.jpg"
+    },
+    {
+      "slug": "press-hombros-mancuernas-sentado",
+      "image_url": "/static/img/exercises/press-hombros-mancuernas-sentado.jpg",
+      "image_alt": "Persona realizando press de hombros sentado con mancuernas",
+      "source": "free-exercise-db",
+      "source_id": "Seated_Dumbbell_Press",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Dumbbell_Press/0.jpg"
+    },
+    {
+      "slug": "press-inclinado-barra",
+      "image_url": "/static/img/exercises/press-inclinado-barra.jpg",
+      "image_alt": "Persona realizando press inclinado con barra",
+      "source": "free-exercise-db",
+      "source_id": "Barbell_Incline_Bench_Press_-_Medium_Grip",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Incline_Bench_Press_-_Medium_Grip/0.jpg"
+    },
+    {
+      "slug": "press-inclinado-mancuernas",
+      "image_url": "/static/img/exercises/press-inclinado-mancuernas.jpg",
+      "image_alt": "Persona realizando press inclinado con mancuernas",
+      "source": "free-exercise-db",
+      "source_id": "Incline_Dumbbell_Press",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Incline_Dumbbell_Press/0.jpg"
+    },
+    {
+      "slug": "press-militar-barra",
+      "image_url": "/static/img/exercises/press-militar-barra.jpg",
+      "image_alt": "Persona realizando press militar con barra",
+      "source": "free-exercise-db",
+      "source_id": "Standing_Military_Press",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Military_Press/0.jpg"
+    },
+    {
+      "slug": "puente-gluteo",
+      "image_url": "/static/img/exercises/puente-gluteo.jpg",
+      "image_alt": "Persona realizando puente de glúteo en el suelo",
+      "source": "free-exercise-db",
+      "source_id": "Butt_Lift_Bridge",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Butt_Lift_Bridge/0.jpg"
+    },
+    {
+      "slug": "pullover-mancuerna",
+      "image_url": "/static/img/exercises/pullover-mancuerna.jpg",
+      "image_alt": "Persona realizando pullover con mancuerna",
+      "source": "free-exercise-db",
+      "source_id": "Straight-Arm_Dumbbell_Pullover",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Straight-Arm_Dumbbell_Pullover/0.jpg"
+    },
+    {
+      "slug": "push-press",
+      "image_url": "/static/img/exercises/push-press.jpg",
+      "image_alt": "Persona realizando push press con barra",
+      "source": "free-exercise-db",
+      "source_id": "Push_Press",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Push_Press/0.jpg"
+    },
+    {
+      "slug": "rack-pull",
+      "image_url": "/static/img/exercises/rack-pull.jpg",
+      "image_alt": "Persona realizando rack pull con barra",
+      "source": "free-exercise-db",
+      "source_id": "Rack_Pulls",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Rack_Pulls/0.jpg"
+    },
+    {
+      "slug": "remo-barra",
+      "image_url": "/static/img/exercises/remo-barra.jpg",
+      "image_alt": "Persona realizando remo con barra",
+      "source": "free-exercise-db",
+      "source_id": "Bent_Over_Barbell_Row",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bent_Over_Barbell_Row/0.jpg"
+    },
+    {
+      "slug": "remo-ergometro",
+      "image_url": "/static/img/exercises/remo-ergometro.jpg",
+      "image_alt": "Persona usando remo ergómetro",
+      "source": "free-exercise-db",
+      "source_id": "Rowing_Stationary",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Rowing_Stationary/0.jpg"
+    },
+    {
+      "slug": "remo-mancuerna-unilateral",
+      "image_url": "/static/img/exercises/remo-mancuerna-unilateral.jpg",
+      "image_alt": "Persona realizando remo con mancuerna a una mano",
+      "source": "free-exercise-db",
+      "source_id": "One-Arm_Dumbbell_Row",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/One-Arm_Dumbbell_Row/0.jpg"
+    },
+    {
+      "slug": "remo-maquina",
+      "image_url": "/static/img/exercises/remo-maquina.jpg",
+      "image_alt": "Persona realizando remo en máquina",
+      "source": "free-exercise-db",
+      "source_id": "Leverage_Iso_Row",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_Iso_Row/0.jpg"
+    },
+    {
+      "slug": "remo-menton-barra",
+      "image_url": "/static/img/exercises/remo-menton-barra.jpg",
+      "image_alt": "Persona realizando remo al mentón con barra",
+      "source": "free-exercise-db",
+      "source_id": "Upright_Barbell_Row",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Upright_Barbell_Row/0.jpg"
+    },
+    {
+      "slug": "remo-sentado-polea",
+      "image_url": "/static/img/exercises/remo-sentado-polea.jpg",
+      "image_alt": "Persona realizando remo sentado en polea",
+      "source": "free-exercise-db",
+      "source_id": "Seated_Cable_Rows",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Cable_Rows/0.jpg"
+    },
+    {
+      "slug": "remo-t-bar",
+      "image_url": "/static/img/exercises/remo-t-bar.jpg",
+      "image_alt": "Persona realizando remo T-bar",
+      "source": "free-exercise-db",
+      "source_id": "T-Bar_Row_with_Handle",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/T-Bar_Row_with_Handle/0.jpg"
+    },
+    {
+      "slug": "rotacion-externa-banda",
+      "image_url": "/static/img/exercises/rotacion-externa-banda.jpg",
+      "image_alt": "Persona realizando rotación externa de hombro con banda",
+      "source": "free-exercise-db",
+      "source_id": "External_Rotation_with_Band",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/External_Rotation_with_Band/0.jpg"
+    },
+    {
+      "slug": "saltar-comba",
+      "image_url": "/static/img/exercises/saltar-comba.jpg",
+      "image_alt": "Persona saltando a la comba",
+      "source": "free-exercise-db",
+      "source_id": "Rope_Jumping",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Rope_Jumping/0.jpg"
+    },
+    {
+      "slug": "sentadilla-frontal",
+      "image_url": "/static/img/exercises/sentadilla-frontal.jpg",
+      "image_alt": "Persona realizando sentadilla frontal con barra",
+      "source": "free-exercise-db",
+      "source_id": "Front_Barbell_Squat",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Front_Barbell_Squat/0.jpg"
+    },
+    {
+      "slug": "sentadilla-trasera-barra",
+      "image_url": "/static/img/exercises/sentadilla-trasera-barra.jpg",
+      "image_alt": "Persona realizando sentadilla trasera con barra",
+      "source": "free-exercise-db",
+      "source_id": "Barbell_Squat",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Squat/0.jpg"
+    },
+    {
+      "slug": "sled-push",
+      "image_url": "/static/img/exercises/sled-push.jpg",
+      "image_alt": "Persona empujando trineo de entrenamiento",
+      "source": "free-exercise-db",
+      "source_id": "Sled_Push",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Sled_Push/0.jpg"
+    },
+    {
+      "slug": "snatch-mancuerna",
+      "image_url": "/static/img/exercises/snatch-mancuerna.jpg",
+      "image_alt": "Persona realizando snatch con mancuerna",
+      "source": "free-exercise-db",
+      "source_id": "One-Arm_Kettlebell_Snatch",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/One-Arm_Kettlebell_Snatch/0.jpg"
+    },
+    {
+      "slug": "stair-climber",
+      "image_url": "/static/img/exercises/stair-climber.jpg",
+      "image_alt": "Persona usando stair climber",
+      "source": "free-exercise-db",
+      "source_id": "Stairmaster",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Stairmaster/0.jpg"
+    },
+    {
+      "slug": "thruster-mancuernas",
+      "image_url": "/static/img/exercises/thruster-mancuernas.jpg",
+      "image_alt": "Persona realizando thruster con mancuernas",
+      "source": "free-exercise-db",
+      "source_id": "Kettlebell_Thruster",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Kettlebell_Thruster/0.jpg"
+    },
+    {
+      "slug": "tibialis-raise",
+      "image_url": "/static/img/exercises/tibialis-raise.jpg",
+      "image_alt": "Persona realizando tibialis raise contra pared",
+      "source": "free-exercise-db",
+      "source_id": "Smith_Machine_Reverse_Calf_Raises",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Smith_Machine_Reverse_Calf_Raises/0.jpg"
+    },
+    {
+      "slug": "turkish-get-up",
+      "image_url": "/static/img/exercises/turkish-get-up.jpg",
+      "image_alt": "Persona realizando Turkish get-up con kettlebell",
+      "source": "free-exercise-db",
+      "source_id": "Kettlebell_Turkish_Get-Up_Lunge_style",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Kettlebell_Turkish_Get-Up_Lunge_style/0.jpg"
+    },
+    {
+      "slug": "worlds-greatest-stretch",
+      "image_url": "/static/img/exercises/worlds-greatest-stretch.jpg",
+      "image_alt": "Persona realizando World's greatest stretch",
+      "source": "free-exercise-db",
+      "source_id": "Worlds_Greatest_Stretch",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Worlds_Greatest_Stretch/0.jpg"
+    },
+    {
+      "slug": "zancada-bulgara",
+      "image_url": "/static/img/exercises/zancada-bulgara.jpg",
+      "image_alt": "Persona realizando zancada búlgara",
+      "source": "free-exercise-db",
+      "source_id": "Split_Squat_with_Dumbbells",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Split_Squat_with_Dumbbells/0.jpg"
+    },
+    {
+      "slug": "zancadas-caminando",
+      "image_url": "/static/img/exercises/zancadas-caminando.jpg",
+      "image_alt": "Persona realizando zancadas caminando con mancuernas",
+      "source": "free-exercise-db",
+      "source_id": "Bodyweight_Walking_Lunge",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bodyweight_Walking_Lunge/0.jpg"
+    }
+  ]
+}

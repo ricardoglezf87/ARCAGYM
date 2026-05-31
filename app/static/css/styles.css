@@ -555,7 +555,11 @@ legend {
 .exercise-placeholder {
   width: 100%;
   aspect-ratio: 16 / 10;
-  object-fit: cover;
+}
+
+.exercise-card img {
+  object-fit: contain;
+  background: #f5f2eb;
 }
 
 .exercise-card div:last-child {
@@ -612,7 +616,8 @@ legend {
 .detail-media img {
   width: 100%;
   aspect-ratio: 4 / 3;
-  object-fit: cover;
+  object-fit: contain;
+  background: #f5f2eb;
   border-radius: 8px;
   border: 1px solid var(--line);
 }
