@@ -57,7 +57,7 @@ La base `arcagym.db` se crea automaticamente en el primer arranque y se carga co
 - Historial de sesiones.
 - Estadisticas con volumen semanal, sesiones por semana, volumen por ejercicio, distribucion muscular, ejercicios mas entrenados, records personales y 1RM estimado con Epley.
 - Recomendaciones de rutina por reglas segun objetivo, nivel, dias, tiempo, equipamiento, limitaciones y preferencias.
-- Equipamiento real de la biblioteca seleccionable por checkboxes al generar recomendaciones.
+- Equipamiento real de la biblioteca agrupado por Maquinas, Pesas, Peso corporal y Complementos al generar recomendaciones.
 - Guardado y edicion de rutinas recomendadas como plantillas reutilizables.
 - Registro de sesiones desde una rutina guardada y su dia planificado.
 - Capa `external_sources_service.py` preparada para futuras fuentes externas opcionales.

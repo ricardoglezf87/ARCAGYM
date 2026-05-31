@@ -46,7 +46,7 @@
             <span>{{ group.name }}</span>
           </label>
           <div class="checkbox-grid">
-            {% for equipment in group.items %}
+            {% for equipment in group.equipment_items %}
               <label class="check-option">
                 <input type="checkbox" name="equipment_items" value="{{ equipment.value }}" data-equipment-child="{{ group.name }}" {% if equipment.value in selected_equipment %}checked{% endif %}>
                 <span>{{ equipment.label }}</span>

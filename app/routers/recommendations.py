@@ -32,6 +32,7 @@ EQUIPMENT_GROUPS_BY_KEY = {
     "banco predicador": "Pesas",
     "barra": "Pesas",
     "barra z": "Pesas",
+    "discos": "Pesas",
     "kettlebell": "Pesas",
     "mancuernas": "Pesas",
     "rack": "Pesas",
@@ -44,6 +45,34 @@ EQUIPMENT_GROUPS_BY_KEY = {
     "rueda abdominal": "Peso corporal",
     "banda elastica": "Complementos",
     "trineo": "Complementos",
+}
+CANONICAL_EQUIPMENT_BY_KEY = {
+    "assault bike": "Assault bike",
+    "banda elastica": "Banda elastica",
+    "banco": "Banco",
+    "banco predicador": "Banco predicador",
+    "barra": "Barra",
+    "barra de dominadas": "Barra de dominadas",
+    "barra z": "Barra Z",
+    "bicicleta": "Bicicleta",
+    "cajon": "Cajon",
+    "cinta": "Cinta",
+    "cuerda": "Cuerda",
+    "discos": "Discos",
+    "eliptica": "Eliptica",
+    "kettlebell": "Kettlebell",
+    "mancuernas": "Mancuernas",
+    "maquina": "Maquina",
+    "paralelas": "Paralelas",
+    "pared": "Pared",
+    "peso corporal": "Peso corporal",
+    "polea": "Polea",
+    "rack": "Rack",
+    "remo": "Remo",
+    "rueda abdominal": "Rueda abdominal",
+    "stair climber": "Stair climber",
+    "tobillera": "Tobillera",
+    "trineo": "Trineo",
 }
 
 
@@ -85,11 +114,14 @@ def _equipment_groups(db: Session) -> list[dict]:
 
     grouped = {group: [] for group in EQUIPMENT_GROUP_ORDER}
     for key, item in sorted(items_by_key.items(), key=lambda pair: pair[0]):
-        group = _equipment_group(item)
-        grouped.setdefault(group, []).append({"value": item, "label": _equipment_label(item)})
+        canonical_item = CANONICAL_EQUIPMENT_BY_KEY.get(key, item)
+        group = _equipment_group(canonical_item)
+        grouped.setdefault(group, []).append(
+            {"value": canonical_item, "label": _equipment_label(canonical_item)}
+        )
 
     return [
-        {"name": group, "items": grouped[group]}
+        {"name": group, "equipment_items": grouped[group]}
         for group in EQUIPMENT_GROUP_ORDER
         if grouped.get(group)
     ]
@@ -99,7 +131,7 @@ def _equipment_values(equipment_groups: list[dict]) -> list[str]:
     return [
         item["value"]
         for group in equipment_groups
-        for item in group["items"]
+        for item in group["equipment_items"]
     ]
 
 
