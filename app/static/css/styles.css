@@ -380,6 +380,33 @@ legend {
   gap: 10px;
 }
 
+.equipment-groups {
+  display: grid;
+  gap: 14px;
+}
+
+.equipment-group {
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(238, 243, 238, 0.45);
+}
+
+.equipment-group-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1rem;
+  font-weight: 850;
+}
+
+.equipment-group-head input {
+  width: auto;
+  min-height: 0;
+}
+
 .checkbox-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));

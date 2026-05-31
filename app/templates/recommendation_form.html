@@ -38,12 +38,22 @@
       <button class="button ghost" type="button" data-equipment-action="select-all">Seleccionar todo</button>
       <button class="button ghost" type="button" data-equipment-action="clear-all">Deseleccionar todo</button>
     </div>
-    <div class="checkbox-grid">
-      {% for equipment in equipment_options %}
-        <label class="check-option">
-          <input type="checkbox" name="equipment_items" value="{{ equipment }}" {% if equipment in selected_equipment %}checked{% endif %}>
-          <span>{{ equipment }}</span>
-        </label>
+    <div class="equipment-groups">
+      {% for group in equipment_groups %}
+        <section class="equipment-group">
+          <label class="equipment-group-head">
+            <input type="checkbox" data-equipment-group="{{ group.name }}">
+            <span>{{ group.name }}</span>
+          </label>
+          <div class="checkbox-grid">
+            {% for equipment in group.items %}
+              <label class="check-option">
+                <input type="checkbox" name="equipment_items" value="{{ equipment.value }}" data-equipment-child="{{ group.name }}" {% if equipment.value in selected_equipment %}checked{% endif %}>
+                <span>{{ equipment.label }}</span>
+              </label>
+            {% endfor %}
+          </div>
+        </section>
       {% endfor %}
     </div>
   </fieldset>

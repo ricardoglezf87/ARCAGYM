@@ -17,6 +17,35 @@ router = APIRouter()
 
 ROUTINE_PREFERENCES = ["sin preferencia", "full body", "torso/pierna", "push/pull/legs", "dividida por musculos"]
 
+EQUIPMENT_GROUP_ORDER = ["Maquinas", "Pesas", "Peso corporal", "Complementos"]
+EQUIPMENT_GROUPS_BY_KEY = {
+    "assault bike": "Maquinas",
+    "bicicleta": "Maquinas",
+    "cinta": "Maquinas",
+    "eliptica": "Maquinas",
+    "maquina": "Maquinas",
+    "polea": "Maquinas",
+    "remo": "Maquinas",
+    "stair climber": "Maquinas",
+    "tobillera": "Maquinas",
+    "banco": "Pesas",
+    "banco predicador": "Pesas",
+    "barra": "Pesas",
+    "barra z": "Pesas",
+    "kettlebell": "Pesas",
+    "mancuernas": "Pesas",
+    "rack": "Pesas",
+    "barra de dominadas": "Peso corporal",
+    "cajon": "Peso corporal",
+    "cuerda": "Peso corporal",
+    "paralelas": "Peso corporal",
+    "pared": "Peso corporal",
+    "peso corporal": "Peso corporal",
+    "rueda abdominal": "Peso corporal",
+    "banda elastica": "Complementos",
+    "trineo": "Complementos",
+}
+
 
 def _normalize_key(value: str) -> str:
     normalized = unicodedata.normalize("NFKD", value)
@@ -37,11 +66,41 @@ def _equipment_text(equipment_items: list[str], equipment_available: str) -> str
     return ", ".join(dict.fromkeys(selected))
 
 
-def _equipment_options(db: Session) -> list[str]:
-    items: set[str] = set()
+def _equipment_group(value: str) -> str:
+    return EQUIPMENT_GROUPS_BY_KEY.get(_normalize_key(value), "Complementos")
+
+
+def _equipment_label(value: str) -> str:
+    if _normalize_key(value) == "peso corporal":
+        return "Sin material"
+    return value
+
+
+def _equipment_groups(db: Session) -> list[dict]:
+    items_by_key: dict[str, str] = {}
     for equipment_text in db.scalars(select(Exercise.equipment)).all():
-        items.update(_split_equipment_text(equipment_text))
-    return sorted(items, key=lambda item: _normalize_key(item))
+        for item in _split_equipment_text(equipment_text):
+            key = _normalize_key(item)
+            items_by_key.setdefault(key, item)
+
+    grouped = {group: [] for group in EQUIPMENT_GROUP_ORDER}
+    for key, item in sorted(items_by_key.items(), key=lambda pair: pair[0]):
+        group = _equipment_group(item)
+        grouped.setdefault(group, []).append({"value": item, "label": _equipment_label(item)})
+
+    return [
+        {"name": group, "items": grouped[group]}
+        for group in EQUIPMENT_GROUP_ORDER
+        if grouped.get(group)
+    ]
+
+
+def _equipment_values(equipment_groups: list[dict]) -> list[str]:
+    return [
+        item["value"]
+        for group in equipment_groups
+        for item in group["items"]
+    ]
 
 
 def _exercise_options(db: Session) -> list[Exercise]:
@@ -137,8 +196,8 @@ def _routine_to_recommendation(routine: SavedRoutine) -> dict:
 
 
 def _template_context(request: Request, user: User, db: Session, form_values: RecommendationInput) -> dict:
-    equipment_options = _equipment_options(db)
-    selected_equipment = _equipment_defaults(form_values.equipment_available, equipment_options)
+    equipment_groups = _equipment_groups(db)
+    selected_equipment = _equipment_defaults(form_values.equipment_available, _equipment_values(equipment_groups))
     return {
         "request": request,
         "user": user,
@@ -146,7 +205,7 @@ def _template_context(request: Request, user: User, db: Session, form_values: Re
         "experience_levels": EXPERIENCE_LEVELS,
         "goals": GOALS,
         "routine_preferences": ROUTINE_PREFERENCES,
-        "equipment_options": equipment_options,
+        "equipment_groups": equipment_groups,
         "selected_equipment": selected_equipment,
         "saved_routines": _saved_routine_options(db, user),
     }
