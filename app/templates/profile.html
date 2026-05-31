@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}Perfil | ARCA Gym{% endblock %}
+{% block content %}
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">Datos del usuario</p>
+    <h1>Perfil</h1>
+    <p class="muted">Actualiza datos que afectan a recomendaciones y contexto de progreso.</p>
+  </div>
+</section>
+
+{% if request.query_params.get('saved') == '1' %}
+  <div class="success">Perfil actualizado.</div>
+{% endif %}
+
+<form method="post" action="/profile" class="form-grid two">
+  <label>Nombre
+    <input name="name" value="{{ user.name }}" required>
+  </label>
+  <label>Email
+    <input value="{{ user.email }}" disabled>
+  </label>
+  <label>Edad
+    <input name="age" type="number" min="12" max="100" value="{{ user.age or '' }}" required>
+  </label>
+  <label>Sexo
+    <input name="sex" value="{{ user.sex or '' }}">
+  </label>
+  <label>Altura (cm)
+    <input name="height_cm" type="number" min="80" max="260" step="0.1" value="{{ user.height_cm or '' }}" required>
+  </label>
+  <label>Peso corporal (kg)
+    <input name="body_weight_kg" type="number" min="20" max="350" step="0.1" value="{{ user.body_weight_kg or '' }}" required>
+  </label>
+  <label>Nivel
+    <select name="experience_level">
+      {% for level in experience_levels %}
+        <option value="{{ level }}" {% if user.experience_level == level %}selected{% endif %}>{{ level|title }}</option>
+      {% endfor %}
+    </select>
+  </label>
+  <label>Objetivo
+    <select name="goal">
+      {% for goal in goals %}
+        <option value="{{ goal }}" {% if user.goal == goal %}selected{% endif %}>{{ goal|title }}</option>
+      {% endfor %}
+    </select>
+  </label>
+  <label>Dias por semana
+    <input name="days_per_week" type="number" min="1" max="7" value="{{ user.days_per_week }}" required>
+  </label>
+  <label>Minutos por sesion
+    <input name="session_duration" type="number" min="15" max="240" value="{{ user.session_duration }}" required>
+  </label>
+  <label class="full">Lesiones, molestias o limitaciones
+    <textarea name="limitations" rows="3">{{ user.limitations or '' }}</textarea>
+  </label>
+  <label class="full">Equipamiento disponible
+    <textarea name="equipment_available" rows="3">{{ user.equipment_available or '' }}</textarea>
+  </label>
+  <button class="button primary full" type="submit">Guardar perfil</button>
+</form>
+{% endblock %}

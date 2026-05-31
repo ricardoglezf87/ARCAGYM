@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block title %}Estadisticas | ARCA Gym{% endblock %}
+{% block head %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock %}
+{% block content %}
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">Progreso</p>
+    <h1>Estadisticas</h1>
+    <p class="muted">Volumen, frecuencia, mejores marcas y tendencias por ejercicio.</p>
+  </div>
+</section>
+
+<form class="filter-bar" method="get" action="/stats">
+  <select name="exercise_id">
+    <option value="">Todos los ejercicios</option>
+    {% for exercise in options.exercises %}
+      <option value="{{ exercise.id }}" {% if filters.exercise_id == exercise.id %}selected{% endif %}>{{ exercise.name }}</option>
+    {% endfor %}
+  </select>
+  <select name="muscle">
+    <option value="">Todos los grupos</option>
+    {% for muscle in options.muscles %}
+      <option value="{{ muscle }}" {% if filters.muscle == muscle %}selected{% endif %}>{{ muscle }}</option>
+    {% endfor %}
+  </select>
+  <input name="start_date" type="date" value="{{ filters.start_date }}">
+  <input name="end_date" type="date" value="{{ filters.end_date }}">
+  <button class="button primary" type="submit">Aplicar</button>
+</form>
+
+<section class="metric-grid">
+  <article class="metric">
+    <span>Volumen total</span>
+    <strong>{{ stats.total_volume }} kg</strong>
+  </article>
+  <article class="metric">
+    <span>Ejercicios medidos</span>
+    <strong>{{ stats.exercise_volume.labels|length }}</strong>
+  </article>
+  <article class="metric">
+    <span>Records</span>
+    <strong>{{ stats.personal_records|length }}</strong>
+  </article>
+</section>
+
+<section class="charts-grid">
+  <div class="chart-panel">
+    <h2>Volumen semanal</h2>
+    <canvas id="weeklyVolumeChart"></canvas>
+  </div>
+  <div class="chart-panel">
+    <h2>Sesiones por semana</h2>
+    <canvas id="weeklySessionsChart"></canvas>
+  </div>
+  <div class="chart-panel">
+    <h2>Volumen por ejercicio</h2>
+    <canvas id="exerciseVolumeChart"></canvas>
+  </div>
+  <div class="chart-panel">
+    <h2>Distribucion muscular</h2>
+    <canvas id="muscleChart"></canvas>
+  </div>
+</section>
+
+<section class="content-grid">
+  <div>
+    <div class="section-title"><h2>Mejores marcas personales</h2></div>
+    <div class="list-stack">
+      {% for pr in stats.personal_records %}
+        <article class="list-item">
+          <div>
+            <strong>{{ pr.exercise }}</strong>
+            <p>{{ pr.date }} · {{ pr.weight }} kg x {{ pr.reps }} reps · 1RM {{ pr.estimated_1rm }} kg</p>
+          </div>
+        </article>
+      {% else %}
+        <p class="empty">Registra series para calcular tus marcas.</p>
+      {% endfor %}
+    </div>
+  </div>
+  <div>
+    <div class="section-title"><h2>Ejercicios mas entrenados</h2></div>
+    <div class="list-stack">
+      {% for name, count in stats.exercise_frequency %}
+        <article class="list-item">
+          <strong>{{ name }}</strong>
+          <p>{{ count }} sesiones</p>
+        </article>
+      {% else %}
+        <p class="empty">Aun no hay datos suficientes.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<script id="stats-data" type="application/json">{{ stats_json|safe }}</script>
+<script src="{{ url_for('static', path='/js/charts.js') }}"></script>
+{% endblock %}

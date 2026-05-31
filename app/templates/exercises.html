@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Ejercicios | ARCA Gym{% endblock %}
+{% block content %}
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">Biblioteca</p>
+    <h1>Ejercicios</h1>
+    <p class="muted">Consulta tecnica, errores comunes, seguridad y equipamiento.</p>
+  </div>
+</section>
+
+<form class="filter-bar" method="get" action="/exercises">
+  <input name="q" value="{{ filters.q }}" placeholder="Buscar ejercicio">
+  <select name="muscle">
+    <option value="">Todos los grupos</option>
+    {% for item in muscles %}
+      <option value="{{ item }}" {% if filters.muscle == item %}selected{% endif %}>{{ item }}</option>
+    {% endfor %}
+  </select>
+  <select name="exercise_type">
+    <option value="">Todos los tipos</option>
+    {% for item in types %}
+      <option value="{{ item }}" {% if filters.exercise_type == item %}selected{% endif %}>{{ item|title }}</option>
+    {% endfor %}
+  </select>
+  <select name="level">
+    <option value="">Todos los niveles</option>
+    {% for item in levels %}
+      <option value="{{ item }}" {% if filters.level == item %}selected{% endif %}>{{ item|title }}</option>
+    {% endfor %}
+  </select>
+  <button class="button primary" type="submit">Filtrar</button>
+</form>
+
+<section class="exercise-grid">
+  {% for exercise in exercises %}
+    <a class="exercise-card" href="/exercises/{{ exercise.id }}">
+      {% if exercise.image_url %}
+        <img src="{{ exercise.image_url }}" alt="{{ exercise.image_alt or exercise.name }}">
+      {% else %}
+        <div class="exercise-placeholder">{{ exercise.primary_muscle[:2]|upper }}</div>
+      {% endif %}
+      <div>
+        <span>{{ exercise.category_label or exercise.primary_muscle ~ " · " ~ exercise.exercise_type }}</span>
+        <h2>{{ exercise.name }}</h2>
+        <p>{{ exercise.equipment or "Sin equipamiento especifico" }}</p>
+      </div>
+    </a>
+  {% else %}
+    <p class="empty">No se encontraron ejercicios con esos filtros.</p>
+  {% endfor %}
+</section>
+
+{% if external_results %}
+  <section class="notice">
+    <h2>Resultados externos opcionales</h2>
+    {% for result in external_results %}
+      <p>{{ result.name }} · {{ result.source }}</p>
+    {% endfor %}
+  </section>
+{% endif %}
+{% endblock %}
