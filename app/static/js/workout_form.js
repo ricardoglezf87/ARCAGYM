@@ -28,9 +28,72 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  function fieldInput(row, field) {
+    return row.querySelector(`[data-set-field="${field}"]`);
+  }
+
+  function copyFieldValueToRows(block, sourceInput) {
+    if (!["weight", "reps"].includes(sourceInput.dataset.setField) || sourceInput.value === "") {
+      return;
+    }
+
+    const field = sourceInput.dataset.setField;
+    const controller = block.querySelector(`[data-set-field="${field}"][data-autofill-controller="true"]`);
+    if (controller && controller !== sourceInput) {
+      return;
+    }
+    if (!controller) {
+      sourceInput.dataset.autofillController = "true";
+    }
+
+    block.querySelectorAll(`[data-set-field="${field}"]`).forEach((input) => {
+      if (input !== sourceInput && canAutofill(input)) {
+        input.value = sourceInput.value;
+        input.dataset.autoManaged = "true";
+      }
+    });
+  }
+
+  function canAutofill(input) {
+    if (input.dataset.userEdited === "true") {
+      return false;
+    }
+    if (input.dataset.autoManaged === "true") {
+      return true;
+    }
+    if (input.value === "") {
+      return true;
+    }
+    if (input.dataset.setField === "weight") {
+      return Number(input.value) === 0;
+    }
+    if (input.dataset.setField === "reps") {
+      return Number(input.value) === 10;
+    }
+    return false;
+  }
+
+  function copyLastSetValues(block, targetRow) {
+    const rows = Array.from(block.querySelectorAll(".set-row"));
+    const sourceRow = rows[rows.length - 2];
+    if (!sourceRow) {
+      return;
+    }
+
+    ["weight", "reps"].forEach((field) => {
+      const sourceInput = fieldInput(sourceRow, field);
+      const targetInput = fieldInput(targetRow, field);
+      if (sourceInput && targetInput && sourceInput.value !== "") {
+        targetInput.value = sourceInput.value;
+        targetInput.dataset.autoManaged = "true";
+      }
+    });
+  }
+
   function addSet(block) {
     const clone = setTemplate.content.firstElementChild.cloneNode(true);
     block.querySelector(".sets-body").appendChild(clone);
+    copyLastSetValues(block, clone);
     reindexBlocks();
   }
 
@@ -68,6 +131,23 @@ document.addEventListener("DOMContentLoaded", () => {
       reindexBlocks();
     }
   });
+
+  function handleSetFieldUpdate(event) {
+    const target = event.target;
+    const block = target.closest(".workout-exercise");
+    if (!block || !target.matches("[data-set-field]")) {
+      return;
+    }
+
+    if (["weight", "reps"].includes(target.dataset.setField)) {
+      target.dataset.userEdited = "true";
+      delete target.dataset.autoManaged;
+    }
+    copyFieldValueToRows(block, target);
+  }
+
+  blocksContainer.addEventListener("input", handleSetFieldUpdate);
+  blocksContainer.addEventListener("change", handleSetFieldUpdate);
 
   addExerciseButton.addEventListener("click", addExercise);
 
