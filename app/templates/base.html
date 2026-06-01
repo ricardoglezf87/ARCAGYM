@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}ARCA Gym{% endblock %}</title>
     <link rel="icon" type="image/svg+xml" href="{{ url_for('static', path='/favicon.svg') }}">
-    <link rel="stylesheet" href="{{ url_for('static', path='/css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/styles.css') }}?v=20260601-exercise-preview-toggle">
     {% block head %}{% endblock %}
   </head>
   <body>
@@ -54,5 +54,7 @@
       </div>
     </div>
     <script src="{{ url_for('static', path='/js/sidebar.js') }}"></script>
+    <script src="{{ url_for('static', path='/js/searchable_select.js') }}?v=20260601-exercise-preview-toggle"></script>
+    <script src="{{ url_for('static', path='/js/exercise_media.js') }}?v=20260601-exercise-preview-toggle"></script>
   </body>
 </html>

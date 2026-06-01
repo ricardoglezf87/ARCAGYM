@@ -11,6 +11,7 @@ from app.models import Exercise
 
 
 SEED_PATH = Path(__file__).resolve().parents[1] / "seed" / "exercises_seed.json"
+IMAGE_MANIFEST_PATH = Path(__file__).resolve().parents[1] / "seed" / "exercise_images.json"
 
 EXERCISE_SCHEMA_COLUMNS = {
     "slug": "VARCHAR(180)",
@@ -42,12 +43,55 @@ def _slugify(value: str) -> str:
     return slug or "ejercicio"
 
 
+def _lookup_key(value: str | None) -> str:
+    return _slugify(value or "")
+
+
 def _load_seed_items() -> list[dict[str, Any]]:
     with SEED_PATH.open("r", encoding="utf-8-sig") as file:
         payload = json.load(file)
     if isinstance(payload, dict):
         return list(payload.get("exercises", []))
     return list(payload)
+
+
+def _load_image_items() -> tuple[dict[str, dict[str, Any]], dict[str, dict[str, Any]]]:
+    if not IMAGE_MANIFEST_PATH.exists():
+        return {}, {}
+
+    with IMAGE_MANIFEST_PATH.open("r", encoding="utf-8-sig") as file:
+        payload = json.load(file)
+    items = payload.get("images", []) if isinstance(payload, dict) else payload
+    image_items_by_slug: dict[str, dict[str, Any]] = {}
+    image_items_by_name: dict[str, dict[str, Any]] = {}
+    for item in items:
+        if not isinstance(item, dict):
+            continue
+        slug = _clean_string(item.get("slug"))
+        name = _clean_string(item.get("name"))
+        if slug:
+            image_items_by_slug[slug] = item
+        if name:
+            image_items_by_name[name] = item
+    return image_items_by_slug, image_items_by_name
+
+
+def _apply_image_values(values: dict[str, Any], image_item: dict[str, Any] | None) -> None:
+    if not image_item:
+        return
+    values["image_url"] = _clean_string(image_item.get("image_url")) or values["image_url"]
+    values["image_alt"] = _clean_string(image_item.get("image_alt")) or values["image_alt"]
+
+
+def _apply_exercise_image(exercise: Exercise, image_item: dict[str, Any] | None) -> None:
+    if not image_item:
+        return
+    image_url = _clean_string(image_item.get("image_url"))
+    image_alt = _clean_string(image_item.get("image_alt"))
+    if image_url:
+        exercise.image_url = image_url
+    if image_alt:
+        exercise.image_alt = image_alt
 
 
 def ensure_exercise_schema(db: Session) -> None:
@@ -98,14 +142,29 @@ def _exercise_values(item: dict[str, Any]) -> dict[str, Any]:
 def seed_exercises(db: Session) -> int:
     ensure_exercise_schema(db)
     exercises = _load_seed_items()
+    image_items_by_slug, image_items_by_name = _load_image_items()
     existing_exercises = list(db.scalars(select(Exercise)).all())
     existing_by_slug = {exercise.slug: exercise for exercise in existing_exercises if exercise.slug}
     existing_by_name = {exercise.name: exercise for exercise in existing_exercises}
+    normalized_names: dict[str, list[Exercise]] = {}
+    for exercise in existing_exercises:
+        normalized_names.setdefault(_lookup_key(exercise.name), []).append(exercise)
+    existing_by_normalized_name = {
+        key: items[0]
+        for key, items in normalized_names.items()
+        if key and len(items) == 1
+    }
 
     changed = 0
     for item in exercises:
         values = _exercise_values(item)
-        exercise = existing_by_slug.get(values["slug"]) or existing_by_name.get(values["name"])
+        image_item = image_items_by_slug.get(values["slug"]) or image_items_by_name.get(values["name"])
+        _apply_image_values(values, image_item)
+        exercise = (
+            existing_by_slug.get(values["slug"])
+            or existing_by_name.get(values["name"])
+            or existing_by_normalized_name.get(_lookup_key(values["name"]))
+        )
         if exercise:
             for key, value in values.items():
                 setattr(exercise, key, value)
@@ -115,5 +174,13 @@ def seed_exercises(db: Session) -> int:
             existing_by_slug[values["slug"]] = exercise
             existing_by_name[values["name"]] = exercise
         changed += 1
+
+    for exercise in existing_exercises:
+        image_item = None
+        if exercise.slug:
+            image_item = image_items_by_slug.get(exercise.slug)
+        if not image_item:
+            image_item = image_items_by_name.get(exercise.name)
+        _apply_exercise_image(exercise, image_item)
     db.commit()
     return changed

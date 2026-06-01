@@ -51,7 +51,7 @@ La base `arcagym.db` se crea automaticamente en el primer arranque y se carga co
 
 - Modo local sin login, usando un perfil unico editable.
 - Perfil editable con objetivo, nivel, disponibilidad, limitaciones y equipamiento.
-- Biblioteca local de ejercicios con instrucciones, errores, consejos y seguridad.
+- Biblioteca local de ejercicios con imagenes, instrucciones, errores, consejos y seguridad.
 - Creacion, edicion y eliminacion de entrenamientos.
 - Registro de ejercicios, series, peso, repeticiones, RPE, descanso y notas.
 - Historial de sesiones.
@@ -90,5 +90,5 @@ README.md
 
 - Agregar Alembic cuando haya cambios de esquema en produccion.
 - Anadir tests automatizados para servicios, rutas y permisos de usuario.
-- Permitir adjuntar imagenes propias o integrar una fuente abierta validada.
+- Permitir adjuntar imagenes propias desde la interfaz.
 - Exportar entrenamientos y estadisticas a CSV.

@@ -111,6 +111,8 @@ document.addEventListener("DOMContentLoaded", () => {
   function addExercise() {
     const clone = exerciseTemplate.content.firstElementChild.cloneNode(true);
     blocksContainer.appendChild(clone);
+    window.ArcaSearchableSelect?.init(clone);
+    window.ArcaExerciseMedia?.init(clone);
     addSet(clone);
     reindexBlocks();
   }
@@ -185,6 +187,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       block.querySelectorAll(".set-row").forEach(syncSetDoneState);
     });
+    window.ArcaSearchableSelect?.init(blocksContainer);
+    window.ArcaExerciseMedia?.init(blocksContainer);
     reindexBlocks();
   }
 });

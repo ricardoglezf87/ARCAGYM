@@ -36,11 +36,20 @@
           {% for routine_exercise in day.exercises %}
             <div class="routine-edit-exercise">
               <label>Ejercicio
-                <select name="exercise_id_{{ day.id }}" required>
+                <select name="exercise_id_{{ day.id }}" required data-searchable-select data-exercise-select data-search-placeholder="Buscar ejercicio">
                   {% for exercise in exercises %}
-                    <option value="{{ exercise.id }}" {% if exercise.id == routine_exercise.exercise_id %}selected{% endif %}>{{ exercise.name }} ({{ exercise.primary_muscle }})</option>
+                    <option value="{{ exercise.id }}" data-search="{{ exercise.name }} {{ exercise.primary_muscle }} {{ exercise.exercise_type }} {{ exercise.equipment or '' }}" data-meta="{{ exercise.primary_muscle }} · {{ exercise.equipment or 'Sin material' }}" data-image-url="{{ exercise.image_url or '' }}" data-image-alt="{{ exercise.image_alt or exercise.name }}" data-detail-url="/exercises/{{ exercise.id }}" {% if exercise.id == routine_exercise.exercise_id %}selected{% endif %}>{{ exercise.name }} ({{ exercise.primary_muscle }})</option>
                   {% endfor %}
                 </select>
+                <button type="button" class="button ghost compact" data-exercise-preview-toggle aria-expanded="false">Ver imagen</button>
+                <span class="exercise-preview compact" data-exercise-preview data-exercise-preview-mode="toggle" hidden>
+                  <img data-exercise-preview-image alt="" hidden>
+                  <span>
+                    <strong data-exercise-preview-name></strong>
+                    <span data-exercise-preview-meta></span>
+                    <a class="button ghost compact" data-exercise-preview-link href="#">Ver ficha</a>
+                  </span>
+                </span>
               </label>
               <label>Series
                 <input name="sets_{{ day.id }}" value="{{ routine_exercise.sets or '' }}" placeholder="3-4">
@@ -85,11 +94,20 @@
 <template id="routineExerciseTemplate">
   <div class="routine-edit-exercise">
     <label>Ejercicio
-      <select data-field="exercise_id" required>
+      <select data-field="exercise_id" required data-searchable-select data-exercise-select data-search-placeholder="Buscar ejercicio">
         {% for exercise in exercises %}
-          <option value="{{ exercise.id }}">{{ exercise.name }} ({{ exercise.primary_muscle }})</option>
+          <option value="{{ exercise.id }}" data-search="{{ exercise.name }} {{ exercise.primary_muscle }} {{ exercise.exercise_type }} {{ exercise.equipment or '' }}" data-meta="{{ exercise.primary_muscle }} · {{ exercise.equipment or 'Sin material' }}" data-image-url="{{ exercise.image_url or '' }}" data-image-alt="{{ exercise.image_alt or exercise.name }}" data-detail-url="/exercises/{{ exercise.id }}">{{ exercise.name }} ({{ exercise.primary_muscle }})</option>
         {% endfor %}
       </select>
+      <button type="button" class="button ghost compact" data-exercise-preview-toggle aria-expanded="false">Ver imagen</button>
+      <span class="exercise-preview compact" data-exercise-preview data-exercise-preview-mode="toggle" hidden>
+        <img data-exercise-preview-image alt="" hidden>
+        <span>
+          <strong data-exercise-preview-name></strong>
+          <span data-exercise-preview-meta></span>
+          <a class="button ghost compact" data-exercise-preview-link href="#">Ver ficha</a>
+        </span>
+      </span>
     </label>
     <label>Series
       <input data-field="sets" value="3-4" placeholder="3-4">
