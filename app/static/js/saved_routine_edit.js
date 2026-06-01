@@ -22,10 +22,15 @@ document.addEventListener("DOMContentLoaded", () => {
       const row = template.content.firstElementChild.cloneNode(true);
       nameFields(row, day.dataset.dayId);
       day.querySelector("[data-exercise-list]").appendChild(row);
+      window.ArcaSearchableSelect?.init(row);
+      window.ArcaExerciseMedia?.init(row);
     }
 
     if (target.classList.contains("remove-routine-exercise")) {
       target.closest(".routine-edit-exercise").remove();
     }
   });
+
+  window.ArcaSearchableSelect?.init(document);
+  window.ArcaExerciseMedia?.init(document);
 });

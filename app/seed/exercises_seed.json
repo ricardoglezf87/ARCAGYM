@@ -1019,6 +1019,24 @@
       "source": "Base local propia"
     },
     {
+      "slug": "extension-triceps-polea",
+      "name": "Extensión de tríceps en polea",
+      "category_label": "TRÍCEPS · AISLAMIENTO",
+      "primary_muscle": "Tríceps",
+      "secondary_muscles": ["Antebrazo", "Core"],
+      "exercise_type": "Aislamiento",
+      "equipment": ["Polea"],
+      "level": "Principiante",
+      "movement_pattern": "Empuje",
+      "instructions": ["Coloca la polea alta con barra, cuerda o agarre similar.", "Sitúate frente a la polea con abdomen activo y hombros abajo.", "Mantén los codos cerca del torso y las muñecas neutras.", "Extiende los codos llevando el agarre hacia abajo hasta contraer el tríceps.", "Regresa de forma controlada sin que los codos se adelanten en exceso."],
+      "common_errors": ["Separar los codos del cuerpo.", "Empujar con hombros, pecho o balanceo del torso.", "Flexionar las muñecas al final del recorrido.", "Usar una carga que impide controlar la subida."],
+      "technique_tips": ["Mueve principalmente el antebrazo; el brazo queda estable.", "Mantente cerca de la polea para conservar tensión durante el recorrido.", "Pausa abajo un instante y controla la fase de vuelta."],
+      "safety": "Reduce la carga si notas dolor en codo o muñeca y evita bloquear los codos de forma agresiva.",
+      "image_url": null,
+      "image_alt": "Persona realizando extensión de tríceps en polea",
+      "source": "ExRx.net, ACE Fitness y Free Exercise DB"
+    },
+    {
       "slug": "extension-triceps-polea-cuerda",
       "name": "Extensión de tríceps en polea con cuerda",
       "category_label": "TRÍCEPS · AISLAMIENTO",

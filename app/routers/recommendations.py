@@ -174,7 +174,11 @@ def _saved_routine_options(db: Session, user: User) -> list[SavedRoutine]:
         db.scalars(
             select(SavedRoutine)
             .where(SavedRoutine.user_id == user.id)
-            .options(joinedload(SavedRoutine.days).joinedload(SavedRoutineDay.exercises))
+            .options(
+                joinedload(SavedRoutine.days)
+                .joinedload(SavedRoutineDay.exercises)
+                .joinedload(SavedRoutineExercise.exercise)
+            )
             .order_by(SavedRoutine.created_at.desc(), SavedRoutine.id.desc())
         )
         .unique()
@@ -187,7 +191,11 @@ def _get_saved_routine(db: Session, user: User, routine_id: int) -> SavedRoutine
         db.scalars(
             select(SavedRoutine)
             .where(SavedRoutine.id == routine_id, SavedRoutine.user_id == user.id)
-            .options(joinedload(SavedRoutine.days).joinedload(SavedRoutineDay.exercises))
+            .options(
+                joinedload(SavedRoutine.days)
+                .joinedload(SavedRoutineDay.exercises)
+                .joinedload(SavedRoutineExercise.exercise)
+            )
         )
         .unique()
         .first()
@@ -207,16 +215,18 @@ def _routine_to_recommendation(routine: SavedRoutine) -> dict:
                 "focus": day.focus or "",
                 "exercises": [
                     {
-                        "id": exercise.exercise_id,
-                        "name": exercise.name,
-                        "primary_muscle": exercise.primary_muscle or "",
-                        "sets": exercise.sets or "",
-                        "reps": exercise.reps or "",
-                        "rest": exercise.rest or "",
-                        "intensity": exercise.intensity or "",
-                        "notes": exercise.notes or "",
+                        "id": routine_exercise.exercise_id,
+                        "name": routine_exercise.name,
+                        "primary_muscle": routine_exercise.primary_muscle or "",
+                        "image_url": routine_exercise.exercise.image_url if routine_exercise.exercise else None,
+                        "image_alt": routine_exercise.exercise.image_alt if routine_exercise.exercise else None,
+                        "sets": routine_exercise.sets or "",
+                        "reps": routine_exercise.reps or "",
+                        "rest": routine_exercise.rest or "",
+                        "intensity": routine_exercise.intensity or "",
+                        "notes": routine_exercise.notes or "",
                     }
-                    for exercise in day.exercises
+                    for routine_exercise in day.exercises
                 ],
             }
             for day in routine.days

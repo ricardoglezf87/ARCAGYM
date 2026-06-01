@@ -18,6 +18,7 @@
 
 <section class="routine-grid">
   {% for day in recommendation.days %}
+    {% set day_index = loop.index0 %}
     <article class="routine-day">
       <div class="section-title">
         <div>
@@ -28,11 +29,21 @@
       </div>
       <div class="routine-exercises">
         {% for exercise in day.exercises %}
+          {% set media_id = "saved-routine-image-" ~ day.id ~ "-" ~ loop.index0 %}
           <div class="routine-exercise">
             <strong>{{ exercise.name }}</strong>
             <span>{{ exercise.primary_muscle }}</span>
             <p>{{ exercise.sets }} series &middot; {{ exercise.reps }} reps &middot; descanso {{ exercise.rest }} &middot; {{ exercise.intensity }}</p>
             <small>{{ exercise.notes }}</small>
+            {% if exercise.image_url %}
+              <div class="routine-exercise-actions">
+                <button type="button" class="button ghost compact" data-image-toggle aria-controls="{{ media_id }}" aria-expanded="false">Ver imagen</button>
+                <a class="button ghost compact" href="/exercises/{{ exercise.id }}">Ficha</a>
+              </div>
+              <div id="{{ media_id }}" class="routine-exercise-media" hidden>
+                <img src="{{ exercise.image_url }}" alt="{{ exercise.image_alt or exercise.name }}">
+              </div>
+            {% endif %}
           </div>
         {% else %}
           <p class="empty">Esta rutina no tiene ejercicios en este dia.</p>
