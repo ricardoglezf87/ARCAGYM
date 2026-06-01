@@ -63,13 +63,24 @@
         <section class="workout-exercise" data-exercise-index="{{ exercise_index }}">
           <div class="workout-exercise-head">
             <label>Ejercicio
-              <select name="exercise_id" required>
+              <select name="exercise_id" required data-searchable-select data-exercise-select data-search-placeholder="Buscar ejercicio">
                 {% for exercise in exercises %}
-                  <option value="{{ exercise.id }}" data-last-weight="{{ last_weights.get(exercise.id, 0) }}" {% if exercise.id == entry.exercise_id %}selected{% endif %}>{{ exercise.name }} ({{ exercise.primary_muscle }})</option>
+                  <option value="{{ exercise.id }}" data-last-weight="{{ last_weights.get(exercise.id, 0) }}" data-search="{{ exercise.name }} {{ exercise.primary_muscle }} {{ exercise.exercise_type }} {{ exercise.equipment or '' }}" data-meta="{{ exercise.primary_muscle }} · {{ exercise.equipment or 'Sin material' }}" data-image-url="{{ exercise.image_url or '' }}" data-image-alt="{{ exercise.image_alt or exercise.name }}" data-detail-url="/exercises/{{ exercise.id }}" {% if exercise.id == entry.exercise_id %}selected{% endif %}>{{ exercise.name }} ({{ exercise.primary_muscle }})</option>
                 {% endfor %}
               </select>
             </label>
-            <button type="button" class="button ghost remove-exercise">Quitar</button>
+            <div class="workout-exercise-actions">
+              <button type="button" class="button ghost compact" data-exercise-preview-toggle aria-expanded="false">Ver imagen</button>
+              <button type="button" class="button ghost remove-exercise">Quitar</button>
+            </div>
+          </div>
+          <div class="exercise-preview" data-exercise-preview data-exercise-preview-mode="toggle" hidden>
+            <img data-exercise-preview-image alt="" hidden>
+            <div>
+              <strong data-exercise-preview-name></strong>
+              <span data-exercise-preview-meta></span>
+              <a class="button ghost compact" data-exercise-preview-link href="#">Ver ficha</a>
+            </div>
           </div>
           <label>Notas del ejercicio
             <input name="exercise_notes" value="{{ entry.notes or '' }}">
@@ -124,13 +135,24 @@
   <section class="workout-exercise" data-exercise-index="0">
     <div class="workout-exercise-head">
       <label>Ejercicio
-        <select name="exercise_id" required>
+        <select name="exercise_id" required data-searchable-select data-exercise-select data-search-placeholder="Buscar ejercicio">
           {% for exercise in exercises %}
-            <option value="{{ exercise.id }}" data-last-weight="{{ last_weights.get(exercise.id, 0) }}">{{ exercise.name }} ({{ exercise.primary_muscle }})</option>
+            <option value="{{ exercise.id }}" data-last-weight="{{ last_weights.get(exercise.id, 0) }}" data-search="{{ exercise.name }} {{ exercise.primary_muscle }} {{ exercise.exercise_type }} {{ exercise.equipment or '' }}" data-meta="{{ exercise.primary_muscle }} · {{ exercise.equipment or 'Sin material' }}" data-image-url="{{ exercise.image_url or '' }}" data-image-alt="{{ exercise.image_alt or exercise.name }}" data-detail-url="/exercises/{{ exercise.id }}">{{ exercise.name }} ({{ exercise.primary_muscle }})</option>
           {% endfor %}
         </select>
       </label>
-      <button type="button" class="button ghost remove-exercise">Quitar</button>
+      <div class="workout-exercise-actions">
+        <button type="button" class="button ghost compact" data-exercise-preview-toggle aria-expanded="false">Ver imagen</button>
+        <button type="button" class="button ghost remove-exercise">Quitar</button>
+      </div>
+    </div>
+    <div class="exercise-preview" data-exercise-preview data-exercise-preview-mode="toggle" hidden>
+      <img data-exercise-preview-image alt="" hidden>
+      <div>
+        <strong data-exercise-preview-name></strong>
+        <span data-exercise-preview-meta></span>
+        <a class="button ghost compact" data-exercise-preview-link href="#">Ver ficha</a>
+      </div>
     </div>
     <label>Notas del ejercicio
       <input name="exercise_notes">

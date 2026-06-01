@@ -482,6 +482,14 @@
       "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Lying_Triceps_Press/0.jpg"
     },
     {
+      "slug": "extension-triceps-polea",
+      "image_url": "/static/img/exercises/extension-triceps-polea-barra.jpg",
+      "image_alt": "Persona realizando extensión de tríceps en polea",
+      "source": "free-exercise-db",
+      "source_id": "Triceps_Pushdown",
+      "source_url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Triceps_Pushdown/0.jpg"
+    },
+    {
       "slug": "extension-triceps-polea-barra",
       "image_url": "/static/img/exercises/extension-triceps-polea-barra.jpg",
       "image_alt": "Persona realizando extensión de tríceps en polea con barra",

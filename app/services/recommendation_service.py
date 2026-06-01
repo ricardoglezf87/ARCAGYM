@@ -170,6 +170,8 @@ def build_recommendation(db: Session, user: User, data: RecommendationInput) -> 
                     "id": exercise.id,
                     "name": exercise.name,
                     "primary_muscle": exercise.primary_muscle,
+                    "image_url": exercise.image_url,
+                    "image_alt": exercise.image_alt,
                     "sets": adjusted_sets,
                     "reps": params["reps"],
                     "rest": params["rest"],

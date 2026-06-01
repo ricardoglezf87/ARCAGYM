@@ -43,6 +43,10 @@ def _slugify(value: str) -> str:
     return slug or "ejercicio"
 
 
+def _lookup_key(value: str | None) -> str:
+    return _slugify(value or "")
+
+
 def _load_seed_items() -> list[dict[str, Any]]:
     with SEED_PATH.open("r", encoding="utf-8-sig") as file:
         payload = json.load(file)
@@ -142,13 +146,25 @@ def seed_exercises(db: Session) -> int:
     existing_exercises = list(db.scalars(select(Exercise)).all())
     existing_by_slug = {exercise.slug: exercise for exercise in existing_exercises if exercise.slug}
     existing_by_name = {exercise.name: exercise for exercise in existing_exercises}
+    normalized_names: dict[str, list[Exercise]] = {}
+    for exercise in existing_exercises:
+        normalized_names.setdefault(_lookup_key(exercise.name), []).append(exercise)
+    existing_by_normalized_name = {
+        key: items[0]
+        for key, items in normalized_names.items()
+        if key and len(items) == 1
+    }
 
     changed = 0
     for item in exercises:
         values = _exercise_values(item)
         image_item = image_items_by_slug.get(values["slug"]) or image_items_by_name.get(values["name"])
         _apply_image_values(values, image_item)
-        exercise = existing_by_slug.get(values["slug"]) or existing_by_name.get(values["name"])
+        exercise = (
+            existing_by_slug.get(values["slug"])
+            or existing_by_name.get(values["name"])
+            or existing_by_normalized_name.get(_lookup_key(values["name"]))
+        )
         if exercise:
             for key, value in values.items():
                 setattr(exercise, key, value)
