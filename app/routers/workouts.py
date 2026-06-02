@@ -300,13 +300,15 @@ def workout_history(request: Request, user: User = Depends(require_user), db: Se
 @router.get("/workouts/new")
 def new_workout(
     request: Request,
-    routine_id: int | None = None,
-    routine_day_id: int | None = None,
+    routine_id: str | None = None,
+    routine_day_id: str | None = None,
     user: User = Depends(require_user),
     db: Session = Depends(get_db),
 ):
-    selected_routine = _get_saved_routine(db, user, routine_id) if routine_id else None
-    selected_day = _selected_routine_day(selected_routine, routine_day_id)
+    selected_routine_id = _int_or_none(routine_id)
+    selected_day_id = _int_or_none(routine_day_id)
+    selected_routine = _get_saved_routine(db, user, selected_routine_id) if selected_routine_id else None
+    selected_day = _selected_routine_day(selected_routine, selected_day_id)
     last_weights = _last_exercise_weights(db, user)
     return templates.TemplateResponse(
         "workout_form.html",
