@@ -31,6 +31,9 @@ class User(Base):
     saved_routines: Mapped[list["SavedRoutine"]] = relationship(
         back_populates="user", cascade="all, delete-orphan"
     )
+    body_measurements: Mapped[list["BodyMeasurement"]] = relationship(
+        back_populates="user", cascade="all, delete-orphan"
+    )
 
 
 class Exercise(Base):
@@ -171,3 +174,23 @@ class ExerciseSet(Base):
     notes: Mapped[str | None] = mapped_column(Text, nullable=True)
 
     workout_exercise: Mapped[WorkoutExercise] = relationship(back_populates="sets")
+
+
+class BodyMeasurement(Base):
+    __tablename__ = "body_measurements"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), index=True, nullable=False)
+    date: Mapped[date] = mapped_column(Date, index=True, nullable=False)
+    weight_kg: Mapped[float | None] = mapped_column(Float, nullable=True)
+    chest_cm: Mapped[float | None] = mapped_column(Float, nullable=True)
+    waist_cm: Mapped[float | None] = mapped_column(Float, nullable=True)
+    hip_cm: Mapped[float | None] = mapped_column(Float, nullable=True)
+    thigh_cm: Mapped[float | None] = mapped_column(Float, nullable=True)
+    arm_cm: Mapped[float | None] = mapped_column(Float, nullable=True)
+    neck_cm: Mapped[float | None] = mapped_column(Float, nullable=True)
+    body_fat_percent: Mapped[float | None] = mapped_column(Float, nullable=True)
+    notes: Mapped[str | None] = mapped_column(Text, nullable=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now(), nullable=False)
+
+    user: Mapped[User] = relationship(back_populates="body_measurements")

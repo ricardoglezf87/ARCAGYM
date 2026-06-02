@@ -265,6 +265,13 @@ button:hover {
   transform: translateY(-1px);
 }
 
+.button:disabled,
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+  transform: none;
+}
+
 .button.primary {
   background: var(--primary);
   color: #fff;
@@ -610,6 +617,46 @@ legend {
   margin-bottom: 22px;
 }
 
+.measurement-form {
+  margin-bottom: 22px;
+}
+
+.measurement-item {
+  align-items: flex-start;
+}
+
+.measurement-item form {
+  margin: 0;
+}
+
+.measurement-values,
+.measurement-derived {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.measurement-values span,
+.measurement-derived span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+}
+
+.measurement-values span {
+  background: var(--surface-soft);
+  color: var(--ink);
+}
+
+.measurement-derived span {
+  background: #fff8ec;
+  color: #5f482c;
+}
+
 .exercise-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
@@ -797,8 +844,30 @@ legend {
   background: var(--surface);
 }
 
+.routine-picker-help {
+  margin: -4px 0 0;
+}
+
 .routine-context {
   margin-bottom: 18px;
+}
+
+.draft-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.draft-banner[hidden] {
+  display: none;
+}
+
+.draft-status {
+  margin-right: auto;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 700;
 }
 
 .workout-blocks {

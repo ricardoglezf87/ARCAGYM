@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}ARCA Gym{% endblock %}</title>
     <link rel="icon" type="image/svg+xml" href="{{ url_for('static', path='/favicon.svg') }}">
-    <link rel="stylesheet" href="{{ url_for('static', path='/css/styles.css') }}?v=20260601-exercise-preview-toggle">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/styles.css') }}?v=20260602-measurements-drafts">
     {% block head %}{% endblock %}
   </head>
   <body>
@@ -14,6 +14,7 @@
       {"href": "/dashboard", "label": "Panel", "hint": "Resumen"},
       {"href": "/workouts", "label": "Historial", "hint": "Sesiones"},
       {"href": "/workouts/new", "label": "Registrar", "hint": "Nuevo entreno"},
+      {"href": "/measurements", "label": "Medidas", "hint": "Composicion"},
       {"href": "/stats", "label": "Estadisticas", "hint": "Progreso"},
       {"href": "/exercises", "label": "Ejercicios", "hint": "Biblioteca"},
       {"href": "/recommendations", "label": "Rutina", "hint": "Recomendacion"},
@@ -53,6 +54,27 @@
         </main>
       </div>
     </div>
+    <script>
+      (() => {
+        const pendingKey = "arcagym:workout-draft:pending-clear";
+        const pendingDrafts = sessionStorage.getItem(pendingKey);
+        if (!pendingDrafts) {
+          return;
+        }
+        const isWorkoutForm =
+          window.location.pathname === "/workouts/new" ||
+          /^\/workouts\/\d+\/edit$/.test(window.location.pathname);
+        if (isWorkoutForm) {
+          return;
+        }
+        try {
+          JSON.parse(pendingDrafts).forEach((draftKey) => localStorage.removeItem(draftKey));
+        } catch (error) {
+          // Ignore malformed pending keys and clear the marker below.
+        }
+        sessionStorage.removeItem(pendingKey);
+      })();
+    </script>
     <script src="{{ url_for('static', path='/js/sidebar.js') }}"></script>
     <script src="{{ url_for('static', path='/js/searchable_select.js') }}?v=20260601-exercise-preview-toggle"></script>
     <script src="{{ url_for('static', path='/js/exercise_media.js') }}?v=20260601-exercise-preview-toggle"></script>
