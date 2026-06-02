@@ -12,11 +12,17 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  const draftKey = `${form.dataset.workoutDraftBase}:${window.location.pathname}${window.location.search}`;
+  const draftKey = `${form.dataset.workoutDraftBase}:${window.location.pathname}`;
   const pendingClearKey = "arcagym:workout-draft:pending-clear";
   let saveTimer = null;
   let statusTimer = null;
   let isRestoring = false;
+  let restoredLegacyDraftKey = null;
+
+  function routinePickerValue(name) {
+    const input = document.querySelector(`[data-routine-picker] [name="${name}"]`);
+    return input ? input.value : "";
+  }
 
   function initRoutinePicker() {
     const picker = document.querySelector("[data-routine-picker]");
@@ -51,6 +57,40 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     routineSelect.addEventListener("change", updateState);
     updateState();
+  }
+
+  function syncRoutinePickerFromHidden() {
+    const picker = document.querySelector("[data-routine-picker]");
+    const routineSelect = picker?.querySelector("[data-routine-select]");
+    const daySelect = picker?.querySelector('[name="routine_day_id"]');
+    const routineId = formFieldValue("saved_routine_id");
+    const routineDayName = formFieldValue("routine_day_name");
+
+    if (routineSelect && routineId) {
+      const option = routineSelect.querySelector(`option[value="${CSS.escape(routineId)}"]`);
+      if (option) {
+        routineSelect.value = routineId;
+        routineSelect.dispatchEvent(new Event("change", { bubbles: true }));
+      }
+    }
+
+    if (daySelect && routineDayName && !daySelect.value) {
+      const matchingOption = Array.from(daySelect.options).find((option) =>
+        option.textContent.trim().startsWith(routineDayName),
+      );
+      if (matchingOption) {
+        daySelect.value = matchingOption.value;
+        return;
+      }
+      if (daySelect.disabled) {
+        daySelect.innerHTML = "";
+        const restoredOption = document.createElement("option");
+        restoredOption.value = "";
+        restoredOption.textContent = routineDayName;
+        restoredOption.selected = true;
+        daySelect.appendChild(restoredOption);
+      }
+    }
   }
 
   function updateSetRows(block, exerciseIndex) {
@@ -225,8 +265,9 @@ document.addEventListener("DOMContentLoaded", () => {
       savedAt: new Date().toISOString(),
       date: formFieldValue("date"),
       notes: formFieldValue("notes"),
-      saved_routine_id: formFieldValue("saved_routine_id"),
+      saved_routine_id: formFieldValue("saved_routine_id") || routinePickerValue("routine_id"),
       routine_day_name: formFieldValue("routine_day_name"),
+      routine_day_id: routinePickerValue("routine_day_id"),
       exercises: Array.from(blocksContainer.querySelectorAll(".workout-exercise")).map((block) => ({
         exercise_id: formFieldValueFrom(block, 'select[name="exercise_id"]'),
         notes: formFieldValueFrom(block, 'input[name="exercise_notes"]'),
@@ -266,6 +307,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     try {
       localStorage.setItem(draftKey, JSON.stringify(serializeDraft()));
+      if (restoredLegacyDraftKey && restoredLegacyDraftKey !== draftKey) {
+        localStorage.removeItem(restoredLegacyDraftKey);
+        restoredLegacyDraftKey = null;
+      }
       setDraftStatus("Borrador guardado");
     } catch (error) {
       setDraftStatus("");
@@ -280,13 +325,40 @@ document.addEventListener("DOMContentLoaded", () => {
     saveTimer = setTimeout(saveDraft, 120);
   }
 
-  function readDraft() {
+  function parseDraft(rawDraft) {
     try {
-      const rawDraft = localStorage.getItem(draftKey);
       return rawDraft ? JSON.parse(rawDraft) : null;
     } catch (error) {
       return null;
     }
+  }
+
+  function readDraft() {
+    const currentDraft = parseDraft(localStorage.getItem(draftKey));
+    if (currentDraft) {
+      return currentDraft;
+    }
+
+    const legacyPrefix = `${form.dataset.workoutDraftBase}:${window.location.pathname}?`;
+    const legacyDrafts = [];
+    for (let index = 0; index < localStorage.length; index += 1) {
+      const key = localStorage.key(index);
+      if (!key || !key.startsWith(legacyPrefix)) {
+        continue;
+      }
+      const draft = parseDraft(localStorage.getItem(key));
+      if (draft) {
+        legacyDrafts.push({ key, draft });
+      }
+    }
+
+    legacyDrafts.sort((left, right) => String(right.draft.savedAt).localeCompare(String(left.draft.savedAt)));
+    const legacyDraft = legacyDrafts[0];
+    if (!legacyDraft) {
+      return null;
+    }
+    restoredLegacyDraftKey = legacyDraft.key;
+    return legacyDraft.draft;
   }
 
   function restoreDraft(draft) {
@@ -299,6 +371,11 @@ document.addEventListener("DOMContentLoaded", () => {
     setFormFieldValue("notes", draft.notes);
     setFormFieldValue("saved_routine_id", draft.saved_routine_id);
     setFormFieldValue("routine_day_name", draft.routine_day_name);
+    const daySelect = document.querySelector('[data-routine-picker] [name="routine_day_id"]');
+    if (daySelect && draft.routine_day_id) {
+      daySelect.value = draft.routine_day_id;
+    }
+    syncRoutinePickerFromHidden();
     blocksContainer.innerHTML = "";
     draft.exercises.forEach((entry) => addExercise(entry, { init: false }));
     if (!blocksContainer.querySelector(".workout-exercise")) {
