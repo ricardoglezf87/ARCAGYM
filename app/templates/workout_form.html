@@ -15,9 +15,9 @@
 {% set current_day_name = selected_day.name if selected_day else (session.routine_day_name if session else '') %}
 
 {% if mode == "create" and saved_routines %}
-  <form method="get" action="/workouts/new" class="routine-picker form-grid two compact">
+  <form method="get" action="/workouts/new" class="routine-picker form-grid two compact" data-routine-picker data-has-current-routine="{% if current_routine %}1{% else %}0{% endif %}">
     <label>Rutina guardada
-      <select name="routine_id">
+      <select name="routine_id" data-routine-select>
         <option value="">Sin rutina</option>
         {% for routine in saved_routines %}
           <option value="{{ routine.id }}" {% if current_routine and current_routine.id == routine.id %}selected{% endif %}>{{ routine.title }}</option>
@@ -35,7 +35,8 @@
         {% endif %}
       </select>
     </label>
-    <button class="button secondary full" type="submit">Cargar rutina</button>
+    <p class="small muted full routine-picker-help" data-routine-help {% if current_routine %}hidden{% endif %}>Selecciona una rutina para cargar sus ejercicios.</p>
+    <button class="button secondary full" type="submit" data-routine-submit {% if not current_routine %}disabled{% endif %}>Cargar rutina</button>
   </form>
 {% endif %}
 
@@ -43,7 +44,12 @@
   <p class="notice routine-context">Rutina: {{ current_routine.title }}{% if current_day_name %} &middot; {{ current_day_name }}{% endif %}</p>
 {% endif %}
 
-<form method="post" class="workout-form">
+<div class="notice draft-banner" data-draft-banner hidden>
+  <span>Borrador temporal recuperado.</span>
+  <button type="button" class="button ghost compact" data-draft-discard>Descartar borrador</button>
+</div>
+
+<form method="post" class="workout-form" data-workout-draft-base="arcagym:workout-draft:{{ user.id }}:{{ mode }}:{% if session %}{{ session.id }}{% else %}new{% endif %}">
   <input type="hidden" name="saved_routine_id" value="{{ current_routine.id if current_routine else '' }}">
   <input type="hidden" name="routine_day_name" value="{{ current_day_name }}">
   <section class="form-grid two compact">
@@ -126,6 +132,7 @@
   </div>
 
   <div class="form-actions">
+    <span class="draft-status" data-draft-status aria-live="polite"></span>
     <button type="button" class="button secondary" id="addExercise">Anadir ejercicio</button>
     <button type="submit" class="button primary">Guardar entrenamiento</button>
   </div>
@@ -195,5 +202,5 @@
   </tr>
 </template>
 
-<script src="{{ url_for('static', path='/js/workout_form.js') }}"></script>
+<script src="{{ url_for('static', path='/js/workout_form.js') }}?v=20260602-workout-draft-routine"></script>
 {% endblock %}

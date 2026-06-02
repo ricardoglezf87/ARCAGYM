@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+{% block title %}Medidas | ARCA Gym{% endblock %}
+{% block head %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock %}
+{% block content %}
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">Composicion</p>
+    <h1>Medidas</h1>
+    <p class="muted">Registra peso y perimetros cuando los tengas; cada estadistica usa solo sus propios datos.</p>
+  </div>
+</section>
+
+{% if request.query_params.get('saved') == '1' %}
+  <div class="success">Medida guardada.</div>
+{% endif %}
+{% if error %}
+  <div class="alert">{{ error }}</div>
+{% endif %}
+
+<form method="post" action="/measurements" class="form-grid two measurement-form">
+  <label>Fecha
+    <input name="date" type="date" value="{{ form_values.get('date', today) }}" required>
+  </label>
+  {% for field in fields %}
+    <label>{{ field.label }}{% if field.unit %} ({{ field.unit }}){% endif %}
+      <input
+        name="{{ field.key }}"
+        type="number"
+        step="0.1"
+        min="0"
+        {% if field.key == 'body_fat_percent' %}max="100"{% endif %}
+        value="{{ form_values.get(field.key, '') }}"
+      >
+    </label>
+  {% endfor %}
+  <label class="full">Notas
+    <input name="notes" value="{{ form_values.get('notes', '') }}" placeholder="Contexto, hora, ayunas, medicion">
+  </label>
+  <button class="button primary full" type="submit">Guardar medida</button>
+</form>
+
+<section class="metric-grid">
+  {% for card in stats.summary_cards %}
+    <article class="metric">
+      <span>{{ card.label }}{% if card.date %} - {{ card.date }}{% endif %}</span>
+      <strong>
+        {% if card.value is not none %}
+          {{ card.value }}{% if card.unit %} {{ card.unit }}{% endif %}
+        {% else %}
+          -
+        {% endif %}
+      </strong>
+    </article>
+  {% endfor %}
+</section>
+
+{% if not stats.has_height %}
+  <p class="notice">Anade tu altura en el perfil para calcular IMC y cintura/altura.</p>
+{% endif %}
+
+<section class="charts-grid">
+  {% for chart in stats.charts %}
+    <div class="chart-panel">
+      <h2>{{ chart.label }}</h2>
+      <canvas id="measurementChart{{ loop.index }}" data-measurement-chart="{{ chart.key }}"></canvas>
+    </div>
+  {% else %}
+    <p class="empty">Aun no hay medidas suficientes para dibujar evolucion.</p>
+  {% endfor %}
+</section>
+
+<section class="content-grid">
+  <div>
+    <div class="section-title"><h2>Historial</h2></div>
+    <div class="list-stack">
+      {% for row in stats.rows %}
+        <article class="list-item measurement-item">
+          <div>
+            <strong>{{ row.date }}</strong>
+            <div class="measurement-values">
+              {% for value in row.measures %}
+                <span>{{ value.label }}: <strong>{{ value.value }}{% if value.unit %} {{ value.unit }}{% endif %}</strong></span>
+              {% endfor %}
+            </div>
+            {% if row.derived %}
+              <div class="measurement-derived">
+                {% for value in row.derived %}
+                  <span>{{ value.label }} {{ value.value }}{% if value.unit %} {{ value.unit }}{% endif %}</span>
+                {% endfor %}
+              </div>
+            {% endif %}
+            {% if row.notes %}<p>{{ row.notes }}</p>{% endif %}
+          </div>
+          <form method="post" action="/measurements/{{ row.id }}/delete" onsubmit="return confirm('Eliminar esta medida?')">
+            <button class="button danger compact" type="submit">Borrar</button>
+          </form>
+        </article>
+      {% else %}
+        <p class="empty">Aun no hay medidas registradas.</p>
+      {% endfor %}
+    </div>
+  </div>
+  <div>
+    <div class="section-title"><h2>Evolucion</h2></div>
+    <div class="list-stack">
+      {% for trend in stats.trends %}
+        <article class="list-item">
+          <div>
+            <strong>{{ trend.label }}</strong>
+            <p>
+              {{ trend.first }}{% if trend.unit %} {{ trend.unit }}{% endif %}
+              a
+              {{ trend.last }}{% if trend.unit %} {{ trend.unit }}{% endif %}
+            </p>
+          </div>
+          <strong>{% if trend.delta > 0 %}+{% endif %}{{ trend.delta }}{% if trend.unit %} {{ trend.unit }}{% endif %}</strong>
+        </article>
+      {% else %}
+        <p class="empty">Registra al menos dos puntos de una misma medida para ver variacion.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<script id="measurement-data" type="application/json">{{ stats_json|safe }}</script>
+<script src="{{ url_for('static', path='/js/measurement_charts.js') }}?v=20260602-measurements"></script>
+{% endblock %}
