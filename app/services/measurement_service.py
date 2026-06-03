@@ -15,16 +15,14 @@ MEASUREMENT_FIELDS = [
     {"key": "hip_cm", "label": "Cadera", "unit": "cm", "precision": 1},
     {"key": "thigh_cm", "label": "Muslos", "unit": "cm", "precision": 1},
     {"key": "arm_cm", "label": "Brazos", "unit": "cm", "precision": 1},
-    {"key": "neck_cm", "label": "Cuello", "unit": "cm", "precision": 1},
-    {"key": "body_fat_percent", "label": "Grasa corporal", "unit": "%", "precision": 1},
+    {"key": "body_fat_percent", "label": "Porcentaje de grasa", "unit": "%", "precision": 1},
 ]
 
 DERIVED_FIELDS = [
-    {"key": "bmi", "label": "IMC", "unit": "", "precision": 1},
-    {"key": "fat_mass_kg", "label": "Masa grasa", "unit": "kg", "precision": 1},
-    {"key": "lean_mass_kg", "label": "Masa magra", "unit": "kg", "precision": 1},
-    {"key": "waist_hip_ratio", "label": "Cintura/cadera", "unit": "", "precision": 2},
-    {"key": "waist_height_ratio", "label": "Cintura/altura", "unit": "", "precision": 2},
+    {"key": "bmi", "label": "IMC calculado", "unit": "", "precision": 1},
+    {"key": "fat_mass_kg", "label": "Masa grasa calculada", "unit": "kg", "precision": 1},
+    {"key": "lean_mass_kg", "label": "Masa magra calculada", "unit": "kg", "precision": 1},
+    {"key": "waist_hip_ratio", "label": "Cintura/cadera calculada", "unit": "", "precision": 2},
 ]
 
 
@@ -56,9 +54,6 @@ def calculated_values(measurement: BodyMeasurement, user: User) -> dict[str, flo
 
     if measurement.waist_cm and measurement.hip_cm:
         values["waist_hip_ratio"] = measurement.waist_cm / measurement.hip_cm
-
-    if measurement.waist_cm and user.height_cm:
-        values["waist_height_ratio"] = measurement.waist_cm / user.height_cm
 
     return values
 
@@ -199,6 +194,10 @@ def build_measurement_stats(db: Session, user: User) -> dict[str, Any]:
     ]
     charts = measured_charts + derived_charts
     charts_by_key = {chart["key"]: chart for chart in charts}
+    chart_sections = [
+        {"title": "Medidas introducidas", "charts": measured_charts},
+        {"title": "Valores calculados", "charts": derived_charts},
+    ]
 
     rows = [
         {
@@ -214,13 +213,15 @@ def build_measurement_stats(db: Session, user: User) -> dict[str, Any]:
     return {
         "rows": rows,
         "charts": charts,
+        "chart_sections": chart_sections,
         "summary_cards": [
             _summary_card(charts_by_key, "weight_kg", "Peso"),
-            _summary_card(charts_by_key, "bmi", "IMC"),
-            _summary_card(charts_by_key, "body_fat_percent", "Grasa corporal"),
+            _summary_card(charts_by_key, "bmi", "IMC calculado"),
+            _summary_card(charts_by_key, "body_fat_percent", "Porcentaje de grasa"),
             _summary_card(charts_by_key, "waist_cm", "Cintura"),
         ],
         "trends": _trend_items(charts),
         "has_records": bool(records),
+        "has_charts": bool(charts),
         "has_height": bool(user.height_cm),
     }

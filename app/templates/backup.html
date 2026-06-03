@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Backup | ARCA Gym{% endblock %}
+{% block content %}
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">Datos</p>
+    <h1>Backup</h1>
+    <p class="muted">Copia local de entrenamientos, medidas, rutinas, perfil y biblioteca.</p>
+  </div>
+  {% if backup_available %}
+    <a class="button primary" href="/backup/download">Crear y descargar backup</a>
+  {% endif %}
+</section>
+
+<section class="content-grid backup-grid">
+  <article class="list-item backup-card">
+    <div>
+      <strong>Base de datos</strong>
+      <p>{{ database_name or "No disponible" }}</p>
+      <p class="small">Carpeta: {{ backup_dir }}</p>
+    </div>
+    {% if backup_available %}
+      <a class="button secondary" href="/backup/download">Crear copia</a>
+    {% else %}
+      <span class="empty">Backup no disponible para esta configuracion.</span>
+    {% endif %}
+  </article>
+</section>
+
+<section>
+  <div class="section-title"><h2>Historial de backups</h2></div>
+  <div class="list-stack">
+    {% for backup in backups %}
+      <article class="list-item">
+        <div>
+          <strong>{{ backup.name }}</strong>
+          <p>{{ backup.created_at }} - {{ backup.size_kb }} KB</p>
+        </div>
+        <a class="button ghost" href="/backup/files/{{ backup.name }}">Descargar</a>
+      </article>
+    {% else %}
+      <p class="empty">Aun no hay backups guardados en la carpeta del proyecto.</p>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
