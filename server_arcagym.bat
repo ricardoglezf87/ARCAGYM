@@ -9,9 +9,9 @@ if errorlevel 1 (
     exit /b 1
 )
 
-set "HOST=127.0.0.1"
+set "HOST=0.0.0.0"
 set "PORT=5990"
-set "URL=http://127.0.0.1:%PORT%"
+set "URL=http://%HOST%:%PORT%"
 
 echo.
 echo ========================================
@@ -59,8 +59,6 @@ echo.
 echo Arrancando servidor en %URL%
 echo Pulsa Ctrl+C para detenerlo.
 echo.
-
-start "" powershell -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -Command "$url='%URL%'; $health='%URL%/dashboard'; for ($i=0; $i -lt 40; $i++) { try { Invoke-WebRequest -UseBasicParsing -Uri $health -TimeoutSec 1 -ErrorAction Stop | Out-Null; Start-Process $url; exit 0 } catch { Start-Sleep -Milliseconds 500 } }; Start-Process $url"
 
 "%PYTHON_CMD%" -m uvicorn app.main:app --app-dir "%CD%" --host %HOST% --port %PORT% --reload
 set "EXIT_CODE=%ERRORLEVEL%"
