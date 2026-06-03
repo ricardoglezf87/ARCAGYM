@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Backup | ARCA Gym{% endblock %}
+{% block content %}
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">Datos</p>
+    <h1>Backup</h1>
+    <p class="muted">Copia local de entrenamientos, medidas, rutinas, perfil y biblioteca.</p>
+  </div>
+  {% if backup_available %}
+    <a class="button primary" href="/backup/download">Descargar backup</a>
+  {% endif %}
+</section>
+
+<section class="content-grid backup-grid">
+  <article class="list-item backup-card">
+    <div>
+      <strong>Base de datos</strong>
+      <p>{{ database_name or "No disponible" }}</p>
+    </div>
+    {% if backup_available %}
+      <a class="button secondary" href="/backup/download">Descargar .db</a>
+    {% else %}
+      <span class="empty">Backup no disponible para esta configuracion.</span>
+    {% endif %}
+  </article>
+</section>
+{% endblock %}

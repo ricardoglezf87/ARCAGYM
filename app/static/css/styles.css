@@ -621,7 +621,19 @@ legend {
   margin-bottom: 22px;
 }
 
+.measurement-chart-title {
+  margin-top: 8px;
+}
+
 .measurement-item {
+  align-items: flex-start;
+}
+
+.backup-grid {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.backup-card {
   align-items: flex-start;
 }
 
