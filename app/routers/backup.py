@@ -4,7 +4,6 @@ from contextlib import closing
 from datetime import datetime
 from pathlib import Path
 import sqlite3
-import uuid
 
 from fastapi import APIRouter, Depends, HTTPException, Request
 from fastapi.responses import Response
@@ -16,6 +15,8 @@ from app.models import User
 
 
 router = APIRouter()
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+BACKUP_DIR = PROJECT_ROOT / "backup"
 
 
 def _sqlite_database_path() -> Path | None:
@@ -33,25 +34,55 @@ def _sqlite_database_path() -> Path | None:
     return path.resolve()
 
 
-def _remove_file(path: Path) -> None:
-    path.unlink(missing_ok=True)
+def _unique_backup_path(download_name: str) -> Path:
+    BACKUP_DIR.mkdir(parents=True, exist_ok=True)
+    backup_path = BACKUP_DIR / download_name
+    if not backup_path.exists():
+        return backup_path
+
+    stem = backup_path.stem
+    suffix = backup_path.suffix
+    counter = 2
+    while True:
+        candidate = BACKUP_DIR / f"{stem}-{counter}{suffix}"
+        if not candidate.exists():
+            return candidate
+        counter += 1
 
 
-def _create_sqlite_backup(source_path: Path) -> tuple[bytes, str]:
+def _list_backups() -> list[dict[str, str | int]]:
+    if not BACKUP_DIR.exists():
+        return []
+
+    backups = sorted(BACKUP_DIR.glob("*.db"), key=lambda path: path.stat().st_mtime, reverse=True)
+    return [
+        {
+            "name": path.name,
+            "size_kb": max(1, round(path.stat().st_size / 1024)),
+            "created_at": datetime.fromtimestamp(path.stat().st_mtime).strftime("%d/%m/%Y %H:%M"),
+        }
+        for path in backups
+    ]
+
+
+def _create_sqlite_backup(source_path: Path) -> tuple[Path, str]:
     timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
     download_name = f"arcagym-backup-{timestamp}.db"
-    backup_path = source_path.parent / f".arcagym-backup-{timestamp}-{uuid.uuid4().hex}.db"
+    backup_path = _unique_backup_path(download_name)
 
     with closing(sqlite3.connect(source_path)) as source_connection:
         with closing(sqlite3.connect(backup_path)) as backup_connection:
             source_connection.backup(backup_connection)
 
-    try:
-        backup_content = backup_path.read_bytes()
-    finally:
-        _remove_file(backup_path)
+    return backup_path, backup_path.name
 
-    return backup_content, download_name
+
+def _backup_response(backup_path: Path) -> Response:
+    return Response(
+        content=backup_path.read_bytes(),
+        media_type="application/octet-stream",
+        headers={"Content-Disposition": f'attachment; filename="{backup_path.name}"'},
+    )
 
 
 @router.get("/backup")
@@ -65,6 +96,8 @@ def backup_page(request: Request, user: User = Depends(require_user)):
             "user": user,
             "backup_available": backup_available,
             "database_name": database_path.name if database_path else None,
+            "backup_dir": BACKUP_DIR,
+            "backups": _list_backups(),
         },
     )
 
@@ -75,9 +108,13 @@ def download_backup(user: User = Depends(require_user)):
     if not database_path or not database_path.exists():
         raise HTTPException(status_code=404, detail="Base de datos SQLite no encontrada")
 
-    backup_content, download_name = _create_sqlite_backup(database_path)
-    return Response(
-        content=backup_content,
-        media_type="application/octet-stream",
-        headers={"Content-Disposition": f'attachment; filename="{download_name}"'},
-    )
+    backup_path, _download_name = _create_sqlite_backup(database_path)
+    return _backup_response(backup_path)
+
+
+@router.get("/backup/files/{filename}")
+def download_existing_backup(filename: str, user: User = Depends(require_user)):
+    backup_path = (BACKUP_DIR / Path(filename).name).resolve()
+    if backup_path.parent != BACKUP_DIR.resolve() or backup_path.suffix != ".db" or not backup_path.exists():
+        raise HTTPException(status_code=404, detail="Backup no encontrado")
+    return _backup_response(backup_path)
