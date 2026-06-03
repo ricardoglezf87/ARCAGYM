@@ -7,7 +7,7 @@ from fastapi.staticfiles import StaticFiles
 from app.config import settings
 from app.database import Base, SessionLocal, engine
 from app.dependencies import get_or_create_local_user
-from app.routers import dashboard, exercises, measurements, profile, recommendations, stats, workouts
+from app.routers import backup, dashboard, exercises, measurements, profile, recommendations, stats, workouts
 from app.services.exercise_seed_service import seed_exercises
 from app.services.schema_service import ensure_schema_upgrades
 
@@ -32,6 +32,7 @@ app.include_router(measurements.router)
 app.include_router(stats.router)
 app.include_router(recommendations.router)
 app.include_router(profile.router)
+app.include_router(backup.router)
 
 
 @app.get("/")

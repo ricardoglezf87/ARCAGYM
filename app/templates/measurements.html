@@ -57,19 +57,26 @@
 </section>
 
 {% if not stats.has_height %}
-  <p class="notice">Anade tu altura en el perfil para calcular IMC y cintura/altura.</p>
+  <p class="notice">Anade tu altura en el perfil para calcular el IMC.</p>
 {% endif %}
 
-<section class="charts-grid">
-  {% for chart in stats.charts %}
-    <div class="chart-panel">
-      <h2>{{ chart.label }}</h2>
-      <canvas id="measurementChart{{ loop.index }}" data-measurement-chart="{{ chart.key }}"></canvas>
-    </div>
-  {% else %}
-    <p class="empty">Aun no hay medidas suficientes para dibujar evolucion.</p>
+{% if stats.has_charts %}
+  {% for section in stats.chart_sections %}
+    {% if section.charts %}
+      <div class="section-title measurement-chart-title"><h2>{{ section.title }}</h2></div>
+      <section class="charts-grid">
+        {% for chart in section.charts %}
+          <div class="chart-panel">
+            <h2>{{ chart.label }}</h2>
+            <canvas id="measurementChart{{ chart.key }}" data-measurement-chart="{{ chart.key }}"></canvas>
+          </div>
+        {% endfor %}
+      </section>
+    {% endif %}
   {% endfor %}
-</section>
+{% else %}
+  <p class="empty">Aun no hay medidas suficientes para dibujar evolucion.</p>
+{% endif %}
 
 <section class="content-grid">
   <div>

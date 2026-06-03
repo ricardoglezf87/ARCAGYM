@@ -188,7 +188,6 @@ class BodyMeasurement(Base):
     hip_cm: Mapped[float | None] = mapped_column(Float, nullable=True)
     thigh_cm: Mapped[float | None] = mapped_column(Float, nullable=True)
     arm_cm: Mapped[float | None] = mapped_column(Float, nullable=True)
-    neck_cm: Mapped[float | None] = mapped_column(Float, nullable=True)
     body_fat_percent: Mapped[float | None] = mapped_column(Float, nullable=True)
     notes: Mapped[str | None] = mapped_column(Text, nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now(), nullable=False)
