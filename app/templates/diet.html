@@ -1,0 +1,216 @@
+{% extends "base.html" %}
+{% block title %}Dieta | ARCA Gym{% endblock %}
+{% block content %}
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">Nutricion</p>
+    <h1>Dieta por raciones</h1>
+    <p class="muted">Registro diario sobre el plan prescrito. No modifica objetivos ni sustituye consejo medico o nutricional.</p>
+  </div>
+  <form method="get" action="/diet" class="date-filter diet-date-filter">
+    <label>Dia
+      <input name="date" type="date" value="{{ selected_date }}">
+    </label>
+    <button class="button ghost" type="submit">Ver dia</button>
+    <a class="button secondary" href="/diet?date={{ today }}">Hoy</a>
+  </form>
+</section>
+
+{% if request.query_params.get('saved') == '1' %}
+  <div class="success">Registro guardado.</div>
+{% endif %}
+{% if request.query_params.get('plan_saved') == '1' %}
+  <div class="success">Configuracion de raciones guardada.</div>
+{% endif %}
+{% if error %}
+  <div class="alert">{{ error }}</div>
+{% endif %}
+{% if plan_error %}
+  <div class="alert">{{ plan_error }}</div>
+{% endif %}
+
+<section class="metric-grid diet-state-grid">
+  {% for row in state.rows %}
+    <article class="metric ration-metric {% if row.is_over %}is-over{% endif %}">
+      <span>{{ row.label }}</span>
+      <strong>{{ row.consumed_label }}/{{ row.target_label }}</strong>
+      <div class="ration-bar" aria-hidden="true"><span style="width: {{ row.percent }}%"></span></div>
+      {% if row.is_over %}
+        <small>Exceso: {{ row.over_label }}</small>
+      {% else %}
+        <small>Restan: {{ row.remaining_positive_label }}</small>
+      {% endif %}
+    </article>
+  {% endfor %}
+</section>
+
+<p class="notice">Plan activo desde {{ active_plan.effective_from.isoformat() }}{% if active_plan.notes %}: {{ active_plan.notes }}{% endif %}</p>
+
+<section class="content-grid diet-entry-grid">
+  <div>
+    <div class="section-title"><h2>Registrar comida</h2></div>
+    <form method="post" action="/diet/text" class="form-grid diet-card">
+      <input type="hidden" name="date" value="{{ selected_date }}">
+      <label>Comida
+        <select name="meal_label">
+          {% for meal in ["Desayuno", "Media manana", "Almuerzo", "Merienda", "Cena", "Comida"] %}
+            <option value="{{ meal }}" {% if form_values.get('meal_label') == meal %}selected{% endif %}>{{ meal }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <label>Texto
+        <textarea name="entry_text" rows="6" placeholder="Ejemplo: desayune una pulguita con pavo y queso fresco. Almorce arroz con pollo y ensalada">{{ form_values.get('entry_text', '') }}</textarea>
+      </label>
+      <button class="button primary" type="submit">Registrar comida</button>
+    </form>
+  </div>
+
+  <div>
+    <div class="section-title"><h2>Configuracion</h2></div>
+    <form method="post" action="/diet/plans" class="form-grid diet-card diet-plan-form">
+      <input type="hidden" name="selected_date" value="{{ selected_date }}">
+      <label class="full">Aplicar desde
+        <input name="effective_from" type="date" value="{{ plan_form_values.get('effective_from', today) }}" required>
+      </label>
+      <div class="diet-target-grid full">
+        <label>Lacteos
+          <input name="lacteos" type="number" min="0" step="0.1" value="{{ plan_form_values.get('lacteos', '') }}" required>
+        </label>
+        <label>Harinas
+          <input name="harinas" type="number" min="0" step="0.1" value="{{ plan_form_values.get('harinas', '') }}" required>
+        </label>
+        <label>Frutas
+          <input name="frutas" type="number" min="0" step="0.1" value="{{ plan_form_values.get('frutas', '') }}" required>
+        </label>
+        <label>Verduras
+          <input name="verduras" type="number" min="0" step="0.1" value="{{ plan_form_values.get('verduras', '') }}" required>
+        </label>
+        <label>Proteinas
+          <input name="proteinas" type="number" min="0" step="0.1" value="{{ plan_form_values.get('proteinas', '') }}" required>
+        </label>
+        <label>Grasas
+          <input name="grasas" type="number" min="0" step="0.1" value="{{ plan_form_values.get('grasas', '') }}" required>
+        </label>
+      </div>
+      <label class="full">Notas
+        <input name="notes" value="{{ plan_form_values.get('notes', '') }}" placeholder="Ejemplo: ajuste doctora junio">
+      </label>
+      <button class="button primary full" type="submit">Guardar configuracion</button>
+    </form>
+  </div>
+</section>
+
+{% if conversion_rows %}
+  <section class="diet-section">
+    <div class="section-title"><h2>Conversion a raciones</h2></div>
+    <div class="list-stack">
+      {% for row in conversion_rows %}
+        <article class="list-item diet-conversion-item">
+          <div>
+            <strong>{{ row.food_name }} {{ row.amount }} = {{ row.servings }} {{ row.group_serving }}</strong>
+            <p>Peso: {{ row.weight_state }} - Comida: {{ row.meal_label }} - {{ row.amount_source }}</p>
+            {% if row.inference_note %}<p>{{ row.inference_note }}</p>{% endif %}
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}
+
+<section class="content-grid">
+  <div>
+    <div class="section-title"><h2>Recomendacion resto del dia</h2></div>
+    <div class="list-stack">
+      {% for meal in recommendations %}
+        <article class="history-item diet-recommendation">
+          <h3>{{ meal.meal }}</h3>
+          <div class="diet-chip-list">
+            {% for item in meal.food_items %}
+              <span>
+                <strong>{{ item.food_name }} {{ item.amount }}</strong>
+                {{ item.servings }} {{ item.group }} - {{ item.weight_state }}
+              </span>
+            {% endfor %}
+          </div>
+        </article>
+      {% else %}
+        <p class="empty">No quedan raciones pendientes para este dia.</p>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div>
+    <div class="section-title">
+      <h2>Consumido hoy</h2>
+      {% if entry_rows %}
+        <form method="post" action="/diet/reset" onsubmit="return confirm('Borrar todos los registros de este dia?')">
+          <input type="hidden" name="date" value="{{ selected_date }}">
+          <button class="button danger compact" type="submit">Vaciar dia</button>
+        </form>
+      {% endif %}
+    </div>
+    <div class="list-stack">
+      {% for row in entry_rows %}
+        <article class="list-item diet-entry-item">
+          <div>
+            <strong>{{ row.meal_label }} - {{ row.food_name }}</strong>
+            <p>{{ row.amount }} = {{ row.servings }} {{ row.group|lower }} - {{ row.weight_state }} - {{ row.amount_source }}</p>
+            {% if row.inference_note %}<p>{{ row.inference_note }}</p>{% endif %}
+          </div>
+          <form method="post" action="/diet/entries/{{ row.id }}/delete" onsubmit="return confirm('Eliminar este alimento?')">
+            <button class="button danger compact" type="submit">Borrar</button>
+          </form>
+        </article>
+      {% else %}
+        <p class="empty">Aun no hay alimentos registrados para este dia.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="content-grid diet-section">
+  <div>
+    <div class="section-title"><h2>Planes guardados</h2></div>
+    <div class="list-stack">
+      {% for plan in plan_rows %}
+        <article class="list-item diet-plan-item">
+          <div>
+            <strong>Desde {{ plan.effective_from }}</strong>
+            <p>{{ plan.summary }}</p>
+            {% if plan.notes %}<p>{{ plan.notes }}</p>{% endif %}
+          </div>
+        </article>
+      {% else %}
+        <p class="empty">No hay planes guardados.</p>
+      {% endfor %}
+    </div>
+  </div>
+  <div>
+    <details class="equivalence-panel" open>
+      <summary>Equivalencias del plan</summary>
+      <div class="table-wrap">
+        <table class="diet-table">
+          <thead>
+            <tr>
+              <th>Grupo</th>
+              <th>Alimento</th>
+              <th>1 racion</th>
+              <th>Peso</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in equivalences %}
+              <tr>
+                <td>{{ row.group }}</td>
+                <td>{{ row.food_name }}</td>
+                <td>{{ row.serving }}</td>
+                <td>{{ row.weight_state }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </details>
+  </div>
+</section>
+{% endblock %}

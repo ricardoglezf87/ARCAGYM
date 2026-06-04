@@ -637,6 +637,148 @@ legend {
   align-items: flex-start;
 }
 
+.diet-date-filter {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) auto auto;
+  gap: 10px;
+  align-items: end;
+  min-width: min(460px, 100%);
+}
+
+.diet-state-grid {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.ration-metric {
+  display: grid;
+  gap: 8px;
+}
+
+.ration-metric strong {
+  font-size: clamp(1.25rem, 2vw, 1.7rem);
+}
+
+.ration-metric small {
+  color: var(--muted);
+  font-weight: 750;
+}
+
+.ration-metric.is-over small {
+  color: var(--danger);
+}
+
+.ration-bar {
+  height: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--surface-soft);
+}
+
+.ration-bar span {
+  display: block;
+  height: 100%;
+  max-width: 100%;
+  border-radius: inherit;
+  background: var(--primary);
+}
+
+.ration-metric.is-over .ration-bar span {
+  background: var(--danger);
+}
+
+.diet-entry-grid {
+  margin-bottom: 22px;
+}
+
+.diet-card {
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: 0 6px 18px rgba(23, 32, 27, 0.05);
+}
+
+.diet-target-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.diet-section {
+  margin: 24px 0;
+}
+
+.diet-conversion-item,
+.diet-entry-item,
+.diet-plan-item {
+  align-items: flex-start;
+}
+
+.diet-entry-item form {
+  margin: 0;
+}
+
+.diet-recommendation {
+  display: grid;
+  gap: 12px;
+}
+
+.diet-recommendation h3 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.diet-chip-list {
+  display: grid;
+  gap: 8px;
+}
+
+.diet-chip-list span {
+  display: grid;
+  gap: 2px;
+  padding: 10px;
+  border-radius: 8px;
+  background: var(--surface-soft);
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.diet-chip-list strong {
+  color: var(--ink);
+}
+
+.equivalence-panel {
+  margin-top: 24px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.equivalence-panel summary {
+  cursor: pointer;
+  font-weight: 850;
+}
+
+.diet-table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+}
+
+.diet-table th,
+.diet-table td {
+  padding: 10px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.diet-table th {
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
 .measurement-item form {
   margin: 0;
 }
@@ -1236,6 +1378,16 @@ legend {
   .detail-layout,
   .filter-bar,
   .history-exercises {
+    grid-template-columns: 1fr;
+  }
+
+  .diet-date-filter {
+    grid-template-columns: 1fr;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .diet-target-grid {
     grid-template-columns: 1fr;
   }
 

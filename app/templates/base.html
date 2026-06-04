@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}ARCA Gym{% endblock %}</title>
     <link rel="icon" type="image/svg+xml" href="{{ url_for('static', path='/favicon.svg') }}">
-    <link rel="stylesheet" href="{{ url_for('static', path='/css/styles.css') }}?v=20260602-measurements-drafts">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/styles.css') }}?v=20260604-diet-rations">
     {% block head %}{% endblock %}
   </head>
   <body>
@@ -15,6 +15,7 @@
       {"href": "/workouts", "label": "Historial", "hint": "Sesiones"},
       {"href": "/workouts/new", "label": "Registrar", "hint": "Nuevo entreno"},
       {"href": "/measurements", "label": "Medidas", "hint": "Composicion"},
+      {"href": "/diet", "label": "Dieta", "hint": "Raciones"},
       {"href": "/stats", "label": "Estadisticas", "hint": "Progreso"},
       {"href": "/exercises", "label": "Ejercicios", "hint": "Biblioteca"},
       {"href": "/recommendations", "label": "Rutina", "hint": "Recomendacion"},
