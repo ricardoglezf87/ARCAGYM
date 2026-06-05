@@ -34,6 +34,12 @@ class User(Base):
     body_measurements: Mapped[list["BodyMeasurement"]] = relationship(
         back_populates="user", cascade="all, delete-orphan"
     )
+    diet_entries: Mapped[list["DietEntry"]] = relationship(
+        back_populates="user", cascade="all, delete-orphan"
+    )
+    diet_plans: Mapped[list["DietPlan"]] = relationship(
+        back_populates="user", cascade="all, delete-orphan"
+    )
 
 
 class Exercise(Base):
@@ -193,3 +199,46 @@ class BodyMeasurement(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now(), nullable=False)
 
     user: Mapped[User] = relationship(back_populates="body_measurements")
+
+
+class DietEntry(Base):
+    __tablename__ = "diet_entries"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), index=True, nullable=False)
+    date: Mapped[date] = mapped_column(Date, index=True, nullable=False)
+    meal_label: Mapped[str] = mapped_column(String(80), nullable=False)
+    food_key: Mapped[str] = mapped_column(String(80), nullable=False)
+    food_name: Mapped[str] = mapped_column(String(140), nullable=False)
+    group_key: Mapped[str] = mapped_column(String(40), index=True, nullable=False)
+    amount: Mapped[float] = mapped_column(Float, nullable=False)
+    unit: Mapped[str] = mapped_column(String(20), nullable=False)
+    weight_state: Mapped[str] = mapped_column(String(80), nullable=False)
+    servings: Mapped[float] = mapped_column(Float, nullable=False)
+    amount_source: Mapped[str | None] = mapped_column(String(40), nullable=True)
+    parser_source: Mapped[str | None] = mapped_column(String(40), nullable=True)
+    inference_note: Mapped[str | None] = mapped_column(Text, nullable=True)
+    source_text: Mapped[str | None] = mapped_column(Text, nullable=True)
+    batch_id: Mapped[str | None] = mapped_column(String(40), index=True, nullable=True)
+    notes: Mapped[str | None] = mapped_column(Text, nullable=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now(), nullable=False)
+
+    user: Mapped[User] = relationship(back_populates="diet_entries")
+
+
+class DietPlan(Base):
+    __tablename__ = "diet_plans"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), index=True, nullable=False)
+    effective_from: Mapped[date] = mapped_column(Date, index=True, nullable=False)
+    lacteos_target: Mapped[float] = mapped_column(Float, nullable=False)
+    harinas_target: Mapped[float] = mapped_column(Float, nullable=False)
+    frutas_target: Mapped[float] = mapped_column(Float, nullable=False)
+    verduras_target: Mapped[float] = mapped_column(Float, nullable=False)
+    proteinas_target: Mapped[float] = mapped_column(Float, nullable=False)
+    grasas_target: Mapped[float] = mapped_column(Float, nullable=False)
+    notes: Mapped[str | None] = mapped_column(Text, nullable=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now(), nullable=False)
+
+    user: Mapped[User] = relationship(back_populates="diet_plans")
