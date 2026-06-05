@@ -2,9 +2,13 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from typing import Any
+import json
 import re
 import unicodedata
+import urllib.error
+import urllib.request
 
+from app.config import settings
 from app.models import DietEntry
 
 
@@ -59,6 +63,7 @@ class ParsedDietItem:
     source_text: str
     amount_source: str
     inference_note: str
+    parser_source: str = "local"
 
 
 FOODS = [
@@ -715,6 +720,7 @@ def entry_from_item(
         weight_state=item.food.weight_state,
         servings=item.servings,
         amount_source=item.amount_source,
+        parser_source=item.parser_source,
         inference_note=item.inference_note,
         source_text=item.source_text or None,
         batch_id=batch_id,
@@ -820,6 +826,178 @@ def _convert_amount(food: FoodEquivalence, amount: float, unit: str) -> tuple[fl
     if food.key == "aceite_oliva" and unit == "cucharadas":
         return amount * 10, "g", "cucharada sopera de aceite estimada en 10 g"
     return None
+
+
+def _gemini_food_catalog() -> list[dict[str, Any]]:
+    return [
+        {
+            "food_key": food.key,
+            "name": food.name,
+            "group": food.group,
+            "one_serving_amount": food.amount_per_serving,
+            "unit": food.unit,
+            "weight_state": food.weight_state,
+            "aliases": list(food.aliases),
+            "default_amount": food.default_amount or food.amount_per_serving,
+            "default_note": food.default_note,
+        }
+        for food in FOODS
+    ]
+
+
+def _gemini_response_schema() -> dict[str, Any]:
+    return {
+        "type": "object",
+        "properties": {
+            "items": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "food_key": {"type": "string"},
+                        "amount": {"type": "number"},
+                        "unit": {"type": "string"},
+                        "amount_source": {"type": "string"},
+                        "inference_note": {"type": "string"},
+                    },
+                    "required": ["food_key", "amount", "unit", "amount_source", "inference_note"],
+                },
+            },
+            "warnings": {"type": "array", "items": {"type": "string"}},
+        },
+        "required": ["items", "warnings"],
+    }
+
+
+def _gemini_prompt(value: str) -> str:
+    return (
+        "Actua como extractor de alimentos para una dieta por raciones prescrita. "
+        "No eres medico ni nutricionista. No cambies grupos ni objetivos. "
+        "Debes extraer solo alimentos que existan en el catalogo. "
+        "Si una cantidad esta escrita, normalizala a la unidad del alimento del catalogo. "
+        "Si no hay cantidad, estimala de forma conservadora usando default_amount, formato habitual o 1 racion. "
+        "Para pan: pulguita=60 g, bocadillo=80 g si no se indica otra cantidad. "
+        "Para aceite: cucharada sopera=10 g. Para vaso de leche=200 ml. "
+        "Devuelve JSON valido con items y warnings. "
+        "amount_source debe ser 'explicita' o 'estimada'. "
+        "unit debe ser exactamente la unidad del alimento: g, ml o unidades. "
+        "Catalogo:\n"
+        f"{json.dumps(_gemini_food_catalog(), ensure_ascii=False)}\n"
+        "Texto del usuario:\n"
+        f"{value}"
+    )
+
+
+def _gemini_generated_text(response_data: dict[str, Any]) -> str:
+    candidates = response_data.get("candidates") or []
+    if not candidates:
+        raise ValueError("Gemini no devolvio candidatos.")
+    parts = candidates[0].get("content", {}).get("parts") or []
+    text_parts = [part.get("text", "") for part in parts if part.get("text")]
+    if not text_parts:
+        raise ValueError("Gemini no devolvio texto interpretable.")
+    return "\n".join(text_parts)
+
+
+def _request_gemini(value: str) -> dict[str, Any]:
+    if not settings.gemini_api_key:
+        raise RuntimeError("Gemini no configurado.")
+
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/{settings.gemini_model}:generateContent"
+    payload = {
+        "contents": [{"parts": [{"text": _gemini_prompt(value)}]}],
+        "generationConfig": {
+            "temperature": 0.1,
+            "responseMimeType": "application/json",
+            "responseJsonSchema": _gemini_response_schema(),
+        },
+    }
+    request = urllib.request.Request(
+        url,
+        data=json.dumps(payload, ensure_ascii=False).encode("utf-8"),
+        headers={
+            "Content-Type": "application/json",
+            "x-goog-api-key": settings.gemini_api_key,
+        },
+        method="POST",
+    )
+    with urllib.request.urlopen(request, timeout=settings.gemini_timeout_seconds) as response:
+        response_data = json.loads(response.read().decode("utf-8"))
+    return json.loads(_gemini_generated_text(response_data))
+
+
+def _items_from_gemini_payload(value: str, payload: dict[str, Any]) -> tuple[list[ParsedDietItem], list[str]]:
+    items: list[ParsedDietItem] = []
+    messages = [str(warning) for warning in payload.get("warnings", []) if str(warning).strip()]
+
+    for raw_item in payload.get("items", []):
+        food = FOODS_BY_KEY.get(str(raw_item.get("food_key") or ""))
+        if not food:
+            messages.append(f"Gemini devolvio un alimento fuera de la tabla: {raw_item.get('food_key')}.")
+            continue
+
+        try:
+            amount = float(raw_item.get("amount"))
+        except (TypeError, ValueError):
+            messages.append(f"{food.name}: Gemini no devolvio una cantidad numerica.")
+            continue
+
+        unit = str(raw_item.get("unit") or "").strip()
+        if amount <= 0:
+            messages.append(f"{food.name}: Gemini devolvio una cantidad no valida.")
+            continue
+        if unit != food.unit:
+            converted = _convert_amount(food, amount, unit)
+            if converted is None:
+                messages.append(f"{food.name}: Gemini devolvio unidad incompatible ({unit}).")
+                continue
+            amount, unit, conversion_note = converted
+        else:
+            conversion_note = ""
+
+        amount_source = str(raw_item.get("amount_source") or "estimada").strip().lower()
+        if amount_source not in {"explicita", "estimada"}:
+            amount_source = "estimada"
+        inference_note = str(raw_item.get("inference_note") or "").strip()
+        if conversion_note and conversion_note not in inference_note:
+            inference_note = f"{inference_note} {conversion_note}".strip()
+        if not inference_note:
+            inference_note = "interpretado por Gemini"
+
+        items.append(
+            ParsedDietItem(
+                food=food,
+                amount=amount,
+                unit=unit,
+                servings=amount / food.amount_per_serving,
+                source_text=value.strip(),
+                amount_source=amount_source,
+                inference_note=inference_note,
+                parser_source="gemini",
+            )
+        )
+
+    return items, messages
+
+
+def parse_meal_text_with_gemini(value: str) -> tuple[list[ParsedDietItem], list[str]]:
+    return _items_from_gemini_payload(value, _request_gemini(value))
+
+
+def interpret_meal_text(value: str) -> tuple[list[ParsedDietItem], list[str]]:
+    if settings.gemini_api_key:
+        try:
+            gemini_items, gemini_messages = parse_meal_text_with_gemini(value)
+            if gemini_items:
+                return gemini_items, gemini_messages
+            local_items, local_messages = parse_meal_text(value)
+            return local_items, gemini_messages + local_messages
+        except (RuntimeError, ValueError, KeyError, json.JSONDecodeError, urllib.error.URLError, urllib.error.HTTPError) as error:
+            local_items, local_messages = parse_meal_text(value)
+            notice = f"Gemini no pudo interpretar esta comida; se uso el parser local. Detalle: {error}"
+            return local_items, [notice] + local_messages
+
+    return parse_meal_text(value)
 
 
 def _infer_amount(food: FoodEquivalence, alias: str, before: str, local_text: str) -> tuple[float, str] | None:
@@ -945,7 +1123,9 @@ def conversion_rows(entries: list[DietEntry]) -> list[dict[str, Any]]:
                 "weight_state": entry.weight_state,
                 "meal_label": entry.meal_label,
                 "amount_source": entry.amount_source or "explicita",
+                "parser_source": entry.parser_source or "local",
                 "inference_note": entry.inference_note,
+                "notes": entry.notes,
             }
         )
     return rows
@@ -965,7 +1145,9 @@ def entry_rows(entries: list[DietEntry]) -> list[dict[str, Any]]:
                 "group": GROUP_LABELS.get(entry.group_key, entry.group_key),
                 "weight_state": entry.weight_state,
                 "amount_source": entry.amount_source or "explicita",
+                "parser_source": entry.parser_source or "local",
                 "inference_note": entry.inference_note,
+                "notes": entry.notes,
                 "source_text": entry.source_text,
                 "created_at": entry.created_at,
             }

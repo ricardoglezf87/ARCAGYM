@@ -698,6 +698,15 @@ legend {
   box-shadow: 0 6px 18px rgba(23, 32, 27, 0.05);
 }
 
+.diet-config-panel summary {
+  cursor: pointer;
+  font-weight: 850;
+}
+
+.diet-config-panel form {
+  margin-top: 16px;
+}
+
 .diet-target-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

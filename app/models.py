@@ -216,6 +216,7 @@ class DietEntry(Base):
     weight_state: Mapped[str] = mapped_column(String(80), nullable=False)
     servings: Mapped[float] = mapped_column(Float, nullable=False)
     amount_source: Mapped[str | None] = mapped_column(String(40), nullable=True)
+    parser_source: Mapped[str | None] = mapped_column(String(40), nullable=True)
     inference_note: Mapped[str | None] = mapped_column(Text, nullable=True)
     source_text: Mapped[str | None] = mapped_column(Text, nullable=True)
     batch_id: Mapped[str | None] = mapped_column(String(40), index=True, nullable=True)

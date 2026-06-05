@@ -12,6 +12,9 @@ class Settings:
     app_name: str = os.getenv("APP_NAME", "ARCA Gym")
     database_url: str = os.getenv("DATABASE_URL", "sqlite:///./arcagym.db")
     enable_external_sources: bool = os.getenv("ENABLE_EXTERNAL_SOURCES", "false").lower() == "true"
+    gemini_api_key: str | None = os.getenv("GEMINI_API_KEY") or None
+    gemini_model: str = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
+    gemini_timeout_seconds: int = int(os.getenv("GEMINI_TIMEOUT_SECONDS", "20"))
 
 
 settings = Settings()

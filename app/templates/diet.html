@@ -66,37 +66,39 @@
   </div>
 
   <div>
-    <div class="section-title"><h2>Configuracion</h2></div>
-    <form method="post" action="/diet/plans" class="form-grid diet-card diet-plan-form">
-      <input type="hidden" name="selected_date" value="{{ selected_date }}">
-      <label class="full">Aplicar desde
-        <input name="effective_from" type="date" value="{{ plan_form_values.get('effective_from', today) }}" required>
-      </label>
-      <div class="diet-target-grid full">
-        <label>Lacteos
-          <input name="lacteos" type="number" min="0" step="0.1" value="{{ plan_form_values.get('lacteos', '') }}" required>
+    <details class="diet-card diet-config-panel" {% if plan_error %}open{% endif %}>
+      <summary>Configuracion de raciones</summary>
+      <form method="post" action="/diet/plans" class="form-grid diet-plan-form">
+        <input type="hidden" name="selected_date" value="{{ selected_date }}">
+        <label class="full">Aplicar desde
+          <input name="effective_from" type="date" value="{{ plan_form_values.get('effective_from', today) }}" required>
         </label>
-        <label>Harinas
-          <input name="harinas" type="number" min="0" step="0.1" value="{{ plan_form_values.get('harinas', '') }}" required>
+        <div class="diet-target-grid full">
+          <label>Lacteos
+            <input name="lacteos" type="number" min="0" step="0.1" value="{{ plan_form_values.get('lacteos', '') }}" required>
+          </label>
+          <label>Harinas
+            <input name="harinas" type="number" min="0" step="0.1" value="{{ plan_form_values.get('harinas', '') }}" required>
+          </label>
+          <label>Frutas
+            <input name="frutas" type="number" min="0" step="0.1" value="{{ plan_form_values.get('frutas', '') }}" required>
+          </label>
+          <label>Verduras
+            <input name="verduras" type="number" min="0" step="0.1" value="{{ plan_form_values.get('verduras', '') }}" required>
+          </label>
+          <label>Proteinas
+            <input name="proteinas" type="number" min="0" step="0.1" value="{{ plan_form_values.get('proteinas', '') }}" required>
+          </label>
+          <label>Grasas
+            <input name="grasas" type="number" min="0" step="0.1" value="{{ plan_form_values.get('grasas', '') }}" required>
+          </label>
+        </div>
+        <label class="full">Notas
+          <input name="notes" value="{{ plan_form_values.get('notes', '') }}" placeholder="Ejemplo: ajuste doctora junio">
         </label>
-        <label>Frutas
-          <input name="frutas" type="number" min="0" step="0.1" value="{{ plan_form_values.get('frutas', '') }}" required>
-        </label>
-        <label>Verduras
-          <input name="verduras" type="number" min="0" step="0.1" value="{{ plan_form_values.get('verduras', '') }}" required>
-        </label>
-        <label>Proteinas
-          <input name="proteinas" type="number" min="0" step="0.1" value="{{ plan_form_values.get('proteinas', '') }}" required>
-        </label>
-        <label>Grasas
-          <input name="grasas" type="number" min="0" step="0.1" value="{{ plan_form_values.get('grasas', '') }}" required>
-        </label>
-      </div>
-      <label class="full">Notas
-        <input name="notes" value="{{ plan_form_values.get('notes', '') }}" placeholder="Ejemplo: ajuste doctora junio">
-      </label>
-      <button class="button primary full" type="submit">Guardar configuracion</button>
-    </form>
+        <button class="button primary full" type="submit">Guardar configuracion</button>
+      </form>
+    </details>
   </div>
 </section>
 
@@ -108,8 +110,9 @@
         <article class="list-item diet-conversion-item">
           <div>
             <strong>{{ row.food_name }} {{ row.amount }} = {{ row.servings }} {{ row.group_serving }}</strong>
-            <p>Peso: {{ row.weight_state }} - Comida: {{ row.meal_label }} - {{ row.amount_source }}</p>
+            <p>Peso: {{ row.weight_state }} - Comida: {{ row.meal_label }} - {{ row.amount_source }} - {{ row.parser_source }}</p>
             {% if row.inference_note %}<p>{{ row.inference_note }}</p>{% endif %}
+            {% if row.notes %}<p>{{ row.notes }}</p>{% endif %}
           </div>
         </article>
       {% endfor %}
@@ -154,8 +157,9 @@
         <article class="list-item diet-entry-item">
           <div>
             <strong>{{ row.meal_label }} - {{ row.food_name }}</strong>
-            <p>{{ row.amount }} = {{ row.servings }} {{ row.group|lower }} - {{ row.weight_state }} - {{ row.amount_source }}</p>
+            <p>{{ row.amount }} = {{ row.servings }} {{ row.group|lower }} - {{ row.weight_state }} - {{ row.amount_source }} - {{ row.parser_source }}</p>
             {% if row.inference_note %}<p>{{ row.inference_note }}</p>{% endif %}
+            {% if row.notes %}<p>{{ row.notes }}</p>{% endif %}
           </div>
           <form method="post" action="/diet/entries/{{ row.id }}/delete" onsubmit="return confirm('Eliminar este alimento?')">
             <button class="button danger compact" type="submit">Borrar</button>

@@ -18,7 +18,7 @@ from app.services.diet_service import (
     entry_rows,
     equivalence_rows,
     format_number,
-    parse_meal_text,
+    interpret_meal_text,
     targets_from_plan,
 )
 
@@ -192,8 +192,8 @@ async def create_diet_text_entry(
     meal_label = _meal_label(form.get("meal_label"))
     source_text = str(form.get("entry_text") or "").strip()
 
-    items, messages = parse_meal_text(source_text)
-    if messages or not items:
+    items, messages = interpret_meal_text(source_text)
+    if not items:
         return templates.TemplateResponse(
             "diet.html",
             _context(
@@ -208,8 +208,9 @@ async def create_diet_text_entry(
         )
 
     batch_id = uuid4().hex
+    notes = " ".join(messages) if messages else None
     for item in items:
-        db.add(entry_from_item(item, user.id, selected_date, meal_label, batch_id))
+        db.add(entry_from_item(item, user.id, selected_date, meal_label, batch_id, notes=notes))
     db.commit()
     return RedirectResponse(
         f"/diet?date={selected_date.isoformat()}&saved=1&batch={batch_id}",

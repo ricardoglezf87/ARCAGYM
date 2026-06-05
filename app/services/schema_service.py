@@ -8,6 +8,7 @@ WORKOUT_SESSION_SCHEMA_COLUMNS = {
 
 DIET_ENTRY_SCHEMA_COLUMNS = {
     "amount_source": "VARCHAR(40)",
+    "parser_source": "VARCHAR(40)",
     "inference_note": "TEXT",
 }
 
