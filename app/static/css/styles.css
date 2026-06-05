@@ -637,6 +637,74 @@ legend {
   align-items: flex-start;
 }
 
+.diet-balance-card {
+  display: grid;
+  gap: 16px;
+  padding: 18px;
+  margin-bottom: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: 0 6px 18px rgba(23, 32, 27, 0.05);
+}
+
+.diet-balance-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.diet-balance-head h2 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.diet-balance-head p {
+  margin: 4px 0 0;
+  color: var(--muted);
+}
+
+.diet-balance-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.ration-row {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(238, 243, 238, 0.55);
+}
+
+.ration-row-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.ration-row-head strong,
+.ration-row-head span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ration-row-head span {
+  color: var(--ink);
+  font-weight: 850;
+}
+
+.ration-row small {
+  color: var(--muted);
+  font-weight: 750;
+}
+
 .diet-date-filter {
   display: grid;
   grid-template-columns: minmax(180px, 1fr) auto auto;
@@ -687,6 +755,10 @@ legend {
 }
 
 .diet-entry-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+  gap: 16px;
+  align-items: start;
   margin-bottom: 22px;
 }
 
@@ -699,8 +771,18 @@ legend {
 }
 
 .diet-config-panel summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
   cursor: pointer;
   font-weight: 850;
+}
+
+.diet-config-panel summary small {
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 700;
 }
 
 .diet-config-panel form {
@@ -715,6 +797,50 @@ legend {
 
 .diet-section {
   margin: 24px 0;
+}
+
+.diet-detail-stack {
+  display: grid;
+  gap: 12px;
+}
+
+.diet-detail-panel {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 6px 18px rgba(23, 32, 27, 0.04);
+}
+
+.diet-detail-panel > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 54px;
+  padding: 14px 16px;
+  cursor: pointer;
+  font-weight: 850;
+}
+
+.diet-detail-panel > summary small {
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.diet-detail-content {
+  padding: 0 16px 16px;
+}
+
+.diet-detail-panel .list-item,
+.diet-detail-panel .history-item {
+  box-shadow: none;
+}
+
+.diet-inline-action {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 0 12px;
 }
 
 .diet-conversion-item,
@@ -1302,6 +1428,11 @@ legend {
     grid-template-columns: 1fr 1fr;
   }
 
+  .diet-balance-grid,
+  .diet-entry-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
   .routine-edit-exercise {
     grid-template-columns: minmax(220px, 1fr) repeat(2, minmax(120px, 0.6fr));
   }
@@ -1396,6 +1527,21 @@ legend {
     min-width: 0;
   }
 
+  .diet-entry-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .diet-balance-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .diet-balance-head,
+  .diet-detail-panel > summary,
+  .diet-config-panel summary {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
   .diet-target-grid {
     grid-template-columns: 1fr;
   }
@@ -1434,5 +1580,11 @@ legend {
 
   .icon-button {
     width: 34px;
+  }
+}
+
+@media (max-width: 420px) {
+  .diet-balance-grid {
+    grid-template-columns: 1fr;
   }
 }
