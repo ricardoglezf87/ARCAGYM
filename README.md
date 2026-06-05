@@ -22,6 +22,7 @@ Copy-Item .env.example .env
 ```
 
 Puedes editar `.env` para cambiar la ruta de la base de datos o activar futuras fuentes externas opcionales.
+Para interpretar comidas con Gemini, anade `GEMINI_API_KEY` en `.env`; si no esta configurada, la app usa el parser local como respaldo.
 
 ## Ejecucion
 
@@ -60,6 +61,7 @@ La base `arcagym.db` se crea automaticamente en el primer arranque y se carga co
 - Equipamiento real de la biblioteca agrupado por Maquinas, Pesas, Peso corporal y Complementos al generar recomendaciones.
 - Guardado y edicion de rutinas recomendadas como plantillas reutilizables.
 - Registro de sesiones desde una rutina guardada y su dia planificado.
+- Seguimiento diario de dieta por raciones con equivalencias fijas, interpretacion por Gemini con respaldo local, estimacion de cantidades por texto, planes configurables por fecha, estado consumido/restante y propuestas para el resto del dia.
 - Descarga de backup local de la base SQLite desde la app, guardando historico en `backup/`.
 - Capa `external_sources_service.py` preparada para futuras fuentes externas opcionales.
 
