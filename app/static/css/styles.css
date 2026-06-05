@@ -637,7 +637,7 @@ legend {
   align-items: flex-start;
 }
 
-.diet-balance-card {
+.diet-card {
   display: grid;
   gap: 16px;
   padding: 18px;
@@ -646,6 +646,11 @@ legend {
   border-radius: 8px;
   background: var(--surface);
   box-shadow: 0 6px 18px rgba(23, 32, 27, 0.05);
+}
+
+.diet-card.compact {
+  margin-bottom: 14px;
+  box-shadow: none;
 }
 
 .diet-balance-head {
@@ -760,6 +765,10 @@ legend {
   gap: 16px;
   align-items: start;
   margin-bottom: 22px;
+}
+
+.diet-entry-grid.single {
+  grid-template-columns: minmax(0, 760px);
 }
 
 .diet-card {
