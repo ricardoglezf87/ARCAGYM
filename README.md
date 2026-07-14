@@ -22,7 +22,6 @@ Copy-Item .env.example .env
 ```
 
 Puedes editar `.env` para cambiar la ruta de la base de datos o activar futuras fuentes externas opcionales.
-Para interpretar comidas con Gemini, anade `GEMINI_API_KEY` en `.env`; si no esta configurada, la app usa el parser local como respaldo.
 
 ## Ejecucion
 
@@ -54,14 +53,13 @@ La base `arcagym.db` se crea automaticamente en el primer arranque y se carga co
 - Perfil editable con objetivo, nivel, disponibilidad, limitaciones y equipamiento.
 - Biblioteca local de ejercicios con imagenes, instrucciones, errores, consejos y seguridad.
 - Creacion, edicion y eliminacion de entrenamientos.
-- Registro de ejercicios, series, peso, repeticiones, RPE, descanso y notas.
+- Registro de ejercicios, series, peso, repeticiones, descanso y notas.
 - Historial de sesiones.
-- Estadisticas con volumen semanal, sesiones por semana, volumen por ejercicio, distribucion muscular, ejercicios mas entrenados, records personales y 1RM estimado con Epley.
+- Estadisticas con volumen semanal, sesiones por semana, volumen por ejercicio, distribucion muscular, progresion por ejercicio y grupo muscular, ejercicios mas entrenados, records personales y 1RM estimado con Epley.
 - Recomendaciones de rutina por reglas segun objetivo, nivel, dias, tiempo, equipamiento, limitaciones y preferencias.
 - Equipamiento real de la biblioteca agrupado por Maquinas, Pesas, Peso corporal y Complementos al generar recomendaciones.
 - Guardado y edicion de rutinas recomendadas como plantillas reutilizables.
 - Registro de sesiones desde una rutina guardada y su dia planificado.
-- Seguimiento diario de dieta por raciones con equivalencias fijas, interpretacion por Gemini con respaldo local, estimacion de cantidades por texto, planes configurables por fecha, estado consumido/restante y propuestas para el resto del dia.
 - Descarga de backup local de la base SQLite desde la app, guardando historico en `backup/`.
 - Capa `external_sources_service.py` preparada para futuras fuentes externas opcionales.
 

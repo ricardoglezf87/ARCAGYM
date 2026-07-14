@@ -44,7 +44,6 @@ class ExerciseSetInput(BaseModel):
     set_number: int = Field(ge=1)
     weight: float = Field(ge=0)
     reps: int = Field(ge=0)
-    rpe: float | None = Field(default=None, ge=1, le=10)
     rest_seconds: int | None = Field(default=None, ge=0, le=1200)
     notes: str | None = None
 

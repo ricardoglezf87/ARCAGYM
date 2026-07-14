@@ -47,14 +47,14 @@ def _choose_split(data: RecommendationInput) -> str:
 
 def _goal_params(goal: str) -> dict[str, str]:
     if goal == "fuerza":
-        return {"sets": "3-5", "reps": "3-6", "rest": "2-4 min", "intensity": "RPE 7-9"}
+        return {"sets": "3-5", "reps": "3-6", "rest": "2-4 min"}
     if goal == "hipertrofia":
-        return {"sets": "3-4", "reps": "6-15", "rest": "60-120 s", "intensity": "RPE 7-9"}
+        return {"sets": "3-4", "reps": "6-15", "rest": "60-120 s"}
     if goal == "perdida de grasa":
-        return {"sets": "2-4", "reps": "8-15", "rest": "45-90 s", "intensity": "RPE 6-8"}
+        return {"sets": "2-4", "reps": "8-15", "rest": "45-90 s"}
     if goal == "recomposicion corporal":
-        return {"sets": "3-4", "reps": "6-12", "rest": "60-150 s", "intensity": "RPE 7-8"}
-    return {"sets": "2-3", "reps": "8-12", "rest": "60-120 s", "intensity": "RPE 6-8"}
+        return {"sets": "3-4", "reps": "6-12", "rest": "60-150 s"}
+    return {"sets": "2-3", "reps": "8-12", "rest": "60-120 s"}
 
 
 def _recent_muscle_counter(db: Session, user: User) -> Counter[str]:
@@ -175,8 +175,7 @@ def build_recommendation(db: Session, user: User, data: RecommendationInput) -> 
                     "sets": adjusted_sets,
                     "reps": params["reps"],
                     "rest": params["rest"],
-                    "intensity": params["intensity"],
-                    "notes": "Prioriza tecnica estable y deja 1-3 repeticiones en recamara.",
+                    "notes": "Prioriza tecnica estable y control en cada repeticion.",
                 }
             )
         days.append({"name": f"Dia {index + 1}", "focus": ", ".join(muscles), "exercises": exercises})

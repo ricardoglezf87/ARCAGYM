@@ -5,7 +5,7 @@
   <div>
     <p class="eyebrow">Registro</p>
     <h1>{% if mode == "edit" %}Editar entrenamiento{% else %}Nuevo entrenamiento{% endif %}</h1>
-    <p class="muted">Anade ejercicios, series, peso, repeticiones, RPE y notas.</p>
+    <p class="muted">Anade ejercicios, series, peso, repeticiones, descanso y notas.</p>
   </div>
 </section>
 
@@ -99,7 +99,6 @@
                   <th>Hecha</th>
                   <th>Peso</th>
                   <th>Reps</th>
-                  <th>RPE</th>
                   <th>Descanso</th>
                   <th>Notas</th>
                   <th></th>
@@ -116,7 +115,6 @@
                     </td>
                     <td><input data-set-field="weight" name="set_weight_{{ exercise_index }}" type="number" step="0.1" min="0" value="{{ set.weight }}"></td>
                     <td><input data-set-field="reps" name="set_reps_{{ exercise_index }}" type="number" min="1" value="{{ set.reps }}" required></td>
-                    <td><input data-set-field="rpe" name="set_rpe_{{ exercise_index }}" type="number" step="0.5" min="1" max="10" value="{{ set.rpe or '' }}"></td>
                     <td><input data-set-field="rest" name="set_rest_{{ exercise_index }}" type="number" min="0" value="{{ set.rest_seconds or '' }}"></td>
                     <td><input data-set-field="notes" name="set_notes_{{ exercise_index }}" value="{{ set.notes or '' }}"></td>
                     <td><button type="button" class="icon-button remove-set" aria-label="Eliminar serie">x</button></td>
@@ -172,7 +170,6 @@
             <th>Hecha</th>
             <th>Peso</th>
             <th>Reps</th>
-            <th>RPE</th>
             <th>Descanso</th>
             <th>Notas</th>
             <th></th>
@@ -195,12 +192,11 @@
     </td>
     <td><input data-set-field="weight" type="number" step="0.1" min="0" value="0"></td>
     <td><input data-set-field="reps" type="number" min="1" value="10" required></td>
-    <td><input data-set-field="rpe" type="number" step="0.5" min="1" max="10"></td>
     <td><input data-set-field="rest" type="number" min="0" placeholder="90"></td>
     <td><input data-set-field="notes"></td>
     <td><button type="button" class="icon-button remove-set" aria-label="Eliminar serie">x</button></td>
   </tr>
 </template>
 
-<script src="{{ url_for('static', path='/js/workout_form.js') }}?v=20260602-workout-draft-routine"></script>
+<script src="{{ url_for('static', path='/js/workout_form.js') }}?v=20260714-no-effort-confirm"></script>
 {% endblock %}

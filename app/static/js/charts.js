@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (!window.Chart) {
-    ["weeklyVolumeChart", "weeklySessionsChart", "exerciseVolumeChart", "muscleChart"].forEach((id) => {
+    ["weeklyVolumeChart", "weeklySessionsChart", "exerciseVolumeChart", "muscleChart", "exerciseProgressionChart", "muscleProgressionChart"].forEach((id) => {
       renderMessage(id, "Chart.js no esta disponible. Revisa la conexion o usa los datos tabulares.");
     });
     return;
@@ -67,8 +67,48 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  function multiLineChart(id, labels, datasets) {
+    const canvas = document.querySelector(`#${id}`);
+    if (!canvas || !labels || labels.length === 0 || !datasets || datasets.length === 0) {
+      renderMessage(id, "Sin datos suficientes para este grafico.");
+      return;
+    }
+
+    new Chart(canvas, {
+      type: "line",
+      data: {
+        labels,
+        datasets: datasets.map((dataset, index) => ({
+          label: dataset.label,
+          data: dataset.values,
+          borderColor: palette[index % palette.length],
+          backgroundColor: "transparent",
+          tension: 0.25,
+          borderWidth: 2,
+        })),
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: datasets.length > 1 },
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: { precision: 0 },
+          },
+        },
+      },
+    });
+  }
+
   chart("weeklyVolumeChart", "line", stats.weekly_volume.labels, stats.weekly_volume.values, "Volumen");
   chart("weeklySessionsChart", "bar", stats.weekly_sessions.labels, stats.weekly_sessions.values, "Sesiones");
   chart("exerciseVolumeChart", "bar", stats.exercise_volume.labels, stats.exercise_volume.values, "Volumen por ejercicio");
   chart("muscleChart", "doughnut", stats.muscle_distribution.labels, stats.muscle_distribution.values, "Series");
+  multiLineChart("exerciseProgressionChart", stats.selected_exercise_progress.labels, [
+    { label: "1RM estimado", values: stats.selected_exercise_progress.estimated_1rm },
+  ]);
+  multiLineChart("muscleProgressionChart", stats.muscle_progression.labels, stats.muscle_progression.datasets);
 });

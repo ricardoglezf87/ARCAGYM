@@ -187,7 +187,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function applySetValues(row, values) {
-    ["weight", "reps", "rpe", "rest", "notes"].forEach((field) => {
+    ["weight", "reps", "rest", "notes"].forEach((field) => {
       const input = fieldInput(row, field);
       if (input && Object.prototype.hasOwnProperty.call(values, field)) {
         input.value = values[field] ?? "";
@@ -274,7 +274,6 @@ document.addEventListener("DOMContentLoaded", () => {
         sets: Array.from(block.querySelectorAll(".set-row")).map((row) => ({
           weight: fieldInput(row, "weight")?.value || "",
           reps: fieldInput(row, "reps")?.value || "",
-          rpe: fieldInput(row, "rpe")?.value || "",
           rest: fieldInput(row, "rest")?.value || "",
           notes: fieldInput(row, "notes")?.value || "",
           done: isSetDone(row),
@@ -418,6 +417,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (target.closest(".remove-exercise")) {
+      if (!window.confirm("Quitar este ejercicio del entrenamiento?")) {
+        return;
+      }
       block.remove();
       if (!blocksContainer.querySelector(".workout-exercise")) {
         addExercise();

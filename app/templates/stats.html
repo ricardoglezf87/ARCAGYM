@@ -12,6 +12,40 @@
   </div>
 </section>
 
+<details class="stats-quick-filter" {% if filters.exercise_id or filters.muscle %}open{% endif %}>
+  <summary>
+    <span>Filtros rapidos</span>
+    <small>Grupos y ejercicios con registros</small>
+  </summary>
+  <div class="stats-quick-filter-content">
+    <div class="quick-filter-block">
+      <h2>Grupos trabajados</h2>
+      <div class="quick-filter-buttons">
+        <a class="quick-filter-chip {% if not filters.exercise_id and not filters.muscle %}is-active{% endif %}" href="{{ options.clear_url }}">Todos</a>
+        {% for muscle in options.muscles %}
+          <a class="quick-filter-chip {% if not filters.exercise_id and filters.muscle == muscle.name %}is-active{% endif %}" href="{{ muscle.url }}">
+            {{ muscle.name }}
+            <span>{{ muscle.record_count }}</span>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="quick-filter-block">
+      <h2>Ejercicios realizados</h2>
+      <div class="quick-filter-buttons exercise-buttons">
+        {% for exercise in options.exercises %}
+          <a class="quick-filter-chip {% if filters.exercise_id == exercise.id %}is-active{% endif %}" href="{{ exercise.url }}">
+            {{ exercise.name }}
+            <span>{{ exercise.record_count }}</span>
+          </a>
+        {% else %}
+          <p class="empty">Aun no hay ejercicios registrados.</p>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</details>
+
 <form class="filter-bar" method="get" action="/stats">
   <select name="exercise_id" data-searchable-select data-search-placeholder="Buscar ejercicio">
     <option value="">Todos los ejercicios</option>
@@ -22,7 +56,7 @@
   <select name="muscle">
     <option value="">Todos los grupos</option>
     {% for muscle in options.muscles %}
-      <option value="{{ muscle }}" {% if filters.muscle == muscle %}selected{% endif %}>{{ muscle }}</option>
+      <option value="{{ muscle.name }}" {% if filters.muscle == muscle.name %}selected{% endif %}>{{ muscle.name }}</option>
     {% endfor %}
   </select>
   <input name="start_date" type="date" value="{{ filters.start_date }}">
@@ -36,8 +70,8 @@
     <strong>{{ stats.total_volume }} kg</strong>
   </article>
   <article class="metric">
-    <span>Ejercicios medidos</span>
-    <strong>{{ stats.exercise_volume.labels|length }}</strong>
+    <span>{{ stats.summary_count_label }}</span>
+    <strong>{{ stats.summary_count_value }}</strong>
   </article>
   <article class="metric">
     <span>Records</span>
@@ -61,6 +95,15 @@
   <div class="chart-panel">
     <h2>Distribucion muscular</h2>
     <canvas id="muscleChart"></canvas>
+  </div>
+  <div class="chart-panel">
+    <h2>Progresion del ejercicio</h2>
+    <p class="muted">{{ stats.selected_exercise_progress.name or "Selecciona o registra mas ejercicios" }}</p>
+    <canvas id="exerciseProgressionChart"></canvas>
+  </div>
+  <div class="chart-panel">
+    <h2>Progresion por grupo muscular</h2>
+    <canvas id="muscleProgressionChart"></canvas>
   </div>
 </section>
 
@@ -90,6 +133,45 @@
         </article>
       {% else %}
         <p class="empty">Aun no hay datos suficientes.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="content-grid">
+  <div>
+    <div class="section-title"><h2>Progresion por ejercicio</h2></div>
+    <div class="list-stack">
+      {% for row in stats.exercise_progression_rows %}
+        <article class="list-item progression-item">
+          <div>
+            <strong>{{ row.name }}</strong>
+            <p>{{ row.first_date }} a {{ row.last_date }} &middot; 1RM {{ row.first_1rm }} -> {{ row.last_1rm }} kg</p>
+          </div>
+          <span class="{% if row.delta_1rm >= 0 %}progression-positive{% else %}progression-negative{% endif %}">
+            {{ "%+.1f"|format(row.delta_1rm) }} kg
+          </span>
+        </article>
+      {% else %}
+        <p class="empty">Necesitas al menos dos registros del mismo ejercicio para ver progresion.</p>
+      {% endfor %}
+    </div>
+  </div>
+  <div>
+    <div class="section-title"><h2>Progresion por grupo</h2></div>
+    <div class="list-stack">
+      {% for row in stats.muscle_progression.summary %}
+        <article class="list-item progression-item">
+          <div>
+            <strong>{{ row.name }}</strong>
+            <p>{{ row.first_week }} a {{ row.last_week }} &middot; volumen {{ row.first_volume }} -> {{ row.last_volume }} kg</p>
+          </div>
+          <span class="{% if row.delta_volume >= 0 %}progression-positive{% else %}progression-negative{% endif %}">
+            {{ "%+.0f"|format(row.delta_volume) }} kg
+          </span>
+        </article>
+      {% else %}
+        <p class="empty">Registra varias semanas para comparar grupos musculares.</p>
       {% endfor %}
     </div>
   </div>

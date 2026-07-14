@@ -48,7 +48,7 @@
           <div class="routine-exercise">
             <strong>{{ exercise.name }}</strong>
             <span>{{ exercise.primary_muscle }}</span>
-            <p>{{ exercise.sets }} series &middot; {{ exercise.reps }} reps &middot; descanso {{ exercise.rest }} &middot; {{ exercise.intensity }}</p>
+            <p>{{ exercise.sets }} series &middot; {{ exercise.reps }} reps{% if exercise.rest %} &middot; descanso {{ exercise.rest }}{% endif %}</p>
             <small>{{ exercise.notes }}</small>
             {% if exercise.image_url %}
               <div class="routine-exercise-actions">
