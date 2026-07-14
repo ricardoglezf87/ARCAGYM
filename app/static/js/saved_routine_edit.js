@@ -27,6 +27,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (target.classList.contains("remove-routine-exercise")) {
+      if (!window.confirm("Quitar este ejercicio de la rutina?")) {
+        return;
+      }
       target.closest(".routine-edit-exercise").remove();
     }
   });

@@ -102,7 +102,6 @@ def _parse_workout_form(form: FormData, db: Session) -> tuple[date | None, str |
         )
         weights = form.getlist(f"set_weight_{index}")
         reps = form.getlist(f"set_reps_{index}")
-        rpes = form.getlist(f"set_rpe_{index}")
         rests = form.getlist(f"set_rest_{index}")
         notes = form.getlist(f"set_notes_{index}")
 
@@ -111,16 +110,12 @@ def _parse_workout_form(form: FormData, db: Session) -> tuple[date | None, str |
             if reps_value is None or reps_value <= 0:
                 continue
             weight_value = _float_or_none(str(weights[set_index])) if set_index < len(weights) else 0
-            rpe_value = _float_or_none(str(rpes[set_index])) if set_index < len(rpes) else None
             rest_value = _int_or_none(str(rests[set_index])) if set_index < len(rests) else None
-            if rpe_value is not None and not 1 <= rpe_value <= 10:
-                rpe_value = None
             entry.sets.append(
                 ExerciseSet(
                     set_number=len(entry.sets) + 1,
                     weight=max(weight_value or 0, 0),
                     reps=reps_value,
-                    rpe=rpe_value,
                     rest_seconds=rest_value,
                     notes=notes[set_index] if set_index < len(notes) else None,
                 )
@@ -227,7 +222,6 @@ def _routine_day_entries(
                     {
                         "weight": last_weights.get(exercise.id, 0),
                         "reps": reps,
-                        "rpe": None,
                         "rest_seconds": rest_seconds,
                         "notes": "",
                     }

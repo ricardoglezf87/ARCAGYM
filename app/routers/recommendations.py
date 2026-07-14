@@ -223,7 +223,6 @@ def _routine_to_recommendation(routine: SavedRoutine) -> dict:
                         "sets": routine_exercise.sets or "",
                         "reps": routine_exercise.reps or "",
                         "rest": routine_exercise.rest or "",
-                        "intensity": routine_exercise.intensity or "",
                         "notes": routine_exercise.notes or "",
                     }
                     for routine_exercise in day.exercises
@@ -294,7 +293,6 @@ def _save_recommendation(
                     sets=exercise.get("sets"),
                     reps=exercise.get("reps"),
                     rest=exercise.get("rest"),
-                    intensity=exercise.get("intensity"),
                     notes=exercise.get("notes"),
                 )
             )
@@ -318,7 +316,6 @@ def _update_saved_routine_from_form(db: Session, routine: SavedRoutine, form) ->
         sets_values = form.getlist(f"sets_{day.id}")
         reps_values = form.getlist(f"reps_{day.id}")
         rest_values = form.getlist(f"rest_{day.id}")
-        intensity_values = form.getlist(f"intensity_{day.id}")
         notes_values = form.getlist(f"notes_{day.id}")
 
         day.exercises.clear()
@@ -339,7 +336,6 @@ def _update_saved_routine_from_form(db: Session, routine: SavedRoutine, form) ->
                     sets=sets_values[index] if index < len(sets_values) else "",
                     reps=reps_values[index] if index < len(reps_values) else "",
                     rest=rest_values[index] if index < len(rest_values) else "",
-                    intensity=intensity_values[index] if index < len(intensity_values) else "",
                     notes=notes_values[index] if index < len(notes_values) else "",
                 )
             )

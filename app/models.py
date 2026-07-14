@@ -142,7 +142,6 @@ class SavedRoutineExercise(Base):
     sets: Mapped[str | None] = mapped_column(String(40), nullable=True)
     reps: Mapped[str | None] = mapped_column(String(40), nullable=True)
     rest: Mapped[str | None] = mapped_column(String(40), nullable=True)
-    intensity: Mapped[str | None] = mapped_column(String(40), nullable=True)
     notes: Mapped[str | None] = mapped_column(Text, nullable=True)
 
     day: Mapped[SavedRoutineDay] = relationship(back_populates="exercises")
@@ -175,7 +174,6 @@ class ExerciseSet(Base):
     set_number: Mapped[int] = mapped_column(Integer, nullable=False)
     weight: Mapped[float] = mapped_column(Float, default=0, nullable=False)
     reps: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
-    rpe: Mapped[float | None] = mapped_column(Float, nullable=True)
     rest_seconds: Mapped[int | None] = mapped_column(Integer, nullable=True)
     notes: Mapped[str | None] = mapped_column(Text, nullable=True)
 

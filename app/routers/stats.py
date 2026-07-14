@@ -1,5 +1,6 @@
 import json
 from datetime import date
+from urllib.parse import urlencode
 
 from fastapi import APIRouter, Depends, Query, Request
 from sqlalchemy.orm import Session
@@ -22,6 +23,26 @@ def _parse_date(value: str | None) -> date | None:
         return None
 
 
+def _stats_url(
+    *,
+    exercise_id: int | None = None,
+    muscle: str | None = None,
+    start_date: str | None = None,
+    end_date: str | None = None,
+) -> str:
+    params: dict[str, str | int] = {}
+    if exercise_id:
+        params["exercise_id"] = exercise_id
+    if muscle:
+        params["muscle"] = muscle
+    if start_date:
+        params["start_date"] = start_date
+    if end_date:
+        params["end_date"] = end_date
+    query = urlencode(params)
+    return f"/stats?{query}" if query else "/stats"
+
+
 @router.get("/stats")
 def stats(
     request: Request,
@@ -40,6 +61,20 @@ def stats(
         start_date=_parse_date(start_date),
         end_date=_parse_date(end_date),
     )
+    options = get_filter_options(db, user)
+    for exercise in options["exercises"]:
+        exercise["url"] = _stats_url(
+            exercise_id=exercise["id"],
+            start_date=start_date,
+            end_date=end_date,
+        )
+    for muscle_option in options["muscles"]:
+        muscle_option["url"] = _stats_url(
+            muscle=muscle_option["name"],
+            start_date=start_date,
+            end_date=end_date,
+        )
+    options["clear_url"] = _stats_url(start_date=start_date, end_date=end_date)
     return templates.TemplateResponse(
         "stats.html",
         {
@@ -53,6 +88,6 @@ def stats(
                 "start_date": start_date or "",
                 "end_date": end_date or "",
             },
-            "options": get_filter_options(db),
+            "options": options,
         },
     )

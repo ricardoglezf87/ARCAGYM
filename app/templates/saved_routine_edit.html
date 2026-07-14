@@ -5,7 +5,7 @@
   <div>
     <p class="eyebrow">Rutina guardada</p>
     <h1>Editar rutina</h1>
-    <p class="muted">Ajusta ejercicios, series, repeticiones, descansos, intensidad y notas.</p>
+    <p class="muted">Ajusta ejercicios, series, repeticiones, descansos y notas.</p>
   </div>
   <a class="button ghost" href="/recommendations/saved/{{ routine.id }}">Cancelar</a>
 </section>
@@ -59,9 +59,6 @@
               </label>
               <label>Descanso
                 <input name="rest_{{ day.id }}" value="{{ routine_exercise.rest or '' }}" placeholder="60-120 s">
-              </label>
-              <label>Intensidad
-                <input name="intensity_{{ day.id }}" value="{{ routine_exercise.intensity or '' }}" placeholder="RPE 7-9">
               </label>
               <label class="routine-edit-notes">Notas
                 <input name="notes_{{ day.id }}" value="{{ routine_exercise.notes or '' }}">
@@ -118,11 +115,8 @@
     <label>Descanso
       <input data-field="rest" value="60-120 s" placeholder="60-120 s">
     </label>
-    <label>Intensidad
-      <input data-field="intensity" value="RPE 7-9" placeholder="RPE 7-9">
-    </label>
     <label class="routine-edit-notes">Notas
-      <input data-field="notes" value="Prioriza tecnica estable y deja 1-3 repeticiones en recamara.">
+      <input data-field="notes" value="Prioriza tecnica estable y control en cada repeticion.">
     </label>
     <button type="button" class="icon-button remove-routine-exercise" aria-label="Quitar ejercicio">x</button>
   </div>
