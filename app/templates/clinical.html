@@ -1,0 +1,318 @@
+{% extends "base.html" %}
+{% block title %}Analiticas | ARCA Gym{% endblock %}
+{% block head %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock %}
+{% block content %}
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">Salud y evolucion</p>
+    <h1>Analiticas</h1>
+    <p class="muted">Registra una fecha y completa solo los resultados disponibles. Las unidades y referencias se guardan con cada dato.</p>
+  </div>
+</section>
+
+{% if request.query_params.get('saved') == '1' %}
+  <div class="success">Analitica guardada.</div>
+{% endif %}
+{% if error %}
+  <div class="alert">{{ error }}</div>
+{% endif %}
+
+<details class="clinical-entry-panel" open>
+  <summary>
+    <span>Nueva analitica</span>
+    <small>{{ dashboard.variables|length }} variables disponibles</small>
+  </summary>
+  <form method="post" action="/analiticas" class="clinical-entry-form">
+    <div class="clinical-entry-header">
+      <label>Fecha
+        <input name="date" type="date" value="{{ form_values.get('date', today) }}" required>
+      </label>
+      <label>Notas
+        <input name="notes" value="{{ form_values.get('notes', '') }}" placeholder="Laboratorio, ayunas, contexto">
+      </label>
+    </div>
+
+    <div class="clinical-entry-tools" aria-label="Filtrar variables para introducir datos">
+      <label>Categoria
+        <select id="clinical-entry-category">
+          <option value="">Todas</option>
+          {% for category in dashboard.categories %}
+            <option value="{{ category }}">{{ category }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <label>Buscar variable
+        <input id="clinical-entry-search" type="search" placeholder="Glucosa, TSH, colesterol..." autocomplete="off">
+      </label>
+      <p class="clinical-visible-count"><strong id="clinical-visible-count">{{ dashboard.variables|length }}</strong> visibles</p>
+    </div>
+
+    <div class="clinical-table-wrap">
+      <table class="clinical-entry-table">
+        <thead>
+          <tr>
+            <th>Categoria</th>
+            <th>Variable</th>
+            <th>Resultado</th>
+            <th>Unidad</th>
+            <th>Referencia</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for group in entry_groups %}
+            {% for variable in group.variables %}
+              <tr
+                data-clinical-row
+                data-category="{{ variable.category }}"
+                data-search="{{ variable.category }} {{ variable.name }}"
+              >
+                <td><span class="clinical-category-chip">{{ variable.category }}</span></td>
+                <td>
+                  <label for="clinical-variable-{{ variable.id }}">{{ variable.name }}</label>
+                </td>
+                <td>
+                  <input
+                    id="clinical-variable-{{ variable.id }}"
+                    name="variable_{{ variable.id }}"
+                    type="text"
+                    {% if variable.value_type != 'text' %}inputmode="decimal"{% endif %}
+                    value="{{ form_values.get('variable_' ~ variable.id, '') }}"
+                    autocomplete="off"
+                    aria-label="Resultado de {{ variable.name }}"
+                  >
+                </td>
+                <td>{{ variable.default_unit or '-' }}</td>
+                <td>{{ variable.default_reference or '-' }}</td>
+              </tr>
+            {% endfor %}
+          {% endfor %}
+        </tbody>
+      </table>
+      <p class="empty" id="clinical-entry-empty" hidden>No hay variables que coincidan con el filtro.</p>
+    </div>
+    <div class="clinical-entry-actions">
+      <p>Los campos vacios no se guardan.</p>
+      <button class="button primary" type="submit">Guardar analitica</button>
+    </div>
+  </form>
+</details>
+
+<section class="metric-grid clinical-summary-grid">
+  <article class="metric">
+    <span>Analiticas</span>
+    <strong>{{ dashboard.summary.analyses }}</strong>
+  </article>
+  <article class="metric">
+    <span>Resultados</span>
+    <strong>{{ dashboard.summary.results }}</strong>
+  </article>
+  <article class="metric">
+    <span>Variables con datos</span>
+    <strong>{{ dashboard.summary.variables_with_data }}</strong>
+  </article>
+  <article class="metric">
+    <span>Ultima analitica</span>
+    <strong class="clinical-date-metric">{{ dashboard.summary.latest_date or '-' }}</strong>
+  </article>
+</section>
+
+{% if dashboard.latest_fli %}
+  <section class="clinical-fli-card">
+    <div>
+      <p class="eyebrow">Indice de higado graso</p>
+      <div class="clinical-fli-value">
+        <strong>{{ dashboard.latest_fli.value }}</strong>
+        <span class="clinical-fli-class clinical-fli-{{ dashboard.latest_fli.classification|lower }}">{{ dashboard.latest_fli.classification }}</span>
+      </div>
+      {% if dashboard.latest_fli.calculation_type == 'reported' %}
+        <p>Resultado informado en la analitica de {{ dashboard.latest_fli.date }}.</p>
+      {% else %}
+        <p>Calculado para {{ dashboard.latest_fli.date }} con trigliceridos, GGT, IMC y cintura.</p>
+      {% endif %}
+    </div>
+    <div class="clinical-component-list">
+      {% for component in dashboard.latest_fli.components %}
+        <span><strong>{{ component.label }} {{ component.value }} {{ component.unit }}</strong><small>{{ component.source }}</small></span>
+      {% endfor %}
+    </div>
+  </section>
+{% else %}
+  <p class="notice">El indice de higado graso necesita trigliceridos y GGT de una analitica, ademas de IMC y cintura de esa fecha o de Medidas con una diferencia maxima de {{ dashboard.body_measurement_max_distance_days }} dias.</p>
+{% endif %}
+
+<section id="estadisticas" class="clinical-section">
+  <div class="section-title">
+    <div>
+      <h2>Estadisticas por variable</h2>
+      <p class="muted">Las equivalencias seguras se normalizan; las unidades no comparables permanecen separadas.</p>
+    </div>
+  </div>
+  <form method="get" action="/analiticas" class="clinical-filter-bar">
+    <label>Categoria
+      <select name="category">
+        <option value="">Todas</option>
+        {% for category in dashboard.categories %}
+          <option value="{{ category }}" {% if dashboard.selected_category == category %}selected{% endif %}>{{ category }}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <label>Variable
+      <select name="variable">
+        <option value="">Selecciona una variable</option>
+        {% for variable in dashboard.visible_variables %}
+          <option value="{{ variable.id }}" {% if dashboard.selected_variable and dashboard.selected_variable.id == variable.id %}selected{% endif %}>{{ variable.name }}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <button class="button secondary" type="submit">Aplicar filtros</button>
+    <a class="button ghost" href="/analiticas#estadisticas">Limpiar</a>
+  </form>
+
+  {% if dashboard.selected_variable %}
+    <article class="clinical-variable-detail">
+      <div class="section-title">
+        <div>
+          <p class="eyebrow">{{ dashboard.selected_variable.category }}</p>
+          <h2>{{ dashboard.selected_variable.name }}</h2>
+        </div>
+      </div>
+      {% if dashboard.selected_variable.has_numeric %}
+        <div class="clinical-chart-panel">
+          <canvas id="clinical-variable-chart"></canvas>
+        </div>
+        <div class="clinical-unit-summaries">
+          {% for summary in dashboard.selected_variable.unit_summaries %}
+            <div>
+              <strong>{{ summary.unit }}</strong>
+              <span>{{ summary.count }} datos</span>
+              <small>Min {{ summary.min }} · Media {{ summary.average }} · Max {{ summary.max }}</small>
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+      {% if dashboard.selected_variable.text_history %}
+        <div class="clinical-text-history">
+          {% for item in dashboard.selected_variable.text_history %}
+            <span class="clinical-status-{{ item.status or 'unknown' }}">
+              <strong>{{ item.date }}</strong>
+              {{ item.value }}
+              {% if item.reference %}<small>Ref. {{ item.reference }}</small>{% endif %}
+            </span>
+          {% endfor %}
+        </div>
+      {% endif %}
+      {% if not dashboard.selected_variable.has_numeric and not dashboard.selected_variable.text_history %}
+        <p class="empty">Esta variable aun no tiene resultados.</p>
+      {% endif %}
+    </article>
+  {% endif %}
+
+  <div class="clinical-table-wrap">
+    <table class="clinical-stats-table">
+      <thead>
+        <tr>
+          <th>Categoria</th>
+          <th>Variable</th>
+          <th>Datos</th>
+          <th>Ultimo</th>
+          <th>Min</th>
+          <th>Media</th>
+          <th>Max</th>
+          <th>Unidad comparable</th>
+          <th>Referencia reciente</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for stat in dashboard.variable_stats %}
+          <tr>
+            <td><span class="clinical-category-chip">{{ stat.category }}</span></td>
+            <td><a href="/analiticas?category={{ stat.category|urlencode }}&variable={{ stat.id }}#estadisticas"><strong>{{ stat.name }}</strong></a></td>
+            <td>{{ stat.comparable_count }}{% if stat.count != stat.comparable_count %} / {{ stat.count }}{% endif %}</td>
+            <td>
+              <span class="clinical-result clinical-status-{{ stat.latest_status or 'unknown' }}">{{ stat.latest }}</span>
+              {% if stat.latest_date %}<small>{{ stat.latest_date }}</small>{% endif %}
+            </td>
+            <td>{{ stat.min if stat.min is not none else '-' }}</td>
+            <td>{{ stat.average if stat.average is not none else '-' }}</td>
+            <td>{{ stat.max if stat.max is not none else '-' }}</td>
+            <td>{{ stat.unit or '-' }}{% if stat.has_multiple_units %}<small>Hay mas unidades</small>{% endif %}</td>
+            <td>{{ stat.reference or '-' }}</td>
+          </tr>
+        {% else %}
+          <tr><td colspan="9">No hay variables para este filtro.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="clinical-section">
+  <div class="section-title">
+    <div>
+      <h2>Historial de analiticas</h2>
+      {% if dashboard.selected_category %}<p class="muted">Mostrando solo {{ dashboard.selected_category }}.</p>{% endif %}
+    </div>
+  </div>
+  <div class="clinical-history">
+    {% for analysis in dashboard.analysis_rows %}
+      <details class="clinical-history-item" {% if request.query_params.get('analysis_id') == analysis.id|string %}open{% endif %}>
+        <summary>
+          <div>
+            <strong>{{ analysis.date }}</strong>
+            <span>{{ analysis.result_count }} resultados</span>
+          </div>
+          <div class="clinical-history-tags">
+            {% for category in analysis.categories %}<span>{{ category.name }} {{ category.count }}</span>{% endfor %}
+          </div>
+          {% if analysis.fatty_liver_index.value is not none %}
+            <span class="clinical-fli-class clinical-fli-{{ analysis.fatty_liver_index.classification|lower }}">FLI {{ analysis.fatty_liver_index.value }}</span>
+          {% endif %}
+        </summary>
+        <div class="clinical-history-content">
+          {% if analysis.fatty_liver_index.value is not none %}
+            <div class="clinical-fli-inline">
+              <strong>Indice de higado graso: {{ analysis.fatty_liver_index.value }} · {{ analysis.fatty_liver_index.classification }}{% if analysis.fatty_liver_index.calculation_type == 'reported' %} · Informado en el analisis{% endif %}</strong>
+              {% for component in analysis.fatty_liver_index.components %}
+                <span>{{ component.label }} {{ component.value }} {{ component.unit }} ({{ component.source }})</span>
+              {% endfor %}
+            </div>
+          {% elif analysis.fatty_liver_index.missing %}
+            <p class="small">FLI no calculable: faltan {% for item in analysis.fatty_liver_index.missing %}{{ item.label }}{% if not loop.last %}, {% endif %}{% endfor %}.</p>
+          {% endif %}
+          <div class="clinical-table-wrap">
+            <table class="clinical-results-table">
+              <thead><tr><th>Categoria</th><th>Variable</th><th>Resultado</th><th>Referencia del informe</th></tr></thead>
+              <tbody>
+                {% for result in analysis.results %}
+                  <tr>
+                    <td>{{ result.category }}</td>
+                    <td>{{ result.name }}</td>
+                    <td><span class="clinical-result clinical-status-{{ result.status or 'unknown' }}">{{ result.value }}</span></td>
+                    <td>{{ result.reference or '-' }}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          {% if analysis.notes %}<p>{{ analysis.notes }}</p>{% endif %}
+          <div class="clinical-history-footer">
+            <small>{{ analysis.source or 'Entrada manual' }}</small>
+            <form method="post" action="/analiticas/{{ analysis.id }}/delete" onsubmit="return confirm('Eliminar esta analitica y todos sus resultados?')">
+              <button class="button danger compact" type="submit">Borrar</button>
+            </form>
+          </div>
+        </div>
+      </details>
+    {% else %}
+      <p class="empty">No hay analiticas para este filtro.</p>
+    {% endfor %}
+  </div>
+</section>
+
+<p class="notice clinical-disclaimer">El indice de higado graso es orientativo y no sustituye una valoracion medica. Se aplica la formula publicada por Bedogni y colaboradores. <a href="{{ dashboard.fli_source }}" target="_blank" rel="noopener noreferrer">Consultar fuente</a>.</p>
+
+<script id="clinical-chart-data" type="application/json">{{ dashboard.selected_variable|tojson }}</script>
+<script src="{{ url_for('static', path='/js/clinical.js') }}?v=20260821-clinical-analyses"></script>
+{% endblock %}

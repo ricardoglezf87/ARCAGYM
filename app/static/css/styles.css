@@ -1701,3 +1701,457 @@ legend {
     grid-template-columns: 1fr;
   }
 }
+
+.clinical-entry-panel,
+.clinical-variable-detail,
+.clinical-fli-card,
+.clinical-history-item {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: 0 6px 18px rgba(23, 32, 27, 0.05);
+}
+
+.clinical-entry-panel {
+  margin-bottom: 22px;
+  overflow: hidden;
+}
+
+.clinical-entry-panel > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 58px;
+  padding: 15px 18px;
+  cursor: pointer;
+  font-weight: 850;
+}
+
+.clinical-entry-panel > summary small {
+  color: var(--muted);
+}
+
+.clinical-entry-form {
+  border-top: 1px solid var(--line);
+}
+
+.clinical-entry-header,
+.clinical-entry-tools,
+.clinical-filter-bar {
+  display: grid;
+  gap: 12px;
+  align-items: end;
+}
+
+.clinical-entry-header {
+  grid-template-columns: minmax(180px, 0.4fr) minmax(260px, 1fr);
+  padding: 18px;
+  background: var(--surface-soft);
+}
+
+.clinical-entry-tools {
+  grid-template-columns: minmax(180px, 0.45fr) minmax(260px, 1fr) auto;
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.clinical-visible-count {
+  margin: 0 0 10px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.clinical-table-wrap {
+  width: 100%;
+  max-width: 100%;
+  overflow: auto;
+}
+
+.clinical-entry-panel .clinical-table-wrap {
+  max-height: 560px;
+}
+
+.clinical-entry-table,
+.clinical-stats-table,
+.clinical-results-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.clinical-entry-table {
+  min-width: 880px;
+}
+
+.clinical-stats-table {
+  min-width: 1080px;
+}
+
+.clinical-results-table {
+  min-width: 720px;
+}
+
+.clinical-entry-table th,
+.clinical-entry-table td,
+.clinical-stats-table th,
+.clinical-stats-table td,
+.clinical-results-table th,
+.clinical-results-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.clinical-entry-table th,
+.clinical-stats-table th,
+.clinical-results-table th {
+  color: var(--muted);
+  background: #f8faf8;
+  font-size: 0.84rem;
+}
+
+.clinical-entry-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.clinical-entry-table tr[hidden] {
+  display: none;
+}
+
+.clinical-entry-table label {
+  min-width: 170px;
+}
+
+.clinical-entry-table input {
+  min-width: 150px;
+  background: #fffbed;
+  border-color: #e4d7ae;
+}
+
+.clinical-category-chip,
+.clinical-history-tags span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: var(--surface-soft);
+  color: var(--primary-dark);
+  font-size: 0.78rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.clinical-entry-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 18px;
+  padding: 14px 18px;
+  border-top: 1px solid var(--line);
+}
+
+.clinical-entry-actions p {
+  margin: 0 auto 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.clinical-date-metric {
+  font-size: clamp(1.15rem, 2.4vw, 1.75rem) !important;
+}
+
+.clinical-fli-card {
+  display: grid;
+  grid-template-columns: minmax(230px, 0.55fr) minmax(0, 1fr);
+  gap: 22px;
+  padding: 20px;
+  margin-bottom: 24px;
+  border-left: 4px solid var(--accent);
+}
+
+.clinical-fli-card p {
+  margin: 8px 0 0;
+  color: var(--muted);
+}
+
+.clinical-fli-value {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.clinical-fli-value > strong {
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  line-height: 1;
+}
+
+.clinical-fli-class {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.clinical-fli-bajo {
+  background: #e7f3eb;
+  color: var(--success);
+}
+
+.clinical-fli-intermedio {
+  background: #fff1d9;
+  color: #8a5b18;
+}
+
+.clinical-fli-alto {
+  background: #fff1f1;
+  color: var(--danger);
+}
+
+.clinical-component-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.clinical-component-list span {
+  display: grid;
+  gap: 3px;
+  padding: 11px;
+  border-radius: 8px;
+  background: var(--surface-soft);
+}
+
+.clinical-component-list small {
+  color: var(--muted);
+}
+
+.clinical-section {
+  margin-top: 28px;
+}
+
+.clinical-section .section-title p {
+  margin: 5px 0 0;
+}
+
+.clinical-filter-bar {
+  grid-template-columns: minmax(180px, 0.65fr) minmax(240px, 1fr) auto auto;
+  margin-bottom: 16px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.clinical-variable-detail {
+  padding: 18px;
+  margin-bottom: 16px;
+}
+
+.clinical-chart-panel {
+  height: 320px;
+  padding: 10px 0;
+}
+
+.clinical-unit-summaries,
+.clinical-text-history {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.clinical-unit-summaries > div,
+.clinical-text-history > span {
+  display: grid;
+  gap: 4px;
+  padding: 11px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-soft);
+}
+
+.clinical-unit-summaries span,
+.clinical-unit-summaries small,
+.clinical-text-history small {
+  color: var(--muted);
+}
+
+.clinical-stats-table td small {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+}
+
+.clinical-result {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 4px 8px;
+  border-radius: 7px;
+  font-weight: 800;
+}
+
+.clinical-status-normal {
+  background: #e7f3eb;
+  color: var(--success);
+}
+
+.clinical-status-high,
+.clinical-status-low,
+.clinical-status-attention {
+  background: #fff1f1;
+  color: var(--danger);
+}
+
+.clinical-status-unknown {
+  background: var(--surface-soft);
+  color: var(--ink);
+}
+
+.clinical-history {
+  display: grid;
+  gap: 12px;
+}
+
+.clinical-history-item {
+  overflow: hidden;
+}
+
+.clinical-history-item > summary {
+  display: grid;
+  grid-template-columns: minmax(150px, 0.35fr) minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: center;
+  min-height: 64px;
+  padding: 14px 16px;
+  cursor: pointer;
+}
+
+.clinical-history-item > summary > div:first-child {
+  display: grid;
+  gap: 2px;
+}
+
+.clinical-history-item > summary > div:first-child span {
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.clinical-history-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.clinical-history-content {
+  padding: 0 16px 16px;
+  border-top: 1px solid var(--line);
+}
+
+.clinical-fli-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  padding: 12px;
+  margin: 14px 0;
+  border-radius: 8px;
+  background: #fff8ec;
+}
+
+.clinical-fli-inline strong {
+  flex-basis: 100%;
+}
+
+.clinical-fli-inline span {
+  color: #5f482c;
+  font-size: 0.88rem;
+}
+
+.clinical-history-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 12px;
+}
+
+.clinical-history-footer small {
+  color: var(--muted);
+}
+
+.clinical-history-footer form {
+  margin: 0;
+}
+
+.clinical-disclaimer {
+  margin-top: 24px;
+}
+
+@media (max-width: 900px) {
+  .clinical-entry-header,
+  .clinical-entry-tools,
+  .clinical-filter-bar,
+  .clinical-fli-card {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .clinical-entry-tools .clinical-visible-count,
+  .clinical-filter-bar .button,
+  .clinical-component-list {
+    grid-column: 1 / -1;
+  }
+
+  .clinical-filter-bar .button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 680px) {
+  .clinical-entry-panel > summary,
+  .clinical-entry-actions,
+  .clinical-history-footer {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .clinical-entry-header,
+  .clinical-entry-tools,
+  .clinical-filter-bar,
+  .clinical-fli-card,
+  .clinical-component-list,
+  .clinical-history-item > summary {
+    grid-template-columns: 1fr;
+  }
+
+  .clinical-entry-tools .clinical-visible-count,
+  .clinical-filter-bar .button,
+  .clinical-component-list {
+    grid-column: auto;
+  }
+
+  .clinical-entry-actions p {
+    margin: 0;
+  }
+
+  .clinical-history-item > summary {
+    align-items: start;
+  }
+
+  .clinical-summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 420px) {
+  .clinical-summary-grid {
+    grid-template-columns: 1fr;
+  }
+}
