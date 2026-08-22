@@ -12,6 +12,7 @@ from app.models import (
     ClinicalVariable,
     User,
 )
+from app.routers.clinical import _entry_variables
 from app.services.clinical_seed_service import seed_clinical_analyses
 from app.services.clinical_service import (
     calculate_fatty_liver_index,
@@ -60,6 +61,15 @@ class ClinicalSeedTests(unittest.TestCase):
 
 
 class ClinicalCalculationTests(unittest.TestCase):
+    def test_clinical_entry_excludes_values_sourced_from_measurements(self):
+        variables = [
+            ClinicalVariable(category="Antropometria", name="Cintura", value_type="numeric"),
+            ClinicalVariable(category="Antropometria", name="IMC", value_type="numeric"),
+            ClinicalVariable(category="Bioquimica", name="GGT", value_type="numeric"),
+        ]
+
+        self.assertEqual([variable.name for variable in _entry_variables(variables)], ["GGT"])
+
     def test_fatty_liver_index_prefers_a_reported_result(self):
         variable = ClinicalVariable(
             category="Bioquimica",

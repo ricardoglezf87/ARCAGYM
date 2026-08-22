@@ -15,6 +15,7 @@ from app.services.clinical_service import build_clinical_dashboard, get_clinical
 
 router = APIRouter()
 NUMERIC_VALUE_PATTERN = re.compile(r"^[+-]?(?:\d+(?:[.,]\d*)?|[.,]\d+)$")
+MEASUREMENT_SOURCED_VARIABLE_NAMES = {"cintura", "imc"}
 
 
 def _parse_result_value(
@@ -38,6 +39,14 @@ def _entry_groups(variables: list[ClinicalVariable]) -> list[dict[str, object]]:
     return groups
 
 
+def _entry_variables(variables: list[ClinicalVariable]) -> list[ClinicalVariable]:
+    return [
+        variable
+        for variable in variables
+        if variable.name.strip().casefold() not in MEASUREMENT_SOURCED_VARIABLE_NAMES
+    ]
+
+
 def _context(
     request: Request,
     user: User,
@@ -57,12 +66,14 @@ def _context(
         category=category,
         variable_id=variable_id,
     )
-    variables = dashboard["variables"]
+    variables = _entry_variables(dashboard["variables"])
     return {
         "request": request,
         "user": user,
         "dashboard": dashboard,
         "entry_groups": _entry_groups(variables),
+        "entry_categories": sorted({variable.category for variable in variables}),
+        "entry_variable_count": len(variables),
         "today": date.today().isoformat(),
         "error": error,
         "form_values": form_values or {},
@@ -103,7 +114,7 @@ async def create_clinical_analysis(
             status_code=400,
         )
 
-    variables = get_clinical_variables(db)
+    variables = _entry_variables(get_clinical_variables(db))
     parsed_results: list[tuple[ClinicalVariable, float | None, str | None]] = []
     for variable in variables:
         numeric_value, text_value = _parse_result_value(

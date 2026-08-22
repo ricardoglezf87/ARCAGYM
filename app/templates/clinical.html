@@ -20,7 +20,7 @@
 <details class="clinical-entry-panel" open>
   <summary>
     <span>Nueva analitica</span>
-    <small>{{ dashboard.variables|length }} variables disponibles</small>
+    <small>{{ entry_variable_count }} variables disponibles</small>
   </summary>
   <form method="post" action="/analiticas" class="clinical-entry-form">
     <div class="clinical-entry-header">
@@ -32,11 +32,15 @@
       </label>
     </div>
 
+    <p class="notice clinical-measurement-source-note">
+      El IMC y la cintura no se introducen aqui. Para calcular el indice de higado graso se obtienen automaticamente de la medida mas cercana a la fecha de la analitica.
+    </p>
+
     <div class="clinical-entry-tools" aria-label="Filtrar variables para introducir datos">
       <label>Categoria
         <select id="clinical-entry-category">
           <option value="">Todas</option>
-          {% for category in dashboard.categories %}
+          {% for category in entry_categories %}
             <option value="{{ category }}">{{ category }}</option>
           {% endfor %}
         </select>
@@ -44,7 +48,7 @@
       <label>Buscar variable
         <input id="clinical-entry-search" type="search" placeholder="Glucosa, TSH, colesterol..." autocomplete="off">
       </label>
-      <p class="clinical-visible-count"><strong id="clinical-visible-count">{{ dashboard.variables|length }}</strong> visibles</p>
+      <p class="clinical-visible-count"><strong id="clinical-visible-count">{{ entry_variable_count }}</strong> visibles</p>
     </div>
 
     <div class="clinical-table-wrap">
