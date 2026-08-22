@@ -1,0 +1,6576 @@
+{
+  "source": "Evolucion_Analiticas_2012_2026.xlsx",
+  "variables": [
+    {
+      "key": "Antropometria\u001fCintura",
+      "category": "Antropometria",
+      "name": "Cintura",
+      "value_type": "numeric",
+      "default_unit": "cm",
+      "default_reference": null,
+      "sort_order": 0
+    },
+    {
+      "key": "Antropometria\u001fIMC",
+      "category": "Antropometria",
+      "name": "IMC",
+      "value_type": "numeric",
+      "default_unit": "kg/m2",
+      "default_reference": null,
+      "sort_order": 1
+    },
+    {
+      "key": "Bioquimica\u001fAcido folico",
+      "category": "Bioquimica",
+      "name": "Acido folico",
+      "value_type": "numeric",
+      "default_unit": "ng/mL",
+      "default_reference": "3 - 20",
+      "sort_order": 2
+    },
+    {
+      "key": "Bioquimica\u001fAcido urico",
+      "category": "Bioquimica",
+      "name": "Acido urico",
+      "value_type": "numeric",
+      "default_unit": "mg/dL",
+      "default_reference": "3.5 - 7.2",
+      "sort_order": 3
+    },
+    {
+      "key": "Bioquimica\u001fALT (GPT)",
+      "category": "Bioquimica",
+      "name": "ALT (GPT)",
+      "value_type": "numeric",
+      "default_unit": "U/L",
+      "default_reference": "<50",
+      "sort_order": 4
+    },
+    {
+      "key": "Bioquimica\u001fAmilasa",
+      "category": "Bioquimica",
+      "name": "Amilasa",
+      "value_type": "numeric",
+      "default_unit": "U/L",
+      "default_reference": "25 - 125",
+      "sort_order": 5
+    },
+    {
+      "key": "Bioquimica\u001fAST (GOT)",
+      "category": "Bioquimica",
+      "name": "AST (GOT)",
+      "value_type": "numeric",
+      "default_unit": "U/L",
+      "default_reference": "<50",
+      "sort_order": 6
+    },
+    {
+      "key": "Bioquimica\u001fBilirrubina directa",
+      "category": "Bioquimica",
+      "name": "Bilirrubina directa",
+      "value_type": "numeric",
+      "default_unit": "mg/dL",
+      "default_reference": "<0.4",
+      "sort_order": 7
+    },
+    {
+      "key": "Bioquimica\u001fBilirrubina total",
+      "category": "Bioquimica",
+      "name": "Bilirrubina total",
+      "value_type": "numeric",
+      "default_unit": "mg/dL",
+      "default_reference": "<1.2",
+      "sort_order": 8
+    },
+    {
+      "key": "Bioquimica\u001fBUN",
+      "category": "Bioquimica",
+      "name": "BUN",
+      "value_type": "numeric",
+      "default_unit": "mg/dL",
+      "default_reference": "7 - 21",
+      "sort_order": 9
+    },
+    {
+      "key": "Bioquimica\u001fCalcio",
+      "category": "Bioquimica",
+      "name": "Calcio",
+      "value_type": "numeric",
+      "default_unit": "mg/dL",
+      "default_reference": "8.2 - 10.6",
+      "sort_order": 10
+    },
+    {
+      "key": "Bioquimica\u001fCloro",
+      "category": "Bioquimica",
+      "name": "Cloro",
+      "value_type": "numeric",
+      "default_unit": "mmol/L",
+      "default_reference": "98 - 107",
+      "sort_order": 11
+    },
+    {
+      "key": "Bioquimica\u001fCociente colesterol/HDL",
+      "category": "Bioquimica",
+      "name": "Cociente colesterol/HDL",
+      "value_type": "numeric",
+      "default_unit": null,
+      "default_reference": "<4.5",
+      "sort_order": 12
+    },
+    {
+      "key": "Bioquimica\u001fCociente LDL/HDL",
+      "category": "Bioquimica",
+      "name": "Cociente LDL/HDL",
+      "value_type": "numeric",
+      "default_unit": null,
+      "default_reference": "H <3.55",
+      "sort_order": 13
+    },
+    {
+      "key": "Bioquimica\u001fColesterol total",
+      "category": "Bioquimica",
+      "name": "Colesterol total",
+      "value_type": "numeric",
+      "default_unit": "mg/dL",
+      "default_reference": "<200",
+      "sort_order": 14
+    },
+    {
+      "key": "Bioquimica\u001fComplemento C3",
+      "category": "Bioquimica",
+      "name": "Complemento C3",
+      "value_type": "numeric",
+      "default_unit": "mg/dL",
+      "default_reference": "82 - 185",
+      "sort_order": 15
+    },
+    {
+      "key": "Bioquimica\u001fComplemento C4",
+      "category": "Bioquimica",
+      "name": "Complemento C4",
+      "value_type": "numeric",
+      "default_unit": "mg/dL",
+      "default_reference": "15 - 53",
+      "sort_order": 16
+    },
+    {
+      "key": "Bioquimica\u001fCreatin kinasa",
+      "category": "Bioquimica",
+      "name": "Creatin kinasa",
+      "value_type": "numeric",
+      "default_unit": "U/L",
+      "default_reference": "<190",
+      "sort_order": 17
+    },
+    {
+      "key": "Bioquimica\u001fCreatinina",
+      "category": "Bioquimica",
+      "name": "Creatinina",
+      "value_type": "numeric",
+      "default_unit": "mg/dL",
+      "default_reference": "0.72 - 1.18",
+      "sort_order": 18
+    },
+    {
+      "key": "Bioquimica\u001fFerritina",
+      "category": "Bioquimica",
+      "name": "Ferritina",
+      "value_type": "numeric",
+      "default_unit": "ng/mL",
+      "default_reference": "21.81 - 274.66",
+      "sort_order": 19
+    },
+    {
+      "key": "Bioquimica\u001fFiltrado glomerular",
+      "category": "Bioquimica",
+      "name": "Filtrado glomerular",
+      "value_type": "numeric",
+      "default_unit": "mL/min/1.73m2",
+      "default_reference": ">60",
+      "sort_order": 20
+    },
+    {
+      "key": "Bioquimica\u001fFosfatasa alcalina",
+      "category": "Bioquimica",
+      "name": "Fosfatasa alcalina",
+      "value_type": "numeric",
+      "default_unit": "U/L",
+      "default_reference": "40 - 130",
+      "sort_order": 21
+    },
+    {
+      "key": "Bioquimica\u001fFosforo",
+      "category": "Bioquimica",
+      "name": "Fosforo",
+      "value_type": "numeric",
+      "default_unit": "mg/dL",
+      "default_reference": "2.5 - 5",
+      "sort_order": 22
+    },
+    {
+      "key": "Bioquimica\u001fGGT",
+      "category": "Bioquimica",
+      "name": "GGT",
+      "value_type": "numeric",
+      "default_unit": "U/L",
+      "default_reference": "12 - 64",
+      "sort_order": 23
+    },
+    {
+      "key": "Bioquimica\u001fGlucosa",
+      "category": "Bioquimica",
+      "name": "Glucosa",
+      "value_type": "numeric",
+      "default_unit": "mg/dL",
+      "default_reference": "60 - 100",
+      "sort_order": 24
+    },
+    {
+      "key": "Bioquimica\u001fGlucosa media estimada",
+      "category": "Bioquimica",
+      "name": "Glucosa media estimada",
+      "value_type": "numeric",
+      "default_unit": "mg/dL",
+      "default_reference": null,
+      "sort_order": 25
+    },
+    {
+      "key": "Bioquimica\u001fHbA1c",
+      "category": "Bioquimica",
+      "name": "HbA1c",
+      "value_type": "numeric",
+      "default_unit": "%",
+      "default_reference": "<5.7",
+      "sort_order": 26
+    },
+    {
+      "key": "Bioquimica\u001fHbA1c IFCC",
+      "category": "Bioquimica",
+      "name": "HbA1c IFCC",
+      "value_type": "numeric",
+      "default_unit": "mmol/mol",
+      "default_reference": "<39",
+      "sort_order": 27
+    },
+    {
+      "key": "Bioquimica\u001fHDL",
+      "category": "Bioquimica",
+      "name": "HDL",
+      "value_type": "numeric",
+      "default_unit": "mg/dL",
+      "default_reference": ">40",
+      "sort_order": 28
+    },
+    {
+      "key": "Bioquimica\u001fHierro",
+      "category": "Bioquimica",
+      "name": "Hierro",
+      "value_type": "numeric",
+      "default_unit": "ug/dL",
+      "default_reference": "59 - 160",
+      "sort_order": 29
+    },
+    {
+      "key": "Bioquimica\u001fHOMA-IR",
+      "category": "Bioquimica",
+      "name": "HOMA-IR",
+      "value_type": "numeric",
+      "default_unit": null,
+      "default_reference": "<3.8",
+      "sort_order": 30
+    },
+    {
+      "key": "Bioquimica\u001fHomocisteina",
+      "category": "Bioquimica",
+      "name": "Homocisteina",
+      "value_type": "numeric",
+      "default_unit": "mcmol/L",
+      "default_reference": "5.46 - 16.20",
+      "sort_order": 31
+    },
+    {
+      "key": "Bioquimica\u001fIgA",
+      "category": "Bioquimica",
+      "name": "IgA",
+      "value_type": "numeric",
+      "default_unit": "mg/dL",
+      "default_reference": "63 - 484",
+      "sort_order": 32
+    },
+    {
+      "key": "Bioquimica\u001fIgE",
+      "category": "Bioquimica",
+      "name": "IgE",
+      "value_type": "numeric",
+      "default_unit": "UI/mL",
+      "default_reference": "<100",
+      "sort_order": 33
+    },
+    {
+      "key": "Bioquimica\u001fIgG",
+      "category": "Bioquimica",
+      "name": "IgG",
+      "value_type": "numeric",
+      "default_unit": "mg/dL",
+      "default_reference": "540 - 1822",
+      "sort_order": 34
+    },
+    {
+      "key": "Bioquimica\u001fIgM",
+      "category": "Bioquimica",
+      "name": "IgM",
+      "value_type": "numeric",
+      "default_unit": "mg/dL",
+      "default_reference": "22 - 240",
+      "sort_order": 35
+    },
+    {
+      "key": "Bioquimica\u001fIndice higado graso FLI",
+      "category": "Bioquimica",
+      "name": "Indice higado graso FLI",
+      "value_type": "numeric",
+      "default_unit": null,
+      "default_reference": "<30",
+      "sort_order": 36
+    },
+    {
+      "key": "Bioquimica\u001fInsulina basal",
+      "category": "Bioquimica",
+      "name": "Insulina basal",
+      "value_type": "numeric",
+      "default_unit": "mcU/mL",
+      "default_reference": "2 - 15",
+      "sort_order": 37
+    },
+    {
+      "key": "Bioquimica\u001fLDL",
+      "category": "Bioquimica",
+      "name": "LDL",
+      "value_type": "numeric",
+      "default_unit": "mg/dL",
+      "default_reference": "<116 riesgo bajo",
+      "sort_order": 38
+    },
+    {
+      "key": "Bioquimica\u001fMagnesio",
+      "category": "Bioquimica",
+      "name": "Magnesio",
+      "value_type": "numeric",
+      "default_unit": "mmol/L",
+      "default_reference": "0.65 - 1.1",
+      "sort_order": 39
+    },
+    {
+      "key": "Bioquimica\u001fParathormona",
+      "category": "Bioquimica",
+      "name": "Parathormona",
+      "value_type": "numeric",
+      "default_unit": "pg/mL",
+      "default_reference": "18.32 - 87.71",
+      "sort_order": 40
+    },
+    {
+      "key": "Bioquimica\u001fPotasio",
+      "category": "Bioquimica",
+      "name": "Potasio",
+      "value_type": "numeric",
+      "default_unit": "mmol/L",
+      "default_reference": "3.4 - 5.1",
+      "sort_order": 41
+    },
+    {
+      "key": "Bioquimica\u001fProteina C reactiva",
+      "category": "Bioquimica",
+      "name": "Proteina C reactiva",
+      "value_type": "numeric",
+      "default_unit": "mg/dL",
+      "default_reference": "<0.5",
+      "sort_order": 42
+    },
+    {
+      "key": "Bioquimica\u001fProteinas totales",
+      "category": "Bioquimica",
+      "name": "Proteinas totales",
+      "value_type": "numeric",
+      "default_unit": "g/dL",
+      "default_reference": "6 - 8.3",
+      "sort_order": 43
+    },
+    {
+      "key": "Bioquimica\u001fPSA",
+      "category": "Bioquimica",
+      "name": "PSA",
+      "value_type": "numeric",
+      "default_unit": "ng/mL",
+      "default_reference": "<4",
+      "sort_order": 44
+    },
+    {
+      "key": "Bioquimica\u001fResistencia insulinica",
+      "category": "Bioquimica",
+      "name": "Resistencia insulinica",
+      "value_type": "numeric",
+      "default_unit": null,
+      "default_reference": "<8.8",
+      "sort_order": 45
+    },
+    {
+      "key": "Bioquimica\u001fSaturacion transferrina",
+      "category": "Bioquimica",
+      "name": "Saturacion transferrina",
+      "value_type": "numeric",
+      "default_unit": "%",
+      "default_reference": "20 - 45",
+      "sort_order": 46
+    },
+    {
+      "key": "Bioquimica\u001fSodio",
+      "category": "Bioquimica",
+      "name": "Sodio",
+      "value_type": "numeric",
+      "default_unit": "mmol/L",
+      "default_reference": "136 - 146",
+      "sort_order": 47
+    },
+    {
+      "key": "Bioquimica\u001fTransferrina",
+      "category": "Bioquimica",
+      "name": "Transferrina",
+      "value_type": "numeric",
+      "default_unit": "mg/dL",
+      "default_reference": "200 - 360",
+      "sort_order": 48
+    },
+    {
+      "key": "Bioquimica\u001fTrigliceridos",
+      "category": "Bioquimica",
+      "name": "Trigliceridos",
+      "value_type": "numeric",
+      "default_unit": "mg/dL",
+      "default_reference": "<200",
+      "sort_order": 49
+    },
+    {
+      "key": "Bioquimica\u001fUrea",
+      "category": "Bioquimica",
+      "name": "Urea",
+      "value_type": "numeric",
+      "default_unit": "mg/dL",
+      "default_reference": "15 - 49",
+      "sort_order": 50
+    },
+    {
+      "key": "Bioquimica\u001fVitamina B12",
+      "category": "Bioquimica",
+      "name": "Vitamina B12",
+      "value_type": "numeric",
+      "default_unit": "pg/mL",
+      "default_reference": "187 - 883",
+      "sort_order": 51
+    },
+    {
+      "key": "Bioquimica\u001fVitamina D",
+      "category": "Bioquimica",
+      "name": "Vitamina D",
+      "value_type": "numeric",
+      "default_unit": "ng/mL",
+      "default_reference": "30 - 96 recomendado",
+      "sort_order": 52
+    },
+    {
+      "key": "Bioquimica\u001fVLDL",
+      "category": "Bioquimica",
+      "name": "VLDL",
+      "value_type": "numeric",
+      "default_unit": "mg/dL",
+      "default_reference": "<40",
+      "sort_order": 53
+    },
+    {
+      "key": "Bioquimica\u001fZinc",
+      "category": "Bioquimica",
+      "name": "Zinc",
+      "value_type": "numeric",
+      "default_unit": "ug/dL",
+      "default_reference": "60 - 125",
+      "sort_order": 54
+    },
+    {
+      "key": "Coagulacion\u001faPTT",
+      "category": "Coagulacion",
+      "name": "aPTT",
+      "value_type": "numeric",
+      "default_unit": "s",
+      "default_reference": "20 - 39",
+      "sort_order": 55
+    },
+    {
+      "key": "Coagulacion\u001fIndice de Quick",
+      "category": "Coagulacion",
+      "name": "Indice de Quick",
+      "value_type": "numeric",
+      "default_unit": "%",
+      "default_reference": "80 - 120",
+      "sort_order": 56
+    },
+    {
+      "key": "Coagulacion\u001fINR",
+      "category": "Coagulacion",
+      "name": "INR",
+      "value_type": "numeric",
+      "default_unit": null,
+      "default_reference": "0.9 - 1.1",
+      "sort_order": 57
+    },
+    {
+      "key": "Coagulacion\u001fRatio aPTT",
+      "category": "Coagulacion",
+      "name": "Ratio aPTT",
+      "value_type": "numeric",
+      "default_unit": null,
+      "default_reference": "0.8 - 1.2",
+      "sort_order": 58
+    },
+    {
+      "key": "Coagulacion\u001fRatio TTP",
+      "category": "Coagulacion",
+      "name": "Ratio TTP",
+      "value_type": "numeric",
+      "default_unit": null,
+      "default_reference": "0.8 - 1.2",
+      "sort_order": 59
+    },
+    {
+      "key": "Espermiograma\u001fColor semen",
+      "category": "Espermiograma",
+      "name": "Color semen",
+      "value_type": "text",
+      "default_unit": null,
+      "default_reference": null,
+      "sort_order": 60
+    },
+    {
+      "key": "Espermiograma\u001fEspermatozoides",
+      "category": "Espermiograma",
+      "name": "Espermatozoides",
+      "value_type": "text",
+      "default_unit": null,
+      "default_reference": null,
+      "sort_order": 61
+    },
+    {
+      "key": "Espermiograma\u001fOpacidad semen",
+      "category": "Espermiograma",
+      "name": "Opacidad semen",
+      "value_type": "text",
+      "default_unit": null,
+      "default_reference": null,
+      "sort_order": 62
+    },
+    {
+      "key": "Espermiograma\u001fpH semen",
+      "category": "Espermiograma",
+      "name": "pH semen",
+      "value_type": "numeric",
+      "default_unit": null,
+      "default_reference": null,
+      "sort_order": 63
+    },
+    {
+      "key": "Espermiograma\u001fViscosidad semen",
+      "category": "Espermiograma",
+      "name": "Viscosidad semen",
+      "value_type": "text",
+      "default_unit": null,
+      "default_reference": null,
+      "sort_order": 64
+    },
+    {
+      "key": "Espermiograma\u001fVolumen semen",
+      "category": "Espermiograma",
+      "name": "Volumen semen",
+      "value_type": "numeric",
+      "default_unit": "mL",
+      "default_reference": null,
+      "sort_order": 65
+    },
+    {
+      "key": "Hematologia\u001fBasofilos %",
+      "category": "Hematologia",
+      "name": "Basofilos %",
+      "value_type": "numeric",
+      "default_unit": "%",
+      "default_reference": "0 - 2",
+      "sort_order": 66
+    },
+    {
+      "key": "Hematologia\u001fBasofilos abs",
+      "category": "Hematologia",
+      "name": "Basofilos abs",
+      "value_type": "numeric",
+      "default_unit": "/uL",
+      "default_reference": "<200",
+      "sort_order": 67
+    },
+    {
+      "key": "Hematologia\u001fCHCM",
+      "category": "Hematologia",
+      "name": "CHCM",
+      "value_type": "numeric",
+      "default_unit": "g/dL",
+      "default_reference": "31 - 35.5",
+      "sort_order": 68
+    },
+    {
+      "key": "Hematologia\u001fEosinofilos %",
+      "category": "Hematologia",
+      "name": "Eosinofilos %",
+      "value_type": "numeric",
+      "default_unit": "%",
+      "default_reference": "0 - 5",
+      "sort_order": 69
+    },
+    {
+      "key": "Hematologia\u001fEosinofilos abs",
+      "category": "Hematologia",
+      "name": "Eosinofilos abs",
+      "value_type": "numeric",
+      "default_unit": "/uL",
+      "default_reference": "<800",
+      "sort_order": 70
+    },
+    {
+      "key": "Hematologia\u001fHCM",
+      "category": "Hematologia",
+      "name": "HCM",
+      "value_type": "numeric",
+      "default_unit": "pg",
+      "default_reference": "27 - 33",
+      "sort_order": 71
+    },
+    {
+      "key": "Hematologia\u001fHematies",
+      "category": "Hematologia",
+      "name": "Hematies",
+      "value_type": "numeric",
+      "default_unit": "10^6/uL",
+      "default_reference": "4.7 - 6",
+      "sort_order": 72
+    },
+    {
+      "key": "Hematologia\u001fHematocrito",
+      "category": "Hematologia",
+      "name": "Hematocrito",
+      "value_type": "numeric",
+      "default_unit": "%",
+      "default_reference": "42 - 52",
+      "sort_order": 73
+    },
+    {
+      "key": "Hematologia\u001fHemoglobina",
+      "category": "Hematologia",
+      "name": "Hemoglobina",
+      "value_type": "numeric",
+      "default_unit": "g/dL",
+      "default_reference": "13.5 - 18",
+      "sort_order": 74
+    },
+    {
+      "key": "Hematologia\u001fLeucocitos",
+      "category": "Hematologia",
+      "name": "Leucocitos",
+      "value_type": "numeric",
+      "default_unit": "10^3/uL",
+      "default_reference": "4 - 11",
+      "sort_order": 75
+    },
+    {
+      "key": "Hematologia\u001fLinfocitos %",
+      "category": "Hematologia",
+      "name": "Linfocitos %",
+      "value_type": "numeric",
+      "default_unit": "%",
+      "default_reference": "20 - 45",
+      "sort_order": 76
+    },
+    {
+      "key": "Hematologia\u001fLinfocitos abs",
+      "category": "Hematologia",
+      "name": "Linfocitos abs",
+      "value_type": "numeric",
+      "default_unit": "/uL",
+      "default_reference": "1000 - 4500",
+      "sort_order": 77
+    },
+    {
+      "key": "Hematologia\u001fMonocitos %",
+      "category": "Hematologia",
+      "name": "Monocitos %",
+      "value_type": "numeric",
+      "default_unit": "%",
+      "default_reference": "2 - 10",
+      "sort_order": 78
+    },
+    {
+      "key": "Hematologia\u001fMonocitos abs",
+      "category": "Hematologia",
+      "name": "Monocitos abs",
+      "value_type": "numeric",
+      "default_unit": "/uL",
+      "default_reference": "200 - 1000",
+      "sort_order": 79
+    },
+    {
+      "key": "Hematologia\u001fNeutrofilos %",
+      "category": "Hematologia",
+      "name": "Neutrofilos %",
+      "value_type": "numeric",
+      "default_unit": "%",
+      "default_reference": "45 - 75",
+      "sort_order": 80
+    },
+    {
+      "key": "Hematologia\u001fNeutrofilos abs",
+      "category": "Hematologia",
+      "name": "Neutrofilos abs",
+      "value_type": "numeric",
+      "default_unit": "/uL",
+      "default_reference": "1800 - 7500",
+      "sort_order": 81
+    },
+    {
+      "key": "Hematologia\u001fPDW",
+      "category": "Hematologia",
+      "name": "PDW",
+      "value_type": "numeric",
+      "default_unit": null,
+      "default_reference": null,
+      "sort_order": 82
+    },
+    {
+      "key": "Hematologia\u001fPlaquetas",
+      "category": "Hematologia",
+      "name": "Plaquetas",
+      "value_type": "numeric",
+      "default_unit": "10^3/uL",
+      "default_reference": "130 - 450",
+      "sort_order": 83
+    },
+    {
+      "key": "Hematologia\u001fRDW",
+      "category": "Hematologia",
+      "name": "RDW",
+      "value_type": "numeric",
+      "default_unit": "%",
+      "default_reference": "11 - 18",
+      "sort_order": 84
+    },
+    {
+      "key": "Hematologia\u001fVCM",
+      "category": "Hematologia",
+      "name": "VCM",
+      "value_type": "numeric",
+      "default_unit": "fL",
+      "default_reference": "80 - 100",
+      "sort_order": 85
+    },
+    {
+      "key": "Hematologia\u001fVPM",
+      "category": "Hematologia",
+      "name": "VPM",
+      "value_type": "numeric",
+      "default_unit": "fL",
+      "default_reference": "7 - 13",
+      "sort_order": 86
+    },
+    {
+      "key": "Hormonas\u001fCortisol basal",
+      "category": "Hormonas",
+      "name": "Cortisol basal",
+      "value_type": "numeric",
+      "default_unit": "mcg/dL",
+      "default_reference": "5 - 25 mañana",
+      "sort_order": 87
+    },
+    {
+      "key": "Inflamacion\u001fIndice de Katz",
+      "category": "Inflamacion",
+      "name": "Indice de Katz",
+      "value_type": "numeric",
+      "default_unit": "indice",
+      "default_reference": null,
+      "sort_order": 88
+    },
+    {
+      "key": "Inflamacion\u001fVSG 1h",
+      "category": "Inflamacion",
+      "name": "VSG 1h",
+      "value_type": "numeric",
+      "default_unit": "mm",
+      "default_reference": "<15",
+      "sort_order": 89
+    },
+    {
+      "key": "Inflamacion\u001fVSG 2h",
+      "category": "Inflamacion",
+      "name": "VSG 2h",
+      "value_type": "numeric",
+      "default_unit": "mm",
+      "default_reference": "<36",
+      "sort_order": 90
+    },
+    {
+      "key": "Inmunohematologia\u001fCoombs indirecto",
+      "category": "Inmunohematologia",
+      "name": "Coombs indirecto",
+      "value_type": "text",
+      "default_unit": null,
+      "default_reference": null,
+      "sort_order": 91
+    },
+    {
+      "key": "Inmunohematologia\u001fGrupo sanguineo",
+      "category": "Inmunohematologia",
+      "name": "Grupo sanguineo",
+      "value_type": "text",
+      "default_unit": null,
+      "default_reference": null,
+      "sort_order": 92
+    },
+    {
+      "key": "Metabolismo\u001fInsulina basal",
+      "category": "Metabolismo",
+      "name": "Insulina basal",
+      "value_type": "numeric",
+      "default_unit": "mcU/mL",
+      "default_reference": "3 - 24.9",
+      "sort_order": 93
+    },
+    {
+      "key": "Microbiologia\u001fCultivo orina",
+      "category": "Microbiologia",
+      "name": "Cultivo orina",
+      "value_type": "text",
+      "default_unit": null,
+      "default_reference": null,
+      "sort_order": 94
+    },
+    {
+      "key": "Orina\u001fBilirrubina orina",
+      "category": "Orina",
+      "name": "Bilirrubina orina",
+      "value_type": "mixed",
+      "default_unit": "mg/dL",
+      "default_reference": "Negativo",
+      "sort_order": 95
+    },
+    {
+      "key": "Orina\u001fCociente proteina/creatinina",
+      "category": "Orina",
+      "name": "Cociente proteina/creatinina",
+      "value_type": "numeric",
+      "default_unit": "mg/g",
+      "default_reference": "0 - 30",
+      "sort_order": 96
+    },
+    {
+      "key": "Orina\u001fCuerpos cetonicos orina",
+      "category": "Orina",
+      "name": "Cuerpos cetonicos orina",
+      "value_type": "mixed",
+      "default_unit": "mg/dL",
+      "default_reference": "Negativo",
+      "sort_order": 97
+    },
+    {
+      "key": "Orina\u001fDensidad orina",
+      "category": "Orina",
+      "name": "Densidad orina",
+      "value_type": "numeric",
+      "default_unit": null,
+      "default_reference": "1.004 - 1.030",
+      "sort_order": 98
+    },
+    {
+      "key": "Orina\u001fGlucosa orina",
+      "category": "Orina",
+      "name": "Glucosa orina",
+      "value_type": "mixed",
+      "default_unit": "mg/dL",
+      "default_reference": "Negativo",
+      "sort_order": 99
+    },
+    {
+      "key": "Orina\u001fHematies orina",
+      "category": "Orina",
+      "name": "Hematies orina",
+      "value_type": "text",
+      "default_unit": "/uL",
+      "default_reference": "Negativo",
+      "sort_order": 100
+    },
+    {
+      "key": "Orina\u001fHemoglobina/Mioglobina orina",
+      "category": "Orina",
+      "name": "Hemoglobina/Mioglobina orina",
+      "value_type": "text",
+      "default_unit": null,
+      "default_reference": "Negativo",
+      "sort_order": 101
+    },
+    {
+      "key": "Orina\u001fIndice calciuria/creatininuria",
+      "category": "Orina",
+      "name": "Indice calciuria/creatininuria",
+      "value_type": "numeric",
+      "default_unit": "mg/mg",
+      "default_reference": "0.032 - 0.19",
+      "sort_order": 102
+    },
+    {
+      "key": "Orina\u001fIndice microalbumina/creatinina",
+      "category": "Orina",
+      "name": "Indice microalbumina/creatinina",
+      "value_type": "numeric",
+      "default_unit": "mg/g",
+      "default_reference": "<30",
+      "sort_order": 103
+    },
+    {
+      "key": "Orina\u001fLeucocitos orina",
+      "category": "Orina",
+      "name": "Leucocitos orina",
+      "value_type": "mixed",
+      "default_unit": "/uL",
+      "default_reference": "Negativo",
+      "sort_order": 104
+    },
+    {
+      "key": "Orina\u001fMicroalbuminuria",
+      "category": "Orina",
+      "name": "Microalbuminuria",
+      "value_type": "numeric",
+      "default_unit": "mg/L",
+      "default_reference": "<30",
+      "sort_order": 105
+    },
+    {
+      "key": "Orina\u001fNitritos orina",
+      "category": "Orina",
+      "name": "Nitritos orina",
+      "value_type": "mixed",
+      "default_unit": "mg/dL",
+      "default_reference": "Negativo",
+      "sort_order": 106
+    },
+    {
+      "key": "Orina\u001fpH orina",
+      "category": "Orina",
+      "name": "pH orina",
+      "value_type": "numeric",
+      "default_unit": null,
+      "default_reference": "5 - 8",
+      "sort_order": 107
+    },
+    {
+      "key": "Orina\u001fPigmentos biliares orina",
+      "category": "Orina",
+      "name": "Pigmentos biliares orina",
+      "value_type": "text",
+      "default_unit": null,
+      "default_reference": null,
+      "sort_order": 108
+    },
+    {
+      "key": "Orina\u001fProteinas orina",
+      "category": "Orina",
+      "name": "Proteinas orina",
+      "value_type": "mixed",
+      "default_unit": "mg/dL",
+      "default_reference": "Negativo",
+      "sort_order": 109
+    },
+    {
+      "key": "Orina\u001fProteinas orina cuantitativas",
+      "category": "Orina",
+      "name": "Proteinas orina cuantitativas",
+      "value_type": "numeric",
+      "default_unit": "g/L",
+      "default_reference": null,
+      "sort_order": 110
+    },
+    {
+      "key": "Orina\u001fSales biliares orina",
+      "category": "Orina",
+      "name": "Sales biliares orina",
+      "value_type": "text",
+      "default_unit": null,
+      "default_reference": null,
+      "sort_order": 111
+    },
+    {
+      "key": "Orina\u001fSangre orina",
+      "category": "Orina",
+      "name": "Sangre orina",
+      "value_type": "text",
+      "default_unit": null,
+      "default_reference": "Negativo",
+      "sort_order": 112
+    },
+    {
+      "key": "Orina\u001fUrobilinogeno orina",
+      "category": "Orina",
+      "name": "Urobilinogeno orina",
+      "value_type": "mixed",
+      "default_unit": "mg/dL",
+      "default_reference": "Negativo",
+      "sort_order": 113
+    },
+    {
+      "key": "Proteinograma\u001fAlbumina proteinograma",
+      "category": "Proteinograma",
+      "name": "Albumina proteinograma",
+      "value_type": "numeric",
+      "default_unit": "g/dL",
+      "default_reference": null,
+      "sort_order": 114
+    },
+    {
+      "key": "Proteinograma\u001fAlbumina proteinograma %",
+      "category": "Proteinograma",
+      "name": "Albumina proteinograma %",
+      "value_type": "numeric",
+      "default_unit": "%",
+      "default_reference": "50 - 68",
+      "sort_order": 115
+    },
+    {
+      "key": "Proteinograma\u001fAlfa-1 globulinas",
+      "category": "Proteinograma",
+      "name": "Alfa-1 globulinas",
+      "value_type": "numeric",
+      "default_unit": "g/dL",
+      "default_reference": null,
+      "sort_order": 116
+    },
+    {
+      "key": "Proteinograma\u001fAlfa-1 globulinas %",
+      "category": "Proteinograma",
+      "name": "Alfa-1 globulinas %",
+      "value_type": "numeric",
+      "default_unit": "%",
+      "default_reference": "1.4 - 4",
+      "sort_order": 117
+    },
+    {
+      "key": "Proteinograma\u001fAlfa-2 globulinas",
+      "category": "Proteinograma",
+      "name": "Alfa-2 globulinas",
+      "value_type": "numeric",
+      "default_unit": "g/dL",
+      "default_reference": null,
+      "sort_order": 118
+    },
+    {
+      "key": "Proteinograma\u001fAlfa-2 globulinas %",
+      "category": "Proteinograma",
+      "name": "Alfa-2 globulinas %",
+      "value_type": "numeric",
+      "default_unit": "%",
+      "default_reference": "7 - 14",
+      "sort_order": 119
+    },
+    {
+      "key": "Proteinograma\u001fBeta globulinas",
+      "category": "Proteinograma",
+      "name": "Beta globulinas",
+      "value_type": "numeric",
+      "default_unit": "g/dL",
+      "default_reference": null,
+      "sort_order": 120
+    },
+    {
+      "key": "Proteinograma\u001fBeta globulinas %",
+      "category": "Proteinograma",
+      "name": "Beta globulinas %",
+      "value_type": "numeric",
+      "default_unit": "%",
+      "default_reference": "8.7 - 13.9",
+      "sort_order": 121
+    },
+    {
+      "key": "Proteinograma\u001fCociente A/G",
+      "category": "Proteinograma",
+      "name": "Cociente A/G",
+      "value_type": "numeric",
+      "default_unit": null,
+      "default_reference": "1.1 - 2.1",
+      "sort_order": 122
+    },
+    {
+      "key": "Proteinograma\u001fGamma globulinas",
+      "category": "Proteinograma",
+      "name": "Gamma globulinas",
+      "value_type": "numeric",
+      "default_unit": "g/dL",
+      "default_reference": null,
+      "sort_order": 123
+    },
+    {
+      "key": "Proteinograma\u001fGamma globulinas %",
+      "category": "Proteinograma",
+      "name": "Gamma globulinas %",
+      "value_type": "numeric",
+      "default_unit": "%",
+      "default_reference": "10.4 - 19.8",
+      "sort_order": 124
+    },
+    {
+      "key": "Serologia\u001fAnti-HTLV",
+      "category": "Serologia",
+      "name": "Anti-HTLV",
+      "value_type": "text",
+      "default_unit": null,
+      "default_reference": null,
+      "sort_order": 125
+    },
+    {
+      "key": "Serologia\u001fAnti-VHC",
+      "category": "Serologia",
+      "name": "Anti-VHC",
+      "value_type": "text",
+      "default_unit": null,
+      "default_reference": null,
+      "sort_order": 126
+    },
+    {
+      "key": "Serologia\u001fAnti-VIH",
+      "category": "Serologia",
+      "name": "Anti-VIH",
+      "value_type": "text",
+      "default_unit": null,
+      "default_reference": null,
+      "sort_order": 127
+    },
+    {
+      "key": "Serologia\u001fAnticuerpos irregulares",
+      "category": "Serologia",
+      "name": "Anticuerpos irregulares",
+      "value_type": "text",
+      "default_unit": null,
+      "default_reference": null,
+      "sort_order": 128
+    },
+    {
+      "key": "Serologia\u001fARN HCV / ARN HIV / ADN HBV",
+      "category": "Serologia",
+      "name": "ARN HCV / ARN HIV / ADN HBV",
+      "value_type": "text",
+      "default_unit": null,
+      "default_reference": null,
+      "sort_order": 129
+    },
+    {
+      "key": "Serologia\u001fHepatitis B antigeno superficie",
+      "category": "Serologia",
+      "name": "Hepatitis B antigeno superficie",
+      "value_type": "numeric",
+      "default_unit": "indice",
+      "default_reference": "<0.99 Negativo",
+      "sort_order": 130
+    },
+    {
+      "key": "Serologia\u001fHepatitis B HBsAg",
+      "category": "Serologia",
+      "name": "Hepatitis B HBsAg",
+      "value_type": "text",
+      "default_unit": null,
+      "default_reference": null,
+      "sort_order": 131
+    },
+    {
+      "key": "Serologia\u001fHepatitis C anticuerpos IgG",
+      "category": "Serologia",
+      "name": "Hepatitis C anticuerpos IgG",
+      "value_type": "numeric",
+      "default_unit": "indice",
+      "default_reference": "<0.90 Negativo",
+      "sort_order": 132
+    },
+    {
+      "key": "Tiroides\u001fAnticuerpos tiroglobulina",
+      "category": "Tiroides",
+      "name": "Anticuerpos tiroglobulina",
+      "value_type": "numeric",
+      "default_unit": "UI/mL",
+      "default_reference": "<5",
+      "sort_order": 133
+    },
+    {
+      "key": "Tiroides\u001fAnticuerpos TPO",
+      "category": "Tiroides",
+      "name": "Anticuerpos TPO",
+      "value_type": "numeric",
+      "default_unit": "UI/mL",
+      "default_reference": "<6",
+      "sort_order": 134
+    },
+    {
+      "key": "Tiroides\u001fT3",
+      "category": "Tiroides",
+      "name": "T3",
+      "value_type": "numeric",
+      "default_unit": "ng/mL",
+      "default_reference": "0.35 - 1.93",
+      "sort_order": 135
+    },
+    {
+      "key": "Tiroides\u001fT4 libre",
+      "category": "Tiroides",
+      "name": "T4 libre",
+      "value_type": "numeric",
+      "default_unit": "ng/dL",
+      "default_reference": "0.70 - 1.48",
+      "sort_order": 136
+    },
+    {
+      "key": "Tiroides\u001fT4 total",
+      "category": "Tiroides",
+      "name": "T4 total",
+      "value_type": "numeric",
+      "default_unit": "ug/dL",
+      "default_reference": "4.5 - 12.5",
+      "sort_order": 137
+    },
+    {
+      "key": "Tiroides\u001fTSH",
+      "category": "Tiroides",
+      "name": "TSH",
+      "value_type": "numeric",
+      "default_unit": "uUI/mL",
+      "default_reference": "0.35 - 4.94",
+      "sort_order": 138
+    }
+  ],
+  "analyses": [
+    {
+      "date": "2012-11-10",
+      "source": "Evolucion_Analiticas_2012_2026.xlsx",
+      "results": [
+        {
+          "variable_key": "Hematologia\u001fBasofilos %",
+          "numeric_value": 1.12,
+          "text_value": null,
+          "unit": "%",
+          "reference": "-"
+        },
+        {
+          "variable_key": "Hematologia\u001fBasofilos abs",
+          "numeric_value": 0.09,
+          "text_value": null,
+          "unit": null,
+          "reference": "0.0 - 0.2"
+        },
+        {
+          "variable_key": "Hematologia\u001fCHCM",
+          "numeric_value": 35.72,
+          "text_value": null,
+          "unit": "g/dL",
+          "reference": "33 - 36"
+        },
+        {
+          "variable_key": "Hematologia\u001fEosinofilos %",
+          "numeric_value": 2.04,
+          "text_value": null,
+          "unit": "%",
+          "reference": "-"
+        },
+        {
+          "variable_key": "Hematologia\u001fEosinofilos abs",
+          "numeric_value": 0.01,
+          "text_value": null,
+          "unit": null,
+          "reference": "0.0 - 0.7"
+        },
+        {
+          "variable_key": "Hematologia\u001fHCM",
+          "numeric_value": 29.98,
+          "text_value": null,
+          "unit": "pg",
+          "reference": "27 - 31"
+        },
+        {
+          "variable_key": "Hematologia\u001fHematies",
+          "numeric_value": 5.41,
+          "text_value": null,
+          "unit": "10^12/L",
+          "reference": "M: 4.3 - 6.0"
+        },
+        {
+          "variable_key": "Hematologia\u001fHematocrito",
+          "numeric_value": 45.37,
+          "text_value": null,
+          "unit": "%",
+          "reference": "M: 40 - 53"
+        },
+        {
+          "variable_key": "Hematologia\u001fHemoglobina",
+          "numeric_value": 16.21,
+          "text_value": null,
+          "unit": "g/dL",
+          "reference": "M: 13 - 18"
+        },
+        {
+          "variable_key": "Hematologia\u001fLeucocitos",
+          "numeric_value": 7.63,
+          "text_value": null,
+          "unit": "10^9/L",
+          "reference": "3.5 - 15"
+        },
+        {
+          "variable_key": "Hematologia\u001fLinfocitos %",
+          "numeric_value": 38.53,
+          "text_value": null,
+          "unit": "%",
+          "reference": "20.5 - 51.1"
+        },
+        {
+          "variable_key": "Hematologia\u001fLinfocitos abs",
+          "numeric_value": 2.94,
+          "text_value": null,
+          "unit": "10^9/L",
+          "reference": "1.2 - 3.4"
+        },
+        {
+          "variable_key": "Hematologia\u001fMonocitos %",
+          "numeric_value": 6.79,
+          "text_value": null,
+          "unit": "%",
+          "reference": "1.7 - 9.3"
+        },
+        {
+          "variable_key": "Hematologia\u001fMonocitos abs",
+          "numeric_value": 0.52,
+          "text_value": null,
+          "unit": "10^9/L",
+          "reference": "0.11 - 0.59"
+        },
+        {
+          "variable_key": "Hematologia\u001fNeutrofilos %",
+          "numeric_value": 51.53,
+          "text_value": null,
+          "unit": "%",
+          "reference": "42.2 - 75.2"
+        },
+        {
+          "variable_key": "Hematologia\u001fNeutrofilos abs",
+          "numeric_value": 3.93,
+          "text_value": null,
+          "unit": "10^9/L",
+          "reference": "1.2 - 6.5"
+        },
+        {
+          "variable_key": "Hematologia\u001fPDW",
+          "numeric_value": 18.86,
+          "text_value": null,
+          "unit": null,
+          "reference": "-"
+        },
+        {
+          "variable_key": "Hematologia\u001fPlaquetas",
+          "numeric_value": 254.8,
+          "text_value": null,
+          "unit": "10^9/L",
+          "reference": "150 - 450"
+        },
+        {
+          "variable_key": "Hematologia\u001fVCM",
+          "numeric_value": 83.91,
+          "text_value": null,
+          "unit": "fL",
+          "reference": "80 - 94"
+        },
+        {
+          "variable_key": "Hematologia\u001fVPM",
+          "numeric_value": 6.38,
+          "text_value": null,
+          "unit": "fL",
+          "reference": "7.4 - 10.4"
+        },
+        {
+          "variable_key": "Inmunohematologia\u001fGrupo sanguineo",
+          "numeric_value": null,
+          "text_value": "A Positivo",
+          "unit": null,
+          "reference": null
+        },
+        {
+          "variable_key": "Serologia\u001fARN HCV / ARN HIV / ADN HBV",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": null,
+          "reference": null
+        },
+        {
+          "variable_key": "Serologia\u001fAnti-HTLV",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": null,
+          "reference": null
+        },
+        {
+          "variable_key": "Serologia\u001fAnti-VHC",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": null,
+          "reference": null
+        },
+        {
+          "variable_key": "Serologia\u001fAnti-VIH",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": null,
+          "reference": null
+        },
+        {
+          "variable_key": "Serologia\u001fAnticuerpos irregulares",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": null,
+          "reference": null
+        },
+        {
+          "variable_key": "Serologia\u001fHepatitis B HBsAg",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": null,
+          "reference": null
+        }
+      ]
+    },
+    {
+      "date": "2017-03-01",
+      "source": "Evolucion_Analiticas_2012_2026.xlsx",
+      "results": [
+        {
+          "variable_key": "Bioquimica\u001fALT (GPT)",
+          "numeric_value": 64,
+          "text_value": null,
+          "unit": "U/L",
+          "reference": "5 - 40"
+        },
+        {
+          "variable_key": "Bioquimica\u001fAST (GOT)",
+          "numeric_value": 36,
+          "text_value": null,
+          "unit": "U/L",
+          "reference": "5 - 37"
+        },
+        {
+          "variable_key": "Bioquimica\u001fAcido urico",
+          "numeric_value": 8.32,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "3.40 - 7.00"
+        },
+        {
+          "variable_key": "Bioquimica\u001fColesterol total",
+          "numeric_value": 197,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "150 - 200"
+        },
+        {
+          "variable_key": "Bioquimica\u001fCreatinina",
+          "numeric_value": 1.15,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "0.70 - 1.20"
+        },
+        {
+          "variable_key": "Bioquimica\u001fFerritina",
+          "numeric_value": 157,
+          "text_value": null,
+          "unit": "ng/mL",
+          "reference": "30 - 400"
+        },
+        {
+          "variable_key": "Bioquimica\u001fGGT",
+          "numeric_value": 38,
+          "text_value": null,
+          "unit": "U/L",
+          "reference": "11 - 50"
+        },
+        {
+          "variable_key": "Bioquimica\u001fGlucosa",
+          "numeric_value": 96,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "76 - 110"
+        },
+        {
+          "variable_key": "Bioquimica\u001fHDL",
+          "numeric_value": 51,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "35 - 75"
+        },
+        {
+          "variable_key": "Bioquimica\u001fHierro",
+          "numeric_value": 119.7,
+          "text_value": null,
+          "unit": "ug/dL",
+          "reference": "60 - 150"
+        },
+        {
+          "variable_key": "Bioquimica\u001fLDL",
+          "numeric_value": 122,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<130 segun riesgo"
+        },
+        {
+          "variable_key": "Bioquimica\u001fTrigliceridos",
+          "numeric_value": 119,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "50 - 200"
+        },
+        {
+          "variable_key": "Bioquimica\u001fUrea",
+          "numeric_value": 38,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "10 - 50"
+        },
+        {
+          "variable_key": "Hematologia\u001fBasofilos %",
+          "numeric_value": 0.7,
+          "text_value": null,
+          "unit": "%",
+          "reference": "0.1 - 2.0"
+        },
+        {
+          "variable_key": "Hematologia\u001fBasofilos abs",
+          "numeric_value": 0.05,
+          "text_value": null,
+          "unit": "10^3/uL",
+          "reference": "0.00 - 0.20"
+        },
+        {
+          "variable_key": "Hematologia\u001fCHCM",
+          "numeric_value": 33,
+          "text_value": null,
+          "unit": "g/dL",
+          "reference": "30.0 - 35.5"
+        },
+        {
+          "variable_key": "Hematologia\u001fEosinofilos %",
+          "numeric_value": 1.7,
+          "text_value": null,
+          "unit": "%",
+          "reference": "0.10 - 7.60"
+        },
+        {
+          "variable_key": "Hematologia\u001fEosinofilos abs",
+          "numeric_value": 0.13,
+          "text_value": null,
+          "unit": "10^3/uL",
+          "reference": "0.00 - 0.50"
+        },
+        {
+          "variable_key": "Hematologia\u001fHCM",
+          "numeric_value": 30.5,
+          "text_value": null,
+          "unit": "pg",
+          "reference": "27.0 - 32.0"
+        },
+        {
+          "variable_key": "Hematologia\u001fHematies",
+          "numeric_value": 5.71,
+          "text_value": null,
+          "unit": "10^6/uL",
+          "reference": "4.20 - 5.90"
+        },
+        {
+          "variable_key": "Hematologia\u001fHematocrito",
+          "numeric_value": 52.7,
+          "text_value": null,
+          "unit": "%",
+          "reference": "39.0 - 51.0"
+        },
+        {
+          "variable_key": "Hematologia\u001fHemoglobina",
+          "numeric_value": 17.4,
+          "text_value": null,
+          "unit": "g/dL",
+          "reference": "13.5 - 17.0"
+        },
+        {
+          "variable_key": "Hematologia\u001fLeucocitos",
+          "numeric_value": 7.46,
+          "text_value": null,
+          "unit": "10^3/uL",
+          "reference": "4.50 - 11.00"
+        },
+        {
+          "variable_key": "Hematologia\u001fLinfocitos %",
+          "numeric_value": 38.2,
+          "text_value": null,
+          "unit": "%",
+          "reference": "20 - 50"
+        },
+        {
+          "variable_key": "Hematologia\u001fLinfocitos abs",
+          "numeric_value": 2.85,
+          "text_value": null,
+          "unit": "10^3/uL",
+          "reference": "1.00 - 5.00"
+        },
+        {
+          "variable_key": "Hematologia\u001fMonocitos %",
+          "numeric_value": 7.9,
+          "text_value": null,
+          "unit": "%",
+          "reference": "2.2 - 12.0"
+        },
+        {
+          "variable_key": "Hematologia\u001fMonocitos abs",
+          "numeric_value": 0.59,
+          "text_value": null,
+          "unit": "10^3/uL",
+          "reference": "0.20 - 0.80"
+        },
+        {
+          "variable_key": "Hematologia\u001fNeutrofilos %",
+          "numeric_value": 51.5,
+          "text_value": null,
+          "unit": "%",
+          "reference": "30 - 70"
+        },
+        {
+          "variable_key": "Hematologia\u001fNeutrofilos abs",
+          "numeric_value": 3.84,
+          "text_value": null,
+          "unit": "10^3/uL",
+          "reference": "1.50 - 7.70"
+        },
+        {
+          "variable_key": "Hematologia\u001fPlaquetas",
+          "numeric_value": 280,
+          "text_value": null,
+          "unit": "10^3/uL",
+          "reference": "150 - 400"
+        },
+        {
+          "variable_key": "Hematologia\u001fRDW",
+          "numeric_value": 11.7,
+          "text_value": null,
+          "unit": "%",
+          "reference": "10.0 - 14.0"
+        },
+        {
+          "variable_key": "Hematologia\u001fVCM",
+          "numeric_value": 92.3,
+          "text_value": null,
+          "unit": "fL",
+          "reference": "83.0 - 97.0"
+        },
+        {
+          "variable_key": "Hematologia\u001fVPM",
+          "numeric_value": 10.8,
+          "text_value": null,
+          "unit": "fL",
+          "reference": "7.3 - 12.2"
+        },
+        {
+          "variable_key": "Inflamacion\u001fVSG 1h",
+          "numeric_value": 4,
+          "text_value": null,
+          "unit": "mm",
+          "reference": "1 - 20"
+        },
+        {
+          "variable_key": "Orina\u001fBilirrubina orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": null,
+          "reference": null
+        },
+        {
+          "variable_key": "Orina\u001fCuerpos cetonicos orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": null,
+          "reference": null
+        },
+        {
+          "variable_key": "Orina\u001fDensidad orina",
+          "numeric_value": 1.017,
+          "text_value": null,
+          "unit": null,
+          "reference": "1.005 - 1.025"
+        },
+        {
+          "variable_key": "Orina\u001fGlucosa orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": null,
+          "reference": null
+        },
+        {
+          "variable_key": "Orina\u001fNitritos orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": null,
+          "reference": null
+        },
+        {
+          "variable_key": "Orina\u001fProteinas orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": null,
+          "reference": null
+        },
+        {
+          "variable_key": "Orina\u001fUrobilinogeno orina",
+          "numeric_value": 0.2,
+          "text_value": null,
+          "unit": null,
+          "reference": null
+        },
+        {
+          "variable_key": "Orina\u001fpH orina",
+          "numeric_value": 6,
+          "text_value": null,
+          "unit": null,
+          "reference": null
+        },
+        {
+          "variable_key": "Tiroides\u001fT4 libre",
+          "numeric_value": 1.39,
+          "text_value": null,
+          "unit": "ng/dL",
+          "reference": "0.93 - 1.70"
+        },
+        {
+          "variable_key": "Tiroides\u001fTSH",
+          "numeric_value": 4.68,
+          "text_value": null,
+          "unit": "uUI/mL",
+          "reference": "0.270 - 4.200"
+        }
+      ]
+    },
+    {
+      "date": "2020-05-05",
+      "source": "Evolucion_Analiticas_2012_2026.xlsx",
+      "results": [
+        {
+          "variable_key": "Bioquimica\u001fALT (GPT)",
+          "numeric_value": 56,
+          "text_value": null,
+          "unit": "U/L",
+          "reference": "10 - 50"
+        },
+        {
+          "variable_key": "Bioquimica\u001fAST (GOT)",
+          "numeric_value": 38,
+          "text_value": null,
+          "unit": "U/L",
+          "reference": "8 - 48"
+        },
+        {
+          "variable_key": "Bioquimica\u001fAcido urico",
+          "numeric_value": 8.1,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "3.5 - 7.2"
+        },
+        {
+          "variable_key": "Bioquimica\u001fBUN",
+          "numeric_value": 18.7,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "7.0 - 21.0"
+        },
+        {
+          "variable_key": "Bioquimica\u001fBilirrubina directa",
+          "numeric_value": 0.1,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<0.4"
+        },
+        {
+          "variable_key": "Bioquimica\u001fBilirrubina total",
+          "numeric_value": 0.7,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<1.2"
+        },
+        {
+          "variable_key": "Bioquimica\u001fCociente LDL/HDL",
+          "numeric_value": 2.67,
+          "text_value": null,
+          "unit": null,
+          "reference": "H <3.55"
+        },
+        {
+          "variable_key": "Bioquimica\u001fCociente colesterol/HDL",
+          "numeric_value": 4.12,
+          "text_value": null,
+          "unit": null,
+          "reference": "<4.5"
+        },
+        {
+          "variable_key": "Bioquimica\u001fColesterol total",
+          "numeric_value": 272,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "140 - 200"
+        },
+        {
+          "variable_key": "Bioquimica\u001fCreatinina",
+          "numeric_value": 1.14,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "0.55 - 1.25"
+        },
+        {
+          "variable_key": "Bioquimica\u001fFerritina",
+          "numeric_value": 112.6,
+          "text_value": null,
+          "unit": "ng/mL",
+          "reference": "27 - 300"
+        },
+        {
+          "variable_key": "Bioquimica\u001fFosfatasa alcalina",
+          "numeric_value": 99,
+          "text_value": null,
+          "unit": "U/L",
+          "reference": "38 - 126"
+        },
+        {
+          "variable_key": "Bioquimica\u001fGlucosa",
+          "numeric_value": 86,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "60 - 110"
+        },
+        {
+          "variable_key": "Bioquimica\u001fHDL",
+          "numeric_value": 66,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": ">40"
+        },
+        {
+          "variable_key": "Bioquimica\u001fHierro",
+          "numeric_value": 127,
+          "text_value": null,
+          "unit": "ug/dL",
+          "reference": "59 - 160"
+        },
+        {
+          "variable_key": "Bioquimica\u001fLDL",
+          "numeric_value": 176,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<130 primaria"
+        },
+        {
+          "variable_key": "Bioquimica\u001fPotasio",
+          "numeric_value": 4.1,
+          "text_value": null,
+          "unit": "mmol/L",
+          "reference": "3.4 - 5.1"
+        },
+        {
+          "variable_key": "Bioquimica\u001fSodio",
+          "numeric_value": 139,
+          "text_value": null,
+          "unit": "mmol/L",
+          "reference": "135 - 145"
+        },
+        {
+          "variable_key": "Bioquimica\u001fTrigliceridos",
+          "numeric_value": 151,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<200"
+        },
+        {
+          "variable_key": "Bioquimica\u001fUrea",
+          "numeric_value": 40,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "15 - 49"
+        },
+        {
+          "variable_key": "Coagulacion\u001fINR",
+          "numeric_value": 0.96,
+          "text_value": null,
+          "unit": null,
+          "reference": "0.8 - 1.3"
+        },
+        {
+          "variable_key": "Coagulacion\u001fIndice de Quick",
+          "numeric_value": 100,
+          "text_value": null,
+          "unit": "%",
+          "reference": "70 - 120"
+        },
+        {
+          "variable_key": "Coagulacion\u001fRatio aPTT",
+          "numeric_value": 1.06,
+          "text_value": null,
+          "unit": null,
+          "reference": "0.8 - 1.2"
+        },
+        {
+          "variable_key": "Coagulacion\u001faPTT",
+          "numeric_value": 34.2,
+          "text_value": null,
+          "unit": "s",
+          "reference": "25 - 40"
+        },
+        {
+          "variable_key": "Hematologia\u001fBasofilos %",
+          "numeric_value": 0.7,
+          "text_value": null,
+          "unit": "%",
+          "reference": null
+        },
+        {
+          "variable_key": "Hematologia\u001fBasofilos abs",
+          "numeric_value": 52,
+          "text_value": null,
+          "unit": "/uL",
+          "reference": "<200"
+        },
+        {
+          "variable_key": "Hematologia\u001fCHCM",
+          "numeric_value": 30.4,
+          "text_value": null,
+          "unit": "%",
+          "reference": "33 - 37"
+        },
+        {
+          "variable_key": "Hematologia\u001fEosinofilos %",
+          "numeric_value": 1.6,
+          "text_value": null,
+          "unit": "%",
+          "reference": null
+        },
+        {
+          "variable_key": "Hematologia\u001fEosinofilos abs",
+          "numeric_value": 118,
+          "text_value": null,
+          "unit": "/uL",
+          "reference": "<800"
+        },
+        {
+          "variable_key": "Hematologia\u001fHCM",
+          "numeric_value": 29.5,
+          "text_value": null,
+          "unit": "pg",
+          "reference": "27 - 33"
+        },
+        {
+          "variable_key": "Hematologia\u001fHematies",
+          "numeric_value": 5.32,
+          "text_value": null,
+          "unit": "10^6/uL",
+          "reference": "4.60 - 6.20"
+        },
+        {
+          "variable_key": "Hematologia\u001fHematocrito",
+          "numeric_value": 51.7,
+          "text_value": null,
+          "unit": "%",
+          "reference": "42 - 52"
+        },
+        {
+          "variable_key": "Hematologia\u001fHemoglobina",
+          "numeric_value": 15.7,
+          "text_value": null,
+          "unit": "g/dL",
+          "reference": "13.5 - 18"
+        },
+        {
+          "variable_key": "Hematologia\u001fLeucocitos",
+          "numeric_value": 7.4,
+          "text_value": null,
+          "unit": "10^3/uL",
+          "reference": "4 - 11"
+        },
+        {
+          "variable_key": "Hematologia\u001fLinfocitos %",
+          "numeric_value": 39.5,
+          "text_value": null,
+          "unit": "%",
+          "reference": null
+        },
+        {
+          "variable_key": "Hematologia\u001fLinfocitos abs",
+          "numeric_value": 2923,
+          "text_value": null,
+          "unit": "/uL",
+          "reference": "1000 - 4500"
+        },
+        {
+          "variable_key": "Hematologia\u001fMonocitos %",
+          "numeric_value": 5.4,
+          "text_value": null,
+          "unit": "%",
+          "reference": null
+        },
+        {
+          "variable_key": "Hematologia\u001fMonocitos abs",
+          "numeric_value": 400,
+          "text_value": null,
+          "unit": "/uL",
+          "reference": "200 - 1000"
+        },
+        {
+          "variable_key": "Hematologia\u001fNeutrofilos %",
+          "numeric_value": 52.8,
+          "text_value": null,
+          "unit": "%",
+          "reference": null
+        },
+        {
+          "variable_key": "Hematologia\u001fNeutrofilos abs",
+          "numeric_value": 3907,
+          "text_value": null,
+          "unit": "/uL",
+          "reference": "1800 - 7500"
+        },
+        {
+          "variable_key": "Hematologia\u001fPlaquetas",
+          "numeric_value": 306,
+          "text_value": null,
+          "unit": "10^3/uL",
+          "reference": "130 - 450"
+        },
+        {
+          "variable_key": "Hematologia\u001fRDW",
+          "numeric_value": 13.8,
+          "text_value": null,
+          "unit": "%",
+          "reference": "11 - 18"
+        },
+        {
+          "variable_key": "Hematologia\u001fVCM",
+          "numeric_value": 97.2,
+          "text_value": null,
+          "unit": "fL",
+          "reference": "80 - 96"
+        },
+        {
+          "variable_key": "Hematologia\u001fVPM",
+          "numeric_value": 11.4,
+          "text_value": null,
+          "unit": "fL",
+          "reference": "7 - 13"
+        },
+        {
+          "variable_key": "Inflamacion\u001fVSG 1h",
+          "numeric_value": 6,
+          "text_value": null,
+          "unit": "mm",
+          "reference": "1 - 10"
+        }
+      ]
+    },
+    {
+      "date": "2020-08-03",
+      "source": "Evolucion_Analiticas_2012_2026.xlsx",
+      "results": [
+        {
+          "variable_key": "Bioquimica\u001fALT (GPT)",
+          "numeric_value": 30,
+          "text_value": null,
+          "unit": "U/L",
+          "reference": "10 - 50"
+        },
+        {
+          "variable_key": "Bioquimica\u001fAST (GOT)",
+          "numeric_value": 25,
+          "text_value": null,
+          "unit": "U/L",
+          "reference": "8 - 48"
+        },
+        {
+          "variable_key": "Bioquimica\u001fAcido urico",
+          "numeric_value": 6.3,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "3.5 - 7.2"
+        },
+        {
+          "variable_key": "Bioquimica\u001fBUN",
+          "numeric_value": 18.7,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "7 - 21"
+        },
+        {
+          "variable_key": "Bioquimica\u001fBilirrubina total",
+          "numeric_value": 0.5,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<1.2"
+        },
+        {
+          "variable_key": "Bioquimica\u001fCalcio",
+          "numeric_value": 9.9,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "8.2 - 10.6"
+        },
+        {
+          "variable_key": "Bioquimica\u001fCociente LDL/HDL",
+          "numeric_value": 1.31,
+          "text_value": null,
+          "unit": null,
+          "reference": "H <3.55"
+        },
+        {
+          "variable_key": "Bioquimica\u001fCociente colesterol/HDL",
+          "numeric_value": 2.6,
+          "text_value": null,
+          "unit": null,
+          "reference": "<4.5"
+        },
+        {
+          "variable_key": "Bioquimica\u001fColesterol total",
+          "numeric_value": 161,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "140 - 200"
+        },
+        {
+          "variable_key": "Bioquimica\u001fCreatinina",
+          "numeric_value": 1.15,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "0.55 - 1.25"
+        },
+        {
+          "variable_key": "Bioquimica\u001fFerritina",
+          "numeric_value": 70,
+          "text_value": null,
+          "unit": "ng/mL",
+          "reference": "27 - 300"
+        },
+        {
+          "variable_key": "Bioquimica\u001fFosforo",
+          "numeric_value": 3.6,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "2.5 - 5"
+        },
+        {
+          "variable_key": "Bioquimica\u001fGGT",
+          "numeric_value": 24,
+          "text_value": null,
+          "unit": "U/L",
+          "reference": "12 - 64"
+        },
+        {
+          "variable_key": "Bioquimica\u001fGlucosa",
+          "numeric_value": 82,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "60 - 110"
+        },
+        {
+          "variable_key": "Bioquimica\u001fGlucosa media estimada",
+          "numeric_value": 99.96,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": null
+        },
+        {
+          "variable_key": "Bioquimica\u001fHDL",
+          "numeric_value": 62,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": ">40"
+        },
+        {
+          "variable_key": "Bioquimica\u001fHbA1c",
+          "numeric_value": 5.1,
+          "text_value": null,
+          "unit": "%",
+          "reference": "4.8 - 5.6"
+        },
+        {
+          "variable_key": "Bioquimica\u001fHbA1c IFCC",
+          "numeric_value": 32.24,
+          "text_value": null,
+          "unit": "mmol/mol",
+          "reference": "<37.7 normal"
+        },
+        {
+          "variable_key": "Bioquimica\u001fHierro",
+          "numeric_value": 79,
+          "text_value": null,
+          "unit": "ug/dL",
+          "reference": "59 - 160"
+        },
+        {
+          "variable_key": "Bioquimica\u001fLDL",
+          "numeric_value": 81,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<130 primaria"
+        },
+        {
+          "variable_key": "Bioquimica\u001fMagnesio",
+          "numeric_value": 0.94,
+          "text_value": null,
+          "unit": "mmol/L",
+          "reference": "0.65 - 1.1"
+        },
+        {
+          "variable_key": "Bioquimica\u001fPotasio",
+          "numeric_value": 3.7,
+          "text_value": null,
+          "unit": "mmol/L",
+          "reference": "3.4 - 5.1"
+        },
+        {
+          "variable_key": "Bioquimica\u001fProteina C reactiva",
+          "numeric_value": 0.2,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<0.5"
+        },
+        {
+          "variable_key": "Bioquimica\u001fProteinas totales",
+          "numeric_value": 9,
+          "text_value": null,
+          "unit": "g/dL",
+          "reference": "6 - 8.3"
+        },
+        {
+          "variable_key": "Bioquimica\u001fSaturacion transferrina",
+          "numeric_value": 23.17,
+          "text_value": null,
+          "unit": "%",
+          "reference": "20 - 45"
+        },
+        {
+          "variable_key": "Bioquimica\u001fSodio",
+          "numeric_value": 142,
+          "text_value": null,
+          "unit": "mmol/L",
+          "reference": "135 - 145"
+        },
+        {
+          "variable_key": "Bioquimica\u001fTrigliceridos",
+          "numeric_value": 92,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<200"
+        },
+        {
+          "variable_key": "Bioquimica\u001fUrea",
+          "numeric_value": 40,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "15 - 49"
+        },
+        {
+          "variable_key": "Bioquimica\u001fVitamina D",
+          "numeric_value": 28,
+          "text_value": null,
+          "unit": "ng/mL",
+          "reference": "30 - 96 recomendado"
+        },
+        {
+          "variable_key": "Hematologia\u001fBasofilos %",
+          "numeric_value": 0.7,
+          "text_value": null,
+          "unit": "%",
+          "reference": null
+        },
+        {
+          "variable_key": "Hematologia\u001fBasofilos abs",
+          "numeric_value": 41,
+          "text_value": null,
+          "unit": "/uL",
+          "reference": "<200"
+        },
+        {
+          "variable_key": "Hematologia\u001fCHCM",
+          "numeric_value": 31.9,
+          "text_value": null,
+          "unit": "%",
+          "reference": "31 - 37"
+        },
+        {
+          "variable_key": "Hematologia\u001fEosinofilos %",
+          "numeric_value": 1.4,
+          "text_value": null,
+          "unit": "%",
+          "reference": null
+        },
+        {
+          "variable_key": "Hematologia\u001fEosinofilos abs",
+          "numeric_value": 82,
+          "text_value": null,
+          "unit": "/uL",
+          "reference": "<800"
+        },
+        {
+          "variable_key": "Hematologia\u001fHCM",
+          "numeric_value": 30.5,
+          "text_value": null,
+          "unit": "pg",
+          "reference": "27 - 33"
+        },
+        {
+          "variable_key": "Hematologia\u001fHematies",
+          "numeric_value": 5.15,
+          "text_value": null,
+          "unit": "10^6/uL",
+          "reference": "4.60 - 6.20"
+        },
+        {
+          "variable_key": "Hematologia\u001fHematocrito",
+          "numeric_value": 49.2,
+          "text_value": null,
+          "unit": "%",
+          "reference": "42 - 52"
+        },
+        {
+          "variable_key": "Hematologia\u001fHemoglobina",
+          "numeric_value": 15.7,
+          "text_value": null,
+          "unit": "g/dL",
+          "reference": "13.5 - 18"
+        },
+        {
+          "variable_key": "Hematologia\u001fLeucocitos",
+          "numeric_value": 5.86,
+          "text_value": null,
+          "unit": "10^3/uL",
+          "reference": "4 - 11"
+        },
+        {
+          "variable_key": "Hematologia\u001fLinfocitos %",
+          "numeric_value": 40.4,
+          "text_value": null,
+          "unit": "%",
+          "reference": null
+        },
+        {
+          "variable_key": "Hematologia\u001fLinfocitos abs",
+          "numeric_value": 2367,
+          "text_value": null,
+          "unit": "/uL",
+          "reference": "1000 - 4500"
+        },
+        {
+          "variable_key": "Hematologia\u001fMonocitos %",
+          "numeric_value": 6.3,
+          "text_value": null,
+          "unit": "%",
+          "reference": null
+        },
+        {
+          "variable_key": "Hematologia\u001fMonocitos abs",
+          "numeric_value": 369,
+          "text_value": null,
+          "unit": "/uL",
+          "reference": "200 - 1000"
+        },
+        {
+          "variable_key": "Hematologia\u001fNeutrofilos %",
+          "numeric_value": 51.2,
+          "text_value": null,
+          "unit": "%",
+          "reference": null
+        },
+        {
+          "variable_key": "Hematologia\u001fNeutrofilos abs",
+          "numeric_value": 3000,
+          "text_value": null,
+          "unit": "/uL",
+          "reference": "1800 - 7500"
+        },
+        {
+          "variable_key": "Hematologia\u001fPlaquetas",
+          "numeric_value": 263,
+          "text_value": null,
+          "unit": "10^3/uL",
+          "reference": "130 - 450"
+        },
+        {
+          "variable_key": "Hematologia\u001fRDW",
+          "numeric_value": 11.6,
+          "text_value": null,
+          "unit": "%",
+          "reference": "11 - 18"
+        },
+        {
+          "variable_key": "Hematologia\u001fVCM",
+          "numeric_value": 95.5,
+          "text_value": null,
+          "unit": "fL",
+          "reference": "80 - 96"
+        },
+        {
+          "variable_key": "Hematologia\u001fVPM",
+          "numeric_value": 11.5,
+          "text_value": null,
+          "unit": "fL",
+          "reference": "7 - 13"
+        },
+        {
+          "variable_key": "Microbiologia\u001fCultivo orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": null,
+          "reference": null
+        },
+        {
+          "variable_key": "Orina\u001fBilirrubina orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": null,
+          "reference": null
+        },
+        {
+          "variable_key": "Orina\u001fCuerpos cetonicos orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": null,
+          "reference": null
+        },
+        {
+          "variable_key": "Orina\u001fDensidad orina",
+          "numeric_value": 1.01,
+          "text_value": null,
+          "unit": null,
+          "reference": "1.005 - 1.030"
+        },
+        {
+          "variable_key": "Orina\u001fGlucosa orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": null,
+          "reference": null
+        },
+        {
+          "variable_key": "Orina\u001fIndice microalbumina/creatinina",
+          "numeric_value": 2.36,
+          "text_value": null,
+          "unit": "mg/g",
+          "reference": "<30"
+        },
+        {
+          "variable_key": "Orina\u001fMicroalbuminuria",
+          "numeric_value": 3.2,
+          "text_value": null,
+          "unit": "mg/L",
+          "reference": "<30"
+        },
+        {
+          "variable_key": "Orina\u001fNitritos orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": null,
+          "reference": null
+        },
+        {
+          "variable_key": "Orina\u001fProteinas orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": null,
+          "reference": null
+        },
+        {
+          "variable_key": "Orina\u001fProteinas orina cuantitativas",
+          "numeric_value": 0.04,
+          "text_value": null,
+          "unit": "g/L",
+          "reference": null
+        },
+        {
+          "variable_key": "Orina\u001fUrobilinogeno orina",
+          "numeric_value": 0.2,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": null
+        },
+        {
+          "variable_key": "Orina\u001fpH orina",
+          "numeric_value": 6,
+          "text_value": null,
+          "unit": null,
+          "reference": null
+        },
+        {
+          "variable_key": "Tiroides\u001fTSH",
+          "numeric_value": 18.89,
+          "text_value": null,
+          "unit": "uUI/mL",
+          "reference": "0.35 - 4.94"
+        }
+      ]
+    },
+    {
+      "date": "2020-08-05",
+      "source": "Evolucion_Analiticas_2012_2026.xlsx",
+      "results": [
+        {
+          "variable_key": "Hormonas\u001fCortisol basal",
+          "numeric_value": 19.6,
+          "text_value": null,
+          "unit": "mcg/dL",
+          "reference": "5 - 25 mañana"
+        },
+        {
+          "variable_key": "Metabolismo\u001fInsulina basal",
+          "numeric_value": 7.7,
+          "text_value": null,
+          "unit": "mcU/mL",
+          "reference": "3 - 24.9"
+        }
+      ]
+    },
+    {
+      "date": "2020-09-04",
+      "source": "Evolucion_Analiticas_2012_2026.xlsx",
+      "results": [
+        {
+          "variable_key": "Tiroides\u001fAnticuerpos TPO",
+          "numeric_value": 3990.78,
+          "text_value": null,
+          "unit": "UI/mL",
+          "reference": "<6"
+        },
+        {
+          "variable_key": "Tiroides\u001fAnticuerpos tiroglobulina",
+          "numeric_value": 5.38,
+          "text_value": null,
+          "unit": "UI/mL",
+          "reference": "<5"
+        },
+        {
+          "variable_key": "Tiroides\u001fT4 libre",
+          "numeric_value": 0.88,
+          "text_value": null,
+          "unit": "ng/dL",
+          "reference": "0.71 - 1.85"
+        },
+        {
+          "variable_key": "Tiroides\u001fTSH",
+          "numeric_value": 8.43,
+          "text_value": null,
+          "unit": "uUI/mL",
+          "reference": "0.4 - 3.7"
+        }
+      ]
+    },
+    {
+      "date": "2020-12-04",
+      "source": "Evolucion_Analiticas_2012_2026.xlsx",
+      "results": [
+        {
+          "variable_key": "Bioquimica\u001fALT (GPT)",
+          "numeric_value": 20,
+          "text_value": null,
+          "unit": "U/L",
+          "reference": "10 - 50"
+        },
+        {
+          "variable_key": "Bioquimica\u001fAST (GOT)",
+          "numeric_value": 25,
+          "text_value": null,
+          "unit": "U/L",
+          "reference": "8 - 48"
+        },
+        {
+          "variable_key": "Bioquimica\u001fAcido urico",
+          "numeric_value": 6.7,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "3.5 - 7.2"
+        },
+        {
+          "variable_key": "Bioquimica\u001fBUN",
+          "numeric_value": 14.5,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "7 - 21"
+        },
+        {
+          "variable_key": "Bioquimica\u001fBilirrubina total",
+          "numeric_value": 1,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<1.2"
+        },
+        {
+          "variable_key": "Bioquimica\u001fCalcio",
+          "numeric_value": 10.5,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "8.2 - 10.6"
+        },
+        {
+          "variable_key": "Bioquimica\u001fCociente LDL/HDL",
+          "numeric_value": 2.63,
+          "text_value": null,
+          "unit": null,
+          "reference": "H <3.55"
+        },
+        {
+          "variable_key": "Bioquimica\u001fCociente colesterol/HDL",
+          "numeric_value": 4,
+          "text_value": null,
+          "unit": null,
+          "reference": "<4.5"
+        },
+        {
+          "variable_key": "Bioquimica\u001fColesterol total",
+          "numeric_value": 228,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "140 - 200"
+        },
+        {
+          "variable_key": "Bioquimica\u001fCreatinina",
+          "numeric_value": 0.97,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "0.55 - 1.25"
+        },
+        {
+          "variable_key": "Bioquimica\u001fFerritina",
+          "numeric_value": 104.6,
+          "text_value": null,
+          "unit": "ng/mL",
+          "reference": "27 - 300"
+        },
+        {
+          "variable_key": "Bioquimica\u001fFiltrado glomerular",
+          "numeric_value": 60,
+          "text_value": null,
+          "unit": "mL/min/1.73m2",
+          "reference": ">=60"
+        },
+        {
+          "variable_key": "Bioquimica\u001fFosforo",
+          "numeric_value": 5.2,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "2.5 - 5"
+        },
+        {
+          "variable_key": "Bioquimica\u001fGGT",
+          "numeric_value": 25.5,
+          "text_value": null,
+          "unit": "U/L",
+          "reference": "12 - 64"
+        },
+        {
+          "variable_key": "Bioquimica\u001fGlucosa",
+          "numeric_value": 83,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "60 - 110"
+        },
+        {
+          "variable_key": "Bioquimica\u001fGlucosa media estimada",
+          "numeric_value": 108.51,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": null
+        },
+        {
+          "variable_key": "Bioquimica\u001fHDL",
+          "numeric_value": 57,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": ">40"
+        },
+        {
+          "variable_key": "Bioquimica\u001fHbA1c",
+          "numeric_value": 5.4,
+          "text_value": null,
+          "unit": "%",
+          "reference": "4.8 - 5.6"
+        },
+        {
+          "variable_key": "Bioquimica\u001fHbA1c IFCC",
+          "numeric_value": 35.52,
+          "text_value": null,
+          "unit": "mmol/mol",
+          "reference": "<37.7 normal"
+        },
+        {
+          "variable_key": "Bioquimica\u001fHierro",
+          "numeric_value": 132,
+          "text_value": null,
+          "unit": "ug/dL",
+          "reference": "59 - 160"
+        },
+        {
+          "variable_key": "Bioquimica\u001fLDL",
+          "numeric_value": 150,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<130 primaria"
+        },
+        {
+          "variable_key": "Bioquimica\u001fMagnesio",
+          "numeric_value": 0.9,
+          "text_value": null,
+          "unit": "mmol/L",
+          "reference": "0.65 - 1.1"
+        },
+        {
+          "variable_key": "Bioquimica\u001fPotasio",
+          "numeric_value": 4.1,
+          "text_value": null,
+          "unit": "mmol/L",
+          "reference": "3.4 - 5.1"
+        },
+        {
+          "variable_key": "Bioquimica\u001fProteina C reactiva",
+          "numeric_value": 0.4,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<0.5"
+        },
+        {
+          "variable_key": "Bioquimica\u001fProteinas totales",
+          "numeric_value": 9.1,
+          "text_value": null,
+          "unit": "g/dL",
+          "reference": "6 - 8.3"
+        },
+        {
+          "variable_key": "Bioquimica\u001fSaturacion transferrina",
+          "numeric_value": 31.72,
+          "text_value": null,
+          "unit": "%",
+          "reference": "20 - 45"
+        },
+        {
+          "variable_key": "Bioquimica\u001fSodio",
+          "numeric_value": 144,
+          "text_value": null,
+          "unit": "mmol/L",
+          "reference": "135 - 145"
+        },
+        {
+          "variable_key": "Bioquimica\u001fTransferrina",
+          "numeric_value": 284,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "206 - 381"
+        },
+        {
+          "variable_key": "Bioquimica\u001fTrigliceridos",
+          "numeric_value": 105,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<200"
+        },
+        {
+          "variable_key": "Bioquimica\u001fUrea",
+          "numeric_value": 31,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "15 - 49"
+        },
+        {
+          "variable_key": "Bioquimica\u001fVitamina D",
+          "numeric_value": 23.6,
+          "text_value": null,
+          "unit": "ng/mL",
+          "reference": "30 - 96 recomendado"
+        },
+        {
+          "variable_key": "Hematologia\u001fBasofilos %",
+          "numeric_value": 0.5,
+          "text_value": null,
+          "unit": "%",
+          "reference": null
+        },
+        {
+          "variable_key": "Hematologia\u001fBasofilos abs",
+          "numeric_value": 29,
+          "text_value": null,
+          "unit": "/uL",
+          "reference": "<200"
+        },
+        {
+          "variable_key": "Hematologia\u001fCHCM",
+          "numeric_value": 31.8,
+          "text_value": null,
+          "unit": "%",
+          "reference": "33 - 37"
+        },
+        {
+          "variable_key": "Hematologia\u001fEosinofilos %",
+          "numeric_value": 1.7,
+          "text_value": null,
+          "unit": "%",
+          "reference": null
+        },
+        {
+          "variable_key": "Hematologia\u001fEosinofilos abs",
+          "numeric_value": 100,
+          "text_value": null,
+          "unit": "/uL",
+          "reference": "<800"
+        },
+        {
+          "variable_key": "Hematologia\u001fHCM",
+          "numeric_value": 28.9,
+          "text_value": null,
+          "unit": "pg",
+          "reference": "27 - 33"
+        },
+        {
+          "variable_key": "Hematologia\u001fHematies",
+          "numeric_value": 5.43,
+          "text_value": null,
+          "unit": "10^6/uL",
+          "reference": "4.60 - 6.20"
+        },
+        {
+          "variable_key": "Hematologia\u001fHematocrito",
+          "numeric_value": 49.4,
+          "text_value": null,
+          "unit": "%",
+          "reference": "42 - 52"
+        },
+        {
+          "variable_key": "Hematologia\u001fHemoglobina",
+          "numeric_value": 15.7,
+          "text_value": null,
+          "unit": "g/dL",
+          "reference": "13.5 - 18"
+        },
+        {
+          "variable_key": "Hematologia\u001fLeucocitos",
+          "numeric_value": 5.89,
+          "text_value": null,
+          "unit": "10^3/uL",
+          "reference": "4 - 11"
+        },
+        {
+          "variable_key": "Hematologia\u001fLinfocitos %",
+          "numeric_value": 38.2,
+          "text_value": null,
+          "unit": "%",
+          "reference": null
+        },
+        {
+          "variable_key": "Hematologia\u001fLinfocitos abs",
+          "numeric_value": 2250,
+          "text_value": null,
+          "unit": "/uL",
+          "reference": "1000 - 4500"
+        },
+        {
+          "variable_key": "Hematologia\u001fMonocitos %",
+          "numeric_value": 6.3,
+          "text_value": null,
+          "unit": "%",
+          "reference": null
+        },
+        {
+          "variable_key": "Hematologia\u001fMonocitos abs",
+          "numeric_value": 371,
+          "text_value": null,
+          "unit": "/uL",
+          "reference": "200 - 1000"
+        },
+        {
+          "variable_key": "Hematologia\u001fNeutrofilos %",
+          "numeric_value": 53.3,
+          "text_value": null,
+          "unit": "%",
+          "reference": null
+        },
+        {
+          "variable_key": "Hematologia\u001fNeutrofilos abs",
+          "numeric_value": 3139,
+          "text_value": null,
+          "unit": "/uL",
+          "reference": "1800 - 7500"
+        },
+        {
+          "variable_key": "Hematologia\u001fPlaquetas",
+          "numeric_value": 283,
+          "text_value": null,
+          "unit": "10^3/uL",
+          "reference": "130 - 450"
+        },
+        {
+          "variable_key": "Hematologia\u001fRDW",
+          "numeric_value": 12.9,
+          "text_value": null,
+          "unit": "%",
+          "reference": "11 - 18"
+        },
+        {
+          "variable_key": "Hematologia\u001fVCM",
+          "numeric_value": 91,
+          "text_value": null,
+          "unit": "fL",
+          "reference": "80 - 96"
+        },
+        {
+          "variable_key": "Hematologia\u001fVPM",
+          "numeric_value": 11.2,
+          "text_value": null,
+          "unit": "fL",
+          "reference": "7 - 13"
+        },
+        {
+          "variable_key": "Orina\u001fBilirrubina orina",
+          "numeric_value": null,
+          "text_value": "0 mg/dL",
+          "unit": null,
+          "reference": null
+        },
+        {
+          "variable_key": "Orina\u001fCociente proteina/creatinina",
+          "numeric_value": 34.79,
+          "text_value": null,
+          "unit": "mg/g",
+          "reference": "0 - 30"
+        },
+        {
+          "variable_key": "Orina\u001fCuerpos cetonicos orina",
+          "numeric_value": null,
+          "text_value": "0 mg/dL",
+          "unit": null,
+          "reference": null
+        },
+        {
+          "variable_key": "Orina\u001fDensidad orina",
+          "numeric_value": 1.009,
+          "text_value": null,
+          "unit": null,
+          "reference": "1.005 - 1.030"
+        },
+        {
+          "variable_key": "Orina\u001fGlucosa orina",
+          "numeric_value": null,
+          "text_value": "0 mg/dL",
+          "unit": null,
+          "reference": null
+        },
+        {
+          "variable_key": "Orina\u001fIndice microalbumina/creatinina",
+          "numeric_value": 2.9,
+          "text_value": null,
+          "unit": "mg/g",
+          "reference": "<30"
+        },
+        {
+          "variable_key": "Orina\u001fMicroalbuminuria",
+          "numeric_value": 2.5,
+          "text_value": null,
+          "unit": "mg/L",
+          "reference": "<30"
+        },
+        {
+          "variable_key": "Orina\u001fNitritos orina",
+          "numeric_value": null,
+          "text_value": "0 mg/dL",
+          "unit": null,
+          "reference": null
+        },
+        {
+          "variable_key": "Orina\u001fProteinas orina",
+          "numeric_value": null,
+          "text_value": "0 mg/dL",
+          "unit": null,
+          "reference": null
+        },
+        {
+          "variable_key": "Orina\u001fProteinas orina cuantitativas",
+          "numeric_value": 0.03,
+          "text_value": null,
+          "unit": "g/L",
+          "reference": null
+        },
+        {
+          "variable_key": "Orina\u001fUrobilinogeno orina",
+          "numeric_value": null,
+          "text_value": "0 mg/dL",
+          "unit": null,
+          "reference": null
+        },
+        {
+          "variable_key": "Orina\u001fpH orina",
+          "numeric_value": 6,
+          "text_value": null,
+          "unit": null,
+          "reference": null
+        }
+      ]
+    },
+    {
+      "date": "2020-12-09",
+      "source": "Evolucion_Analiticas_2012_2026.xlsx",
+      "results": [
+        {
+          "variable_key": "Tiroides\u001fT3",
+          "numeric_value": 1.19,
+          "text_value": null,
+          "unit": "ng/mL",
+          "reference": "0.35 - 1.93"
+        },
+        {
+          "variable_key": "Tiroides\u001fT4 libre",
+          "numeric_value": 1,
+          "text_value": null,
+          "unit": "ng/dL",
+          "reference": "0.71 - 1.85"
+        },
+        {
+          "variable_key": "Tiroides\u001fTSH",
+          "numeric_value": 4.23,
+          "text_value": null,
+          "unit": "uUI/mL",
+          "reference": "0.4 - 3.7"
+        }
+      ]
+    },
+    {
+      "date": "2021-03-05",
+      "source": "Evolucion_Analiticas_2012_2026.xlsx",
+      "results": [
+        {
+          "variable_key": "Bioquimica\u001fCociente LDL/HDL",
+          "numeric_value": 2.63,
+          "text_value": null,
+          "unit": null,
+          "reference": "H <3.55"
+        },
+        {
+          "variable_key": "Bioquimica\u001fCociente colesterol/HDL",
+          "numeric_value": 3.92,
+          "text_value": null,
+          "unit": null,
+          "reference": "<4.5"
+        },
+        {
+          "variable_key": "Bioquimica\u001fColesterol total",
+          "numeric_value": 192,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "140 - 200"
+        },
+        {
+          "variable_key": "Bioquimica\u001fHDL",
+          "numeric_value": 49,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": ">40"
+        },
+        {
+          "variable_key": "Bioquimica\u001fLDL",
+          "numeric_value": 129,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<130 primaria"
+        },
+        {
+          "variable_key": "Bioquimica\u001fTrigliceridos",
+          "numeric_value": 69,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<200"
+        },
+        {
+          "variable_key": "Microbiologia\u001fCultivo orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": null,
+          "reference": null
+        },
+        {
+          "variable_key": "Orina\u001fBilirrubina orina",
+          "numeric_value": 0,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": null
+        },
+        {
+          "variable_key": "Orina\u001fCuerpos cetonicos orina",
+          "numeric_value": 0,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": null
+        },
+        {
+          "variable_key": "Orina\u001fDensidad orina",
+          "numeric_value": 1.01,
+          "text_value": null,
+          "unit": null,
+          "reference": "1.005 - 1.030"
+        },
+        {
+          "variable_key": "Orina\u001fGlucosa orina",
+          "numeric_value": 0,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": null
+        },
+        {
+          "variable_key": "Orina\u001fLeucocitos orina",
+          "numeric_value": 0,
+          "text_value": null,
+          "unit": "LEU/uL",
+          "reference": null
+        },
+        {
+          "variable_key": "Orina\u001fNitritos orina",
+          "numeric_value": 0,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": null
+        },
+        {
+          "variable_key": "Orina\u001fProteinas orina",
+          "numeric_value": 0,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": null
+        },
+        {
+          "variable_key": "Orina\u001fUrobilinogeno orina",
+          "numeric_value": 0,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": null
+        },
+        {
+          "variable_key": "Orina\u001fpH orina",
+          "numeric_value": 5.5,
+          "text_value": null,
+          "unit": null,
+          "reference": null
+        },
+        {
+          "variable_key": "Tiroides\u001fAnticuerpos TPO",
+          "numeric_value": 1000,
+          "text_value": null,
+          "unit": "UI/mL",
+          "reference": "<6"
+        },
+        {
+          "variable_key": "Tiroides\u001fT4 libre",
+          "numeric_value": 1.03,
+          "text_value": null,
+          "unit": "ng/dL",
+          "reference": "0.71 - 1.85"
+        },
+        {
+          "variable_key": "Tiroides\u001fTSH",
+          "numeric_value": 2.07,
+          "text_value": null,
+          "unit": "uUI/mL",
+          "reference": "0.4 - 3.7"
+        }
+      ]
+    },
+    {
+      "date": "2021-12-13",
+      "source": "Evolucion_Analiticas_2012_2026.xlsx",
+      "results": [
+        {
+          "variable_key": "Bioquimica\u001fAcido urico",
+          "numeric_value": 6.6,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "2.0 - 7.0"
+        },
+        {
+          "variable_key": "Bioquimica\u001fColesterol total",
+          "numeric_value": 203,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "140 - 200"
+        },
+        {
+          "variable_key": "Bioquimica\u001fHDL",
+          "numeric_value": 58,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": ">55 favorable"
+        },
+        {
+          "variable_key": "Bioquimica\u001fLDL",
+          "numeric_value": 116,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<150 favorable"
+        },
+        {
+          "variable_key": "Bioquimica\u001fTrigliceridos",
+          "numeric_value": 145,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "40 - 160"
+        },
+        {
+          "variable_key": "Orina\u001fBilirrubina orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": null,
+          "reference": null
+        },
+        {
+          "variable_key": "Orina\u001fCuerpos cetonicos orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": null,
+          "reference": null
+        },
+        {
+          "variable_key": "Orina\u001fDensidad orina",
+          "numeric_value": 1025,
+          "text_value": null,
+          "unit": null,
+          "reference": null
+        },
+        {
+          "variable_key": "Orina\u001fGlucosa orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": null,
+          "reference": null
+        },
+        {
+          "variable_key": "Orina\u001fNitritos orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": null,
+          "reference": null
+        },
+        {
+          "variable_key": "Orina\u001fPigmentos biliares orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": null,
+          "reference": null
+        },
+        {
+          "variable_key": "Orina\u001fProteinas orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": null,
+          "reference": null
+        },
+        {
+          "variable_key": "Orina\u001fSales biliares orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": null,
+          "reference": null
+        },
+        {
+          "variable_key": "Orina\u001fUrobilinogeno orina",
+          "numeric_value": null,
+          "text_value": "Normal",
+          "unit": null,
+          "reference": null
+        },
+        {
+          "variable_key": "Orina\u001fpH orina",
+          "numeric_value": 5,
+          "text_value": null,
+          "unit": null,
+          "reference": null
+        },
+        {
+          "variable_key": "Tiroides\u001fT4 libre",
+          "numeric_value": 1,
+          "text_value": null,
+          "unit": "ng/mL",
+          "reference": "0.78 - 1.85"
+        },
+        {
+          "variable_key": "Tiroides\u001fTSH",
+          "numeric_value": 5.15,
+          "text_value": null,
+          "unit": "mcUI/mL",
+          "reference": "0.38 - 4.00"
+        }
+      ]
+    },
+    {
+      "date": "2022-05-07",
+      "source": "Evolucion_Analiticas_2012_2026.xlsx",
+      "results": [
+        {
+          "variable_key": "Bioquimica\u001fAcido urico",
+          "numeric_value": 6.7,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "3.5 - 7.2"
+        },
+        {
+          "variable_key": "Bioquimica\u001fCociente LDL/HDL",
+          "numeric_value": 2.35,
+          "text_value": null,
+          "unit": null,
+          "reference": "H <3.55"
+        },
+        {
+          "variable_key": "Bioquimica\u001fCociente colesterol/HDL",
+          "numeric_value": 3.76,
+          "text_value": null,
+          "unit": null,
+          "reference": "<4.5"
+        },
+        {
+          "variable_key": "Bioquimica\u001fColesterol total",
+          "numeric_value": 203,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<200"
+        },
+        {
+          "variable_key": "Bioquimica\u001fHDL",
+          "numeric_value": 54,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": ">40"
+        },
+        {
+          "variable_key": "Bioquimica\u001fLDL",
+          "numeric_value": 127,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<130 primaria"
+        },
+        {
+          "variable_key": "Bioquimica\u001fTrigliceridos",
+          "numeric_value": 110,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<150 ayuno"
+        },
+        {
+          "variable_key": "Tiroides\u001fT4 libre",
+          "numeric_value": 0.81,
+          "text_value": null,
+          "unit": "ng/dL",
+          "reference": "0.70 - 1.48"
+        },
+        {
+          "variable_key": "Tiroides\u001fTSH",
+          "numeric_value": 25.12,
+          "text_value": null,
+          "unit": "uUI/mL",
+          "reference": "0.35 - 4.94"
+        }
+      ]
+    },
+    {
+      "date": "2022-12-05",
+      "source": "Evolucion_Analiticas_2012_2026.xlsx",
+      "results": [
+        {
+          "variable_key": "Bioquimica\u001fAcido urico",
+          "numeric_value": 6.8,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "3.5 - 7.2"
+        },
+        {
+          "variable_key": "Bioquimica\u001fBUN",
+          "numeric_value": 20.5,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "7 - 21"
+        },
+        {
+          "variable_key": "Bioquimica\u001fCloro",
+          "numeric_value": 102,
+          "text_value": null,
+          "unit": "mmol/L",
+          "reference": "98 - 107"
+        },
+        {
+          "variable_key": "Bioquimica\u001fCociente LDL/HDL",
+          "numeric_value": 2.41,
+          "text_value": null,
+          "unit": null,
+          "reference": "H <3.55"
+        },
+        {
+          "variable_key": "Bioquimica\u001fCociente colesterol/HDL",
+          "numeric_value": 4.21,
+          "text_value": null,
+          "unit": null,
+          "reference": "<4.5"
+        },
+        {
+          "variable_key": "Bioquimica\u001fColesterol total",
+          "numeric_value": 164,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<200"
+        },
+        {
+          "variable_key": "Bioquimica\u001fCreatinina",
+          "numeric_value": 1.11,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "0.73 - 1.18"
+        },
+        {
+          "variable_key": "Bioquimica\u001fGlucosa",
+          "numeric_value": 94,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "60 - 110"
+        },
+        {
+          "variable_key": "Bioquimica\u001fHDL",
+          "numeric_value": 39,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": ">40"
+        },
+        {
+          "variable_key": "Bioquimica\u001fLDL",
+          "numeric_value": 94,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<130 primaria"
+        },
+        {
+          "variable_key": "Bioquimica\u001fPotasio",
+          "numeric_value": 4.2,
+          "text_value": null,
+          "unit": "mmol/L",
+          "reference": "3.5 - 5.1"
+        },
+        {
+          "variable_key": "Bioquimica\u001fSodio",
+          "numeric_value": 142,
+          "text_value": null,
+          "unit": "mmol/L",
+          "reference": "135 - 147"
+        },
+        {
+          "variable_key": "Bioquimica\u001fTrigliceridos",
+          "numeric_value": 153,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<150 ayuno / <175 sin ayuno"
+        },
+        {
+          "variable_key": "Bioquimica\u001fUrea",
+          "numeric_value": 44,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "17 - 51"
+        },
+        {
+          "variable_key": "Coagulacion\u001fINR",
+          "numeric_value": 0.96,
+          "text_value": null,
+          "unit": null,
+          "reference": "0.9 - 1.1"
+        },
+        {
+          "variable_key": "Coagulacion\u001fIndice de Quick",
+          "numeric_value": 106,
+          "text_value": null,
+          "unit": "%",
+          "reference": "80 - 120"
+        },
+        {
+          "variable_key": "Coagulacion\u001fRatio TTP",
+          "numeric_value": 1.01,
+          "text_value": null,
+          "unit": null,
+          "reference": "0.8 - 1.2"
+        },
+        {
+          "variable_key": "Coagulacion\u001faPTT",
+          "numeric_value": 32.6,
+          "text_value": null,
+          "unit": "s",
+          "reference": "20 - 39"
+        },
+        {
+          "variable_key": "Hematologia\u001fBasofilos %",
+          "numeric_value": 0.4,
+          "text_value": null,
+          "unit": "%",
+          "reference": null
+        },
+        {
+          "variable_key": "Hematologia\u001fBasofilos abs",
+          "numeric_value": 31,
+          "text_value": null,
+          "unit": "/uL",
+          "reference": "<200"
+        },
+        {
+          "variable_key": "Hematologia\u001fCHCM",
+          "numeric_value": 32.9,
+          "text_value": null,
+          "unit": "%",
+          "reference": "33 - 37"
+        },
+        {
+          "variable_key": "Hematologia\u001fEosinofilos %",
+          "numeric_value": 2.2,
+          "text_value": null,
+          "unit": "%",
+          "reference": null
+        },
+        {
+          "variable_key": "Hematologia\u001fEosinofilos abs",
+          "numeric_value": 171,
+          "text_value": null,
+          "unit": "/uL",
+          "reference": "<800"
+        },
+        {
+          "variable_key": "Hematologia\u001fHCM",
+          "numeric_value": 29.6,
+          "text_value": null,
+          "unit": "pg",
+          "reference": "27 - 33"
+        },
+        {
+          "variable_key": "Hematologia\u001fHematies",
+          "numeric_value": 5.07,
+          "text_value": null,
+          "unit": "10^6/uL",
+          "reference": "4.60 - 6.20"
+        },
+        {
+          "variable_key": "Hematologia\u001fHematocrito",
+          "numeric_value": 45.6,
+          "text_value": null,
+          "unit": "%",
+          "reference": "42 - 52"
+        },
+        {
+          "variable_key": "Hematologia\u001fHemoglobina",
+          "numeric_value": 15,
+          "text_value": null,
+          "unit": "g/dL",
+          "reference": "13.5 - 18"
+        },
+        {
+          "variable_key": "Hematologia\u001fLeucocitos",
+          "numeric_value": 7.79,
+          "text_value": null,
+          "unit": "10^3/uL",
+          "reference": "4 - 11"
+        },
+        {
+          "variable_key": "Hematologia\u001fLinfocitos %",
+          "numeric_value": 44.5,
+          "text_value": null,
+          "unit": "%",
+          "reference": null
+        },
+        {
+          "variable_key": "Hematologia\u001fLinfocitos abs",
+          "numeric_value": 3467,
+          "text_value": null,
+          "unit": "/uL",
+          "reference": "1000 - 4500"
+        },
+        {
+          "variable_key": "Hematologia\u001fMonocitos %",
+          "numeric_value": 5.8,
+          "text_value": null,
+          "unit": "%",
+          "reference": null
+        },
+        {
+          "variable_key": "Hematologia\u001fMonocitos abs",
+          "numeric_value": 452,
+          "text_value": null,
+          "unit": "/uL",
+          "reference": "200 - 1000"
+        },
+        {
+          "variable_key": "Hematologia\u001fNeutrofilos %",
+          "numeric_value": 47.1,
+          "text_value": null,
+          "unit": "%",
+          "reference": null
+        },
+        {
+          "variable_key": "Hematologia\u001fNeutrofilos abs",
+          "numeric_value": 3669,
+          "text_value": null,
+          "unit": "/uL",
+          "reference": "1800 - 7500"
+        },
+        {
+          "variable_key": "Hematologia\u001fPlaquetas",
+          "numeric_value": 348,
+          "text_value": null,
+          "unit": "10^3/uL",
+          "reference": "130 - 450"
+        },
+        {
+          "variable_key": "Hematologia\u001fRDW",
+          "numeric_value": 11.9,
+          "text_value": null,
+          "unit": "%",
+          "reference": "11 - 18"
+        },
+        {
+          "variable_key": "Hematologia\u001fVCM",
+          "numeric_value": 89.9,
+          "text_value": null,
+          "unit": "fL",
+          "reference": "80 - 96"
+        },
+        {
+          "variable_key": "Hematologia\u001fVPM",
+          "numeric_value": 10.7,
+          "text_value": null,
+          "unit": "fL",
+          "reference": "7 - 13"
+        },
+        {
+          "variable_key": "Inmunohematologia\u001fCoombs indirecto",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": null,
+          "reference": null
+        },
+        {
+          "variable_key": "Inmunohematologia\u001fGrupo sanguineo",
+          "numeric_value": null,
+          "text_value": "A Positivo",
+          "unit": null,
+          "reference": null
+        },
+        {
+          "variable_key": "Tiroides\u001fT4 libre",
+          "numeric_value": 1.17,
+          "text_value": null,
+          "unit": "ng/dL",
+          "reference": "0.70 - 1.48"
+        },
+        {
+          "variable_key": "Tiroides\u001fTSH",
+          "numeric_value": 1.25,
+          "text_value": null,
+          "unit": "uUI/mL",
+          "reference": "0.35 - 4.94"
+        }
+      ]
+    },
+    {
+      "date": "2023-05-04",
+      "source": "Evolucion_Analiticas_2012_2026.xlsx",
+      "results": [
+        {
+          "variable_key": "Espermiograma\u001fColor semen",
+          "numeric_value": null,
+          "text_value": "Normal",
+          "unit": null,
+          "reference": null
+        },
+        {
+          "variable_key": "Espermiograma\u001fEspermatozoides",
+          "numeric_value": null,
+          "text_value": "No se observan",
+          "unit": null,
+          "reference": null
+        },
+        {
+          "variable_key": "Espermiograma\u001fOpacidad semen",
+          "numeric_value": null,
+          "text_value": "Normal",
+          "unit": null,
+          "reference": null
+        },
+        {
+          "variable_key": "Espermiograma\u001fViscosidad semen",
+          "numeric_value": null,
+          "text_value": "Normal",
+          "unit": null,
+          "reference": null
+        },
+        {
+          "variable_key": "Espermiograma\u001fVolumen semen",
+          "numeric_value": 3.6,
+          "text_value": null,
+          "unit": "mL",
+          "reference": null
+        },
+        {
+          "variable_key": "Espermiograma\u001fpH semen",
+          "numeric_value": 7.2,
+          "text_value": null,
+          "unit": null,
+          "reference": null
+        }
+      ]
+    },
+    {
+      "date": "2023-05-25",
+      "source": "Evolucion_Analiticas_2012_2026.xlsx",
+      "results": [
+        {
+          "variable_key": "Bioquimica\u001fALT (GPT)",
+          "numeric_value": 84,
+          "text_value": null,
+          "unit": "U/L",
+          "reference": "0 - 45"
+        },
+        {
+          "variable_key": "Bioquimica\u001fAST (GOT)",
+          "numeric_value": 46,
+          "text_value": null,
+          "unit": "U/L",
+          "reference": "0 - 35"
+        },
+        {
+          "variable_key": "Bioquimica\u001fAcido urico",
+          "numeric_value": 7.5,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "3.6 - 7.7"
+        },
+        {
+          "variable_key": "Bioquimica\u001fColesterol total",
+          "numeric_value": 189,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<200"
+        },
+        {
+          "variable_key": "Bioquimica\u001fCreatinina",
+          "numeric_value": 0.93,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "0.67 - 1.17"
+        },
+        {
+          "variable_key": "Bioquimica\u001fFosfatasa alcalina",
+          "numeric_value": 81,
+          "text_value": null,
+          "unit": "U/L",
+          "reference": "30 - 120"
+        },
+        {
+          "variable_key": "Bioquimica\u001fGGT",
+          "numeric_value": 42,
+          "text_value": null,
+          "unit": "U/L",
+          "reference": "0 - 55"
+        },
+        {
+          "variable_key": "Bioquimica\u001fGlucosa",
+          "numeric_value": 89,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "74 - 106"
+        },
+        {
+          "variable_key": "Bioquimica\u001fTrigliceridos",
+          "numeric_value": 171,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<150"
+        },
+        {
+          "variable_key": "Bioquimica\u001fUrea",
+          "numeric_value": 40,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "17 - 49"
+        },
+        {
+          "variable_key": "Hematologia\u001fBasofilos %",
+          "numeric_value": 0.2,
+          "text_value": null,
+          "unit": "%",
+          "reference": "0 - 1.75"
+        },
+        {
+          "variable_key": "Hematologia\u001fBasofilos abs",
+          "numeric_value": 0,
+          "text_value": null,
+          "unit": "10^3/mm3",
+          "reference": "0 - 0.2"
+        },
+        {
+          "variable_key": "Hematologia\u001fCHCM",
+          "numeric_value": 33.3,
+          "text_value": null,
+          "unit": "g/dL",
+          "reference": "31.5 - 36"
+        },
+        {
+          "variable_key": "Hematologia\u001fEosinofilos %",
+          "numeric_value": 2.1,
+          "text_value": null,
+          "unit": "%",
+          "reference": "0.5 - 5.5"
+        },
+        {
+          "variable_key": "Hematologia\u001fEosinofilos abs",
+          "numeric_value": 0.1,
+          "text_value": null,
+          "unit": "10^3/mm3",
+          "reference": "0.02 - 0.5"
+        },
+        {
+          "variable_key": "Hematologia\u001fHCM",
+          "numeric_value": 29.7,
+          "text_value": null,
+          "unit": "pg",
+          "reference": "26 - 33.5"
+        },
+        {
+          "variable_key": "Hematologia\u001fHematies",
+          "numeric_value": 5.14,
+          "text_value": null,
+          "unit": "10^6/mm3",
+          "reference": "4.1 - 5.75"
+        },
+        {
+          "variable_key": "Hematologia\u001fHematocrito",
+          "numeric_value": 45.8,
+          "text_value": null,
+          "unit": "%",
+          "reference": "36.5 - 50.5"
+        },
+        {
+          "variable_key": "Hematologia\u001fHemoglobina",
+          "numeric_value": 15.3,
+          "text_value": null,
+          "unit": "g/dL",
+          "reference": "12.5 - 17.2"
+        },
+        {
+          "variable_key": "Hematologia\u001fLeucocitos",
+          "numeric_value": 6.7,
+          "text_value": null,
+          "unit": "10^3/mm3",
+          "reference": "3.9 - 10.5"
+        },
+        {
+          "variable_key": "Hematologia\u001fLinfocitos %",
+          "numeric_value": 36.9,
+          "text_value": null,
+          "unit": "%",
+          "reference": "20 - 44"
+        },
+        {
+          "variable_key": "Hematologia\u001fLinfocitos abs",
+          "numeric_value": 2.5,
+          "text_value": null,
+          "unit": "10^3/mm3",
+          "reference": "1.1 - 4.5"
+        },
+        {
+          "variable_key": "Hematologia\u001fMonocitos %",
+          "numeric_value": 7.6,
+          "text_value": null,
+          "unit": "%",
+          "reference": "1.5 - 9.5"
+        },
+        {
+          "variable_key": "Hematologia\u001fMonocitos abs",
+          "numeric_value": 0.5,
+          "text_value": null,
+          "unit": "10^3/mm3",
+          "reference": "0.1 - 0.95"
+        },
+        {
+          "variable_key": "Hematologia\u001fNeutrofilos %",
+          "numeric_value": 53.2,
+          "text_value": null,
+          "unit": "%",
+          "reference": "42 - 77"
+        },
+        {
+          "variable_key": "Hematologia\u001fNeutrofilos abs",
+          "numeric_value": 3.6,
+          "text_value": null,
+          "unit": "10^3/mm3",
+          "reference": "1.5 - 7.7"
+        },
+        {
+          "variable_key": "Hematologia\u001fPlaquetas",
+          "numeric_value": 239,
+          "text_value": null,
+          "unit": "10^3/mm3",
+          "reference": "150 - 370"
+        },
+        {
+          "variable_key": "Hematologia\u001fRDW",
+          "numeric_value": 12.9,
+          "text_value": null,
+          "unit": "%",
+          "reference": "11.5 - 15.5"
+        },
+        {
+          "variable_key": "Hematologia\u001fVCM",
+          "numeric_value": 89,
+          "text_value": null,
+          "unit": "fL",
+          "reference": "78 - 99"
+        },
+        {
+          "variable_key": "Hematologia\u001fVPM",
+          "numeric_value": 9.5,
+          "text_value": null,
+          "unit": "fL",
+          "reference": "7 - 12"
+        },
+        {
+          "variable_key": "Orina\u001fBilirrubina orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": null,
+          "reference": "Negativo"
+        },
+        {
+          "variable_key": "Orina\u001fCuerpos cetonicos orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": null,
+          "reference": "Negativo"
+        },
+        {
+          "variable_key": "Orina\u001fDensidad orina",
+          "numeric_value": 1022,
+          "text_value": null,
+          "unit": null,
+          "reference": "1010 - 1030"
+        },
+        {
+          "variable_key": "Orina\u001fGlucosa orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": "mg/dL",
+          "reference": "Negativo"
+        },
+        {
+          "variable_key": "Orina\u001fHematies orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": "/uL",
+          "reference": "Negativo"
+        },
+        {
+          "variable_key": "Orina\u001fLeucocitos orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": "/uL",
+          "reference": "Negativo"
+        },
+        {
+          "variable_key": "Orina\u001fNitritos orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": null,
+          "reference": "Negativo"
+        },
+        {
+          "variable_key": "Orina\u001fProteinas orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": null,
+          "reference": "Negativo"
+        },
+        {
+          "variable_key": "Orina\u001fUrobilinogeno orina",
+          "numeric_value": 0.2,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "0.2 - 1"
+        },
+        {
+          "variable_key": "Orina\u001fpH orina",
+          "numeric_value": 6,
+          "text_value": null,
+          "unit": null,
+          "reference": "5 - 8"
+        }
+      ]
+    },
+    {
+      "date": "2023-06-16",
+      "source": "Evolucion_Analiticas_2012_2026.xlsx",
+      "results": [
+        {
+          "variable_key": "Bioquimica\u001fALT (GPT)",
+          "numeric_value": 90,
+          "text_value": null,
+          "unit": "U/L",
+          "reference": "7 - 55"
+        },
+        {
+          "variable_key": "Bioquimica\u001fAST (GOT)",
+          "numeric_value": 46,
+          "text_value": null,
+          "unit": "U/L",
+          "reference": "8 - 48"
+        },
+        {
+          "variable_key": "Bioquimica\u001fAcido urico",
+          "numeric_value": 7.83,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "3.5 - 7.2"
+        },
+        {
+          "variable_key": "Bioquimica\u001fAmilasa",
+          "numeric_value": 48,
+          "text_value": null,
+          "unit": "U/L",
+          "reference": "25 - 125"
+        },
+        {
+          "variable_key": "Bioquimica\u001fBUN",
+          "numeric_value": 16.3,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "7 - 21"
+        },
+        {
+          "variable_key": "Bioquimica\u001fCociente LDL/HDL",
+          "numeric_value": 2.84,
+          "text_value": null,
+          "unit": null,
+          "reference": "H <3.55"
+        },
+        {
+          "variable_key": "Bioquimica\u001fCociente colesterol/HDL",
+          "numeric_value": 4.23,
+          "text_value": null,
+          "unit": null,
+          "reference": "<4.5"
+        },
+        {
+          "variable_key": "Bioquimica\u001fColesterol total",
+          "numeric_value": 186,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<200"
+        },
+        {
+          "variable_key": "Bioquimica\u001fCreatinina",
+          "numeric_value": 0.83,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "0.73 - 1.18"
+        },
+        {
+          "variable_key": "Bioquimica\u001fGGT",
+          "numeric_value": 43,
+          "text_value": null,
+          "unit": "U/L",
+          "reference": "12 - 64"
+        },
+        {
+          "variable_key": "Bioquimica\u001fGlucosa",
+          "numeric_value": 94,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "60 - 110"
+        },
+        {
+          "variable_key": "Bioquimica\u001fHDL",
+          "numeric_value": 44,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": ">40"
+        },
+        {
+          "variable_key": "Bioquimica\u001fLDL",
+          "numeric_value": 125,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<116 riesgo bajo"
+        },
+        {
+          "variable_key": "Bioquimica\u001fTrigliceridos",
+          "numeric_value": 87,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<150 ayuno"
+        },
+        {
+          "variable_key": "Bioquimica\u001fUrea",
+          "numeric_value": 35,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "17 - 51"
+        },
+        {
+          "variable_key": "Hematologia\u001fBasofilos %",
+          "numeric_value": 0.8,
+          "text_value": null,
+          "unit": "%",
+          "reference": null
+        },
+        {
+          "variable_key": "Hematologia\u001fBasofilos abs",
+          "numeric_value": 49,
+          "text_value": null,
+          "unit": "/uL",
+          "reference": "<200"
+        },
+        {
+          "variable_key": "Hematologia\u001fCHCM",
+          "numeric_value": 32.7,
+          "text_value": null,
+          "unit": "%",
+          "reference": "33 - 37"
+        },
+        {
+          "variable_key": "Hematologia\u001fEosinofilos %",
+          "numeric_value": 1.6,
+          "text_value": null,
+          "unit": "%",
+          "reference": null
+        },
+        {
+          "variable_key": "Hematologia\u001fEosinofilos abs",
+          "numeric_value": 98,
+          "text_value": null,
+          "unit": "/uL",
+          "reference": "<800"
+        },
+        {
+          "variable_key": "Hematologia\u001fHCM",
+          "numeric_value": 30.4,
+          "text_value": null,
+          "unit": "pg",
+          "reference": "27 - 33"
+        },
+        {
+          "variable_key": "Hematologia\u001fHematies",
+          "numeric_value": 4.96,
+          "text_value": null,
+          "unit": "10^6/uL",
+          "reference": "4.60 - 6.20"
+        },
+        {
+          "variable_key": "Hematologia\u001fHematocrito",
+          "numeric_value": 46.2,
+          "text_value": null,
+          "unit": "%",
+          "reference": "42 - 52"
+        },
+        {
+          "variable_key": "Hematologia\u001fHemoglobina",
+          "numeric_value": 15.1,
+          "text_value": null,
+          "unit": "g/dL",
+          "reference": "13.5 - 18"
+        },
+        {
+          "variable_key": "Hematologia\u001fLeucocitos",
+          "numeric_value": 6.11,
+          "text_value": null,
+          "unit": "10^3/uL",
+          "reference": "4 - 11"
+        },
+        {
+          "variable_key": "Hematologia\u001fLinfocitos %",
+          "numeric_value": 35.2,
+          "text_value": null,
+          "unit": "%",
+          "reference": null
+        },
+        {
+          "variable_key": "Hematologia\u001fLinfocitos abs",
+          "numeric_value": 2151,
+          "text_value": null,
+          "unit": "/uL",
+          "reference": "1000 - 4500"
+        },
+        {
+          "variable_key": "Hematologia\u001fMonocitos %",
+          "numeric_value": 8.2,
+          "text_value": null,
+          "unit": "%",
+          "reference": null
+        },
+        {
+          "variable_key": "Hematologia\u001fMonocitos abs",
+          "numeric_value": 501,
+          "text_value": null,
+          "unit": "/uL",
+          "reference": "200 - 1000"
+        },
+        {
+          "variable_key": "Hematologia\u001fNeutrofilos %",
+          "numeric_value": 54.2,
+          "text_value": null,
+          "unit": "%",
+          "reference": null
+        },
+        {
+          "variable_key": "Hematologia\u001fNeutrofilos abs",
+          "numeric_value": 3312,
+          "text_value": null,
+          "unit": "/uL",
+          "reference": "1800 - 7500"
+        },
+        {
+          "variable_key": "Hematologia\u001fPlaquetas",
+          "numeric_value": 249,
+          "text_value": null,
+          "unit": "10^3/uL",
+          "reference": "130 - 450"
+        },
+        {
+          "variable_key": "Hematologia\u001fRDW",
+          "numeric_value": 12.3,
+          "text_value": null,
+          "unit": "%",
+          "reference": "11 - 18"
+        },
+        {
+          "variable_key": "Hematologia\u001fVCM",
+          "numeric_value": 93.1,
+          "text_value": null,
+          "unit": "fL",
+          "reference": "80 - 96"
+        },
+        {
+          "variable_key": "Hematologia\u001fVPM",
+          "numeric_value": 11.2,
+          "text_value": null,
+          "unit": "fL",
+          "reference": "7 - 13"
+        },
+        {
+          "variable_key": "Inflamacion\u001fVSG 1h",
+          "numeric_value": 3,
+          "text_value": null,
+          "unit": "mm",
+          "reference": "1 - 10"
+        },
+        {
+          "variable_key": "Inflamacion\u001fVSG 2h",
+          "numeric_value": 8,
+          "text_value": null,
+          "unit": "mm",
+          "reference": "<30"
+        },
+        {
+          "variable_key": "Serologia\u001fHepatitis B antigeno superficie",
+          "numeric_value": 0.29,
+          "text_value": null,
+          "unit": "indice",
+          "reference": "<0.99 Negativo"
+        },
+        {
+          "variable_key": "Serologia\u001fHepatitis C anticuerpos IgG",
+          "numeric_value": 0.1,
+          "text_value": null,
+          "unit": "indice",
+          "reference": "<0.90 Negativo"
+        },
+        {
+          "variable_key": "Tiroides\u001fT4 libre",
+          "numeric_value": 1.19,
+          "text_value": null,
+          "unit": "ng/dL",
+          "reference": "0.70 - 1.48"
+        },
+        {
+          "variable_key": "Tiroides\u001fTSH",
+          "numeric_value": 0.24,
+          "text_value": null,
+          "unit": "uUI/mL",
+          "reference": "0.35 - 4.94"
+        }
+      ]
+    },
+    {
+      "date": "2024-07-26",
+      "source": "Evolucion_Analiticas_2012_2026.xlsx",
+      "results": [
+        {
+          "variable_key": "Bioquimica\u001fALT (GPT)",
+          "numeric_value": 35,
+          "text_value": null,
+          "unit": "U/L",
+          "reference": "<50"
+        },
+        {
+          "variable_key": "Bioquimica\u001fAST (GOT)",
+          "numeric_value": 24,
+          "text_value": null,
+          "unit": "U/L",
+          "reference": "<50"
+        },
+        {
+          "variable_key": "Bioquimica\u001fCociente LDL/HDL",
+          "numeric_value": 2.53,
+          "text_value": null,
+          "unit": null,
+          "reference": "H <3.55"
+        },
+        {
+          "variable_key": "Bioquimica\u001fCociente colesterol/HDL",
+          "numeric_value": 3.91,
+          "text_value": null,
+          "unit": null,
+          "reference": "<4.5"
+        },
+        {
+          "variable_key": "Bioquimica\u001fColesterol total",
+          "numeric_value": 184,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<200"
+        },
+        {
+          "variable_key": "Bioquimica\u001fHDL",
+          "numeric_value": 47,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": ">40"
+        },
+        {
+          "variable_key": "Bioquimica\u001fLDL",
+          "numeric_value": 119,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<130 primaria"
+        },
+        {
+          "variable_key": "Bioquimica\u001fTrigliceridos",
+          "numeric_value": 91,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<150 ayuno"
+        },
+        {
+          "variable_key": "Tiroides\u001fT4 libre",
+          "numeric_value": 0.85,
+          "text_value": null,
+          "unit": "ng/dL",
+          "reference": "0.70 - 1.48"
+        },
+        {
+          "variable_key": "Tiroides\u001fTSH",
+          "numeric_value": 26.77,
+          "text_value": null,
+          "unit": "uUI/mL",
+          "reference": "0.35 - 4.94"
+        }
+      ]
+    },
+    {
+      "date": "2024-10-25",
+      "source": "Evolucion_Analiticas_2012_2026.xlsx",
+      "results": [
+        {
+          "variable_key": "Bioquimica\u001fALT (GPT)",
+          "numeric_value": 31,
+          "text_value": null,
+          "unit": "U/L",
+          "reference": "<41"
+        },
+        {
+          "variable_key": "Bioquimica\u001fAST (GOT)",
+          "numeric_value": 25,
+          "text_value": null,
+          "unit": "U/L",
+          "reference": "<40"
+        },
+        {
+          "variable_key": "Bioquimica\u001fAcido urico",
+          "numeric_value": 6.9,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "3.5 - 8.5"
+        },
+        {
+          "variable_key": "Bioquimica\u001fBUN",
+          "numeric_value": 14,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "9 - 23"
+        },
+        {
+          "variable_key": "Bioquimica\u001fColesterol total",
+          "numeric_value": 173,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<200"
+        },
+        {
+          "variable_key": "Bioquimica\u001fCreatinina",
+          "numeric_value": 0.99,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "0.65 - 1.30"
+        },
+        {
+          "variable_key": "Bioquimica\u001fFiltrado glomerular",
+          "numeric_value": 96.88,
+          "text_value": null,
+          "unit": "mL/min/1.73m2",
+          "reference": ">60"
+        },
+        {
+          "variable_key": "Bioquimica\u001fFosfatasa alcalina",
+          "numeric_value": 74,
+          "text_value": null,
+          "unit": "U/L",
+          "reference": "40 - 130"
+        },
+        {
+          "variable_key": "Bioquimica\u001fGGT",
+          "numeric_value": 14,
+          "text_value": null,
+          "unit": "U/L",
+          "reference": "<60"
+        },
+        {
+          "variable_key": "Bioquimica\u001fGlucosa",
+          "numeric_value": 84,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "74 - 106"
+        },
+        {
+          "variable_key": "Bioquimica\u001fIndice higado graso FLI",
+          "numeric_value": 38,
+          "text_value": null,
+          "unit": null,
+          "reference": "<30"
+        },
+        {
+          "variable_key": "Bioquimica\u001fResistencia insulinica",
+          "numeric_value": 8.5,
+          "text_value": null,
+          "unit": null,
+          "reference": "<8.8"
+        },
+        {
+          "variable_key": "Bioquimica\u001fTrigliceridos",
+          "numeric_value": 115,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "47 - 178"
+        },
+        {
+          "variable_key": "Bioquimica\u001fUrea",
+          "numeric_value": 31,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<50"
+        },
+        {
+          "variable_key": "Hematologia\u001fBasofilos %",
+          "numeric_value": 0.7,
+          "text_value": null,
+          "unit": "%",
+          "reference": "0 - 2"
+        },
+        {
+          "variable_key": "Hematologia\u001fBasofilos abs",
+          "numeric_value": 0,
+          "text_value": null,
+          "unit": "10^3/uL",
+          "reference": "0 - 0.3"
+        },
+        {
+          "variable_key": "Hematologia\u001fCHCM",
+          "numeric_value": 33.1,
+          "text_value": null,
+          "unit": "g/dL",
+          "reference": "31.5 - 34.5"
+        },
+        {
+          "variable_key": "Hematologia\u001fEosinofilos %",
+          "numeric_value": 2.1,
+          "text_value": null,
+          "unit": "%",
+          "reference": "0 - 5"
+        },
+        {
+          "variable_key": "Hematologia\u001fEosinofilos abs",
+          "numeric_value": 0.1,
+          "text_value": null,
+          "unit": "10^3/uL",
+          "reference": "0 - 0.6"
+        },
+        {
+          "variable_key": "Hematologia\u001fHCM",
+          "numeric_value": 30.2,
+          "text_value": null,
+          "unit": "pg",
+          "reference": "27 - 32"
+        },
+        {
+          "variable_key": "Hematologia\u001fHematies",
+          "numeric_value": 5.1,
+          "text_value": null,
+          "unit": "10^6/uL",
+          "reference": "4.3 - 5.9"
+        },
+        {
+          "variable_key": "Hematologia\u001fHematocrito",
+          "numeric_value": 46.2,
+          "text_value": null,
+          "unit": "%",
+          "reference": "39 - 52"
+        },
+        {
+          "variable_key": "Hematologia\u001fHemoglobina",
+          "numeric_value": 15.3,
+          "text_value": null,
+          "unit": "g/dL",
+          "reference": "13 - 17"
+        },
+        {
+          "variable_key": "Hematologia\u001fLeucocitos",
+          "numeric_value": 6.1,
+          "text_value": null,
+          "unit": "10^3/uL",
+          "reference": "3.5 - 11"
+        },
+        {
+          "variable_key": "Hematologia\u001fLinfocitos %",
+          "numeric_value": 36.2,
+          "text_value": null,
+          "unit": "%",
+          "reference": "20 - 45"
+        },
+        {
+          "variable_key": "Hematologia\u001fLinfocitos abs",
+          "numeric_value": 2.2,
+          "text_value": null,
+          "unit": "10^3/uL",
+          "reference": "0.9 - 3.4"
+        },
+        {
+          "variable_key": "Hematologia\u001fMonocitos %",
+          "numeric_value": 6.9,
+          "text_value": null,
+          "unit": "%",
+          "reference": "2 - 10"
+        },
+        {
+          "variable_key": "Hematologia\u001fMonocitos abs",
+          "numeric_value": 0.4,
+          "text_value": null,
+          "unit": "10^3/uL",
+          "reference": "0 - 1.2"
+        },
+        {
+          "variable_key": "Hematologia\u001fNeutrofilos %",
+          "numeric_value": 54.1,
+          "text_value": null,
+          "unit": "%",
+          "reference": "45 - 75"
+        },
+        {
+          "variable_key": "Hematologia\u001fNeutrofilos abs",
+          "numeric_value": 3.3,
+          "text_value": null,
+          "unit": "10^3/uL",
+          "reference": "1.6 - 7.5"
+        },
+        {
+          "variable_key": "Hematologia\u001fPlaquetas",
+          "numeric_value": 271,
+          "text_value": null,
+          "unit": "10^3/uL",
+          "reference": "150 - 450"
+        },
+        {
+          "variable_key": "Hematologia\u001fRDW",
+          "numeric_value": 11.9,
+          "text_value": null,
+          "unit": "%",
+          "reference": "11.2 - 15.2"
+        },
+        {
+          "variable_key": "Hematologia\u001fVCM",
+          "numeric_value": 91.1,
+          "text_value": null,
+          "unit": "fL",
+          "reference": "80 - 100"
+        },
+        {
+          "variable_key": "Hematologia\u001fVPM",
+          "numeric_value": 11.3,
+          "text_value": null,
+          "unit": "fL",
+          "reference": "9 - 13"
+        },
+        {
+          "variable_key": "Orina\u001fBilirrubina orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": "mg/dL",
+          "reference": "Negativo"
+        },
+        {
+          "variable_key": "Orina\u001fCuerpos cetonicos orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": "mg/dL",
+          "reference": "Negativo"
+        },
+        {
+          "variable_key": "Orina\u001fDensidad orina",
+          "numeric_value": 1.015,
+          "text_value": null,
+          "unit": null,
+          "reference": "1.004 - 1.030"
+        },
+        {
+          "variable_key": "Orina\u001fGlucosa orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": "mg/dL",
+          "reference": "Negativo"
+        },
+        {
+          "variable_key": "Orina\u001fLeucocitos orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": "/uL",
+          "reference": "Negativo"
+        },
+        {
+          "variable_key": "Orina\u001fNitritos orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": null,
+          "reference": "Negativo"
+        },
+        {
+          "variable_key": "Orina\u001fProteinas orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": "mg/dL",
+          "reference": "Negativo"
+        },
+        {
+          "variable_key": "Orina\u001fSangre orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": null,
+          "reference": "Negativo"
+        },
+        {
+          "variable_key": "Orina\u001fUrobilinogeno orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": "mg/dL",
+          "reference": "Negativo"
+        },
+        {
+          "variable_key": "Orina\u001fpH orina",
+          "numeric_value": 6,
+          "text_value": null,
+          "unit": null,
+          "reference": "5 - 8"
+        }
+      ]
+    },
+    {
+      "date": "2024-11-13",
+      "source": "Evolucion_Analiticas_2012_2026.xlsx",
+      "results": [
+        {
+          "variable_key": "Bioquimica\u001fAcido urico",
+          "numeric_value": 7,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "3.5 - 7.2"
+        },
+        {
+          "variable_key": "Bioquimica\u001fCociente LDL/HDL",
+          "numeric_value": 2.45,
+          "text_value": null,
+          "unit": null,
+          "reference": "H <3.55"
+        },
+        {
+          "variable_key": "Bioquimica\u001fCociente colesterol/HDL",
+          "numeric_value": 3.88,
+          "text_value": null,
+          "unit": null,
+          "reference": "<4.5"
+        },
+        {
+          "variable_key": "Bioquimica\u001fColesterol total",
+          "numeric_value": 163,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<200"
+        },
+        {
+          "variable_key": "Bioquimica\u001fHDL",
+          "numeric_value": 42,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": ">40"
+        },
+        {
+          "variable_key": "Bioquimica\u001fLDL",
+          "numeric_value": 103,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<130 primaria"
+        },
+        {
+          "variable_key": "Bioquimica\u001fTrigliceridos",
+          "numeric_value": 92,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<150 ayuno"
+        },
+        {
+          "variable_key": "Tiroides\u001fT4 total",
+          "numeric_value": 7.12,
+          "text_value": null,
+          "unit": "ug/dL",
+          "reference": "4.5 - 12.5"
+        },
+        {
+          "variable_key": "Tiroides\u001fTSH",
+          "numeric_value": 5.2,
+          "text_value": null,
+          "unit": "uUI/mL",
+          "reference": "0.35 - 4.94"
+        }
+      ]
+    },
+    {
+      "date": "2025-01-11",
+      "source": "Evolucion_Analiticas_2012_2026.xlsx",
+      "results": [
+        {
+          "variable_key": "Bioquimica\u001fALT (GPT)",
+          "numeric_value": 30,
+          "text_value": null,
+          "unit": "U/L",
+          "reference": "<50"
+        },
+        {
+          "variable_key": "Bioquimica\u001fAST (GOT)",
+          "numeric_value": 23,
+          "text_value": null,
+          "unit": "U/L",
+          "reference": "<50"
+        },
+        {
+          "variable_key": "Bioquimica\u001fAcido folico",
+          "numeric_value": 2.4,
+          "text_value": null,
+          "unit": "ng/mL",
+          "reference": "3 - 20"
+        },
+        {
+          "variable_key": "Bioquimica\u001fAcido urico",
+          "numeric_value": 6.15,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "3.5 - 7.2"
+        },
+        {
+          "variable_key": "Bioquimica\u001fBUN",
+          "numeric_value": 19.1,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "7 - 21"
+        },
+        {
+          "variable_key": "Bioquimica\u001fCalcio",
+          "numeric_value": 9.9,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "8.2 - 10.6"
+        },
+        {
+          "variable_key": "Bioquimica\u001fCociente LDL/HDL",
+          "numeric_value": 2.22,
+          "text_value": null,
+          "unit": null,
+          "reference": "H <3.55"
+        },
+        {
+          "variable_key": "Bioquimica\u001fCociente colesterol/HDL",
+          "numeric_value": 3.63,
+          "text_value": null,
+          "unit": null,
+          "reference": "<4.5"
+        },
+        {
+          "variable_key": "Bioquimica\u001fColesterol total",
+          "numeric_value": 185,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<200"
+        },
+        {
+          "variable_key": "Bioquimica\u001fComplemento C3",
+          "numeric_value": 132,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "82 - 185"
+        },
+        {
+          "variable_key": "Bioquimica\u001fComplemento C4",
+          "numeric_value": 28.7,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "15 - 53"
+        },
+        {
+          "variable_key": "Bioquimica\u001fCreatin kinasa",
+          "numeric_value": 152,
+          "text_value": null,
+          "unit": "U/L",
+          "reference": "<190"
+        },
+        {
+          "variable_key": "Bioquimica\u001fCreatinina",
+          "numeric_value": 0.79,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "0.72 - 1.18"
+        },
+        {
+          "variable_key": "Bioquimica\u001fFerritina",
+          "numeric_value": 80.7,
+          "text_value": null,
+          "unit": "ng/mL",
+          "reference": "21.81 - 274.66"
+        },
+        {
+          "variable_key": "Bioquimica\u001fFiltrado glomerular",
+          "numeric_value": 60,
+          "text_value": null,
+          "unit": "mL/min/1.73m2",
+          "reference": ">60"
+        },
+        {
+          "variable_key": "Bioquimica\u001fFosforo",
+          "numeric_value": 3.79,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "2.5 - 5"
+        },
+        {
+          "variable_key": "Bioquimica\u001fGGT",
+          "numeric_value": 23,
+          "text_value": null,
+          "unit": "U/L",
+          "reference": "12 - 64"
+        },
+        {
+          "variable_key": "Bioquimica\u001fGlucosa",
+          "numeric_value": 93,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "60 - 110"
+        },
+        {
+          "variable_key": "Bioquimica\u001fGlucosa media estimada",
+          "numeric_value": 111.36,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": null
+        },
+        {
+          "variable_key": "Bioquimica\u001fHDL",
+          "numeric_value": 51,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": ">40"
+        },
+        {
+          "variable_key": "Bioquimica\u001fHbA1c",
+          "numeric_value": 5.5,
+          "text_value": null,
+          "unit": "%",
+          "reference": "<5.7"
+        },
+        {
+          "variable_key": "Bioquimica\u001fHbA1c IFCC",
+          "numeric_value": 36.61,
+          "text_value": null,
+          "unit": "mmol/mol",
+          "reference": "<39"
+        },
+        {
+          "variable_key": "Bioquimica\u001fHierro",
+          "numeric_value": 101,
+          "text_value": null,
+          "unit": "ug/dL",
+          "reference": "59 - 160"
+        },
+        {
+          "variable_key": "Bioquimica\u001fHomocisteina",
+          "numeric_value": 16.01,
+          "text_value": null,
+          "unit": "mcmol/L",
+          "reference": "5.46 - 16.20"
+        },
+        {
+          "variable_key": "Bioquimica\u001fIgA",
+          "numeric_value": 155,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "63 - 484"
+        },
+        {
+          "variable_key": "Bioquimica\u001fIgE",
+          "numeric_value": 25,
+          "text_value": null,
+          "unit": "UI/mL",
+          "reference": "<100"
+        },
+        {
+          "variable_key": "Bioquimica\u001fIgG",
+          "numeric_value": 1378,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "540 - 1822"
+        },
+        {
+          "variable_key": "Bioquimica\u001fIgM",
+          "numeric_value": 210,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "22 - 240"
+        },
+        {
+          "variable_key": "Bioquimica\u001fLDL",
+          "numeric_value": 113,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<130 primaria"
+        },
+        {
+          "variable_key": "Bioquimica\u001fMagnesio",
+          "numeric_value": 0.83,
+          "text_value": null,
+          "unit": "mmol/L",
+          "reference": "0.65 - 1.1"
+        },
+        {
+          "variable_key": "Bioquimica\u001fPSA",
+          "numeric_value": 1.15,
+          "text_value": null,
+          "unit": "ng/mL",
+          "reference": "<4"
+        },
+        {
+          "variable_key": "Bioquimica\u001fParathormona",
+          "numeric_value": 44.4,
+          "text_value": null,
+          "unit": "pg/mL",
+          "reference": "18.32 - 87.71"
+        },
+        {
+          "variable_key": "Bioquimica\u001fPotasio",
+          "numeric_value": 4.1,
+          "text_value": null,
+          "unit": "mmol/L",
+          "reference": "3.5 - 5.1"
+        },
+        {
+          "variable_key": "Bioquimica\u001fProteina C reactiva",
+          "numeric_value": 0.24,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<0.5"
+        },
+        {
+          "variable_key": "Bioquimica\u001fProteinas totales",
+          "numeric_value": 8.06,
+          "text_value": null,
+          "unit": "g/dL",
+          "reference": "6 - 8.3"
+        },
+        {
+          "variable_key": "Bioquimica\u001fSaturacion transferrina",
+          "numeric_value": 28.54,
+          "text_value": null,
+          "unit": "%",
+          "reference": "20 - 45"
+        },
+        {
+          "variable_key": "Bioquimica\u001fSodio",
+          "numeric_value": 141,
+          "text_value": null,
+          "unit": "mmol/L",
+          "reference": "136 - 146"
+        },
+        {
+          "variable_key": "Bioquimica\u001fTransferrina",
+          "numeric_value": 255,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "200 - 360"
+        },
+        {
+          "variable_key": "Bioquimica\u001fTrigliceridos",
+          "numeric_value": 105,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<150 ayuno"
+        },
+        {
+          "variable_key": "Bioquimica\u001fUrea",
+          "numeric_value": 41,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "17 - 51"
+        },
+        {
+          "variable_key": "Bioquimica\u001fVitamina B12",
+          "numeric_value": 546,
+          "text_value": null,
+          "unit": "pg/mL",
+          "reference": "200 - 950"
+        },
+        {
+          "variable_key": "Bioquimica\u001fVitamina D",
+          "numeric_value": 19.7,
+          "text_value": null,
+          "unit": "ng/mL",
+          "reference": "30 - 96 recomendado"
+        },
+        {
+          "variable_key": "Hematologia\u001fBasofilos %",
+          "numeric_value": 0.8,
+          "text_value": null,
+          "unit": "%",
+          "reference": null
+        },
+        {
+          "variable_key": "Hematologia\u001fBasofilos abs",
+          "numeric_value": 58,
+          "text_value": null,
+          "unit": "/uL",
+          "reference": "<200"
+        },
+        {
+          "variable_key": "Hematologia\u001fCHCM",
+          "numeric_value": 32.1,
+          "text_value": null,
+          "unit": "g/dL",
+          "reference": "31 - 35.5"
+        },
+        {
+          "variable_key": "Hematologia\u001fEosinofilos %",
+          "numeric_value": 2.2,
+          "text_value": null,
+          "unit": "%",
+          "reference": null
+        },
+        {
+          "variable_key": "Hematologia\u001fEosinofilos abs",
+          "numeric_value": 159,
+          "text_value": null,
+          "unit": "/uL",
+          "reference": "<800"
+        },
+        {
+          "variable_key": "Hematologia\u001fHCM",
+          "numeric_value": 29.9,
+          "text_value": null,
+          "unit": "pg",
+          "reference": "27 - 33"
+        },
+        {
+          "variable_key": "Hematologia\u001fHematies",
+          "numeric_value": 4.99,
+          "text_value": null,
+          "unit": "10^6/uL",
+          "reference": "4.60 - 6.20"
+        },
+        {
+          "variable_key": "Hematologia\u001fHematocrito",
+          "numeric_value": 46.4,
+          "text_value": null,
+          "unit": "%",
+          "reference": "42 - 52"
+        },
+        {
+          "variable_key": "Hematologia\u001fHemoglobina",
+          "numeric_value": 14.9,
+          "text_value": null,
+          "unit": "g/dL",
+          "reference": "13.5 - 18"
+        },
+        {
+          "variable_key": "Hematologia\u001fLeucocitos",
+          "numeric_value": 7.22,
+          "text_value": null,
+          "unit": "10^3/uL",
+          "reference": "4 - 11"
+        },
+        {
+          "variable_key": "Hematologia\u001fLinfocitos %",
+          "numeric_value": 41.1,
+          "text_value": null,
+          "unit": "%",
+          "reference": null
+        },
+        {
+          "variable_key": "Hematologia\u001fLinfocitos abs",
+          "numeric_value": 2967,
+          "text_value": null,
+          "unit": "/uL",
+          "reference": "1000 - 4500"
+        },
+        {
+          "variable_key": "Hematologia\u001fMonocitos %",
+          "numeric_value": 6.5,
+          "text_value": null,
+          "unit": "%",
+          "reference": null
+        },
+        {
+          "variable_key": "Hematologia\u001fMonocitos abs",
+          "numeric_value": 469,
+          "text_value": null,
+          "unit": "/uL",
+          "reference": "200 - 1000"
+        },
+        {
+          "variable_key": "Hematologia\u001fNeutrofilos %",
+          "numeric_value": 49.4,
+          "text_value": null,
+          "unit": "%",
+          "reference": null
+        },
+        {
+          "variable_key": "Hematologia\u001fNeutrofilos abs",
+          "numeric_value": 3567,
+          "text_value": null,
+          "unit": "/uL",
+          "reference": "1800 - 7500"
+        },
+        {
+          "variable_key": "Hematologia\u001fPlaquetas",
+          "numeric_value": 275,
+          "text_value": null,
+          "unit": "10^3/uL",
+          "reference": "130 - 450"
+        },
+        {
+          "variable_key": "Hematologia\u001fRDW",
+          "numeric_value": 11.9,
+          "text_value": null,
+          "unit": "%",
+          "reference": "11.5 - 14"
+        },
+        {
+          "variable_key": "Hematologia\u001fVCM",
+          "numeric_value": 93,
+          "text_value": null,
+          "unit": "fL",
+          "reference": "80 - 100"
+        },
+        {
+          "variable_key": "Hematologia\u001fVPM",
+          "numeric_value": 11.5,
+          "text_value": null,
+          "unit": "fL",
+          "reference": "7 - 13"
+        },
+        {
+          "variable_key": "Microbiologia\u001fCultivo orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": null,
+          "reference": null
+        },
+        {
+          "variable_key": "Orina\u001fBilirrubina orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": null,
+          "reference": "Negativo"
+        },
+        {
+          "variable_key": "Orina\u001fCuerpos cetonicos orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": null,
+          "reference": "Negativo"
+        },
+        {
+          "variable_key": "Orina\u001fDensidad orina",
+          "numeric_value": 1.015,
+          "text_value": null,
+          "unit": null,
+          "reference": "1.000 - 1.040"
+        },
+        {
+          "variable_key": "Orina\u001fGlucosa orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": null,
+          "reference": "Negativo"
+        },
+        {
+          "variable_key": "Orina\u001fHemoglobina/Mioglobina orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": null,
+          "reference": "Negativo"
+        },
+        {
+          "variable_key": "Orina\u001fIndice calciuria/creatininuria",
+          "numeric_value": 0.1,
+          "text_value": null,
+          "unit": "mg/mg",
+          "reference": "0.032 - 0.19"
+        },
+        {
+          "variable_key": "Orina\u001fIndice microalbumina/creatinina",
+          "numeric_value": 5.89,
+          "text_value": null,
+          "unit": "mg/g",
+          "reference": "<30"
+        },
+        {
+          "variable_key": "Orina\u001fLeucocitos orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": null,
+          "reference": "Negativo"
+        },
+        {
+          "variable_key": "Orina\u001fMicroalbuminuria",
+          "numeric_value": 5,
+          "text_value": null,
+          "unit": "mg/L",
+          "reference": "<30"
+        },
+        {
+          "variable_key": "Orina\u001fNitritos orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": null,
+          "reference": "Negativo"
+        },
+        {
+          "variable_key": "Orina\u001fProteinas orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": null,
+          "reference": "Negativo"
+        },
+        {
+          "variable_key": "Orina\u001fUrobilinogeno orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": null,
+          "reference": "Negativo"
+        },
+        {
+          "variable_key": "Orina\u001fpH orina",
+          "numeric_value": 5.5,
+          "text_value": null,
+          "unit": null,
+          "reference": "4.5 - 7.5"
+        },
+        {
+          "variable_key": "Proteinograma\u001fAlbumina proteinograma",
+          "numeric_value": 5,
+          "text_value": null,
+          "unit": "g/dL",
+          "reference": null
+        },
+        {
+          "variable_key": "Proteinograma\u001fAlbumina proteinograma %",
+          "numeric_value": 61.8,
+          "text_value": null,
+          "unit": "%",
+          "reference": "50 - 68"
+        },
+        {
+          "variable_key": "Proteinograma\u001fAlfa-1 globulinas",
+          "numeric_value": 0.3,
+          "text_value": null,
+          "unit": "g/dL",
+          "reference": null
+        },
+        {
+          "variable_key": "Proteinograma\u001fAlfa-1 globulinas %",
+          "numeric_value": 3.4,
+          "text_value": null,
+          "unit": "%",
+          "reference": "1.4 - 4"
+        },
+        {
+          "variable_key": "Proteinograma\u001fAlfa-2 globulinas",
+          "numeric_value": 0.6,
+          "text_value": null,
+          "unit": "g/dL",
+          "reference": null
+        },
+        {
+          "variable_key": "Proteinograma\u001fAlfa-2 globulinas %",
+          "numeric_value": 7.5,
+          "text_value": null,
+          "unit": "%",
+          "reference": "7 - 14"
+        },
+        {
+          "variable_key": "Proteinograma\u001fBeta globulinas",
+          "numeric_value": 0.8,
+          "text_value": null,
+          "unit": "g/dL",
+          "reference": null
+        },
+        {
+          "variable_key": "Proteinograma\u001fBeta globulinas %",
+          "numeric_value": 9.6,
+          "text_value": null,
+          "unit": "%",
+          "reference": "8.7 - 13.9"
+        },
+        {
+          "variable_key": "Proteinograma\u001fCociente A/G",
+          "numeric_value": 1.62,
+          "text_value": null,
+          "unit": null,
+          "reference": "1.1 - 2.1"
+        },
+        {
+          "variable_key": "Proteinograma\u001fGamma globulinas",
+          "numeric_value": 1.4,
+          "text_value": null,
+          "unit": "g/dL",
+          "reference": null
+        },
+        {
+          "variable_key": "Proteinograma\u001fGamma globulinas %",
+          "numeric_value": 17.7,
+          "text_value": null,
+          "unit": "%",
+          "reference": "10.4 - 19.8"
+        },
+        {
+          "variable_key": "Tiroides\u001fT3",
+          "numeric_value": 0.97,
+          "text_value": null,
+          "unit": "ng/mL",
+          "reference": "0.35 - 1.93"
+        },
+        {
+          "variable_key": "Tiroides\u001fT4 total",
+          "numeric_value": 7.34,
+          "text_value": null,
+          "unit": "ug/dL",
+          "reference": "4.5 - 12.5"
+        },
+        {
+          "variable_key": "Tiroides\u001fTSH",
+          "numeric_value": 3.82,
+          "text_value": null,
+          "unit": "uUI/mL",
+          "reference": "0.35 - 4.94"
+        }
+      ]
+    },
+    {
+      "date": "2025-07-02",
+      "source": "Evolucion_Analiticas_2012_2026.xlsx",
+      "results": [
+        {
+          "variable_key": "Bioquimica\u001fALT (GPT)",
+          "numeric_value": 47,
+          "text_value": null,
+          "unit": "U/L",
+          "reference": "<41"
+        },
+        {
+          "variable_key": "Bioquimica\u001fAST (GOT)",
+          "numeric_value": 33,
+          "text_value": null,
+          "unit": "U/L",
+          "reference": "<40"
+        },
+        {
+          "variable_key": "Bioquimica\u001fAcido urico",
+          "numeric_value": 7.8,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "3.5 - 8.5"
+        },
+        {
+          "variable_key": "Bioquimica\u001fBUN",
+          "numeric_value": 17,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "9 - 23"
+        },
+        {
+          "variable_key": "Bioquimica\u001fColesterol total",
+          "numeric_value": 201,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<200"
+        },
+        {
+          "variable_key": "Bioquimica\u001fCreatinina",
+          "numeric_value": 0.95,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "0.65 - 1.30"
+        },
+        {
+          "variable_key": "Bioquimica\u001fFiltrado glomerular",
+          "numeric_value": 101.18,
+          "text_value": null,
+          "unit": "mL/min/1.73m2",
+          "reference": ">60"
+        },
+        {
+          "variable_key": "Bioquimica\u001fFosfatasa alcalina",
+          "numeric_value": 74,
+          "text_value": null,
+          "unit": "U/L",
+          "reference": "40 - 130"
+        },
+        {
+          "variable_key": "Bioquimica\u001fGGT",
+          "numeric_value": 29,
+          "text_value": null,
+          "unit": "U/L",
+          "reference": "<60"
+        },
+        {
+          "variable_key": "Bioquimica\u001fGlucosa",
+          "numeric_value": 87,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "74 - 106"
+        },
+        {
+          "variable_key": "Bioquimica\u001fHDL",
+          "numeric_value": 52,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "39 - 73"
+        },
+        {
+          "variable_key": "Bioquimica\u001fIndice higado graso FLI",
+          "numeric_value": 47,
+          "text_value": null,
+          "unit": null,
+          "reference": "<30"
+        },
+        {
+          "variable_key": "Bioquimica\u001fLDL",
+          "numeric_value": 130,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "71 - 170"
+        },
+        {
+          "variable_key": "Bioquimica\u001fResistencia insulinica",
+          "numeric_value": 8.3,
+          "text_value": null,
+          "unit": null,
+          "reference": "<8.8"
+        },
+        {
+          "variable_key": "Bioquimica\u001fTrigliceridos",
+          "numeric_value": 95,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "47 - 178"
+        },
+        {
+          "variable_key": "Bioquimica\u001fUrea",
+          "numeric_value": 36,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<50"
+        },
+        {
+          "variable_key": "Bioquimica\u001fVLDL",
+          "numeric_value": 19,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<40"
+        },
+        {
+          "variable_key": "Hematologia\u001fBasofilos %",
+          "numeric_value": 0.8,
+          "text_value": null,
+          "unit": "%",
+          "reference": "0 - 2"
+        },
+        {
+          "variable_key": "Hematologia\u001fBasofilos abs",
+          "numeric_value": 0.1,
+          "text_value": null,
+          "unit": "10^3/uL",
+          "reference": "0 - 0.3"
+        },
+        {
+          "variable_key": "Hematologia\u001fCHCM",
+          "numeric_value": 30.8,
+          "text_value": null,
+          "unit": "g/dL",
+          "reference": "31.5 - 34.5"
+        },
+        {
+          "variable_key": "Hematologia\u001fEosinofilos %",
+          "numeric_value": 2.6,
+          "text_value": null,
+          "unit": "%",
+          "reference": "0 - 5"
+        },
+        {
+          "variable_key": "Hematologia\u001fEosinofilos abs",
+          "numeric_value": 0.2,
+          "text_value": null,
+          "unit": "10^3/uL",
+          "reference": "0 - 0.6"
+        },
+        {
+          "variable_key": "Hematologia\u001fHCM",
+          "numeric_value": 30,
+          "text_value": null,
+          "unit": "pg",
+          "reference": "27 - 32"
+        },
+        {
+          "variable_key": "Hematologia\u001fHematies",
+          "numeric_value": 4.9,
+          "text_value": null,
+          "unit": "10^6/uL",
+          "reference": "4.3 - 5.9"
+        },
+        {
+          "variable_key": "Hematologia\u001fHematocrito",
+          "numeric_value": 48,
+          "text_value": null,
+          "unit": "%",
+          "reference": "39 - 52"
+        },
+        {
+          "variable_key": "Hematologia\u001fHemoglobina",
+          "numeric_value": 14.8,
+          "text_value": null,
+          "unit": "g/dL",
+          "reference": "13 - 17"
+        },
+        {
+          "variable_key": "Hematologia\u001fLeucocitos",
+          "numeric_value": 6.5,
+          "text_value": null,
+          "unit": "10^3/uL",
+          "reference": "3.5 - 11"
+        },
+        {
+          "variable_key": "Hematologia\u001fLinfocitos %",
+          "numeric_value": 37.2,
+          "text_value": null,
+          "unit": "%",
+          "reference": "20 - 45"
+        },
+        {
+          "variable_key": "Hematologia\u001fLinfocitos abs",
+          "numeric_value": 2.4,
+          "text_value": null,
+          "unit": "10^3/uL",
+          "reference": "0.9 - 3.4"
+        },
+        {
+          "variable_key": "Hematologia\u001fMonocitos %",
+          "numeric_value": 7,
+          "text_value": null,
+          "unit": "%",
+          "reference": "2 - 10"
+        },
+        {
+          "variable_key": "Hematologia\u001fMonocitos abs",
+          "numeric_value": 0.5,
+          "text_value": null,
+          "unit": "10^3/uL",
+          "reference": "0 - 1.2"
+        },
+        {
+          "variable_key": "Hematologia\u001fNeutrofilos %",
+          "numeric_value": 52.4,
+          "text_value": null,
+          "unit": "%",
+          "reference": "45 - 75"
+        },
+        {
+          "variable_key": "Hematologia\u001fNeutrofilos abs",
+          "numeric_value": 3.4,
+          "text_value": null,
+          "unit": "10^3/uL",
+          "reference": "1.6 - 7.5"
+        },
+        {
+          "variable_key": "Hematologia\u001fPlaquetas",
+          "numeric_value": 249,
+          "text_value": null,
+          "unit": "10^3/uL",
+          "reference": "150 - 450"
+        },
+        {
+          "variable_key": "Hematologia\u001fRDW",
+          "numeric_value": 12.9,
+          "text_value": null,
+          "unit": "%",
+          "reference": "11.2 - 15.2"
+        },
+        {
+          "variable_key": "Hematologia\u001fVCM",
+          "numeric_value": 97.4,
+          "text_value": null,
+          "unit": "fL",
+          "reference": "80 - 100"
+        },
+        {
+          "variable_key": "Hematologia\u001fVPM",
+          "numeric_value": 11.4,
+          "text_value": null,
+          "unit": "fL",
+          "reference": "9 - 13"
+        },
+        {
+          "variable_key": "Orina\u001fBilirrubina orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": "mg/dL",
+          "reference": "Negativo"
+        },
+        {
+          "variable_key": "Orina\u001fCuerpos cetonicos orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": "mg/dL",
+          "reference": "Negativo"
+        },
+        {
+          "variable_key": "Orina\u001fDensidad orina",
+          "numeric_value": 1.025,
+          "text_value": null,
+          "unit": null,
+          "reference": "1.004 - 1.030"
+        },
+        {
+          "variable_key": "Orina\u001fGlucosa orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": "mg/dL",
+          "reference": "Negativo"
+        },
+        {
+          "variable_key": "Orina\u001fLeucocitos orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": "/uL",
+          "reference": "Negativo"
+        },
+        {
+          "variable_key": "Orina\u001fNitritos orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": null,
+          "reference": "Negativo"
+        },
+        {
+          "variable_key": "Orina\u001fProteinas orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": "mg/dL",
+          "reference": "Negativo"
+        },
+        {
+          "variable_key": "Orina\u001fSangre orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": null,
+          "reference": "Negativo"
+        },
+        {
+          "variable_key": "Orina\u001fUrobilinogeno orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": "mg/dL",
+          "reference": "Negativo"
+        },
+        {
+          "variable_key": "Orina\u001fpH orina",
+          "numeric_value": 6.5,
+          "text_value": null,
+          "unit": null,
+          "reference": "5 - 8"
+        }
+      ]
+    },
+    {
+      "date": "2025-12-22",
+      "source": "Evolucion_Analiticas_2012_2026.xlsx",
+      "results": [
+        {
+          "variable_key": "Bioquimica\u001fALT (GPT)",
+          "numeric_value": 78,
+          "text_value": null,
+          "unit": "U/L",
+          "reference": "<50"
+        },
+        {
+          "variable_key": "Bioquimica\u001fAST (GOT)",
+          "numeric_value": 40,
+          "text_value": null,
+          "unit": "U/L",
+          "reference": "<50"
+        },
+        {
+          "variable_key": "Bioquimica\u001fAcido urico",
+          "numeric_value": 7.56,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "3.5 - 7.2"
+        },
+        {
+          "variable_key": "Bioquimica\u001fCociente LDL/HDL",
+          "numeric_value": 2.8,
+          "text_value": null,
+          "unit": null,
+          "reference": "H <3.55"
+        },
+        {
+          "variable_key": "Bioquimica\u001fCociente colesterol/HDL",
+          "numeric_value": 4.24,
+          "text_value": null,
+          "unit": null,
+          "reference": "<4.5"
+        },
+        {
+          "variable_key": "Bioquimica\u001fColesterol total",
+          "numeric_value": 195,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<200"
+        },
+        {
+          "variable_key": "Bioquimica\u001fGGT",
+          "numeric_value": 40,
+          "text_value": null,
+          "unit": "U/L",
+          "reference": "12 - 64"
+        },
+        {
+          "variable_key": "Bioquimica\u001fGlucosa",
+          "numeric_value": 95,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "60 - 100"
+        },
+        {
+          "variable_key": "Bioquimica\u001fGlucosa media estimada",
+          "numeric_value": 111.36,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": null
+        },
+        {
+          "variable_key": "Bioquimica\u001fHDL",
+          "numeric_value": 46,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": ">40"
+        },
+        {
+          "variable_key": "Bioquimica\u001fHbA1c",
+          "numeric_value": 5.5,
+          "text_value": null,
+          "unit": "%",
+          "reference": "<5.7"
+        },
+        {
+          "variable_key": "Bioquimica\u001fHbA1c IFCC",
+          "numeric_value": 36.61,
+          "text_value": null,
+          "unit": "mmol/mol",
+          "reference": "<39"
+        },
+        {
+          "variable_key": "Bioquimica\u001fLDL",
+          "numeric_value": 129,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<116 riesgo bajo"
+        },
+        {
+          "variable_key": "Bioquimica\u001fTrigliceridos",
+          "numeric_value": 101,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<200"
+        },
+        {
+          "variable_key": "Tiroides\u001fT4 libre",
+          "numeric_value": 1.03,
+          "text_value": null,
+          "unit": "ng/dL",
+          "reference": "0.70 - 1.48"
+        },
+        {
+          "variable_key": "Tiroides\u001fTSH",
+          "numeric_value": 3.37,
+          "text_value": null,
+          "unit": "uUI/mL",
+          "reference": "0.35 - 4.94"
+        }
+      ]
+    },
+    {
+      "date": "2026-06-29",
+      "source": "Evolucion_Analiticas_2012_2026.xlsx",
+      "results": [
+        {
+          "variable_key": "Bioquimica\u001fALT (GPT)",
+          "numeric_value": 118,
+          "text_value": null,
+          "unit": "U/L",
+          "reference": "<41"
+        },
+        {
+          "variable_key": "Bioquimica\u001fAST (GOT)",
+          "numeric_value": 58,
+          "text_value": null,
+          "unit": "U/L",
+          "reference": "<40"
+        },
+        {
+          "variable_key": "Bioquimica\u001fAcido urico",
+          "numeric_value": 7.4,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "3.5 - 8.5"
+        },
+        {
+          "variable_key": "Bioquimica\u001fBUN",
+          "numeric_value": 15,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "9 - 23"
+        },
+        {
+          "variable_key": "Bioquimica\u001fColesterol total",
+          "numeric_value": 185,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<200"
+        },
+        {
+          "variable_key": "Bioquimica\u001fCreatinina",
+          "numeric_value": 1.03,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "0.65 - 1.30"
+        },
+        {
+          "variable_key": "Bioquimica\u001fFiltrado glomerular",
+          "numeric_value": 91.03,
+          "text_value": null,
+          "unit": "mL/min/1.73m2",
+          "reference": ">60"
+        },
+        {
+          "variable_key": "Bioquimica\u001fFosfatasa alcalina",
+          "numeric_value": 73,
+          "text_value": null,
+          "unit": "U/L",
+          "reference": "40 - 130"
+        },
+        {
+          "variable_key": "Bioquimica\u001fGGT",
+          "numeric_value": 38,
+          "text_value": null,
+          "unit": "U/L",
+          "reference": "<60"
+        },
+        {
+          "variable_key": "Bioquimica\u001fGlucosa",
+          "numeric_value": 88,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "74 - 106"
+        },
+        {
+          "variable_key": "Bioquimica\u001fIndice higado graso FLI",
+          "numeric_value": 79,
+          "text_value": null,
+          "unit": null,
+          "reference": "<30"
+        },
+        {
+          "variable_key": "Bioquimica\u001fResistencia insulinica",
+          "numeric_value": 8.6,
+          "text_value": null,
+          "unit": null,
+          "reference": "<8.8"
+        },
+        {
+          "variable_key": "Bioquimica\u001fTrigliceridos",
+          "numeric_value": 125,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "47 - 178"
+        },
+        {
+          "variable_key": "Bioquimica\u001fUrea",
+          "numeric_value": 33,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<50"
+        },
+        {
+          "variable_key": "Hematologia\u001fBasofilos %",
+          "numeric_value": 0.7,
+          "text_value": null,
+          "unit": "%",
+          "reference": "0 - 2"
+        },
+        {
+          "variable_key": "Hematologia\u001fBasofilos abs",
+          "numeric_value": 0,
+          "text_value": null,
+          "unit": "10^3/uL",
+          "reference": "0 - 0.3"
+        },
+        {
+          "variable_key": "Hematologia\u001fCHCM",
+          "numeric_value": 30.7,
+          "text_value": null,
+          "unit": "g/dL",
+          "reference": "31.5 - 34.5"
+        },
+        {
+          "variable_key": "Hematologia\u001fEosinofilos %",
+          "numeric_value": 3.4,
+          "text_value": null,
+          "unit": "%",
+          "reference": "0 - 5"
+        },
+        {
+          "variable_key": "Hematologia\u001fEosinofilos abs",
+          "numeric_value": 0.2,
+          "text_value": null,
+          "unit": "10^3/uL",
+          "reference": "0 - 0.6"
+        },
+        {
+          "variable_key": "Hematologia\u001fHCM",
+          "numeric_value": 29.4,
+          "text_value": null,
+          "unit": "pg",
+          "reference": "27 - 32"
+        },
+        {
+          "variable_key": "Hematologia\u001fHematies",
+          "numeric_value": 5.1,
+          "text_value": null,
+          "unit": "10^6/uL",
+          "reference": "4.3 - 5.9"
+        },
+        {
+          "variable_key": "Hematologia\u001fHematocrito",
+          "numeric_value": 48.6,
+          "text_value": null,
+          "unit": "%",
+          "reference": "39 - 52"
+        },
+        {
+          "variable_key": "Hematologia\u001fHemoglobina",
+          "numeric_value": 14.9,
+          "text_value": null,
+          "unit": "g/dL",
+          "reference": "13 - 17"
+        },
+        {
+          "variable_key": "Hematologia\u001fLeucocitos",
+          "numeric_value": 5.9,
+          "text_value": null,
+          "unit": "10^3/uL",
+          "reference": "3.5 - 11"
+        },
+        {
+          "variable_key": "Hematologia\u001fLinfocitos %",
+          "numeric_value": 44.1,
+          "text_value": null,
+          "unit": "%",
+          "reference": "20 - 45"
+        },
+        {
+          "variable_key": "Hematologia\u001fLinfocitos abs",
+          "numeric_value": 2.6,
+          "text_value": null,
+          "unit": "10^3/uL",
+          "reference": "0.9 - 3.4"
+        },
+        {
+          "variable_key": "Hematologia\u001fMonocitos %",
+          "numeric_value": 6.8,
+          "text_value": null,
+          "unit": "%",
+          "reference": "2 - 10"
+        },
+        {
+          "variable_key": "Hematologia\u001fMonocitos abs",
+          "numeric_value": 0.4,
+          "text_value": null,
+          "unit": "10^3/uL",
+          "reference": "0 - 1.2"
+        },
+        {
+          "variable_key": "Hematologia\u001fNeutrofilos %",
+          "numeric_value": 45,
+          "text_value": null,
+          "unit": "%",
+          "reference": "45 - 75"
+        },
+        {
+          "variable_key": "Hematologia\u001fNeutrofilos abs",
+          "numeric_value": 2.6,
+          "text_value": null,
+          "unit": "10^3/uL",
+          "reference": "1.6 - 7.5"
+        },
+        {
+          "variable_key": "Hematologia\u001fPlaquetas",
+          "numeric_value": 251,
+          "text_value": null,
+          "unit": "10^3/uL",
+          "reference": "150 - 450"
+        },
+        {
+          "variable_key": "Hematologia\u001fRDW",
+          "numeric_value": 12.8,
+          "text_value": null,
+          "unit": "%",
+          "reference": "11.2 - 15.2"
+        },
+        {
+          "variable_key": "Hematologia\u001fVCM",
+          "numeric_value": 95.9,
+          "text_value": null,
+          "unit": "fL",
+          "reference": "80 - 100"
+        },
+        {
+          "variable_key": "Hematologia\u001fVPM",
+          "numeric_value": 11.1,
+          "text_value": null,
+          "unit": "fL",
+          "reference": "9 - 13"
+        },
+        {
+          "variable_key": "Orina\u001fBilirrubina orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": "mg/dL",
+          "reference": "Negativo"
+        },
+        {
+          "variable_key": "Orina\u001fCuerpos cetonicos orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": "mg/dL",
+          "reference": "Negativo"
+        },
+        {
+          "variable_key": "Orina\u001fDensidad orina",
+          "numeric_value": 1.014,
+          "text_value": null,
+          "unit": null,
+          "reference": "1.004 - 1.030"
+        },
+        {
+          "variable_key": "Orina\u001fGlucosa orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": "mg/dL",
+          "reference": "Negativo"
+        },
+        {
+          "variable_key": "Orina\u001fLeucocitos orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": "/uL",
+          "reference": "Negativo"
+        },
+        {
+          "variable_key": "Orina\u001fNitritos orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": null,
+          "reference": "Negativo"
+        },
+        {
+          "variable_key": "Orina\u001fProteinas orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": "mg/dL",
+          "reference": "Negativo"
+        },
+        {
+          "variable_key": "Orina\u001fSangre orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": null,
+          "reference": "Negativo"
+        },
+        {
+          "variable_key": "Orina\u001fUrobilinogeno orina",
+          "numeric_value": null,
+          "text_value": "Negativo",
+          "unit": "mg/dL",
+          "reference": "Negativo"
+        },
+        {
+          "variable_key": "Orina\u001fpH orina",
+          "numeric_value": 6,
+          "text_value": null,
+          "unit": null,
+          "reference": "5 - 8"
+        }
+      ]
+    },
+    {
+      "date": "2026-08-18",
+      "source": "Evolucion_Analiticas_2012_2026.xlsx",
+      "results": [
+        {
+          "variable_key": "Bioquimica\u001fALT (GPT)",
+          "numeric_value": 63,
+          "text_value": null,
+          "unit": "U/L",
+          "reference": "<50"
+        },
+        {
+          "variable_key": "Bioquimica\u001fAST (GOT)",
+          "numeric_value": 36,
+          "text_value": null,
+          "unit": "U/L",
+          "reference": "<50"
+        },
+        {
+          "variable_key": "Bioquimica\u001fAcido folico",
+          "numeric_value": 2.5,
+          "text_value": null,
+          "unit": "ng/mL",
+          "reference": "3 - 20"
+        },
+        {
+          "variable_key": "Bioquimica\u001fAcido urico",
+          "numeric_value": 7.48,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "3.5 - 7.2"
+        },
+        {
+          "variable_key": "Bioquimica\u001fAmilasa",
+          "numeric_value": 43,
+          "text_value": null,
+          "unit": "U/L",
+          "reference": "25 - 125"
+        },
+        {
+          "variable_key": "Bioquimica\u001fBUN",
+          "numeric_value": 11.2,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "7 - 21"
+        },
+        {
+          "variable_key": "Bioquimica\u001fCalcio",
+          "numeric_value": 9.7,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "8.2 - 10.6"
+        },
+        {
+          "variable_key": "Bioquimica\u001fCociente LDL/HDL",
+          "numeric_value": 2.57,
+          "text_value": null,
+          "unit": null,
+          "reference": "H <3.55"
+        },
+        {
+          "variable_key": "Bioquimica\u001fCociente colesterol/HDL",
+          "numeric_value": 3.88,
+          "text_value": null,
+          "unit": null,
+          "reference": "<4.5"
+        },
+        {
+          "variable_key": "Bioquimica\u001fColesterol total",
+          "numeric_value": 198,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<200"
+        },
+        {
+          "variable_key": "Bioquimica\u001fCreatin kinasa",
+          "numeric_value": 106,
+          "text_value": null,
+          "unit": "U/L",
+          "reference": "<190"
+        },
+        {
+          "variable_key": "Bioquimica\u001fCreatinina",
+          "numeric_value": 0.95,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "0.72 - 1.18"
+        },
+        {
+          "variable_key": "Bioquimica\u001fFerritina",
+          "numeric_value": 75.2,
+          "text_value": null,
+          "unit": "ng/mL",
+          "reference": "21.81 - 274.66"
+        },
+        {
+          "variable_key": "Bioquimica\u001fFosforo",
+          "numeric_value": 3.7,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "2.5 - 5"
+        },
+        {
+          "variable_key": "Bioquimica\u001fGGT",
+          "numeric_value": 29,
+          "text_value": null,
+          "unit": "U/L",
+          "reference": "12 - 64"
+        },
+        {
+          "variable_key": "Bioquimica\u001fGlucosa",
+          "numeric_value": 90,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "60 - 100"
+        },
+        {
+          "variable_key": "Bioquimica\u001fGlucosa media estimada",
+          "numeric_value": 111.36,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": null
+        },
+        {
+          "variable_key": "Bioquimica\u001fHDL",
+          "numeric_value": 51,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": ">40"
+        },
+        {
+          "variable_key": "Bioquimica\u001fHOMA-IR",
+          "numeric_value": 1.6,
+          "text_value": null,
+          "unit": null,
+          "reference": "<3.8"
+        },
+        {
+          "variable_key": "Bioquimica\u001fHbA1c",
+          "numeric_value": 5.5,
+          "text_value": null,
+          "unit": "%",
+          "reference": "<5.7"
+        },
+        {
+          "variable_key": "Bioquimica\u001fHbA1c IFCC",
+          "numeric_value": 36.61,
+          "text_value": null,
+          "unit": "mmol/mol",
+          "reference": "<39"
+        },
+        {
+          "variable_key": "Bioquimica\u001fInsulina basal",
+          "numeric_value": 7.3,
+          "text_value": null,
+          "unit": "mcU/mL",
+          "reference": "2 - 15"
+        },
+        {
+          "variable_key": "Bioquimica\u001fLDL",
+          "numeric_value": 131,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<116 riesgo bajo"
+        },
+        {
+          "variable_key": "Bioquimica\u001fPotasio",
+          "numeric_value": 4,
+          "text_value": null,
+          "unit": "mmol/L",
+          "reference": "3.4 - 5.1"
+        },
+        {
+          "variable_key": "Bioquimica\u001fSodio",
+          "numeric_value": 139,
+          "text_value": null,
+          "unit": "mmol/L",
+          "reference": "136 - 146"
+        },
+        {
+          "variable_key": "Bioquimica\u001fTrigliceridos",
+          "numeric_value": 82,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "<200"
+        },
+        {
+          "variable_key": "Bioquimica\u001fUrea",
+          "numeric_value": 24,
+          "text_value": null,
+          "unit": "mg/dL",
+          "reference": "15 - 49"
+        },
+        {
+          "variable_key": "Bioquimica\u001fVitamina B12",
+          "numeric_value": 560,
+          "text_value": null,
+          "unit": "pg/mL",
+          "reference": "187 - 883"
+        },
+        {
+          "variable_key": "Bioquimica\u001fVitamina D",
+          "numeric_value": 25.3,
+          "text_value": null,
+          "unit": "ng/mL",
+          "reference": "30 - 96 recomendado"
+        },
+        {
+          "variable_key": "Bioquimica\u001fZinc",
+          "numeric_value": 92.3,
+          "text_value": null,
+          "unit": "ug/dL",
+          "reference": "60 - 125"
+        },
+        {
+          "variable_key": "Hematologia\u001fBasofilos %",
+          "numeric_value": 0.7,
+          "text_value": null,
+          "unit": "%",
+          "reference": null
+        },
+        {
+          "variable_key": "Hematologia\u001fBasofilos abs",
+          "numeric_value": 43,
+          "text_value": null,
+          "unit": "/uL",
+          "reference": "<200"
+        },
+        {
+          "variable_key": "Hematologia\u001fCHCM",
+          "numeric_value": 33.1,
+          "text_value": null,
+          "unit": "g/dL",
+          "reference": "31 - 35.5"
+        },
+        {
+          "variable_key": "Hematologia\u001fEosinofilos %",
+          "numeric_value": 2.1,
+          "text_value": null,
+          "unit": "%",
+          "reference": null
+        },
+        {
+          "variable_key": "Hematologia\u001fEosinofilos abs",
+          "numeric_value": 129,
+          "text_value": null,
+          "unit": "/uL",
+          "reference": "<800"
+        },
+        {
+          "variable_key": "Hematologia\u001fHCM",
+          "numeric_value": 30.1,
+          "text_value": null,
+          "unit": "pg",
+          "reference": "27 - 33"
+        },
+        {
+          "variable_key": "Hematologia\u001fHematies",
+          "numeric_value": 5.22,
+          "text_value": null,
+          "unit": "10^6/uL",
+          "reference": "4.7 - 6"
+        },
+        {
+          "variable_key": "Hematologia\u001fHematocrito",
+          "numeric_value": 47.4,
+          "text_value": null,
+          "unit": "%",
+          "reference": "42 - 52"
+        },
+        {
+          "variable_key": "Hematologia\u001fHemoglobina",
+          "numeric_value": 15.7,
+          "text_value": null,
+          "unit": "g/dL",
+          "reference": "13.5 - 18"
+        },
+        {
+          "variable_key": "Hematologia\u001fLeucocitos",
+          "numeric_value": 6.15,
+          "text_value": null,
+          "unit": "10^3/uL",
+          "reference": "4 - 11"
+        },
+        {
+          "variable_key": "Hematologia\u001fLinfocitos %",
+          "numeric_value": 40,
+          "text_value": null,
+          "unit": "%",
+          "reference": null
+        },
+        {
+          "variable_key": "Hematologia\u001fLinfocitos abs",
+          "numeric_value": 2460,
+          "text_value": null,
+          "unit": "/uL",
+          "reference": "1000 - 4500"
+        },
+        {
+          "variable_key": "Hematologia\u001fMonocitos %",
+          "numeric_value": 6.7,
+          "text_value": null,
+          "unit": "%",
+          "reference": null
+        },
+        {
+          "variable_key": "Hematologia\u001fMonocitos abs",
+          "numeric_value": 412,
+          "text_value": null,
+          "unit": "/uL",
+          "reference": "200 - 1000"
+        },
+        {
+          "variable_key": "Hematologia\u001fNeutrofilos %",
+          "numeric_value": 50.5,
+          "text_value": null,
+          "unit": "%",
+          "reference": null
+        },
+        {
+          "variable_key": "Hematologia\u001fNeutrofilos abs",
+          "numeric_value": 3106,
+          "text_value": null,
+          "unit": "/uL",
+          "reference": "1800 - 7500"
+        },
+        {
+          "variable_key": "Hematologia\u001fPlaquetas",
+          "numeric_value": 269,
+          "text_value": null,
+          "unit": "10^3/uL",
+          "reference": "130 - 450"
+        },
+        {
+          "variable_key": "Hematologia\u001fRDW",
+          "numeric_value": 12.2,
+          "text_value": null,
+          "unit": "%",
+          "reference": "11 - 18"
+        },
+        {
+          "variable_key": "Hematologia\u001fVCM",
+          "numeric_value": 90.8,
+          "text_value": null,
+          "unit": "fL",
+          "reference": "80 - 100"
+        },
+        {
+          "variable_key": "Hematologia\u001fVPM",
+          "numeric_value": 11.5,
+          "text_value": null,
+          "unit": "fL",
+          "reference": "7 - 13"
+        },
+        {
+          "variable_key": "Inflamacion\u001fIndice de Katz",
+          "numeric_value": 2.34,
+          "text_value": null,
+          "unit": "indice",
+          "reference": null
+        },
+        {
+          "variable_key": "Inflamacion\u001fVSG 1h",
+          "numeric_value": 2,
+          "text_value": null,
+          "unit": "mm",
+          "reference": "<15"
+        },
+        {
+          "variable_key": "Inflamacion\u001fVSG 2h",
+          "numeric_value": 5,
+          "text_value": null,
+          "unit": "mm",
+          "reference": "<36"
+        },
+        {
+          "variable_key": "Tiroides\u001fT3",
+          "numeric_value": 0.82,
+          "text_value": null,
+          "unit": "ng/mL",
+          "reference": "0.35 - 1.93"
+        },
+        {
+          "variable_key": "Tiroides\u001fT4 libre",
+          "numeric_value": 0.98,
+          "text_value": null,
+          "unit": "ng/dL",
+          "reference": "0.70 - 1.48"
+        },
+        {
+          "variable_key": "Tiroides\u001fTSH",
+          "numeric_value": 11.64,
+          "text_value": null,
+          "unit": "uUI/mL",
+          "reference": "0.35 - 4.94"
+        }
+      ]
+    }
+  ]
+}

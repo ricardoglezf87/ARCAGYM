@@ -1,6 +1,6 @@
 from datetime import date, datetime
 
-from sqlalchemy import Date, DateTime, Float, ForeignKey, Integer, String, Text, func
+from sqlalchemy import Boolean, Date, DateTime, Float, ForeignKey, Integer, String, Text, UniqueConstraint, func
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.database import Base
@@ -38,6 +38,9 @@ class User(Base):
         back_populates="user", cascade="all, delete-orphan"
     )
     diet_plans: Mapped[list["DietPlan"]] = relationship(
+        back_populates="user", cascade="all, delete-orphan"
+    )
+    clinical_analyses: Mapped[list["ClinicalAnalysis"]] = relationship(
         back_populates="user", cascade="all, delete-orphan"
     )
 
@@ -240,3 +243,57 @@ class DietPlan(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now(), nullable=False)
 
     user: Mapped[User] = relationship(back_populates="diet_plans")
+
+
+class ClinicalVariable(Base):
+    __tablename__ = "clinical_variables"
+    __table_args__ = (UniqueConstraint("category", "name", name="uq_clinical_variable_category_name"),)
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
+    category: Mapped[str] = mapped_column(String(120), index=True, nullable=False)
+    name: Mapped[str] = mapped_column(String(180), index=True, nullable=False)
+    value_type: Mapped[str] = mapped_column(String(20), default="numeric", nullable=False)
+    default_unit: Mapped[str | None] = mapped_column(String(80), nullable=True)
+    default_reference: Mapped[str | None] = mapped_column(String(255), nullable=True)
+    sort_order: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
+    is_active: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)
+    created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now(), nullable=False)
+
+    results: Mapped[list["ClinicalResult"]] = relationship(back_populates="variable")
+
+
+class ClinicalAnalysis(Base):
+    __tablename__ = "clinical_analyses"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), index=True, nullable=False)
+    date: Mapped[date] = mapped_column(Date, index=True, nullable=False)
+    notes: Mapped[str | None] = mapped_column(Text, nullable=True)
+    source: Mapped[str | None] = mapped_column(String(255), index=True, nullable=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now(), nullable=False)
+
+    user: Mapped[User] = relationship(back_populates="clinical_analyses")
+    results: Mapped[list["ClinicalResult"]] = relationship(
+        back_populates="analysis", cascade="all, delete-orphan"
+    )
+
+
+class ClinicalResult(Base):
+    __tablename__ = "clinical_results"
+    __table_args__ = (UniqueConstraint("analysis_id", "variable_id", name="uq_clinical_result_analysis_variable"),)
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
+    analysis_id: Mapped[int] = mapped_column(
+        ForeignKey("clinical_analyses.id"), index=True, nullable=False
+    )
+    variable_id: Mapped[int] = mapped_column(
+        ForeignKey("clinical_variables.id"), index=True, nullable=False
+    )
+    numeric_value: Mapped[float | None] = mapped_column(Float, nullable=True)
+    text_value: Mapped[str | None] = mapped_column(Text, nullable=True)
+    unit: Mapped[str | None] = mapped_column(String(80), nullable=True)
+    reference: Mapped[str | None] = mapped_column(String(255), nullable=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now(), nullable=False)
+
+    analysis: Mapped[ClinicalAnalysis] = relationship(back_populates="results")
+    variable: Mapped[ClinicalVariable] = relationship(back_populates="results")

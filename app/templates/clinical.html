@@ -1,0 +1,173 @@
+{% extends "base.html" %}
+{% block title %}Analiticas | ARCA Gym{% endblock %}
+{% block content %}
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">Salud y evolucion</p>
+    <h1>Analiticas</h1>
+    <p class="muted">Registra una fecha y completa solo los resultados disponibles. Las unidades y referencias se guardan con cada dato.</p>
+  </div>
+  <a class="button secondary" href="/analiticas/estadisticas">Ver estadisticas</a>
+</section>
+
+{% if request.query_params.get('saved') == '1' %}
+  <div class="success">Analitica guardada.</div>
+{% endif %}
+{% if error %}
+  <div class="alert">{{ error }}</div>
+{% endif %}
+
+<details class="clinical-entry-panel" open>
+  <summary>
+    <span>Nueva analitica</span>
+    <small>{{ entry_variable_count }} variables disponibles</small>
+  </summary>
+  <form method="post" action="/analiticas" class="clinical-entry-form">
+    <div class="clinical-entry-header">
+      <label>Fecha
+        <input name="date" type="date" value="{{ form_values.get('date', today) }}" required>
+      </label>
+      <label>Notas
+        <input name="notes" value="{{ form_values.get('notes', '') }}" placeholder="Laboratorio, ayunas, contexto">
+      </label>
+    </div>
+
+    <p class="notice clinical-measurement-source-note">
+      El IMC y la cintura no se introducen aqui. Para calcular el indice de higado graso se obtienen automaticamente de la medida mas cercana a la fecha de la analitica.
+    </p>
+
+    <div class="clinical-entry-tools" aria-label="Filtrar variables para introducir datos">
+      <label>Categoria
+        <select id="clinical-entry-category">
+          <option value="">Todas</option>
+          {% for category in entry_categories %}
+            <option value="{{ category }}">{{ category }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <label>Buscar variable
+        <input id="clinical-entry-search" type="search" placeholder="Glucosa, TSH, colesterol..." autocomplete="off">
+      </label>
+      <p class="clinical-visible-count"><strong id="clinical-visible-count">{{ entry_variable_count }}</strong> visibles</p>
+    </div>
+
+    <div class="clinical-table-wrap">
+      <table class="clinical-entry-table">
+        <thead>
+          <tr>
+            <th>Categoria</th>
+            <th>Variable</th>
+            <th>Resultado</th>
+            <th>Unidad</th>
+            <th>Referencia</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for group in entry_groups %}
+            {% for variable in group.variables %}
+              <tr
+                data-clinical-row
+                data-category="{{ variable.category }}"
+                data-search="{{ variable.category }} {{ variable.name }}"
+              >
+                <td><span class="clinical-category-chip">{{ variable.category }}</span></td>
+                <td>
+                  <label for="clinical-variable-{{ variable.id }}">{{ variable.name }}</label>
+                </td>
+                <td>
+                  <input
+                    id="clinical-variable-{{ variable.id }}"
+                    name="variable_{{ variable.id }}"
+                    type="text"
+                    {% if variable.value_type != 'text' %}inputmode="decimal"{% endif %}
+                    value="{{ form_values.get('variable_' ~ variable.id, '') }}"
+                    autocomplete="off"
+                    aria-label="Resultado de {{ variable.name }}"
+                  >
+                </td>
+                <td>{{ variable.default_unit or '-' }}</td>
+                <td>{{ variable.default_reference or '-' }}</td>
+              </tr>
+            {% endfor %}
+          {% endfor %}
+        </tbody>
+      </table>
+      <p class="empty" id="clinical-entry-empty" hidden>No hay variables que coincidan con el filtro.</p>
+    </div>
+    <div class="clinical-entry-actions">
+      <p>Los campos vacios no se guardan.</p>
+      <button class="button primary" type="submit">Guardar analitica</button>
+    </div>
+  </form>
+</details>
+
+<section class="clinical-section">
+  <div class="section-title">
+    <div>
+      <h2>Historial de analiticas</h2>
+      {% if dashboard.selected_category %}<p class="muted">Mostrando solo {{ dashboard.selected_category }}.</p>{% endif %}
+    </div>
+  </div>
+  <div class="clinical-history">
+    {% for analysis in dashboard.analysis_rows %}
+      <details class="clinical-history-item" {% if request.query_params.get('analysis_id') == analysis.id|string %}open{% endif %}>
+        <summary>
+          <div>
+            <strong>{{ analysis.date }}</strong>
+            <span>{{ analysis.result_count }} resultados</span>
+          </div>
+          <div class="clinical-history-tags">
+            {% for category in analysis.categories %}<span>{{ category.name }} {{ category.count }}</span>{% endfor %}
+          </div>
+          {% if analysis.fatty_liver_index.value is not none %}
+            <span class="clinical-fli-class clinical-fli-{{ analysis.fatty_liver_index.classification|lower }}">FLI {{ analysis.fatty_liver_index.value }}</span>
+          {% endif %}
+        </summary>
+        <div class="clinical-history-content">
+          {% if analysis.fatty_liver_index.value is not none %}
+            <div class="clinical-fli-inline">
+              <strong>Indice de higado graso: {{ analysis.fatty_liver_index.value }} · {{ analysis.fatty_liver_index.classification }}{% if analysis.fatty_liver_index.calculation_type == 'reported' %} · Informado en el analisis{% endif %}</strong>
+              {% for component in analysis.fatty_liver_index.components %}
+                <span>{{ component.label }} {{ component.value }} {{ component.unit }} ({{ component.source }})</span>
+              {% endfor %}
+              {% if analysis.fatty_liver_index.measurement_warning %}
+                <span>Atencion: la medida corporal mas cercana esta a {{ analysis.fatty_liver_index.measurement_distance_days }} dias.</span>
+              {% endif %}
+            </div>
+          {% elif analysis.fatty_liver_index.missing %}
+            <p class="small">FLI no calculable: faltan {% for item in analysis.fatty_liver_index.missing %}{{ item.label }}{% if not loop.last %}, {% endif %}{% endfor %}.</p>
+          {% endif %}
+          <div class="clinical-table-wrap">
+            <table class="clinical-results-table">
+              <thead><tr><th>Categoria</th><th>Variable</th><th>Resultado</th><th>Referencia del informe</th></tr></thead>
+              <tbody>
+                {% for result in analysis.results %}
+                  <tr>
+                    <td>{{ result.category }}</td>
+                    <td>{{ result.name }}</td>
+                    <td><span class="clinical-result clinical-status-{{ result.status or 'unknown' }}">{{ result.value }}</span></td>
+                    <td>{{ result.reference or '-' }}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          {% if analysis.notes %}<p>{{ analysis.notes }}</p>{% endif %}
+          <div class="clinical-history-footer">
+            <small>{{ analysis.source or 'Entrada manual' }}</small>
+            <form method="post" action="/analiticas/{{ analysis.id }}/delete" onsubmit="return confirm('Eliminar esta analitica y todos sus resultados?')">
+              <button class="button danger compact" type="submit">Borrar</button>
+            </form>
+          </div>
+        </div>
+      </details>
+    {% else %}
+      <p class="empty">No hay analiticas para este filtro.</p>
+    {% endfor %}
+  </div>
+</section>
+
+<p class="notice clinical-disclaimer">El indice de higado graso es orientativo y no sustituye una valoracion medica. Se aplica la formula publicada por Bedogni y colaboradores. <a href="{{ dashboard.fli_source }}" target="_blank" rel="noopener noreferrer">Consultar fuente</a>.</p>
+
+<script src="{{ url_for('static', path='/js/clinical.js') }}?v=20260822-separated-health-stats"></script>
+{% endblock %}

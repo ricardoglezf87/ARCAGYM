@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}Estadisticas de medidas | ARCA Gym{% endblock %}
+{% block head %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock %}
+{% block content %}
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">Composicion y evolucion</p>
+    <h1>Estadisticas de medidas</h1>
+    <p class="muted">Consulta la evolucion de cada medida y de los valores calculados a partir de tu perfil.</p>
+  </div>
+  <a class="button secondary" href="/measurements">Registrar e historial</a>
+</section>
+
+<section class="metric-grid">
+  {% for card in stats.summary_cards %}
+    <article class="metric">
+      <span>{{ card.label }}{% if card.date %} - {{ card.date }}{% endif %}</span>
+      <strong>
+        {% if card.value is not none %}
+          {{ card.value }}{% if card.unit %} {{ card.unit }}{% endif %}
+        {% else %}
+          -
+        {% endif %}
+      </strong>
+    </article>
+  {% endfor %}
+</section>
+
+{% if not stats.has_height %}
+  <p class="notice">Anade tu altura en el perfil para calcular el IMC.</p>
+{% endif %}
+
+{% if stats.has_charts %}
+  {% for section in stats.chart_sections %}
+    {% if section.charts %}
+      <div class="section-title measurement-chart-title"><h2>{{ section.title }}</h2></div>
+      <section class="charts-grid">
+        {% for chart in section.charts %}
+          <div class="chart-panel">
+            <h2>{{ chart.label }}</h2>
+            <canvas id="measurementChart{{ chart.key }}" data-measurement-chart="{{ chart.key }}"></canvas>
+          </div>
+        {% endfor %}
+      </section>
+    {% endif %}
+  {% endfor %}
+{% else %}
+  <p class="empty">Aun no hay medidas suficientes para dibujar evolucion.</p>
+{% endif %}
+
+<section class="measurement-trends">
+  <div class="section-title"><h2>Variacion acumulada</h2></div>
+  <div class="list-stack measurement-trend-grid">
+    {% for trend in stats.trends %}
+      <article class="list-item">
+        <div>
+          <strong>{{ trend.label }}</strong>
+          <p>
+            {{ trend.first }}{% if trend.unit %} {{ trend.unit }}{% endif %}
+            a
+            {{ trend.last }}{% if trend.unit %} {{ trend.unit }}{% endif %}
+          </p>
+        </div>
+        <strong>{% if trend.delta > 0 %}+{% endif %}{{ trend.delta }}{% if trend.unit %} {{ trend.unit }}{% endif %}</strong>
+      </article>
+    {% else %}
+      <p class="empty">Registra al menos dos puntos de una misma medida para ver variacion.</p>
+    {% endfor %}
+  </div>
+</section>
+
+<script id="measurement-data" type="application/json">{{ stats_json|safe }}</script>
+<script src="{{ url_for('static', path='/js/measurement_charts.js') }}?v=20260822-measurement-stats"></script>
+{% endblock %}
