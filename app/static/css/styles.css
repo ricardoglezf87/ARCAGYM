@@ -55,6 +55,7 @@ img {
   border-right: 1px solid var(--line);
   box-shadow: 10px 0 24px rgba(23, 32, 27, 0.05);
   backdrop-filter: blur(12px);
+  overflow-y: auto;
 }
 
 .sidebar-brand {
@@ -727,6 +728,15 @@ legend {
 
 .measurement-chart-title {
   margin-top: 8px;
+}
+
+.measurement-history-section,
+.measurement-trends {
+  margin-top: 24px;
+}
+
+.measurement-trend-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .measurement-item {
@@ -1878,6 +1888,14 @@ legend {
   color: var(--muted);
 }
 
+.clinical-fli-card .clinical-fli-warning {
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: #fff1d9;
+  color: #7a4f12;
+  font-weight: 750;
+}
+
 .clinical-fli-value {
   display: flex;
   align-items: center;
@@ -1958,6 +1976,10 @@ legend {
 .clinical-chart-panel {
   height: 320px;
   padding: 10px 0;
+}
+
+.clinical-chart-reference {
+  margin: 4px 0 0;
 }
 
 .clinical-unit-summaries,
@@ -2147,6 +2169,10 @@ legend {
 
   .clinical-summary-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .measurement-trend-grid {
+    grid-template-columns: 1fr;
   }
 }
 

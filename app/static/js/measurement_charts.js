@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+function initializeMeasurementCharts() {
   const dataNode = document.querySelector("#measurement-data");
   if (!dataNode) {
     return;
@@ -60,4 +60,10 @@ document.addEventListener("DOMContentLoaded", () => {
       },
     });
   });
-});
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initializeMeasurementCharts);
+} else {
+  initializeMeasurementCharts();
+}

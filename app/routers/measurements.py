@@ -75,6 +75,15 @@ def measurements(request: Request, user: User = Depends(require_user), db: Sessi
     return templates.TemplateResponse("measurements.html", _context(request, user, db))
 
 
+@router.get("/measurements/stats")
+def measurement_statistics(
+    request: Request,
+    user: User = Depends(require_user),
+    db: Session = Depends(get_db),
+):
+    return templates.TemplateResponse("measurement_stats.html", _context(request, user, db))
+
+
 @router.post("/measurements")
 async def create_measurement(
     request: Request,

@@ -60,8 +60,9 @@ La base `arcagym.db` se crea automaticamente en el primer arranque y se carga co
 - Equipamiento real de la biblioteca agrupado por Maquinas, Pesas, Peso corporal y Complementos al generar recomendaciones.
 - Guardado y edicion de rutinas recomendadas como plantillas reutilizables.
 - Registro de sesiones desde una rutina guardada y su dia planificado.
-- Registro de analiticas por fecha con catalogo de variables, categorias, unidades y referencias.
-- Estadisticas clinicas filtrables por categoria y variable, historico importado e indice de higado graso (FLI) con apoyo de IMC y cintura de Medidas.
+- Registro e historial de analiticas separados de sus estadisticas, con catalogo de variables, categorias, unidades y referencias.
+- Estadisticas clinicas filtrables por categoria y variable, graficas con limites de referencia e indice de higado graso (FLI) con el IMC y la cintura de Medidas mas cercanos a cada analitica.
+- Registro e historial de medidas separados de las graficas de composicion, evolucion y tendencias.
 - Descarga de backup local de la base SQLite desde la app, guardando historico en `backup/`.
 - Capa `external_sources_service.py` preparada para futuras fuentes externas opcionales.
 

@@ -78,6 +78,15 @@ def clinical_analyses(
     return templates.TemplateResponse("clinical.html", _context(request, user, db))
 
 
+@router.get("/analiticas/estadisticas")
+def clinical_statistics(
+    request: Request,
+    user: User = Depends(require_user),
+    db: Session = Depends(get_db),
+):
+    return templates.TemplateResponse("clinical_stats.html", _context(request, user, db))
+
+
 @router.post("/analiticas")
 async def create_clinical_analysis(
     request: Request,

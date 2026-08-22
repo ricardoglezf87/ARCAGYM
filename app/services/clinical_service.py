@@ -14,7 +14,7 @@ from app.models import BodyMeasurement, ClinicalAnalysis, ClinicalResult, Clinic
 
 
 FATTY_LIVER_INDEX_SOURCE = "https://pmc.ncbi.nlm.nih.gov/articles/PMC1636651/"
-BODY_MEASUREMENT_MAX_DISTANCE_DAYS = 90
+DISTANT_BODY_MEASUREMENT_DAYS = 90
 
 
 def get_clinical_variables(db: Session) -> list[ClinicalVariable]:
@@ -79,6 +79,31 @@ def _parse_reference_number(value: str) -> float:
     return float(value.replace(",", "."))
 
 
+def reference_limits(reference: str | None) -> dict[str, float | None] | None:
+    reference = (reference or "").strip()
+    if not reference or reference == "-":
+        return None
+    range_match = re.search(
+        r"(-?\d+(?:[.,]\d+)?)\s*-\s*(-?\d+(?:[.,]\d+)?)",
+        reference,
+    )
+    if range_match:
+        return {
+            "lower": _parse_reference_number(range_match.group(1)),
+            "upper": _parse_reference_number(range_match.group(2)),
+        }
+
+    limit_match = re.search(r"(<=|>=|<|>)\s*(-?\d+(?:[.,]\d+)?)", reference)
+    if not limit_match:
+        return None
+    operator, raw_limit = limit_match.groups()
+    limit = _parse_reference_number(raw_limit)
+    return {
+        "lower": limit if operator in {">", ">="} else None,
+        "upper": limit if operator in {"<", "<="} else None,
+    }
+
+
 def reference_status(result: ClinicalResult) -> str | None:
     reference = (result.reference or "").strip()
     if not reference or reference == "-":
@@ -89,34 +114,17 @@ def reference_status(result: ClinicalResult) -> str | None:
             return "normal" if _normalized_text(result.text_value) == "negativo" else "attention"
         return None
 
-    numeric = float(result.numeric_value)
-    range_match = re.search(
-        r"(-?\d+(?:[.,]\d+)?)\s*-\s*(-?\d+(?:[.,]\d+)?)",
-        reference,
-    )
-    if range_match:
-        low = _parse_reference_number(range_match.group(1))
-        high = _parse_reference_number(range_match.group(2))
-        if numeric < low:
-            return "low"
-        if numeric > high:
-            return "high"
-        return "normal"
-
-    limit_match = re.search(r"(<=|>=|<|>)\s*(-?\d+(?:[.,]\d+)?)", reference)
-    if not limit_match:
+    limits = reference_limits(reference)
+    if limits is None:
         return None
-    operator, raw_limit = limit_match.groups()
-    limit = _parse_reference_number(raw_limit)
-    is_normal = {
-        "<": numeric < limit,
-        "<=": numeric <= limit,
-        ">": numeric > limit,
-        ">=": numeric >= limit,
-    }[operator]
-    if is_normal:
-        return "normal"
-    return "high" if operator in {"<", "<="} else "low"
+    numeric = float(result.numeric_value)
+    low = limits["lower"]
+    high = limits["upper"]
+    if low is not None and numeric < low:
+        return "low"
+    if high is not None and numeric > high:
+        return "high"
+    return "normal"
 
 
 def _result_display(result: ClinicalResult) -> str:
@@ -151,8 +159,6 @@ def _nearest_measurement(
             -measurement.date.toordinal(),
         ),
     )
-    if abs((nearest.date - analysis_date).days) > BODY_MEASUREMENT_MAX_DISTANCE_DAYS:
-        return None
     return nearest
 
 
@@ -174,6 +180,8 @@ def calculate_fatty_liver_index(
             "value": _display_number(reported_value, 1),
             "classification": classification,
             "calculation_type": "reported",
+            "measurement_distance_days": None,
+            "measurement_warning": False,
             "missing": [],
             "components": [
                 {
@@ -228,11 +236,13 @@ def calculate_fatty_liver_index(
         )
         if measurement is not None:
             height_m = user.height_cm / 100
+            distance_days = abs((measurement.date - analysis.date).days)
             components["bmi"] = {
                 "label": "IMC",
                 "value": measurement.weight_kg / (height_m * height_m),
                 "unit": "kg/m2",
-                "source": f"Medidas {measurement.date.isoformat()}",
+                "source": f"Medidas {measurement.date.isoformat()} ({distance_days} dias)",
+                "distance_days": distance_days,
             }
 
     if "waist" not in components:
@@ -242,12 +252,20 @@ def calculate_fatty_liver_index(
             lambda item: item.waist_cm is not None,
         )
         if measurement is not None:
+            distance_days = abs((measurement.date - analysis.date).days)
             components["waist"] = {
                 "label": "Cintura",
                 "value": float(measurement.waist_cm),
                 "unit": "cm",
-                "source": f"Medidas {measurement.date.isoformat()}",
+                "source": f"Medidas {measurement.date.isoformat()} ({distance_days} dias)",
+                "distance_days": distance_days,
             }
+
+    measurement_distance_days = max(
+        (component.get("distance_days", 0) for component in components.values()),
+        default=0,
+    )
+    measurement_warning = measurement_distance_days > DISTANT_BODY_MEASUREMENT_DAYS
 
     required = ["triglycerides", "ggt", "bmi", "waist"]
     missing = [
@@ -260,6 +278,8 @@ def calculate_fatty_liver_index(
             "value": None,
             "classification": None,
             "calculation_type": None,
+            "measurement_distance_days": measurement_distance_days,
+            "measurement_warning": measurement_warning,
             "missing": missing,
             "components": list(components.values()),
         }
@@ -273,6 +293,8 @@ def calculate_fatty_liver_index(
             "value": None,
             "classification": None,
             "calculation_type": None,
+            "measurement_distance_days": measurement_distance_days,
+            "measurement_warning": measurement_warning,
             "missing": [{"key": "invalid", "label": "Valores positivos validos"}],
             "components": list(components.values()),
         }
@@ -300,6 +322,8 @@ def calculate_fatty_liver_index(
         "value": round(index_value, 1),
         "classification": classification,
         "calculation_type": "calculated",
+        "measurement_distance_days": measurement_distance_days,
+        "measurement_warning": measurement_warning,
         "missing": [],
         "components": [
             {**component, "value": _display_number(component["value"], 2)}
@@ -393,6 +417,42 @@ def _selected_variable_detail(
                 "values": [values_by_date.get(label) for label in labels],
             }
         )
+
+    reference_result = next(
+        (
+            result
+            for result in reversed(ordered)
+            if result.numeric_value is not None and reference_limits(result.reference) is not None
+        ),
+        None,
+    )
+    reference = (
+        reference_result.reference if reference_result is not None else variable.default_reference
+    )
+    reference_unit = reference_result.unit if reference_result is not None else variable.default_unit
+    limits = reference_limits(reference)
+    reference_lines: list[dict[str, Any]] = []
+    if limits is not None:
+        has_range = limits["lower"] is not None and limits["upper"] is not None
+        for kind in ("lower", "upper"):
+            raw_value = limits[kind]
+            if raw_value is None:
+                continue
+            normalized_value, normalized_unit = normalize_numeric_unit(raw_value, reference_unit)
+            label = (
+                ("Limite inferior" if kind == "lower" else "Limite superior")
+                if has_range
+                else ("Referencia minima" if kind == "lower" else "Referencia maxima")
+            )
+            reference_lines.append(
+                {
+                    "kind": kind,
+                    "label": label,
+                    "value": _display_number(normalized_value),
+                    "unit": normalized_unit,
+                    "reference": reference,
+                }
+            )
     text_history = [
         {
             "date": result.analysis.date.isoformat(),
@@ -409,6 +469,8 @@ def _selected_variable_detail(
         "name": variable.name,
         "labels": labels,
         "datasets": datasets,
+        "reference_lines": reference_lines,
+        "reference": reference,
         "unit_summaries": [_unit_summary(unit, points) for unit, points in sorted(groups.items())],
         "text_history": text_history,
         "has_numeric": bool(datasets),
@@ -534,5 +596,5 @@ def build_clinical_dashboard(
         },
         "has_analyses": bool(analyses),
         "fli_source": FATTY_LIVER_INDEX_SOURCE,
-        "body_measurement_max_distance_days": BODY_MEASUREMENT_MAX_DISTANCE_DAYS,
+        "distant_body_measurement_days": DISTANT_BODY_MEASUREMENT_DAYS,
     }

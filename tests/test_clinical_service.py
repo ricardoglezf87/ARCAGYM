@@ -6,6 +6,7 @@ from sqlalchemy.orm import Session
 
 from app.database import Base
 from app.models import (
+    BodyMeasurement,
     ClinicalAnalysis,
     ClinicalResult,
     ClinicalVariable,
@@ -15,6 +16,7 @@ from app.services.clinical_seed_service import seed_clinical_analyses
 from app.services.clinical_service import (
     calculate_fatty_liver_index,
     normalize_numeric_unit,
+    reference_limits,
     reference_status,
 )
 
@@ -93,6 +95,30 @@ class ClinicalCalculationTests(unittest.TestCase):
         self.assertEqual(result["calculation_type"], "calculated")
         self.assertFalse(result["missing"])
 
+    def test_fatty_liver_index_uses_the_nearest_available_body_measurement(self):
+        variables = {
+            name: ClinicalVariable(category="Bioquimica", name=name, value_type="numeric")
+            for name in ("Trigliceridos", "GGT")
+        }
+        analysis = ClinicalAnalysis(user_id=1, date=date(2026, 1, 10))
+        analysis.results = [
+            ClinicalResult(variable=variables["Trigliceridos"], numeric_value=100, unit="mg/dL"),
+            ClinicalResult(variable=variables["GGT"], numeric_value=30, unit="U/L"),
+        ]
+        old_measurement = BodyMeasurement(
+            user_id=1,
+            date=date(2020, 1, 10),
+            weight_kg=90,
+            waist_cm=100,
+        )
+
+        result = calculate_fatty_liver_index(analysis, _user(), [old_measurement])
+
+        self.assertIsNotNone(result["value"])
+        self.assertGreater(result["measurement_distance_days"], 90)
+        self.assertTrue(result["measurement_warning"])
+        self.assertTrue(all("2020-01-10" in item["source"] for item in result["components"][2:]))
+
     def test_safe_blood_count_units_are_normalized(self):
         self.assertEqual(normalize_numeric_unit(3907, "/uL"), (3.907, "10^3/uL"))
         self.assertEqual(normalize_numeric_unit(3.84, "10^9/L"), (3.84, "10^3/uL"))
@@ -105,6 +131,11 @@ class ClinicalCalculationTests(unittest.TestCase):
         self.assertEqual(reference_status(high), "high")
         self.assertEqual(reference_status(normal), "normal")
         self.assertEqual(reference_status(negative), "normal")
+
+    def test_reference_limits_support_ranges_and_one_sided_values(self):
+        self.assertEqual(reference_limits("0.35 - 4.94"), {"lower": 0.35, "upper": 4.94})
+        self.assertEqual(reference_limits("<130 segun riesgo"), {"lower": None, "upper": 130})
+        self.assertEqual(reference_limits(">=60"), {"lower": 60, "upper": None})
 
 
 if __name__ == "__main__":

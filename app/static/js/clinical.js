@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+function initializeClinicalPage() {
   const categoryFilter = document.querySelector("#clinical-entry-category");
   const searchFilter = document.querySelector("#clinical-entry-search");
   const rows = [...document.querySelectorAll("[data-clinical-row]")];
@@ -54,34 +54,54 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const colors = ["#2f6f4e", "#c97828", "#4c6f91", "#8a5d73", "#6d7f3f", "#b13d3d"];
+  const resultDatasets = payload.datasets.map((dataset, index) => {
+    const color = colors[index % colors.length];
+    return {
+      label: dataset.label,
+      data: dataset.values,
+      borderColor: color,
+      backgroundColor: `${color}22`,
+      borderWidth: 2,
+      pointRadius: 3,
+      tension: 0.2,
+      spanGaps: false,
+    };
+  });
+  const referenceDatasets = (payload.reference_lines || []).map((line) => ({
+    label: `${line.label}: ${line.value}${line.unit === "Sin unidad" ? "" : ` ${line.unit}`}`,
+    data: payload.labels.map(() => line.value),
+    borderColor: line.kind === "lower" ? "#c97828" : "#b13d3d",
+    backgroundColor: "transparent",
+    borderWidth: 2,
+    borderDash: [8, 6],
+    pointRadius: 0,
+    pointHoverRadius: 0,
+    tension: 0,
+    spanGaps: true,
+  }));
+  const chartDatasets = [...resultDatasets, ...referenceDatasets];
   new Chart(canvas, {
     type: "line",
     data: {
       labels: payload.labels,
-      datasets: payload.datasets.map((dataset, index) => {
-        const color = colors[index % colors.length];
-        return {
-          label: dataset.label,
-          data: dataset.values,
-          borderColor: color,
-          backgroundColor: `${color}22`,
-          borderWidth: 2,
-          pointRadius: 3,
-          tension: 0.2,
-          spanGaps: false,
-        };
-      }),
+      datasets: chartDatasets,
     },
     options: {
       responsive: true,
       maintainAspectRatio: false,
       interaction: { intersect: false, mode: "index" },
       plugins: {
-        legend: { display: payload.datasets.length > 1, position: "bottom" },
+        legend: { display: chartDatasets.length > 1, position: "bottom" },
       },
       scales: {
         y: { beginAtZero: false },
       },
     },
   });
-});
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initializeClinicalPage);
+} else {
+  initializeClinicalPage();
+}

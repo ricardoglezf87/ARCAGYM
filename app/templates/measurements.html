@@ -1,15 +1,13 @@
 {% extends "base.html" %}
 {% block title %}Medidas | ARCA Gym{% endblock %}
-{% block head %}
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-{% endblock %}
 {% block content %}
 <section class="page-heading">
   <div>
     <p class="eyebrow">Composicion</p>
     <h1>Medidas</h1>
-    <p class="muted">Registra peso y perimetros cuando los tengas; cada estadistica usa solo sus propios datos.</p>
+    <p class="muted">Registra peso y perimetros cuando los tengas y consulta aqui su historial.</p>
   </div>
+  <a class="button secondary" href="/measurements/stats">Ver estadisticas</a>
 </section>
 
 {% if request.query_params.get('saved') == '1' %}
@@ -41,44 +39,7 @@
   <button class="button primary full" type="submit">Guardar medida</button>
 </form>
 
-<section class="metric-grid">
-  {% for card in stats.summary_cards %}
-    <article class="metric">
-      <span>{{ card.label }}{% if card.date %} - {{ card.date }}{% endif %}</span>
-      <strong>
-        {% if card.value is not none %}
-          {{ card.value }}{% if card.unit %} {{ card.unit }}{% endif %}
-        {% else %}
-          -
-        {% endif %}
-      </strong>
-    </article>
-  {% endfor %}
-</section>
-
-{% if not stats.has_height %}
-  <p class="notice">Anade tu altura en el perfil para calcular el IMC.</p>
-{% endif %}
-
-{% if stats.has_charts %}
-  {% for section in stats.chart_sections %}
-    {% if section.charts %}
-      <div class="section-title measurement-chart-title"><h2>{{ section.title }}</h2></div>
-      <section class="charts-grid">
-        {% for chart in section.charts %}
-          <div class="chart-panel">
-            <h2>{{ chart.label }}</h2>
-            <canvas id="measurementChart{{ chart.key }}" data-measurement-chart="{{ chart.key }}"></canvas>
-          </div>
-        {% endfor %}
-      </section>
-    {% endif %}
-  {% endfor %}
-{% else %}
-  <p class="empty">Aun no hay medidas suficientes para dibujar evolucion.</p>
-{% endif %}
-
-<section class="content-grid">
+<section class="measurement-history-section">
   <div>
     <div class="section-title"><h2>Historial</h2></div>
     <div class="list-stack">
@@ -109,28 +70,5 @@
       {% endfor %}
     </div>
   </div>
-  <div>
-    <div class="section-title"><h2>Evolucion</h2></div>
-    <div class="list-stack">
-      {% for trend in stats.trends %}
-        <article class="list-item">
-          <div>
-            <strong>{{ trend.label }}</strong>
-            <p>
-              {{ trend.first }}{% if trend.unit %} {{ trend.unit }}{% endif %}
-              a
-              {{ trend.last }}{% if trend.unit %} {{ trend.unit }}{% endif %}
-            </p>
-          </div>
-          <strong>{% if trend.delta > 0 %}+{% endif %}{{ trend.delta }}{% if trend.unit %} {{ trend.unit }}{% endif %}</strong>
-        </article>
-      {% else %}
-        <p class="empty">Registra al menos dos puntos de una misma medida para ver variacion.</p>
-      {% endfor %}
-    </div>
-  </div>
 </section>
-
-<script id="measurement-data" type="application/json">{{ stats_json|safe }}</script>
-<script src="{{ url_for('static', path='/js/measurement_charts.js') }}?v=20260602-measurements"></script>
 {% endblock %}
