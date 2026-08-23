@@ -53,7 +53,7 @@ La base `arcagym.db` se crea automaticamente en el primer arranque y se carga co
 - Perfil editable con objetivo, nivel, disponibilidad, limitaciones y equipamiento.
 - Biblioteca local de ejercicios con imagenes, instrucciones, errores, consejos y seguridad.
 - Creacion, edicion y eliminacion de entrenamientos.
-- Registro de ejercicios, series, peso, repeticiones, descanso y notas.
+- Registro de ejercicios, series, peso y repeticiones.
 - Historial de sesiones.
 - Estadisticas con volumen semanal, sesiones por semana, volumen por ejercicio, distribucion muscular, progresion por ejercicio y grupo muscular, ejercicios mas entrenados, records personales y 1RM estimado con Epley.
 - Recomendaciones de rutina por reglas segun objetivo, nivel, dias, tiempo, equipamiento, limitaciones y preferencias.

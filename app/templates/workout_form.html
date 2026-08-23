@@ -5,7 +5,7 @@
   <div>
     <p class="eyebrow">Registro</p>
     <h1>{% if mode == "edit" %}Editar entrenamiento{% else %}Nuevo entrenamiento{% endif %}</h1>
-    <p class="muted">Anade ejercicios, series, peso, repeticiones, descanso y notas.</p>
+    <p class="muted">Anade ejercicios, series, peso y repeticiones.</p>
   </div>
 </section>
 
@@ -61,6 +61,11 @@
     </label>
   </section>
 
+  <div class="workout-completed-tools" data-completed-tools hidden>
+    <span data-completed-count aria-live="polite"></span>
+    <button type="button" class="button secondary compact" data-show-completed aria-controls="exerciseBlocks" aria-pressed="false">Mostrar completados</button>
+  </div>
+
   <div id="exerciseBlocks" class="workout-blocks">
     {% set workout_entries = session.exercises if session else prefill_entries %}
     {% if workout_entries %}
@@ -88,9 +93,7 @@
               <a class="button ghost compact" data-exercise-preview-link href="#">Ver ficha</a>
             </div>
           </div>
-          <label>Notas del ejercicio
-            <input name="exercise_notes" value="{{ entry.notes or '' }}">
-          </label>
+          <input type="hidden" name="exercise_notes" value="{{ entry.notes or '' }}">
           <div class="table-wrap">
             <table class="sets-table">
               <thead>
@@ -99,8 +102,6 @@
                   <th>Hecha</th>
                   <th>Peso</th>
                   <th>Reps</th>
-                  <th>Descanso</th>
-                  <th>Notas</th>
                   <th></th>
                 </tr>
               </thead>
@@ -115,9 +116,11 @@
                     </td>
                     <td><input data-set-field="weight" name="set_weight_{{ exercise_index }}" type="number" step="0.1" min="0" value="{{ set.weight }}"></td>
                     <td><input data-set-field="reps" name="set_reps_{{ exercise_index }}" type="number" min="1" value="{{ set.reps }}" required></td>
-                    <td><input data-set-field="rest" name="set_rest_{{ exercise_index }}" type="number" min="0" value="{{ set.rest_seconds or '' }}"></td>
-                    <td><input data-set-field="notes" name="set_notes_{{ exercise_index }}" value="{{ set.notes or '' }}"></td>
-                    <td><button type="button" class="icon-button remove-set" aria-label="Eliminar serie">x</button></td>
+                    <td>
+                      <input type="hidden" data-set-field="rest" name="set_rest_{{ exercise_index }}" value="{{ set.rest_seconds or '' }}">
+                      <input type="hidden" data-set-field="notes" name="set_notes_{{ exercise_index }}" value="{{ set.notes or '' }}">
+                      <button type="button" class="icon-button remove-set" aria-label="Eliminar serie">x</button>
+                    </td>
                   </tr>
                 {% endfor %}
               </tbody>
@@ -159,9 +162,7 @@
         <a class="button ghost compact" data-exercise-preview-link href="#">Ver ficha</a>
       </div>
     </div>
-    <label>Notas del ejercicio
-      <input name="exercise_notes">
-    </label>
+    <input type="hidden" name="exercise_notes">
     <div class="table-wrap">
       <table class="sets-table">
         <thead>
@@ -170,8 +171,6 @@
             <th>Hecha</th>
             <th>Peso</th>
             <th>Reps</th>
-            <th>Descanso</th>
-            <th>Notas</th>
             <th></th>
           </tr>
         </thead>
@@ -192,11 +191,13 @@
     </td>
     <td><input data-set-field="weight" type="number" step="0.1" min="0" value="0"></td>
     <td><input data-set-field="reps" type="number" min="1" value="10" required></td>
-    <td><input data-set-field="rest" type="number" min="0" placeholder="90"></td>
-    <td><input data-set-field="notes"></td>
-    <td><button type="button" class="icon-button remove-set" aria-label="Eliminar serie">x</button></td>
+    <td>
+      <input type="hidden" data-set-field="rest">
+      <input type="hidden" data-set-field="notes">
+      <button type="button" class="icon-button remove-set" aria-label="Eliminar serie">x</button>
+    </td>
   </tr>
 </template>
 
-<script src="{{ url_for('static', path='/js/workout_form.js') }}?v=20260714-no-effort-confirm"></script>
+<script src="{{ url_for('static', path='/js/workout_form.js') }}?v=20260823-simplified-sets"></script>
 {% endblock %}
