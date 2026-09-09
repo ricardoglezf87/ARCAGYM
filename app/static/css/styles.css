@@ -1288,6 +1288,26 @@ legend {
   gap: 16px;
 }
 
+.workout-completed-tools {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.workout-completed-tools[hidden],
+.workout-exercise[hidden] {
+  display: none;
+}
+
+.workout-completed-tools span {
+  color: var(--success);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
 .workout-exercise {
   padding: 16px;
   width: 100%;
@@ -1358,7 +1378,7 @@ legend {
 
 .sets-table {
   width: 100%;
-  min-width: 840px;
+  min-width: 480px;
   border-collapse: collapse;
 }
 

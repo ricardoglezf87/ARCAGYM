@@ -7,6 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const draftBanner = document.querySelector("[data-draft-banner]");
   const discardDraftButton = document.querySelector("[data-draft-discard]");
   const draftStatus = document.querySelector("[data-draft-status]");
+  const completedTools = document.querySelector("[data-completed-tools]");
+  const completedCount = document.querySelector("[data-completed-count]");
+  const showCompletedButton = document.querySelector("[data-show-completed]");
 
   if (!form || !blocksContainer || !addExerciseButton || !exerciseTemplate || !setTemplate) {
     return;
@@ -18,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let statusTimer = null;
   let isRestoring = false;
   let restoredLegacyDraftKey = null;
+  let showCompletedExercises = false;
 
   function routinePickerValue(name) {
     const input = document.querySelector(`[data-routine-picker] [name="${name}"]`);
@@ -129,6 +133,38 @@ document.addEventListener("DOMContentLoaded", () => {
     if (button) {
       button.classList.toggle("is-active", done);
       button.setAttribute("aria-pressed", String(done));
+      button.setAttribute("aria-label", done ? "Desmarcar serie realizada" : "Marcar serie realizada");
+    }
+  }
+
+  function isExerciseDone(block) {
+    const rows = Array.from(block.querySelectorAll(".set-row"));
+    return rows.length > 0 && rows.every(isSetDone);
+  }
+
+  function syncCompletedExercises() {
+    const blocks = Array.from(blocksContainer.querySelectorAll(".workout-exercise"));
+    const completedBlocks = blocks.filter(isExerciseDone);
+
+    blocks.forEach((block) => {
+      const completed = isExerciseDone(block);
+      block.classList.toggle("is-completed", completed);
+      block.hidden = completed && !showCompletedExercises;
+    });
+
+    if (completedTools) {
+      completedTools.hidden = completedBlocks.length === 0;
+    }
+    if (completedCount) {
+      completedCount.textContent = completedBlocks.length === 1
+        ? "1 ejercicio completado"
+        : `${completedBlocks.length} ejercicios completados`;
+    }
+    if (showCompletedButton) {
+      showCompletedButton.textContent = showCompletedExercises
+        ? "Ocultar completados"
+        : "Mostrar completados";
+      showCompletedButton.setAttribute("aria-pressed", String(showCompletedExercises));
     }
   }
 
@@ -212,6 +248,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     if (options.reindex !== false) {
       reindexBlocks();
+      syncCompletedExercises();
     }
     return clone;
   }
@@ -244,6 +281,7 @@ document.addEventListener("DOMContentLoaded", () => {
       window.ArcaExerciseMedia?.init(clone);
     }
     reindexBlocks();
+    syncCompletedExercises();
     return clone;
   }
 
@@ -413,6 +451,7 @@ document.addEventListener("DOMContentLoaded", () => {
         addSet(block);
       }
       reindexBlocks();
+      syncCompletedExercises();
       changed = true;
     }
 
@@ -425,6 +464,7 @@ document.addEventListener("DOMContentLoaded", () => {
         addExercise();
       }
       reindexBlocks();
+      syncCompletedExercises();
       changed = true;
     }
 
@@ -435,6 +475,10 @@ document.addEventListener("DOMContentLoaded", () => {
         doneButton.getAttribute("aria-pressed") === "true" ? "false" : "true",
       );
       syncSetDoneState(doneButton.closest(".set-row"));
+      if (isExerciseDone(block)) {
+        showCompletedExercises = false;
+      }
+      syncCompletedExercises();
       changed = true;
     }
 
@@ -484,6 +528,11 @@ document.addEventListener("DOMContentLoaded", () => {
     scheduleDraftSave();
   });
 
+  showCompletedButton?.addEventListener("click", () => {
+    showCompletedExercises = !showCompletedExercises;
+    syncCompletedExercises();
+  });
+
   discardDraftButton?.addEventListener("click", () => {
     localStorage.removeItem(draftKey);
     sessionStorage.removeItem(pendingClearKey);
@@ -507,6 +556,8 @@ document.addEventListener("DOMContentLoaded", () => {
     window.ArcaExerciseMedia?.init(blocksContainer);
     reindexBlocks();
   }
+
+  syncCompletedExercises();
 
   if (!restoredDraft) {
     setDraftStatus("");

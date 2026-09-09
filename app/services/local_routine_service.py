@@ -9,6 +9,8 @@ from app.models import Exercise, SavedRoutine, SavedRoutineDay, SavedRoutineExer
 
 ROUTINE_TITLE = "Rutina A/B/C - Hipertrofia máquinas"
 ROUTINE_LEGACY_TITLES = ["Rutina A/B/C - Hipertrofia maquinas"]
+DUMBBELL_ROUTINE_TITLE = "Rutina A/B/C - Hipertrofia mancuernas"
+DUMBBELL_ROUTINE_LEGACY_TITLES = ["Rutina A/B/C - Hipertrofia con mancuernas"]
 
 
 CUSTOM_EXERCISES = [
@@ -247,6 +249,155 @@ CUSTOM_EXERCISES = [
 ]
 
 
+DUMBBELL_CUSTOM_EXERCISES = [
+    {
+        "slug": "peso-muerto-rumano-mancuernas",
+        "name": "Peso muerto rumano con mancuernas",
+        "category_label": "PIERNAS - COMPUESTO",
+        "primary_muscle": "Isquiosurales",
+        "secondary_muscles": ["Glúteos", "Espalda baja"],
+        "exercise_type": "Compuesto",
+        "equipment": ["Mancuernas"],
+        "recommended_level": "principiante",
+        "movement_pattern": "Bisagra de cadera",
+        "instructions": [
+            "Sujeta una mancuerna en cada mano delante de los muslos.",
+            "Lleva la cadera hacia atrás con las rodillas ligeramente flexionadas.",
+            "Baja las mancuernas cerca de las piernas manteniendo la espalda neutra.",
+            "Extiende la cadera para volver arriba sin inclinarte hacia atrás.",
+        ],
+        "common_errors": [
+            "Redondear la espalda.",
+            "Convertir el movimiento en una sentadilla.",
+            "Separar las mancuernas de las piernas.",
+        ],
+        "technique_tips": [
+            "Busca tensión en la parte posterior de los muslos.",
+            "Mantén el abdomen firme.",
+            "Detén el descenso cuando pierdas la posición neutra.",
+        ],
+        "safety_notes": "Reduce el recorrido o la carga si aparece molestia lumbar.",
+        "image_alt": "Persona realizando peso muerto rumano con mancuernas",
+    },
+    {
+        "slug": "hip-thrust-mancuerna",
+        "name": "Hip thrust con mancuerna",
+        "category_label": "GLÚTEOS - COMPUESTO",
+        "primary_muscle": "Glúteos",
+        "secondary_muscles": ["Isquiosurales", "Core"],
+        "exercise_type": "Compuesto",
+        "equipment": ["Mancuernas", "Banco"],
+        "recommended_level": "principiante",
+        "movement_pattern": "Extension de cadera",
+        "instructions": [
+            "Apoya la parte alta de la espalda en un banco estable.",
+            "Coloca una mancuerna sobre la cadera y sujétala con ambas manos.",
+            "Eleva la cadera hasta alinear rodillas, cadera y hombros.",
+            "Aprieta los glúteos arriba y baja de forma controlada.",
+        ],
+        "common_errors": [
+            "Hiperextender la zona lumbar.",
+            "Colocar los pies demasiado lejos.",
+            "Rebotar en la parte baja.",
+        ],
+        "technique_tips": [
+            "Mantén la barbilla ligeramente recogida.",
+            "Empuja el suelo con los talones.",
+            "Usa una almohadilla bajo la mancuerna si es necesario.",
+        ],
+        "safety_notes": "Asegura el banco y la mancuerna antes de iniciar cada serie.",
+        "image_alt": "Persona realizando hip thrust con una mancuerna",
+    },
+    {
+        "slug": "pullover-mancuerna-dorsales",
+        "name": "Pullover con mancuerna para dorsales",
+        "category_label": "ESPALDA - AISLAMIENTO",
+        "primary_muscle": "Dorsal ancho",
+        "secondary_muscles": ["Pecho", "Tríceps"],
+        "exercise_type": "Aislamiento",
+        "equipment": ["Mancuernas", "Banco"],
+        "recommended_level": "principiante",
+        "movement_pattern": "Traccion",
+        "instructions": [
+            "Túmbate en un banco y sujeta una mancuerna con ambas manos sobre el pecho.",
+            "Mantén los codos ligeramente flexionados y lleva la mancuerna hacia atrás.",
+            "Detén el descenso en un rango cómodo para los hombros.",
+            "Lleva la mancuerna de nuevo sobre el pecho contrayendo los dorsales.",
+        ],
+        "common_errors": [
+            "Arquear en exceso la zona lumbar.",
+            "Flexionar y extender demasiado los codos.",
+            "Forzar el rango del hombro.",
+        ],
+        "technique_tips": [
+            "Mantén las costillas controladas.",
+            "Piensa en llevar los brazos hacia la cadera.",
+            "Usa una carga que permita un movimiento lento.",
+        ],
+        "safety_notes": "Acorta el recorrido si aparece molestia en hombros o espalda.",
+        "image_alt": "Persona realizando pullover con mancuerna para dorsales",
+    },
+    {
+        "slug": "extension-triceps-mancuerna-sobre-cabeza",
+        "name": "Extensión de tríceps sobre la cabeza con mancuerna",
+        "category_label": "TRÍCEPS - AISLAMIENTO",
+        "primary_muscle": "Tríceps",
+        "secondary_muscles": ["Hombros", "Core"],
+        "exercise_type": "Aislamiento",
+        "equipment": ["Mancuernas"],
+        "recommended_level": "principiante",
+        "movement_pattern": "Empuje",
+        "instructions": [
+            "Sujeta una mancuerna con ambas manos por encima de la cabeza.",
+            "Flexiona los codos para bajar la mancuerna detrás de la cabeza.",
+            "Mantén los brazos superiores estables y cerca de la cabeza.",
+            "Extiende los codos con control sin arquear la espalda.",
+        ],
+        "common_errors": [
+            "Abrir demasiado los codos.",
+            "Mover los brazos superiores.",
+            "Arquear la zona lumbar.",
+        ],
+        "technique_tips": [
+            "Mantén el abdomen firme.",
+            "Usa un agarre seguro sobre la mancuerna.",
+            "Baja solo hasta un rango cómodo.",
+        ],
+        "safety_notes": "Evita este ejercicio si provoca dolor en hombros o codos.",
+        "image_alt": "Persona realizando extensión de tríceps con mancuerna sobre la cabeza",
+    },
+    {
+        "slug": "crunch-mancuerna",
+        "name": "Crunch con mancuerna",
+        "category_label": "CORE - AISLAMIENTO",
+        "primary_muscle": "Core",
+        "secondary_muscles": ["Recto abdominal"],
+        "exercise_type": "Aislamiento",
+        "equipment": ["Mancuernas"],
+        "recommended_level": "principiante",
+        "movement_pattern": "Core",
+        "instructions": [
+            "Túmbate boca arriba con las rodillas flexionadas.",
+            "Sujeta una mancuerna frente al pecho con ambas manos.",
+            "Eleva los hombros acercando las costillas a la pelvis.",
+            "Baja lentamente sin relajar por completo el abdomen.",
+        ],
+        "common_errors": [
+            "Tirar del cuello.",
+            "Usar impulso.",
+            "Elegir una mancuerna demasiado pesada.",
+        ],
+        "technique_tips": [
+            "Exhala al subir.",
+            "Mantén la zona lumbar apoyada.",
+            "Prioriza la contracción sobre el recorrido.",
+        ],
+        "safety_notes": "Empieza sin carga si no puedes mantener el movimiento controlado.",
+        "image_alt": "Persona realizando crunch con una mancuerna",
+    },
+]
+
+
 ROUTINE_DAYS = [
     {
         "name": "Dia A",
@@ -292,6 +443,55 @@ ROUTINE_DAYS = [
             ("Curl martillo", "2", "10-12"),
             ("Extension de triceps en polea", "2", "12-15"),
             ("Crunch en maquina", "3", "15-20"),
+        ],
+    },
+]
+
+
+DUMBBELL_ROUTINE_DAYS = [
+    {
+        "name": "Dia A",
+        "focus": "Enfasis en pecho y cuadriceps con mancuernas",
+        "exercises": [
+            ("Zancada bulgara", "4", "12-15"),
+            ("Press de banca con mancuernas", "4", "8-12"),
+            ("Pullover con mancuerna para dorsales", "4", "10-12"),
+            ("Remo con mancuerna a una mano", "3", "10-12"),
+            ("Aperturas con mancuernas en banco plano", "3", "12-15"),
+            ("Pajaros con mancuernas", "3", "15"),
+            ("Curl martillo", "2", "10-12"),
+            ("Extension de triceps sobre la cabeza con mancuerna", "2", "12-15"),
+            ("Crunch con mancuerna", "3", "15-20"),
+        ],
+    },
+    {
+        "name": "Dia B",
+        "focus": "Enfasis en espalda y hombro con mancuernas",
+        "exercises": [
+            ("Peso muerto rumano con mancuernas", "3", "10-12"),
+            ("Hip thrust con mancuerna", "3", "10-12"),
+            ("Zancada bulgara", "3", "15"),
+            ("Remo con mancuerna a una mano", "4", "10-12"),
+            ("Press sentado con mancuernas", "3", "8-12"),
+            ("Pajaros con mancuernas", "3", "12-15"),
+            ("Curl alterno con mancuernas", "2", "10-12"),
+            ("Encogimientos con mancuernas", "3", "12-15"),
+            ("Crunch con mancuerna", "3", "15-20"),
+        ],
+    },
+    {
+        "name": "Dia C",
+        "focus": "Enfasis en hipertrofia general con mancuernas",
+        "exercises": [
+            ("Zancada bulgara", "4", "12-15"),
+            ("Press inclinado con mancuernas", "3", "8-12"),
+            ("Pullover con mancuerna para dorsales", "3", "10-12"),
+            ("Remo con mancuerna a una mano", "3", "10-12"),
+            ("Aperturas con mancuernas en banco plano", "2", "12-15"),
+            ("Pajaros con mancuernas", "2", "15"),
+            ("Curl martillo", "2", "10-12"),
+            ("Extension de triceps sobre la cabeza con mancuerna", "2", "12-15"),
+            ("Crunch con mancuerna", "3", "15-20"),
         ],
     },
 ]
@@ -343,7 +543,7 @@ def _ensure_custom_exercises(db: Session) -> dict[str, Exercise]:
     exercises = list(db.scalars(select(Exercise)).all())
     lookup = _exercise_lookup(exercises)
 
-    for item in CUSTOM_EXERCISES:
+    for item in [*CUSTOM_EXERCISES, *DUMBBELL_CUSTOM_EXERCISES]:
         values = _exercise_values(item)
         exercise = lookup.get(_normalize_key(values["slug"])) or lookup.get(_normalize_key(values["name"]))
         if exercise:
@@ -361,35 +561,32 @@ def _ensure_custom_exercises(db: Session) -> dict[str, Exercise]:
     return _exercise_lookup(list(db.scalars(select(Exercise)).all()))
 
 
-def ensure_personal_routine(db: Session, user: User) -> SavedRoutine | None:
-    exercise_lookup = _ensure_custom_exercises(db)
-    existing = db.scalar(
-        select(SavedRoutine).where(
-            SavedRoutine.user_id == user.id,
-            SavedRoutine.title.in_([ROUTINE_TITLE, *ROUTINE_LEGACY_TITLES]),
-        )
-    )
-    if existing:
-        existing.title = ROUTINE_TITLE
-        db.commit()
-        return existing
-
+def _new_routine(
+    user: User,
+    exercise_lookup: dict[str, Exercise],
+    *,
+    title: str,
+    days: list[dict],
+    equipment_available: str,
+    preferences: str,
+    explanation: str,
+) -> SavedRoutine:
     routine = SavedRoutine(
         user_id=user.id,
-        title=ROUTINE_TITLE,
+        title=title,
         split="A/B/C",
         goal="hipertrofia",
         experience_level=user.experience_level,
         days_per_week=3,
         session_duration=60,
-        equipment_available="Maquina, Polea, Mancuernas",
-        preferences="Rutina de tres dias con enfasis rotatorio en pecho, cuadriceps, espalda y hombro.",
+        equipment_available=equipment_available,
+        preferences=preferences,
         progression="Usa doble progresion: primero sube repeticiones dentro del rango y despues aumenta el peso.",
         safety_notes="Calienta con series ligeras y ajusta cargas si aparece dolor articular.",
-        explanation="Rutina de 3 dias y unos 60 minutos por sesion, orientada a hipertrofia con maquinas y poleas.",
+        explanation=explanation,
     )
 
-    for day_index, day in enumerate(ROUTINE_DAYS):
+    for day_index, day in enumerate(days):
         routine_day = SavedRoutineDay(order_index=day_index, name=day["name"], focus=day["focus"])
         for exercise_index, (exercise_name, sets, reps) in enumerate(day["exercises"]):
             exercise = exercise_lookup.get(_normalize_key(exercise_name))
@@ -409,7 +606,69 @@ def ensure_personal_routine(db: Session, user: User) -> SavedRoutine | None:
             )
         routine.days.append(routine_day)
 
-    db.add(routine)
-    db.commit()
-    db.refresh(routine)
     return routine
+
+
+def _ensure_routine(
+    db: Session,
+    user: User,
+    exercise_lookup: dict[str, Exercise],
+    *,
+    title: str,
+    legacy_titles: list[str],
+    days: list[dict],
+    equipment_available: str,
+    preferences: str,
+    explanation: str,
+) -> SavedRoutine:
+    existing = db.scalar(
+        select(SavedRoutine).where(
+            SavedRoutine.user_id == user.id,
+            SavedRoutine.title.in_([title, *legacy_titles]),
+        )
+    )
+    if existing:
+        existing.title = title
+        return existing
+
+    routine = _new_routine(
+        user,
+        exercise_lookup,
+        title=title,
+        days=days,
+        equipment_available=equipment_available,
+        preferences=preferences,
+        explanation=explanation,
+    )
+    db.add(routine)
+    return routine
+
+
+def ensure_personal_routine(db: Session, user: User) -> SavedRoutine | None:
+    exercise_lookup = _ensure_custom_exercises(db)
+    machine_routine = _ensure_routine(
+        db,
+        user,
+        exercise_lookup,
+        title=ROUTINE_TITLE,
+        legacy_titles=ROUTINE_LEGACY_TITLES,
+        days=ROUTINE_DAYS,
+        equipment_available="Maquina, Polea, Mancuernas",
+        preferences="Rutina de tres dias con enfasis rotatorio en pecho, cuadriceps, espalda y hombro.",
+        explanation="Rutina de 3 dias y unos 60 minutos por sesion, orientada a hipertrofia con maquinas y poleas.",
+    )
+    _ensure_routine(
+        db,
+        user,
+        exercise_lookup,
+        title=DUMBBELL_ROUTINE_TITLE,
+        legacy_titles=DUMBBELL_ROUTINE_LEGACY_TITLES,
+        days=DUMBBELL_ROUTINE_DAYS,
+        equipment_available="Mancuernas, Banco",
+        preferences="Equivalente A/B/C de la rutina de maquinas, con los mismos grupos musculares y ejercicios de mancuernas.",
+        explanation="Rutina de 3 dias y unos 60 minutos por sesion, orientada a hipertrofia con mancuernas.",
+    )
+
+    db.commit()
+    db.refresh(machine_routine)
+    return machine_routine
