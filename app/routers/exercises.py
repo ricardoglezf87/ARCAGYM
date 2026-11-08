@@ -6,7 +6,6 @@ from app.database import get_db
 from app.dependencies import require_user, templates
 from app.models import Exercise, User
 from app.services.external_sources_service import ExternalSourcesService
-from app.services.stats_service import get_filter_options
 
 
 router = APIRouter()
@@ -33,7 +32,9 @@ def exercise_library(
         query = query.where(Exercise.recommended_level == level)
 
     exercises = db.scalars(query).all()
-    options = get_filter_options(db)
+    muscles = db.scalars(
+        select(Exercise.primary_muscle).distinct().order_by(Exercise.primary_muscle)
+    ).all()
     external_results = ExternalSourcesService().search_exercises(q)
     types = sorted({exercise.exercise_type for exercise in db.scalars(select(Exercise)).all()})
     levels = sorted({exercise.recommended_level for exercise in db.scalars(select(Exercise)).all()})
@@ -44,7 +45,7 @@ def exercise_library(
             "request": request,
             "user": user,
             "exercises": exercises,
-            "muscles": options["muscles"],
+            "muscles": muscles,
             "types": types,
             "levels": levels,
             "filters": {"q": q, "muscle": muscle, "exercise_type": exercise_type, "level": level},
