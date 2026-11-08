@@ -32,6 +32,7 @@ Opcion rapida en Windows:
 ```
 
 Este script libera el puerto `5990` si ya esta ocupado, arranca el servidor y abre el navegador cuando la aplicacion responde.
+Antes de arrancar, comprueba el manifiesto `app/seed/exercise_images.json` y descarga las imagenes que falten. Se necesita conexion a Internet; si alguna descarga falla, se muestra un aviso y la aplicacion sigue arrancando. Para ejecutar solo esta comprobacion, usa `.\descargar_fotos_ejercicios.bat`.
 
 Opcion manual:
 

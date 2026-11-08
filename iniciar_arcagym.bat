@@ -56,6 +56,13 @@ if exist ".venv\Scripts\python.exe" (
 set "PYTHONPATH=%CD%"
 
 echo.
+echo Comprobando fotos de ejercicios pendientes...
+call "%APP_DIR%descargar_fotos_ejercicios.bat"
+if errorlevel 1 (
+    echo Algunas fotos no se pudieron descargar. La aplicacion continuara arrancando.
+)
+
+echo.
 echo Arrancando servidor en %URL%
 echo Pulsa Ctrl+C para detenerlo.
 echo.
