@@ -11,24 +11,24 @@
 
 <form class="filter-bar" method="get" action="/exercises">
   <input name="q" value="{{ filters.q }}" placeholder="Buscar ejercicio">
+  <select name="category_label">
+    <option value="">Todos los tipos</option>
+    {% for item in types %}
+      <option value="{{ item }}" {% if filters.category_label == item %}selected{% endif %}>{{ item|title }}</option>
+    {% endfor %}
+  </select>
   <select name="muscle">
     <option value="">Todos los grupos</option>
     {% for item in muscles %}
       <option value="{{ item }}" {% if filters.muscle == item %}selected{% endif %}>{{ item }}</option>
     {% endfor %}
-  </select>
-  <select name="exercise_type">
-    <option value="">Todos los tipos</option>
-    {% for item in types %}
-      <option value="{{ item }}" {% if filters.exercise_type == item %}selected{% endif %}>{{ item|title }}</option>
-    {% endfor %}
-  </select>
+  </select>   
   <select name="level">
     <option value="">Todos los niveles</option>
     {% for item in levels %}
-      <option value="{{ item }}" {% if filters.level == item %}selected{% endif %}>{{ item|title }}</option>
-    {% endfor %}
-  </select>
+      <option value="{{ item }}" {% if filters.level == item %}selected{% endif %}>{{ item|title }}</option> 
+    {% endfor %}  
+  </select>     
   <button class="button primary" type="submit">Filtrar</button>
 </form>
 

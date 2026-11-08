@@ -57,6 +57,7 @@ def build_stats(
     muscle: str | None = None,
     start_date: date | None = None,
     end_date: date | None = None,
+    category: str | None = None,
 ) -> dict[str, Any]:
     sessions = _session_query(db, user, start_date, end_date)
     weekly_volume: dict[str, float] = defaultdict(float)
@@ -80,6 +81,8 @@ def build_stats(
             if exercise_id and exercise.id != exercise_id:
                 continue
             if muscle and exercise.primary_muscle != muscle:
+                continue
+            if category and exercise.category_label != category:
                 continue
 
             sets = [item for item in workout_exercise.sets if item.reps is not None]
@@ -206,9 +209,9 @@ def build_stats(
         "summary_count_label": "Registros del ejercicio"
         if exercise_id
         else "Registros del grupo"
-        if muscle
+        if muscle or category
         else "Ejercicios medidos",
-        "summary_count_value": record_count if exercise_id or muscle else len(ordered_progress),
+        "summary_count_value": record_count if exercise_id or muscle or category else len(ordered_progress),
         "weekly_volume": {
             "labels": sorted_weeks,
             "values": [round(weekly_volume[week], 2) for week in sorted_weeks],
@@ -258,8 +261,13 @@ def dashboard_summary(db: Session, user: User) -> dict[str, Any]:
     }
 
 
-def get_filter_options(db: Session, user: User) -> dict[str, Any]:
-    exercise_rows = db.execute(
+def get_filter_options(
+    db: Session,
+    user: User,
+    category: str | None = None,
+    muscle: str | None = None,
+) -> dict[str, Any]:
+    exercise_query = (
         select(Exercise, func.count(distinct(WorkoutExercise.id)).label("record_count"))
         .join(WorkoutExercise, WorkoutExercise.exercise_id == Exercise.id)
         .join(WorkoutSession, WorkoutSession.id == WorkoutExercise.session_id)
@@ -267,11 +275,17 @@ def get_filter_options(db: Session, user: User) -> dict[str, Any]:
         .where(WorkoutSession.user_id == user.id)
         .group_by(Exercise.id)
         .order_by(Exercise.primary_muscle, Exercise.name)
-    ).all()
+    )
+    if category:
+        exercise_query = exercise_query.where(Exercise.category_label == category)
+    if muscle:
+        exercise_query = exercise_query.where(Exercise.primary_muscle == muscle)
+    exercise_rows = db.execute(exercise_query).all()
     exercises = [
         {
             "id": exercise.id,
             "name": exercise.name,
+            "category_label": exercise.category_label,
             "primary_muscle": exercise.primary_muscle,
             "exercise_type": exercise.exercise_type,
             "equipment": exercise.equipment,
@@ -280,7 +294,7 @@ def get_filter_options(db: Session, user: User) -> dict[str, Any]:
         for exercise, record_count in exercise_rows
     ]
 
-    muscle_rows = db.execute(
+    muscle_query = (
         select(Exercise.primary_muscle, func.count(distinct(WorkoutExercise.id)).label("record_count"))
         .join(WorkoutExercise, WorkoutExercise.exercise_id == Exercise.id)
         .join(WorkoutSession, WorkoutSession.id == WorkoutExercise.session_id)
@@ -288,6 +302,24 @@ def get_filter_options(db: Session, user: User) -> dict[str, Any]:
         .where(WorkoutSession.user_id == user.id)
         .group_by(Exercise.primary_muscle)
         .order_by(Exercise.primary_muscle)
-    ).all()
+    )
+    if category:
+        muscle_query = muscle_query.where(Exercise.category_label == category)
+    muscle_rows = db.execute(muscle_query).all()
     muscles = [{"name": muscle, "record_count": record_count} for muscle, record_count in muscle_rows]
-    return {"exercises": exercises, "muscles": muscles}
+
+    category_rows = db.execute(
+        select(Exercise.category_label, func.count(distinct(WorkoutExercise.id)).label("record_count"))
+        .join(WorkoutExercise, WorkoutExercise.exercise_id == Exercise.id)
+        .join(WorkoutSession, WorkoutSession.id == WorkoutExercise.session_id)
+        .join(ExerciseSet, ExerciseSet.workout_exercise_id == WorkoutExercise.id)
+        .where(
+            WorkoutSession.user_id == user.id,
+            Exercise.category_label.is_not(None),
+            Exercise.category_label != "",
+        )
+        .group_by(Exercise.category_label)
+        .order_by(Exercise.category_label)
+    ).all()
+    categories = [{"name": category, "record_count": record_count} for category, record_count in category_rows]
+    return {"exercises": exercises, "muscles": muscles, "categories": categories}

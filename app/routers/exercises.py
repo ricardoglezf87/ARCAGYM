@@ -16,7 +16,7 @@ def exercise_library(
     request: Request,
     q: str = "",
     muscle: str = "",
-    exercise_type: str = "",
+    category_label: str = "",
     level: str = "",
     user: User = Depends(require_user),
     db: Session = Depends(get_db),
@@ -26,8 +26,8 @@ def exercise_library(
         query = query.where(Exercise.name.ilike(f"%{q.strip()}%"))
     if muscle:
         query = query.where(Exercise.primary_muscle == muscle)
-    if exercise_type:
-        query = query.where(Exercise.exercise_type == exercise_type)
+    if category_label:
+        query = query.where(Exercise.category_label == category_label)
     if level:
         query = query.where(Exercise.recommended_level == level)
 
@@ -36,7 +36,7 @@ def exercise_library(
         select(Exercise.primary_muscle).distinct().order_by(Exercise.primary_muscle)
     ).all()
     external_results = ExternalSourcesService().search_exercises(q)
-    types = sorted({exercise.exercise_type for exercise in db.scalars(select(Exercise)).all()})
+    types = sorted({exercise.category_label for exercise in db.scalars(select(Exercise)).all()})
     levels = sorted({exercise.recommended_level for exercise in db.scalars(select(Exercise)).all()})
 
     return templates.TemplateResponse(
@@ -48,7 +48,7 @@ def exercise_library(
             "muscles": muscles,
             "types": types,
             "levels": levels,
-            "filters": {"q": q, "muscle": muscle, "exercise_type": exercise_type, "level": level},
+            "filters": {"q": q, "muscle": muscle, "category_label": category_label, "level": level},
             "external_results": external_results,
         },
     )

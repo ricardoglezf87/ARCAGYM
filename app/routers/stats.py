@@ -27,6 +27,7 @@ def _stats_url(
     *,
     exercise_id: int | None = None,
     muscle: str | None = None,
+    category: str | None = None,
     start_date: str | None = None,
     end_date: str | None = None,
 ) -> str:
@@ -35,6 +36,8 @@ def _stats_url(
         params["exercise_id"] = exercise_id
     if muscle:
         params["muscle"] = muscle
+    if category:
+        params["category"] = category
     if start_date:
         params["start_date"] = start_date
     if end_date:
@@ -48,6 +51,7 @@ def stats(
     request: Request,
     exercise_id: int | None = Query(None),
     muscle: str | None = Query(None),
+    category: str | None = Query(None),
     start_date: str | None = Query(None),
     end_date: str | None = Query(None),
     user: User = Depends(require_user),
@@ -60,20 +64,35 @@ def stats(
         muscle=muscle or None,
         start_date=_parse_date(start_date),
         end_date=_parse_date(end_date),
+        category=category or None,
     )
-    options = get_filter_options(db, user)
+    options = get_filter_options(db, user, category=category or None, muscle=muscle or None)
     for exercise in options["exercises"]:
         exercise["url"] = _stats_url(
             exercise_id=exercise["id"],
+            category=category,
+            muscle=muscle,
             start_date=start_date,
             end_date=end_date,
         )
     for muscle_option in options["muscles"]:
         muscle_option["url"] = _stats_url(
             muscle=muscle_option["name"],
+            category=category,
             start_date=start_date,
             end_date=end_date,
         )
+    for category_option in options["categories"]:
+        category_option["url"] = _stats_url(
+            category=category_option["name"],
+            start_date=start_date,
+            end_date=end_date,
+        )
+    options["clear_muscle_url"] = _stats_url(
+        category=category,
+        start_date=start_date,
+        end_date=end_date,
+    )
     options["clear_url"] = _stats_url(start_date=start_date, end_date=end_date)
     return templates.TemplateResponse(
         "stats.html",
@@ -85,6 +104,7 @@ def stats(
             "filters": {
                 "exercise_id": exercise_id,
                 "muscle": muscle or "",
+                "category": category or "",
                 "start_date": start_date or "",
                 "end_date": end_date or "",
             },

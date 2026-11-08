@@ -21133,16 +21133,6 @@
     }
   ],
   "additional_exercise_names_to_expand": {},
-  "codex_tasks": [
-    "Crear o reemplazar seed/exercises_seed.json con el contenido de exercises.",
-    "Crear un script de seed que lea este JSON e inserte ejercicios sin duplicar por slug.",
-    "Si la tabla Exercise no tiene campos suficientes, ampliar el modelo con category_label, secondary_muscles, movement_pattern, common_errors, technique_tips, safety, image_url, image_alt y source.",
-    "Guardar arrays como JSON si se usa SQLite y SQLAlchemy.",
-    "En la vista de detalle, renderizar instructions como lista numerada y common_errors/technique_tips como listas de bullets.",
-    "Crear filtros por primary_muscle, exercise_type, equipment y level.",
-    "Usar placeholder si image_url es null.",
-    "El catálogo ampliado ya está incorporado en exercises; additional_exercise_names_to_expand queda vacío."
-  ],
   "muscle_taxonomy_notes": {
     "Pecho": [
       "Pecho superior (porción clavicular)",

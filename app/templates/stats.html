@@ -12,18 +12,30 @@
   </div>
 </section>
 
-<details class="stats-quick-filter" {% if filters.exercise_id or filters.muscle %}open{% endif %}>
+<details class="stats-quick-filter" {% if filters.exercise_id or filters.muscle or filters.category %}open{% endif %}>
   <summary>
     <span>Filtros rapidos</span>
-    <small>Grupos y ejercicios con registros</small>
+    <small>Grupos, musculos y ejercicios con registros</small>
   </summary>
   <div class="stats-quick-filter-content">
     <div class="quick-filter-block">
       <h2>Grupos trabajados</h2>
       <div class="quick-filter-buttons">
-        <a class="quick-filter-chip {% if not filters.exercise_id and not filters.muscle %}is-active{% endif %}" href="{{ options.clear_url }}">Todos</a>
+        <a class="quick-filter-chip {% if not filters.category %}is-active{% endif %}" href="{{ options.clear_url }}">Todos</a>
+        {% for category in options.categories %}
+          <a class="quick-filter-chip {% if filters.category == category.name %}is-active{% endif %}" href="{{ category.url }}">
+            {{ category.name }}
+            <span>{{ category.record_count }}</span>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="quick-filter-block">
+      <h2>Musculos trabajados</h2>
+      <div class="quick-filter-buttons">
+        <a class="quick-filter-chip {% if not filters.muscle %}is-active{% endif %}" href="{{ options.clear_muscle_url }}">Todos</a>
         {% for muscle in options.muscles %}
-          <a class="quick-filter-chip {% if not filters.exercise_id and filters.muscle == muscle.name %}is-active{% endif %}" href="{{ muscle.url }}">
+          <a class="quick-filter-chip {% if filters.muscle == muscle.name %}is-active{% endif %}" href="{{ muscle.url }}">
             {{ muscle.name }}
             <span>{{ muscle.record_count }}</span>
           </a>
@@ -47,18 +59,9 @@
 </details>
 
 <form class="filter-bar" method="get" action="/stats">
-  <select name="exercise_id" data-searchable-select data-search-placeholder="Buscar ejercicio">
-    <option value="">Todos los ejercicios</option>
-    {% for exercise in options.exercises %}
-      <option value="{{ exercise.id }}" data-search="{{ exercise.name }} {{ exercise.primary_muscle }} {{ exercise.exercise_type }} {{ exercise.equipment or '' }}" {% if filters.exercise_id == exercise.id %}selected{% endif %}>{{ exercise.name }}</option>
-    {% endfor %}
-  </select>
-  <select name="muscle">
-    <option value="">Todos los grupos</option>
-    {% for muscle in options.muscles %}
-      <option value="{{ muscle.name }}" {% if filters.muscle == muscle.name %}selected{% endif %}>{{ muscle.name }}</option>
-    {% endfor %}
-  </select>
+  {% if filters.exercise_id %}<input type="hidden" name="exercise_id" value="{{ filters.exercise_id }}">{% endif %}
+  {% if filters.category %}<input type="hidden" name="category" value="{{ filters.category }}">{% endif %}
+  {% if filters.muscle %}<input type="hidden" name="muscle" value="{{ filters.muscle }}">{% endif %}
   <input name="start_date" type="date" value="{{ filters.start_date }}">
   <input name="end_date" type="date" value="{{ filters.end_date }}">
   <button class="button primary" type="submit">Aplicar</button>
