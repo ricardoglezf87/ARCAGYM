@@ -66,6 +66,115 @@
     <button type="button" class="button secondary compact" data-show-completed aria-controls="exerciseBlocks" aria-pressed="false">Mostrar completados</button>
   </div>
 
+  <section class="muscle-map-panel muscle-map-panel-realistic" aria-labelledby="muscleMapTitle">
+    <div class="muscle-map-heading">
+      <div>
+        <p class="eyebrow">Progreso de la sesión</p>
+        <h2 id="muscleMapTitle">Músculos trabajados</h2>
+        <p class="muted" data-muscle-map-status aria-live="polite">Marca todas las series de un ejercicio para ver los músculos trabajados.</p>
+      </div>
+      <div class="muscle-map-legend" aria-label="Leyenda">
+        <span><i class="muscle-legend-primary"></i><b>Principal</b></span>
+        <span><i class="muscle-legend-secondary"></i><b>Secundario</b></span>
+      </div>
+    </div>
+
+    <div class="muscle-map-layout">
+      <div class="muscle-map-visual muscle-map-realistic">
+        <div class="anatomy-figure anatomy-front">
+          <span class="anatomy-label">VISTA FRONTAL</span>
+          <div class="anatomy-stage">
+            <img class="anatomy-base" src="{{ url_for('static', path='/img/anatomy-front.png') }}" alt="Vista anatómica frontal">
+            <svg class="muscle-map muscle-overlay" viewBox="0 0 470 803" aria-hidden="true">
+              <!-- Hombros -->
+              <path class="muscle-region" data-muscle="deltoid-front" d="M128 151 C138 139 151 136 164 140 C166 158 158 179 143 194 C131 187 124 170 128 151Z M342 151 C332 139 319 136 306 140 C304 158 312 179 327 194 C339 187 346 170 342 151Z"/>
+              <path class="muscle-region" data-muscle="deltoid-side" d="M104 158 C113 140 126 133 140 134 C143 156 136 181 119 202 C105 196 99 177 104 158Z M366 158 C357 140 344 133 330 134 C327 156 334 181 351 202 C365 196 371 177 366 158Z"/>
+
+              <!-- Pectoral -->
+              <path class="muscle-region" data-muscle="chest-upper" d="M151 153 C174 141 203 141 231 153 L231 174 C201 176 177 171 153 162Z M239 153 C267 141 296 141 319 153 L317 162 C293 171 269 176 239 174Z"/>
+              <path class="muscle-region" data-muscle="chest-mid" d="M151 164 C176 175 202 181 231 179 L231 208 C201 214 176 207 154 194Z M239 179 C268 181 294 175 319 164 L316 194 C294 207 269 214 239 208Z"/>
+              <path class="muscle-region" data-muscle="chest-lower" d="M154 195 C177 208 202 215 231 211 L229 224 C205 231 181 224 162 215Z M239 211 C268 215 293 208 316 195 L308 215 C289 224 265 231 241 224Z"/>
+
+              <!-- Brazos -->
+              <path class="muscle-region" data-muscle="biceps-long front-arms" d="M111 202 C121 195 133 196 141 204 C140 233 131 260 117 286 C105 284 99 266 101 242 C103 224 106 211 111 202Z M359 202 C349 195 337 196 329 204 C330 233 339 260 353 286 C365 284 371 266 369 242 C367 224 364 211 359 202Z"/>
+              <path class="muscle-region" data-muscle="biceps-short front-arms" d="M138 205 C148 205 156 214 157 226 C153 248 144 270 130 289 C123 279 124 250 130 225 C132 216 135 209 138 205Z M332 205 C322 205 314 214 313 226 C317 248 326 270 340 289 C347 279 346 250 340 225 C338 216 335 209 332 205Z"/>
+              <path class="muscle-region" data-muscle="brachialis" d="M106 279 C116 286 128 288 139 281 L133 303 C123 314 111 313 102 303Z M364 279 C354 286 342 288 331 281 L337 303 C347 314 359 313 368 303Z"/>
+              <path class="muscle-region" data-muscle="forearms" d="M84 302 C96 295 109 299 118 309 C109 334 96 359 82 382 C72 398 62 409 53 414 C48 406 52 391 59 375 C69 350 77 325 84 302Z M386 302 C374 295 361 299 352 309 C361 334 374 359 388 382 C398 398 408 409 417 414 C422 406 418 391 411 375 C401 350 393 325 386 302Z"/>
+
+              <!-- Core -->
+              <path class="muscle-region" data-muscle="abs abs-upper" d="M204 229 C214 224 225 225 232 231 L232 255 C221 260 210 258 202 251Z M238 231 C245 225 256 224 266 229 L268 251 C260 258 249 260 238 255Z"/>
+              <path class="muscle-region" data-muscle="abs abs-mid" d="M201 255 C211 259 222 261 232 258 L232 291 C221 295 210 292 201 286Z M238 258 C248 261 259 259 269 255 L269 286 C260 292 249 295 238 291Z"/>
+              <path class="muscle-region" data-muscle="abs abs-lower" d="M202 292 C212 296 222 297 232 294 L230 334 C219 339 210 334 203 326Z M238 294 C248 297 258 296 268 292 L267 326 C260 334 251 339 240 334Z"/>
+              <path class="muscle-region" data-muscle="obliques" d="M169 226 C181 223 190 230 195 243 C192 270 192 303 196 329 C188 346 177 353 165 346 C157 315 157 265 169 226Z M301 226 C289 223 280 230 275 243 C278 270 278 303 274 329 C282 346 293 353 305 346 C313 315 313 265 301 226Z"/>
+
+              <!-- Cadera -->
+              <path class="muscle-region" data-muscle="hip-flexors" d="M178 340 C193 334 208 338 222 347 L214 376 C197 380 185 373 176 359Z M292 340 C277 334 262 338 248 347 L256 376 C273 380 285 373 294 359Z"/>
+              <path class="muscle-region" data-muscle="outer-hips" d="M151 347 C163 340 173 343 180 351 L174 386 C163 394 153 389 146 379Z M319 347 C307 340 297 343 290 351 L296 386 C307 394 317 389 324 379Z"/>
+
+              <!-- Pierna anterior -->
+              <path class="muscle-region" data-muscle="quads quads-rectus" d="M188 386 C202 380 216 386 224 400 L218 511 C211 536 199 546 188 531 C180 493 179 435 188 386Z M282 386 C268 380 254 386 246 400 L252 511 C259 536 271 546 282 531 C290 493 291 435 282 386Z"/>
+              <path class="muscle-region" data-muscle="quads quads-lateral" d="M154 392 C168 382 181 385 189 398 L180 520 C171 541 159 542 150 523 C141 481 142 429 154 392Z M316 392 C302 382 289 385 281 398 L290 520 C299 541 311 542 320 523 C329 481 328 429 316 392Z"/>
+              <path class="muscle-region" data-muscle="quads quads-medial" d="M203 505 C214 503 223 511 225 523 C221 544 211 557 198 558 C190 548 191 529 203 505Z M267 505 C256 503 247 511 245 523 C249 544 259 557 272 558 C280 548 279 529 267 505Z"/>
+              <path class="muscle-region" data-muscle="adductors" d="M218 389 C226 386 232 395 233 407 L229 491 C225 503 217 503 212 490Z M252 389 C244 386 238 395 237 407 L241 491 C245 503 253 503 258 490Z"/>
+              <path class="muscle-region" data-muscle="tibialis" d="M167 565 C178 558 187 563 191 575 L184 693 C179 711 171 711 165 696Z M303 565 C292 558 283 563 279 575 L286 693 C291 711 299 711 305 696Z"/>
+              <path class="muscle-region" data-muscle="calves calves-medial calves-lateral" d="M190 565 C202 560 214 568 218 583 C216 615 211 650 205 674 C199 690 192 688 187 673Z M280 565 C268 560 256 568 252 583 C254 615 259 650 265 674 C271 690 278 688 283 673Z"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="anatomy-figure anatomy-back">
+          <span class="anatomy-label">VISTA POSTERIOR</span>
+          <div class="anatomy-stage">
+            <img class="anatomy-base" src="{{ url_for('static', path='/img/anatomy-back.png') }}" alt="Vista anatómica posterior">
+            <svg class="muscle-map muscle-overlay" viewBox="0 0 450 803" aria-hidden="true">
+              <path class="muscle-region" data-muscle="deltoid-rear" d="M101 157 C112 139 130 132 149 137 C159 143 165 151 169 160 C164 181 153 197 136 203 C118 198 103 181 101 157Z M349 157 C338 139 320 132 301 137 C291 143 285 151 281 160 C286 181 297 197 314 203 C332 198 347 181 349 157Z"/>
+              <path class="muscle-region" data-muscle="deltoid-side" d="M94 165 C105 140 121 130 140 132 C139 170 128 196 108 214 C93 201 88 184 94 165Z M356 165 C345 140 329 130 310 132 C311 170 322 196 342 214 C357 201 362 184 356 165Z"/>
+
+              <path class="muscle-region" data-muscle="traps traps-upper" d="M177 126 C193 137 210 145 225 150 C240 145 257 137 273 126 L277 163 C258 177 242 185 225 192 C208 185 192 177 173 163Z"/>
+              <path class="muscle-region" data-muscle="traps traps-mid upper-back" d="M173 165 C191 180 209 190 225 195 C241 190 259 180 277 165 L272 221 C252 229 238 238 225 245 C212 238 198 229 178 221Z"/>
+              <path class="muscle-region" data-muscle="traps traps-lower" d="M195 219 C207 230 217 239 225 247 C233 239 243 230 255 219 L248 310 C240 327 232 340 225 352 C218 340 210 327 202 310Z"/>
+              <path class="muscle-region" data-muscle="upper-back" d="M127 184 C142 175 157 178 168 189 L177 227 C158 237 140 235 126 225 C118 210 118 195 127 184Z M323 184 C308 175 293 178 282 189 L273 227 C292 237 310 235 324 225 C332 210 332 195 323 184Z"/>
+
+              <path class="muscle-region" data-muscle="triceps triceps-long" d="M91 205 C102 198 115 199 124 210 L120 286 C111 300 100 302 91 291 C84 264 84 230 91 205Z M359 205 C348 198 335 199 326 210 L330 286 C339 300 350 302 359 291 C366 264 366 230 359 205Z"/>
+              <path class="muscle-region" data-muscle="triceps triceps-lateral" d="M121 207 C132 208 140 218 141 232 L132 286 C125 297 119 292 118 279Z M329 207 C318 208 310 218 309 232 L318 286 C325 297 331 292 332 279Z"/>
+              <path class="muscle-region" data-muscle="forearms" d="M68 299 C82 293 96 298 106 310 C96 337 86 363 73 386 C65 401 57 411 49 415 C44 404 49 386 56 369 C62 349 65 324 68 299Z M382 299 C368 293 354 298 344 310 C354 337 364 363 377 386 C385 401 393 411 401 415 C406 404 401 386 394 369 C388 349 385 324 382 299Z"/>
+
+              <path class="muscle-region" data-muscle="lats" d="M130 218 C151 221 174 237 201 263 L194 343 C177 361 157 357 140 341 C126 307 122 257 130 218Z M320 218 C299 221 276 237 249 263 L256 343 C273 361 293 357 310 341 C324 307 328 257 320 218Z"/>
+              <path class="muscle-region" data-muscle="lower-back" d="M199 318 C209 332 218 350 225 370 C232 350 241 332 251 318 L258 388 C248 406 237 417 225 423 C213 417 202 406 192 388Z"/>
+
+              <path class="muscle-region" data-muscle="glutes glutes-max" d="M139 363 C158 349 187 348 215 370 C225 384 227 404 222 430 C204 449 176 455 153 444 C135 432 128 405 139 363Z M311 363 C292 349 263 348 235 370 C225 384 223 404 228 430 C246 449 274 455 297 444 C315 432 322 405 311 363Z"/>
+              <path class="muscle-region" data-muscle="outer-hips glutes-med" d="M130 352 C145 341 163 342 177 352 L172 377 C158 387 143 384 132 374Z M320 352 C305 341 287 342 273 352 L278 377 C292 387 307 384 318 374Z"/>
+
+              <path class="muscle-region" data-muscle="hamstrings hamstrings-lateral" d="M143 446 C160 439 180 444 192 458 L188 558 C177 583 161 583 149 564 C139 531 137 486 143 446Z M307 446 C290 439 270 444 258 458 L262 558 C273 583 289 583 301 564 C311 531 313 486 307 446Z"/>
+              <path class="muscle-region" data-muscle="hamstrings hamstrings-medial" d="M190 451 C204 445 216 453 220 468 L214 554 C207 574 196 575 188 558Z M260 451 C246 445 234 453 230 468 L236 554 C243 574 254 575 262 558Z"/>
+              <path class="muscle-region" data-muscle="calves calves-medial" d="M171 585 C185 576 200 581 207 598 L201 682 C193 705 181 704 172 685Z M279 585 C265 576 250 581 243 598 L249 682 C257 705 269 704 278 685Z"/>
+              <path class="muscle-region" data-muscle="calves calves-lateral" d="M143 589 C154 580 166 582 174 594 L167 681 C160 698 149 696 142 680Z M307 589 C296 580 284 582 276 594 L283 681 C290 698 301 696 308 680Z"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <aside class="muscle-map-summary" aria-label="Resumen muscular de la sesión">
+        <div class="muscle-summary-card">
+          <div class="muscle-summary-title">
+            <span>Resumen de la sesión</span>
+            <strong data-muscle-summary-count>0</strong>
+          </div>
+          <p><b data-muscle-summary-exercises>0 ejercicios</b> completados</p>
+          <div class="muscle-coverage-head">
+            <span>Cobertura muscular</span>
+            <strong data-muscle-coverage-value>0%</strong>
+          </div>
+          <div class="muscle-coverage-bar" aria-hidden="true"><span data-muscle-coverage-bar></span></div>
+        </div>
+        <div class="muscle-summary-card muscle-results-card">
+          <h3>Músculos trabajados</h3>
+          <div class="muscle-map-results" data-muscle-map-results aria-live="polite" aria-label="Lista de músculos trabajados" tabindex="0"></div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
   <div id="exerciseBlocks" class="workout-blocks">
     {% set workout_entries = session.exercises if session else prefill_entries %}
     {% if workout_entries %}
@@ -76,7 +185,7 @@
             <label>Ejercicio
               <select name="exercise_id" required data-searchable-select data-exercise-select data-search-placeholder="Buscar ejercicio">
                 {% for exercise in exercises %}
-                  <option value="{{ exercise.id }}" data-last-weight="{{ last_weights.get(exercise.id, 0) }}" data-search="{{ exercise.name }} {{ exercise.primary_muscle }} {{ exercise.exercise_type }} {{ exercise.equipment or '' }}" data-meta="{{ exercise.primary_muscle }} · {{ exercise.equipment or 'Sin material' }}" data-image-url="{{ exercise.image_url or '' }}" data-image-alt="{{ exercise.image_alt or exercise.name }}" data-detail-url="/exercises/{{ exercise.id }}" {% if exercise.id == entry.exercise_id %}selected{% endif %}>{{ exercise.name }} ({{ exercise.primary_muscle }})</option>
+                  <option value="{{ exercise.id }}" data-last-weight="{{ last_weights.get(exercise.id, 0) }}" data-primary-muscle="{{ exercise.primary_muscle }}" data-secondary-muscles="{{ exercise.secondary_muscles or '' }}" data-search="{{ exercise.name }} {{ exercise.primary_muscle }} {{ exercise.exercise_type }} {{ exercise.equipment or '' }}" data-meta="{{ exercise.primary_muscle }} · {{ exercise.equipment or 'Sin material' }}" data-image-url="{{ exercise.image_url or '' }}" data-image-alt="{{ exercise.image_alt or exercise.name }}" data-detail-url="/exercises/{{ exercise.id }}" {% if exercise.id == entry.exercise_id %}selected{% endif %}>{{ exercise.name }} ({{ exercise.primary_muscle }})</option>
                 {% endfor %}
               </select>
             </label>
@@ -145,7 +254,7 @@
       <label>Ejercicio
         <select name="exercise_id" required data-searchable-select data-exercise-select data-search-placeholder="Buscar ejercicio">
           {% for exercise in exercises %}
-            <option value="{{ exercise.id }}" data-last-weight="{{ last_weights.get(exercise.id, 0) }}" data-search="{{ exercise.name }} {{ exercise.primary_muscle }} {{ exercise.exercise_type }} {{ exercise.equipment or '' }}" data-meta="{{ exercise.primary_muscle }} · {{ exercise.equipment or 'Sin material' }}" data-image-url="{{ exercise.image_url or '' }}" data-image-alt="{{ exercise.image_alt or exercise.name }}" data-detail-url="/exercises/{{ exercise.id }}">{{ exercise.name }} ({{ exercise.primary_muscle }})</option>
+            <option value="{{ exercise.id }}" data-last-weight="{{ last_weights.get(exercise.id, 0) }}" data-primary-muscle="{{ exercise.primary_muscle }}" data-secondary-muscles="{{ exercise.secondary_muscles or '' }}" data-search="{{ exercise.name }} {{ exercise.primary_muscle }} {{ exercise.exercise_type }} {{ exercise.equipment or '' }}" data-meta="{{ exercise.primary_muscle }} · {{ exercise.equipment or 'Sin material' }}" data-image-url="{{ exercise.image_url or '' }}" data-image-alt="{{ exercise.image_alt or exercise.name }}" data-detail-url="/exercises/{{ exercise.id }}">{{ exercise.name }} ({{ exercise.primary_muscle }})</option>
           {% endfor %}
         </select>
       </label>
@@ -199,5 +308,5 @@
   </tr>
 </template>
 
-<script src="{{ url_for('static', path='/js/workout_form.js') }}?v=20260823-simplified-sets"></script>
+<script src="{{ url_for('static', path='/js/workout_form.js') }}?v=20261109-muscle-map-realistic-v1"></script>
 {% endblock %}

@@ -10,6 +10,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const completedTools = document.querySelector("[data-completed-tools]");
   const completedCount = document.querySelector("[data-completed-count]");
   const showCompletedButton = document.querySelector("[data-show-completed]");
+  const muscleMaps = document.querySelectorAll(".muscle-map");
+  const muscleMapStatus = document.querySelector("[data-muscle-map-status]");
+  const muscleMapResults = document.querySelector("[data-muscle-map-results]");
+  const muscleSummaryCount = document.querySelector("[data-muscle-summary-count]");
+  const muscleSummaryExercises = document.querySelector("[data-muscle-summary-exercises]");
+  const muscleCoverageValue = document.querySelector("[data-muscle-coverage-value]");
+  const muscleCoverageBar = document.querySelector("[data-muscle-coverage-bar]");
 
   if (!form || !blocksContainer || !addExerciseButton || !exerciseTemplate || !setTemplate) {
     return;
@@ -142,9 +149,196 @@ document.addEventListener("DOMContentLoaded", () => {
     return rows.length > 0 && rows.every(isSetDone);
   }
 
+  function normalizeMuscleName(value) {
+    return value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+  }
+
+  function regionsForMuscle(muscle) {
+    const name = normalizeMuscleName(muscle);
+    const regions = new Set();
+    const add = (region) => regions.add(region);
+
+    if (/pecho|pectoral/.test(name)) {
+      if (/superior|clavicular/.test(name)) add("chest-upper");
+      else if (/inferior/.test(name)) add("chest-lower");
+      else if (/medio|esternocostal/.test(name)) add("chest-mid");
+      else ["chest-upper", "chest-mid", "chest-lower"].forEach(add);
+    }
+    if (/hombro|deltoide|manguito rotador/.test(name)) {
+      if (/anterior/.test(name)) add("deltoid-front");
+      if (/lateral|participacion lateral/.test(name)) add("deltoid-side");
+      if (/posterior/.test(name)) add("deltoid-rear");
+      if (/manguito rotador/.test(name) || !/anterior|lateral|posterior/.test(name)) {
+        ["deltoid-front", "deltoid-side", "deltoid-rear"].forEach(add);
+      }
+    }
+    if (/biceps/.test(name)) {
+      if (/cabeza larga|cabezas larga/.test(name)) add("biceps-long");
+      if (/cabeza corta|cabezas larga y corta/.test(name)) add("biceps-short");
+      if (!/cabeza larga|cabeza corta/.test(name)) {
+        ["biceps-long", "biceps-short"].forEach(add);
+      }
+    }
+    if (/braquial/.test(name)) add("brachialis");
+    if (/braquiorradial/.test(name)) add("front-arms");
+    if (/brazos/.test(name)) {
+      ["biceps-long", "biceps-short", "triceps"].forEach(add);
+    }
+    if (/triceps|brazos/.test(name)) {
+      add("triceps");
+      if (/cabeza larga|porcion larga/.test(name)) add("triceps-long");
+      if (/cabeza lateral|vasto lateral|porcion lateral/.test(name)) add("triceps-lateral");
+      if (/cabeza medial|vasto medial|porcion medial/.test(name)) add("triceps-medial");
+    }
+    if (/antebrazo|muneca|agarre|pronadores|supinadores|flexores de dedos/.test(name)) add("forearms");
+    if (/recto abdominal|transverso abdominal|core|estabilizadores/.test(name)) {
+      add("abs");
+      if (/superior/.test(name)) add("abs-upper");
+      else if (/inferior/.test(name)) add("abs-lower");
+      else if (/medio/.test(name)) add("abs-mid");
+    }
+    if (/oblicuo|cuadrado lumbar/.test(name)) add("obliques");
+    if (/trapecio/.test(name)) {
+      add("traps");
+      if (/superior/.test(name)) add("traps-upper");
+      if (/medio/.test(name)) add("traps-mid");
+      if (/inferior/.test(name)) add("traps-lower");
+      if (/medio|inferior/.test(name) || !/superior|medio|inferior/.test(name)) add("upper-back");
+    }
+    if (/elevador de la escapula/.test(name)) add("traps");
+    if (/espalda media|espalda alta|romboides|toracica/.test(name)) add("upper-back");
+    if (/dorsal ancho|redondo mayor/.test(name)) add("lats");
+    if (/erectores|columna|multifidos/.test(name)) add("lower-back");
+    if (/gluteo/.test(name)) {
+      add("glutes");
+      if (/mayor/.test(name)) add("glutes-max");
+      if (/medio|menor/.test(name)) add("glutes-med");
+    }
+    if (/gluteo medio|gluteo menor|abductores|tensor de la fascia lata/.test(name)) add("outer-hips");
+    if (/flexores de cadera/.test(name)) add("hip-flexors");
+    if (/^cadera$/.test(name)) {
+      ["hip-flexors", "outer-hips", "glutes"].forEach(add);
+    }
+    if (/aductores|pectineo|gracil/.test(name)) add("adductors");
+    if (/cuadriceps/.test(name)) {
+      add("quads");
+      if (/recto femoral/.test(name)) add("quads-rectus");
+      if (/vasto lateral|externo/.test(name)) add("quads-lateral");
+      if (/vasto medial|interno/.test(name)) add("quads-medial");
+    }
+    if (/isquiosurales|biceps femoral|semitendinoso|semimembranoso/.test(name)) {
+      add("hamstrings");
+      if (/biceps femoral/.test(name)) add("hamstrings-lateral");
+      if (/semitendinoso|semimembranoso/.test(name)) add("hamstrings-medial");
+    }
+    if (/gastrocnemio|soleo|gemelos|pantorrilla/.test(name)) {
+      add("calves");
+      if (/medial|interno/.test(name)) add("calves-medial");
+      if (/lateral|externo/.test(name)) add("calves-lateral");
+    }
+    if (/tibial anterior|extensores del tobillo|tobillo/.test(name)) add("tibialis");
+    if (/cuerpo completo/.test(name)) {
+      [
+        "deltoid-front", "deltoid-side", "deltoid-rear", "chest-upper", "chest-mid",
+        "chest-lower", "biceps-long", "biceps-short", "brachialis", "front-arms", "triceps",
+        "forearms", "abs", "obliques", "traps", "upper-back", "lats", "lower-back",
+        "glutes", "outer-hips", "hip-flexors", "adductors", "quads", "hamstrings",
+        "calves", "tibialis",
+      ].forEach(add);
+    }
+    return regions;
+  }
+
+  function muscleLabelsForExercise(block, field) {
+    const selectedOption = block.querySelector('select[name="exercise_id"] option:checked');
+    if (!selectedOption) {
+      return [];
+    }
+    const value = field === "primary"
+      ? selectedOption.dataset.primaryMuscle || ""
+      : selectedOption.dataset.secondaryMuscles || "";
+    return value.split(/[\n,;]+/).map((muscle) => muscle.trim()).filter(Boolean);
+  }
+
+  function updateMuscleMap(completedBlocks) {
+    if (muscleMaps.length === 0) {
+      return;
+    }
+
+    const primaryRegions = new Set();
+    const secondaryRegions = new Set();
+    const primaryLabels = new Set();
+    const secondaryLabels = new Set();
+
+    completedBlocks.forEach((block) => {
+      muscleLabelsForExercise(block, "primary").forEach((muscle) => {
+        primaryLabels.add(muscle);
+        regionsForMuscle(muscle).forEach((region) => primaryRegions.add(region));
+      });
+      muscleLabelsForExercise(block, "secondary").forEach((muscle) => {
+        secondaryLabels.add(muscle);
+        regionsForMuscle(muscle).forEach((region) => secondaryRegions.add(region));
+      });
+    });
+
+    primaryRegions.forEach((region) => secondaryRegions.delete(region));
+    muscleMaps.forEach((muscleMap) => {
+      muscleMap.querySelectorAll(".muscle-region").forEach((muscleRegion) => {
+        const regions = muscleRegion.dataset.muscle.split(/\s+/);
+        muscleRegion.classList.toggle("is-primary", regions.some((region) => primaryRegions.has(region)));
+        muscleRegion.classList.toggle("is-secondary", regions.some((region) => secondaryRegions.has(region)));
+      });
+    });
+
+    if (muscleMapStatus) {
+      muscleMapStatus.textContent = completedBlocks.length === 0
+        ? "Marca todas las series de un ejercicio para ver los músculos trabajados."
+        : `${completedBlocks.length} ${completedBlocks.length === 1 ? "ejercicio completado" : "ejercicios completados"} · Principal: ${Array.from(primaryLabels).join(", ") || "sin zona muscular identificada"}.`;
+    }
+
+    const displayedRegions = new Set([...primaryRegions, ...secondaryRegions]);
+    const majorRegionGroups = new Set();
+    displayedRegions.forEach((region) => {
+      const group = region
+        .replace(/^chest-.+$/, "chest")
+        .replace(/^deltoid-.+$/, "deltoid")
+        .replace(/^biceps-.+$/, "biceps")
+        .replace(/^triceps-.+$/, "triceps")
+        .replace(/^abs-.+$/, "abs")
+        .replace(/^traps-.+$/, "traps")
+        .replace(/^glutes-.+$/, "glutes")
+        .replace(/^quads-.+$/, "quads")
+        .replace(/^hamstrings-.+$/, "hamstrings")
+        .replace(/^calves-.+$/, "calves");
+      majorRegionGroups.add(group);
+    });
+    const coverageTotal = 18;
+    const coverage = Math.min(100, Math.round((majorRegionGroups.size / coverageTotal) * 100));
+    if (muscleSummaryCount) muscleSummaryCount.textContent = String(majorRegionGroups.size);
+    if (muscleSummaryExercises) muscleSummaryExercises.textContent = `${completedBlocks.length} ${completedBlocks.length === 1 ? "ejercicio" : "ejercicios"}`;
+    if (muscleCoverageValue) muscleCoverageValue.textContent = `${coverage}%`;
+    if (muscleCoverageBar) muscleCoverageBar.style.width = `${coverage}%`;
+
+    if (muscleMapResults) {
+      muscleMapResults.replaceChildren();
+      [
+        { role: "primary", labels: primaryLabels },
+        { role: "secondary", labels: secondaryLabels },
+      ].forEach(({ role, labels }) => {
+        labels.forEach((label) => {
+          const chip = document.createElement("span");
+          chip.className = `muscle-map-chip is-${role}`;
+          chip.textContent = label;
+          muscleMapResults.appendChild(chip);
+        });
+      });
+    }
+  }
+
   function syncCompletedExercises() {
     const blocks = Array.from(blocksContainer.querySelectorAll(".workout-exercise"));
     const completedBlocks = blocks.filter(isExerciseDone);
+    updateMuscleMap(completedBlocks);
 
     blocks.forEach((block) => {
       const completed = isExerciseDone(block);
@@ -513,6 +707,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
     applyLastWeightToOpenSets(block);
+    syncCompletedExercises();
   });
 
   form.addEventListener("input", scheduleDraftSave);
