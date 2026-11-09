@@ -61,11 +61,6 @@
     </label>
   </section>
 
-  <div class="workout-completed-tools" data-completed-tools hidden>
-    <span data-completed-count aria-live="polite"></span>
-    <button type="button" class="button secondary compact" data-show-completed aria-controls="exerciseBlocks" aria-pressed="false">Mostrar completados</button>
-  </div>
-
   <section class="muscle-map-panel muscle-map-panel-realistic" aria-labelledby="muscleMapTitle">
     <div class="muscle-map-heading">
       <div>
@@ -168,24 +163,18 @@
         </div>
       </div>
 
-      <aside class="muscle-map-summary" aria-label="Resumen muscular de la sesión">
+      <div class="muscle-map-summary" aria-label="Progreso de ejercicios">
         <div class="muscle-summary-card">
           <div class="muscle-summary-title">
-            <span>Resumen de la sesión</span>
-            <strong data-muscle-summary-count>0</strong>
+            <span>Ejercicios pendientes</span>
+            <strong data-exercise-progress>0 de 0</strong>
           </div>
-          <p><b data-muscle-summary-exercises>0 ejercicios</b> completados</p>
-          <div class="muscle-coverage-head">
-            <span>Cobertura muscular</span>
-            <strong data-muscle-coverage-value>0%</strong>
+          <div class="workout-completed-tools" data-completed-tools hidden>
+            <span data-completed-count aria-live="polite"></span>
+            <button type="button" class="button secondary compact" data-show-completed aria-controls="exerciseBlocks" aria-pressed="false">Mostrar completados</button>
           </div>
-          <div class="muscle-coverage-bar" aria-hidden="true"><span data-muscle-coverage-bar></span></div>
         </div>
-        <div class="muscle-summary-card muscle-results-card">
-          <h3>Músculos trabajados</h3>
-          <div class="muscle-map-results" data-muscle-map-results aria-live="polite"></div>
-        </div>
-      </aside>
+      </div>
     </div>
   </section>
 
@@ -322,5 +311,5 @@
   </tr>
 </template>
 
-<script src="{{ url_for('static', path='/js/workout_form.js') }}?v=20261109-muscle-map-realistic-v3"></script>
+<script src="{{ url_for('static', path='/js/workout_form.js') }}?v=20261109-muscle-map-realistic-v4"></script>
 {% endblock %}

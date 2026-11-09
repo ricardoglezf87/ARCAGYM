@@ -12,11 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const showCompletedButton = document.querySelector("[data-show-completed]");
   const muscleMaps = document.querySelectorAll(".muscle-map");
   const muscleMapStatus = document.querySelector("[data-muscle-map-status]");
-  const muscleMapResults = document.querySelector("[data-muscle-map-results]");
-  const muscleSummaryCount = document.querySelector("[data-muscle-summary-count]");
-  const muscleSummaryExercises = document.querySelector("[data-muscle-summary-exercises]");
-  const muscleCoverageValue = document.querySelector("[data-muscle-coverage-value]");
-  const muscleCoverageBar = document.querySelector("[data-muscle-coverage-bar]");
+  const exerciseProgress = document.querySelector("[data-exercise-progress]");
 
   if (!form || !blocksContainer || !addExerciseButton || !exerciseTemplate || !setTemplate) {
     return;
@@ -291,47 +287,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     if (muscleMapStatus) {
+      const secondaryOnlyLabels = Array.from(secondaryLabels).filter((label) =>
+        !Array.from(primaryLabels).some((primaryLabel) =>
+          normalizeMuscleName(primaryLabel) === normalizeMuscleName(label),
+        ),
+      );
       muscleMapStatus.textContent = completedBlocks.length === 0
         ? "Marca todas las series de un ejercicio para ver los músculos trabajados."
-        : `${completedBlocks.length} ${completedBlocks.length === 1 ? "ejercicio completado" : "ejercicios completados"} · Principal: ${Array.from(primaryLabels).join(", ") || "sin zona muscular identificada"}.`;
-    }
-
-    const displayedRegions = new Set([...primaryRegions, ...secondaryRegions]);
-    const majorRegionGroups = new Set();
-    displayedRegions.forEach((region) => {
-      const group = region
-        .replace(/^chest-.+$/, "chest")
-        .replace(/^deltoid-.+$/, "deltoid")
-        .replace(/^biceps-.+$/, "biceps")
-        .replace(/^triceps-.+$/, "triceps")
-        .replace(/^abs-.+$/, "abs")
-        .replace(/^traps-.+$/, "traps")
-        .replace(/^glutes-.+$/, "glutes")
-        .replace(/^quads-.+$/, "quads")
-        .replace(/^hamstrings-.+$/, "hamstrings")
-        .replace(/^calves-.+$/, "calves");
-      majorRegionGroups.add(group);
-    });
-    const coverageTotal = 18;
-    const coverage = Math.min(100, Math.round((majorRegionGroups.size / coverageTotal) * 100));
-    if (muscleSummaryCount) muscleSummaryCount.textContent = String(majorRegionGroups.size);
-    if (muscleSummaryExercises) muscleSummaryExercises.textContent = `${completedBlocks.length} ${completedBlocks.length === 1 ? "ejercicio" : "ejercicios"}`;
-    if (muscleCoverageValue) muscleCoverageValue.textContent = `${coverage}%`;
-    if (muscleCoverageBar) muscleCoverageBar.style.width = `${coverage}%`;
-
-    if (muscleMapResults) {
-      muscleMapResults.replaceChildren();
-      [
-        { role: "primary", labels: primaryLabels },
-        { role: "secondary", labels: secondaryLabels },
-      ].forEach(({ role, labels }) => {
-        labels.forEach((label) => {
-          const chip = document.createElement("span");
-          chip.className = `muscle-map-chip is-${role}`;
-          chip.textContent = label;
-          muscleMapResults.appendChild(chip);
-        });
-      });
+        : `${completedBlocks.length} ${completedBlocks.length === 1 ? "ejercicio completado" : "ejercicios completados"} · Principal: ${Array.from(primaryLabels).join(", ") || "sin zona muscular identificada"} · Secundario: ${secondaryOnlyLabels.join(", ") || "ninguno"}.`;
     }
   }
 
@@ -339,6 +302,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const blocks = Array.from(blocksContainer.querySelectorAll(".workout-exercise"));
     const completedBlocks = blocks.filter(isExerciseDone);
     updateMuscleMap(completedBlocks);
+    if (exerciseProgress) {
+      exerciseProgress.textContent = `${blocks.length - completedBlocks.length} de ${blocks.length}`;
+    }
 
     blocks.forEach((block) => {
       const completed = isExerciseDone(block);
