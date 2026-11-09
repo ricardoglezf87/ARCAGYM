@@ -46,7 +46,7 @@ Abre:
 http://127.0.0.1:5990
 ```
 
-La base `arcagym.db` se crea automaticamente en el primer arranque y se carga con ejercicios iniciales y el historico clinico incluido en `app/seed/`.
+La base `arcagym.db` se crea automaticamente en el primer arranque y se carga con ejercicios iniciales y el historico clinico incluido en `app/seed/`. El catalogo unico de ejercicios, incluidos los usados por las rutinas locales, esta en [app/seed/exercises_seed.json](./app/seed/exercises_seed.json); las rutinas solo referencian esos ejercicios.
 
 ## Funcionalidades incluidas
 

@@ -21130,6 +21130,224 @@
       "image_url": null,
       "image_alt": "Persona realizando rope climb asistido",
       "source": "Base local propia - ampliación catálogo"
+    },
+    {
+      "slug": "press-banca-maquina",
+      "name": "Press de banca en máquina",
+      "category_label": "Pecho",
+      "primary_muscle": "Pecho",
+      "secondary_muscles": [
+        "Triceps",
+        "Hombros anteriores"
+      ],
+      "exercise_type": "Compuesto",
+      "equipment": [
+        "Maquina"
+      ],
+      "movement_pattern": "Empuje",
+      "instructions": [
+        "Ajusta asiento y respaldo para que los agarres queden a la altura media del pecho.",
+        "Apoya espalda y pies, y toma los agarres con munecas neutras.",
+        "Empuja al frente sin bloquear los codos de forma agresiva.",
+        "Vuelve controlando hasta sentir estiramiento comodo en el pecho."
+      ],
+      "common_errors": [
+        "Separar la espalda del respaldo.",
+        "Elevar los hombros hacia las orejas.",
+        "Rebotar al final del recorrido."
+      ],
+      "technique_tips": [
+        "Manten escapulas estables contra el respaldo.",
+        "Usa un rango comodo para los hombros.",
+        "Controla especialmente la vuelta."
+      ],
+      "image_alt": "Persona realizando press de banca en máquina",
+      "level": "principiante",
+      "safety": "Reduce carga o rango si aparece molestia anterior de hombro.",
+      "image_url": null,
+      "source": "Base local propia"
+    },
+    {
+      "slug": "press-hombro-maquina",
+      "name": "Press de hombro en máquina",
+      "category_label": "Hombros",
+      "primary_muscle": "Hombros",
+      "secondary_muscles": [
+        "Triceps",
+        "Trapecio"
+      ],
+      "exercise_type": "Compuesto",
+      "equipment": [
+        "Maquina"
+      ],
+      "movement_pattern": "Empuje",
+      "instructions": [
+        "Ajusta asiento para que los agarres queden cerca de la altura de los hombros.",
+        "Apoya la espalda y toma los agarres.",
+        "Empuja hacia arriba con control.",
+        "Baja hasta un rango comodo sin perder tension."
+      ],
+      "common_errors": [
+        "Arquear la zona lumbar.",
+        "Cerrar demasiado los codos.",
+        "Bloquear arriba con brusquedad."
+      ],
+      "technique_tips": [
+        "Manten abdomen firme.",
+        "Deja que la maquina marque la trayectoria.",
+        "Evita encoger hombros al final."
+      ],
+      "image_alt": "Persona realizando press de hombro en máquina",
+      "level": "principiante",
+      "safety": "No fuerces el rango si existe dolor de hombro o cuello.",
+      "image_url": null,
+      "source": "Base local propia"
+    },
+    {
+      "slug": "encogimientos-trapecio-maquina",
+      "name": "Encogimientos para trapecio",
+      "category_label": "Trapecio",
+      "primary_muscle": "Trapecio",
+      "secondary_muscles": [
+        "Antebrazo"
+      ],
+      "exercise_type": "Aislamiento",
+      "equipment": [
+        "Maquina",
+        "Mancuernas"
+      ],
+      "movement_pattern": "Traccion",
+      "instructions": [
+        "Colocate erguido con la carga a los lados o en la maquina.",
+        "Eleva los hombros hacia arriba sin flexionar codos.",
+        "Pausa un instante arriba.",
+        "Baja controlando hasta estirar el trapecio."
+      ],
+      "common_errors": [
+        "Rotar los hombros.",
+        "Doblar los codos.",
+        "Inclinar el cuello hacia delante."
+      ],
+      "technique_tips": [
+        "Sube y baja en linea vertical.",
+        "Manten cuello neutro.",
+        "Usa agarre firme sin acelerar."
+      ],
+      "image_alt": "Persona realizando encogimientos para trapecio",
+      "level": "principiante",
+      "safety": "No rotes los hombros con carga si molesta el cuello.",
+      "image_url": null,
+      "source": "Base local propia"
+    },
+    {
+      "slug": "jalon-pecho-agarre-amplio",
+      "name": "Jalón al pecho agarre amplio",
+      "category_label": "Espalda",
+      "primary_muscle": "Dorsal ancho",
+      "secondary_muscles": [
+        "Biceps",
+        "Espalda alta"
+      ],
+      "exercise_type": "Compuesto",
+      "equipment": [
+        "Polea",
+        "Maquina"
+      ],
+      "movement_pattern": "Traccion",
+      "instructions": [
+        "Ajusta el apoyo de muslos y toma la barra con agarre amplio.",
+        "Inclina ligeramente el torso hacia atras manteniendo pecho alto.",
+        "Tira llevando los codos hacia abajo y atras.",
+        "Sube controlando sin perder tension en dorsales."
+      ],
+      "common_errors": [
+        "Tirar detras de la nuca.",
+        "Balancear el torso.",
+        "Encoger los hombros al tirar."
+      ],
+      "technique_tips": [
+        "Inicia bajando escapulas.",
+        "Piensa en llevar codos hacia las costillas.",
+        "Manten munecas neutras."
+      ],
+      "image_alt": "Persona realizando jalón al pecho con agarre amplio",
+      "level": "principiante",
+      "safety": "Evita llevar la barra tras la cabeza si molesta el hombro.",
+      "image_url": null,
+      "source": "Base local propia"
+    },
+    {
+      "slug": "pullover-mancuerna-dorsales",
+      "name": "Pullover con mancuerna para dorsales",
+      "category_label": "Espalda",
+      "primary_muscle": "Dorsal ancho",
+      "secondary_muscles": [
+        "Pecho",
+        "Tríceps"
+      ],
+      "exercise_type": "Aislamiento",
+      "equipment": [
+        "Mancuernas",
+        "Banco"
+      ],
+      "movement_pattern": "Traccion",
+      "instructions": [
+        "Túmbate en un banco y sujeta una mancuerna con ambas manos sobre el pecho.",
+        "Mantén los codos ligeramente flexionados y lleva la mancuerna hacia atrás.",
+        "Detén el descenso en un rango cómodo para los hombros.",
+        "Lleva la mancuerna de nuevo sobre el pecho contrayendo los dorsales."
+      ],
+      "common_errors": [
+        "Arquear en exceso la zona lumbar.",
+        "Flexionar y extender demasiado los codos.",
+        "Forzar el rango del hombro."
+      ],
+      "technique_tips": [
+        "Mantén las costillas controladas.",
+        "Piensa en llevar los brazos hacia la cadera.",
+        "Usa una carga que permita un movimiento lento."
+      ],
+      "image_alt": "Persona realizando pullover con mancuerna para dorsales",
+      "level": "principiante",
+      "safety": "Acorta el recorrido si aparece molestia en hombros o espalda.",
+      "image_url": null,
+      "source": "Base local propia"
+    },
+    {
+      "slug": "extension-triceps-mancuerna-sobre-cabeza",
+      "name": "Extensión de tríceps sobre la cabeza con mancuerna",
+      "category_label": "Tríceps",
+      "primary_muscle": "Tríceps",
+      "secondary_muscles": [
+        "Hombros",
+        "Core"
+      ],
+      "exercise_type": "Aislamiento",
+      "equipment": [
+        "Mancuernas"
+      ],
+      "movement_pattern": "Empuje",
+      "instructions": [
+        "Sujeta una mancuerna con ambas manos por encima de la cabeza.",
+        "Flexiona los codos para bajar la mancuerna detrás de la cabeza.",
+        "Mantén los brazos superiores estables y cerca de la cabeza.",
+        "Extiende los codos con control sin arquear la espalda."
+      ],
+      "common_errors": [
+        "Abrir demasiado los codos.",
+        "Mover los brazos superiores.",
+        "Arquear la zona lumbar."
+      ],
+      "technique_tips": [
+        "Mantén el abdomen firme.",
+        "Usa un agarre seguro sobre la mancuerna.",
+        "Baja solo hasta un rango cómodo."
+      ],
+      "image_alt": "Persona realizando extensión de tríceps con mancuerna sobre la cabeza",
+      "level": "principiante",
+      "safety": "Evita este ejercicio si provoca dolor en hombros o codos.",
+      "image_url": null,
+      "source": "Base local propia"
     }
   ],
   "additional_exercise_names_to_expand": {},
